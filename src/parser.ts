@@ -17,6 +17,10 @@ export class StringPart {
         this.str = str;
     }
 
+    postProcess() {
+        this.str = this.str.trimRight();
+    }
+
     isOnlyWhitespace() {
         return stringIsOnlyWhitespace(this.str);
     }
@@ -28,12 +32,16 @@ export class StringPart {
     toString(): string {
         return this.str;
     }
+
+    valueOf(): string {
+        return this.str;
+    }
 }
 
 export class TablePart {
 
-    headers: string[][] = [];
-    rows: string[][] = [];
+    headers: StringPart[][] = [];
+    rows: StringPart[][] = [];
 
     lastX = -1;
     lastY = Number.MAX_VALUE;
@@ -48,8 +56,19 @@ export class TablePart {
             destination.push([]);
         }
 
-        destination[destination.length - 1].push(
-            normalizeString(item.str),
+        const row = destination[destination.length - 1];
+        if (row.length
+            && row[row.length - 1].isOnlyWhitespace()
+            && row.length > 1
+            && !row[row.length - 2].isOnlyWhitespace()
+        ) {
+            row.pop();
+        }
+
+        row.push(
+            new StringPart(
+                normalizeString(item.str),
+            ),
         );
 
         this.lastX = item.x;
@@ -57,11 +76,38 @@ export class TablePart {
         this.lastHeight = item.height;
     }
 
+    postProcess() {
+        // TODO much more, probably
+
+        for (const row of this.headers) {
+            if (row[row.length - 1].isOnlyWhitespace()) {
+                row.pop();
+            }
+        }
+
+        for (const row of this.rows) {
+            if (row[row.length - 1].isOnlyWhitespace()) {
+                row.pop();
+            }
+        }
+    }
+
+    toJson() {
+        return {
+            headers: this.headers.map(row =>
+                row.map(p => p.str),
+            ),
+
+            rows: this.rows.map(row =>
+                row.map(p => p.str),
+            ),
+        };
+    }
+
     toString(): string {
-        return 'TABLE: ' + JSON.stringify({
-            headers: this.headers,
-            rows: this.rows,
-        }, null, ' ');
+        return 'TABLE: ' + JSON.stringify(
+            this.toJson(), null, ' ',
+        );
     }
 }
 
@@ -76,6 +122,10 @@ export class Section {
 
     constructor(headerLevelValue) {
         this.headerLevelValue = headerLevelValue;
+    }
+
+    postProcess() {
+        this.parts.forEach(p => p.postProcess());
     }
 
     push(item: ITextItem) {

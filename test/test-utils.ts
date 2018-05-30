@@ -8,6 +8,7 @@ export function textItem(obj: any): ITextItem {
         fontName: obj.tableHeader
             ? TABLE_HEADER_FONT_NAME
             : 'base',
+        height: 40.0,
         transform: [],
         width: 20.0,
 
