@@ -81,7 +81,7 @@ export async function processPdf(
 
             const content = await pageData.getTextContent(opts);
             content.items = content.items.map((textItem) => new WrappedTextItem(textItem));
-            onEachPage(pageData, content);
+            return onEachPage(pageData, content);
         },
     });
 }

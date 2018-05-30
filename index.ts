@@ -2,4 +2,9 @@
 
 import { Parser } from './src/parser';
 
-new Parser().run('/Users/dhleong/Documents/DND/SRD-OGL_V5.1.pdf');
+new Parser()
+    .run('/Users/dhleong/Documents/DND/SRD-OGL_V5.1.pdf')
+    .catch((e) => {
+        console.error('ERROR!');
+        console.error(e);
+    });

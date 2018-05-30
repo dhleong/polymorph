@@ -4,6 +4,8 @@ import { DepthTracker } from './depth-tracker';
 import { normalizeString } from './format';
 import { ITextItem, processPdf } from './pdf';
 
+export const TABLE_HEADER_FONT_NAME = 'g_d0_f6';
+
 const stringIsOnlyWhitespace =
     (str: string): boolean =>
         str.match(/^[ ]+$/) != null;
@@ -30,22 +32,23 @@ export class StringPart {
 
 export class TablePart {
 
-    rows: string[][];
+    headers: string[][] = [];
+    rows: string[][] = [];
 
     lastX = -1;
     lastY = Number.MAX_VALUE;
     lastHeight = Number.MAX_VALUE;
 
-    constructor() {
-        this.rows = [];
-    }
-
     feed(item: ITextItem) {
-        if (item.y < this.lastY) {
-            this.rows.push([]);
+        const destination = (item.fontName === TABLE_HEADER_FONT_NAME)
+            ? this.headers
+            : this.rows;
+
+        if (item.y < this.lastY || !destination.length) {
+            destination.push([]);
         }
 
-        this.rows[this.rows.length - 1].push(
+        destination[destination.length - 1].push(
             normalizeString(item.str),
         );
 
@@ -55,7 +58,10 @@ export class TablePart {
     }
 
     toString(): string {
-        return 'TABLE: ' + JSON.stringify(this.rows, null, ' ');
+        return 'TABLE: ' + JSON.stringify({
+            headers: this.headers,
+            rows: this.rows,
+        }, null, ' ');
     }
 }
 
@@ -73,7 +79,7 @@ export class Section {
     }
 
     push(item: ITextItem) {
-        if (item.fontName === 'g_d0_f6') {
+        if (item.fontName === TABLE_HEADER_FONT_NAME) {
             this.pushTablePart(item);
             return;
         }
@@ -185,9 +191,9 @@ export class Parser {
 
     async run(file: string) {
         const data = await fs.readFile(file);
-        await processPdf(data, (page, content) => {
-            this.processPage(this.skipFooters(content.items));
-        });
+        await processPdf(data, (page, content) =>
+            this.processPage(this.skipFooters(content.items)),
+        );
 
         for (const section of this.sections) {
             const level = this.headerLevels.pickLevelFor(section.headerLevelValue);

@@ -1,6 +1,7 @@
 import * as chai from 'chai';
 
-import { Section, StringPart } from '../src/parser';
+import { Section, StringPart, TablePart } from '../src/parser';
+import { textItem } from './test-utils';
 
 chai.should();
 
@@ -37,6 +38,25 @@ describe('Section', () => {
             section.pushString('tem    Reference');
             section.parts.should.have.length(1);
             section.parts[0].toString().should.equal('System Reference');
+        });
+    });
+
+    describe('Table handling', () => {
+        it('Extracts headers', () => {
+            const section = new Section(0);
+            section.push(textItem({
+                str: 'Header 1',
+                tableHeader: true,
+                y: 420,
+            }));
+            section.push(textItem({
+                str: 'Header 2',
+                tableHeader: true,
+                y: 420,
+            }));
+
+            section.parts.should.have.length(1);
+            section.parts[0].should.be.instanceof(TablePart);
         });
     });
 });
