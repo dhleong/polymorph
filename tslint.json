@@ -1,0 +1,14 @@
+{
+    "tslint.enable": true,
+    "extends": "tslint:latest",
+    "rules": {
+        "arrow-parens": [false],
+        "curly": [true, "ignore-same-line"],
+        "indent": [true, "spaces", 4],
+        "no-console": [false],
+        "max-classes-per-file": [false],
+        "member-access": [false],
+        "quotemark": [true, "single", "avoid-escape"],
+        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"]
+    }
+}

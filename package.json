@@ -1,0 +1,23 @@
+{
+  "name": "srd-to-json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/chai": "^4.1.3",
+    "@types/mocha": "^5.2.0",
+    "@types/mz": "0.0.32",
+    "@types/node": "^10.1.3",
+    "binary-search": "^1.3.3",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "mz": "^2.7.0",
+    "pdf-parse": "^1.0.8",
+    "promisify-node": "^0.4.0"
+  }
+}
