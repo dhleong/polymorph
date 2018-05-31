@@ -11,10 +11,15 @@ const stringIsOnlyWhitespace =
         str.match(/^[ ]+$/) != null;
 
 export class StringPart {
-    str: string;
+    static from(item: ITextItem): StringPart {
+        return new StringPart(normalizeString(item.str), item.y);
+    }
 
-    constructor(str: string) {
-        this.str = str;
+    constructor(public str: string, readonly y: number = 0) {
+    }
+
+    append(item: ITextItem) {
+        this.str += normalizeString(item.str);
     }
 
     postProcess() {
@@ -56,29 +61,15 @@ export class TablePart {
             destination.push([]);
         }
 
-        const row = destination[destination.length - 1];
-        let resumePart: StringPart;
-        if (row.length
-            && row[row.length - 1].isOnlyWhitespace()
-            && row.length > 1
-            && !row[row.length - 2].isOnlyWhitespace()
-        ) {
-            row.pop();
-        } else if (row.length
-            && !row[row.length - 1].isOnlyWhitespace()
-            && !stringIsOnlyWhitespace(item.str)
-        ) {
-            resumePart = row[row.length - 1];
-        }
-
+        const resumePart: StringPart = this.extractResumePart(
+            destination,
+            item,
+        );
         if (resumePart) {
-            resumePart.str += normalizeString(item.str);
+            resumePart.append(item);
         } else {
-            row.push(
-                new StringPart(
-                    normalizeString(item.str),
-                ),
-            );
+            const row = destination[destination.length - 1];
+            row.push(StringPart.from(item));
         }
 
         this.lastX = item.x;
@@ -118,6 +109,49 @@ export class TablePart {
         return 'TABLE: ' + JSON.stringify(
             this.toJson(), null, ' ',
         );
+    }
+
+    private extractResumePart(destination: StringPart[][], item: ITextItem): StringPart {
+        const row = destination[destination.length - 1];
+        if (!row.length) {
+            return this.consolidateColumnCell(destination, item);
+        }
+
+        const last = row[row.length - 1];
+        const lastIsOnlyWhitespace = last.isOnlyWhitespace();
+
+        if (lastIsOnlyWhitespace
+            && row.length > 1
+            && !row[row.length - 2].isOnlyWhitespace()
+        ) {
+            // can't resume, but *can* clean up excess whitespace
+            row.pop();
+            return;
+        }
+
+        const itemIsOnlyWhitespace = stringIsOnlyWhitespace(item.str);
+        if (!lastIsOnlyWhitespace && !itemIsOnlyWhitespace) {
+            return last;
+        }
+    }
+
+    private consolidateColumnCell(
+        destination: StringPart[][],
+        item: ITextItem,
+    ) {
+        if (destination.length < 2) return;
+        const prevRow = destination[destination.length - 2];
+        const last = prevRow[prevRow.length - 1];
+        const lastIsOnlyWhitespace = last.isOnlyWhitespace();
+        const itemIsOnlyWhitespace = stringIsOnlyWhitespace(item.str);
+
+        if (!lastIsOnlyWhitespace
+            && last.y > item.y
+            && !itemIsOnlyWhitespace
+        ) {
+            destination.pop();
+            return last;
+        }
     }
 }
 

@@ -118,6 +118,37 @@ describe('Section', () => {
                 ['5th', '+3', '1d6'],
             ]);
         });
+
+        it('Merges vertically-separated columns', () => {
+
+            // from The Barbarian table
+            const items = [
+                {str: 'Level', y: 320, tableHeader: true},
+                {str: '    ', y: 320, tableHeader: true},
+                {str: 'Proficiency    ', y: 331, tableHeader: true},
+                {str: 'Bonus', y: 320, tableHeader: true},
+                {str: '    ', y: 320, tableHeader: true},
+                {str: 'Features', y: 320, tableHeader: true},
+                {str: '    ', y: 320, tableHeader: true},
+
+                {str: '5th', y: 210},
+                {str: '    ', y: 210},
+                {str: '+3', y: 210},
+                {str: '    ', y: 210},
+                {str: 'Extra    Attack,', y: 210},
+                {str: '    ', y: 210},
+                {str: 'Fast    ', y: 199},
+                {str: 'Movement', y: 189},
+                {str: '    ', y: 189},
+            ];
+
+            const table = tableSection(items).toJson();
+            table.headers.should.deep.equal([
+                ['Level', 'Proficiency Bonus', 'Features'],
+            ]);
+
+            // TODO check rows
+        });
     });
 });
 
