@@ -123,31 +123,41 @@ describe('Section', () => {
 
             // from The Barbarian table
             const items = [
-                {str: 'Level', y: 320, tableHeader: true},
-                {str: '    ', y: 320, tableHeader: true},
-                {str: 'Proficiency    ', y: 331, tableHeader: true},
-                {str: 'Bonus', y: 320, tableHeader: true},
-                {str: '    ', y: 320, tableHeader: true},
-                {str: 'Features', y: 320, tableHeader: true},
-                {str: '    ', y: 320, tableHeader: true},
+                {str: 'Level', x: 56, y: 320, tableHeader: true},
+                {str: '    ', x: 76, y: 320, tableHeader: true},
+                {str: 'Proficiency    ', x: 88, y: 331, tableHeader: true},
+                {str: 'Bonus', x: 97, y: 320, tableHeader: true},
+                {str: '    ', x: 120, y: 320, tableHeader: true},
+                {str: 'Features', x: 141, y: 320, tableHeader: true},
+                {str: '    ', x: 173, y: 320, tableHeader: true},
+                {str: 'Rages', x: 212, y: 320, tableHeader: true},
+                {str: '    ', x: 233, y: 320, tableHeader: true},
 
-                {str: '5th', y: 210},
-                {str: '    ', y: 210},
-                {str: '+3', y: 210},
-                {str: '    ', y: 210},
-                {str: 'Extra    Attack,', y: 210},
-                {str: '    ', y: 210},
-                {str: 'Fast    ', y: 199},
-                {str: 'Movement', y: 189},
-                {str: '    ', y: 189},
+                {str: '5th', x: 61, y: 210},
+                {str: '    ', x: 73, y: 210},
+                {str: '+3', x: 104, y: 210},
+                {str: '    ', x: 113, y: 210},
+                {str: 'Extra    Attack,', x: 141, y: 210},
+                {str: '    ', x: 187, y: 210},
+                {str: 'Fast    ', x: 141, y: 199},
+                {str: 'Movement', x: 141, y: 189},
+                {str: '    ', x: 181, y: 189},
+                {str: '3', x: 220, y: 210},
+                {str: '    ', x: 225, y: 210},
             ];
 
             const table = tableSection(items).toJson();
             table.headers.should.deep.equal([
-                ['Level', 'Proficiency Bonus', 'Features'],
+                ['Level', 'Proficiency Bonus', 'Features', 'Rages'],
             ]);
 
-            // TODO check rows
+            table.rows.should.deep.equal([
+                ['5th', '+3', 'Extra Attack, Fast Movement', '3'],
+            ]);
+        });
+
+        it.skip('handles splits across page columns', () => {
+            // TODO see: "relentless rage" for 11th level Barbarian
         });
     });
 });

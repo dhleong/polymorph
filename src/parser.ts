@@ -12,11 +12,18 @@ const stringIsOnlyWhitespace =
 
 export class StringPart {
     static from(item: ITextItem): StringPart {
-        return new StringPart(normalizeString(item.str), item.y);
+        return new StringPart(
+            normalizeString(item.str),
+            item.x,
+            item.y,
+        );
     }
 
-    constructor(public str: string, readonly y: number = 0) {
-    }
+    constructor(
+        public str: string,
+        readonly x: number = 0,
+        readonly y: number = 0,
+    ) { }
 
     append(item: ITextItem) {
         this.str += normalizeString(item.str);
@@ -141,16 +148,31 @@ export class TablePart {
     ) {
         if (destination.length < 2) return;
         const prevRow = destination[destination.length - 2];
+
+        if (!prevRow.length) return;
         const last = prevRow[prevRow.length - 1];
+
         const lastIsOnlyWhitespace = last.isOnlyWhitespace();
         const itemIsOnlyWhitespace = stringIsOnlyWhitespace(item.str);
 
         if (!lastIsOnlyWhitespace
-            && last.y > item.y
+            && item.y < last.y
             && !itemIsOnlyWhitespace
         ) {
             destination.pop();
             return last;
+        }
+
+        if (lastIsOnlyWhitespace && prevRow.length > 1) {
+            const possibleColumn = prevRow[prevRow.length - 2];
+            if (!possibleColumn.isOnlyWhitespace()
+                && possibleColumn.x === item.x
+            ) {
+                prevRow.pop();
+                destination.pop();
+                possibleColumn.str += ' ';
+                return possibleColumn;
+            }
         }
     }
 }
