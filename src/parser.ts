@@ -57,19 +57,29 @@ export class TablePart {
         }
 
         const row = destination[destination.length - 1];
+        let resumePart: StringPart;
         if (row.length
             && row[row.length - 1].isOnlyWhitespace()
             && row.length > 1
             && !row[row.length - 2].isOnlyWhitespace()
         ) {
             row.pop();
+        } else if (row.length
+            && !row[row.length - 1].isOnlyWhitespace()
+            && !stringIsOnlyWhitespace(item.str)
+        ) {
+            resumePart = row[row.length - 1];
         }
 
-        row.push(
-            new StringPart(
-                normalizeString(item.str),
-            ),
-        );
+        if (resumePart) {
+            resumePart.str += normalizeString(item.str);
+        } else {
+            row.push(
+                new StringPart(
+                    normalizeString(item.str),
+                ),
+            );
+        }
 
         this.lastX = item.x;
         this.lastY = item.y;

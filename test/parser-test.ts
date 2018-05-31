@@ -42,7 +42,7 @@ describe('Section', () => {
     });
 
     describe('Table handling', () => {
-        it('Extracts headers', () => {
+        it('extracts headers', () => {
             const section = new Section(0);
             section.push(textItem({
                 str: 'Header 1',
@@ -59,7 +59,32 @@ describe('Section', () => {
             section.parts[0].should.be.instanceof(TablePart);
         });
 
-        it('Handles basic tables', () => {
+        it('merges obvious splits', () => {
+            // from The Monk table
+            const items = [
+                {str: 'Dragon', y: 483, tableHeader: true},
+                {str: '    ', y: 483, tableHeader: true},
+                {str: 'Damage    Type', y: 483, tableHeader: true},
+                {str: '    ', y: 483, tableHeader: true},
+                {str: 'Breath    Weapon', y: 483, tableHeader: true},
+                {str: '    ', y: 483, tableHeader: true},
+
+                {str: 'Blue', y: 472},
+                {str: '    ', y: 472},
+                {str: 'Lightning', y: 472},
+                {str: '    ', y: 472},
+                {str: '5    by    30    ft.    line    ', y: 472},
+                {str: '(Dex.    save)', y: 472},
+                {str: '    ', y: 472},
+            ];
+
+            const table = tableSection(items).toJson();
+            table.rows.should.deep.equal([
+                ['Blue', 'Lightning', '5 by 30 ft. line (Dex. save)'],
+            ]);
+        });
+
+        it('handles basic tables', () => {
             // from The Monk table
             const items = [
                 {str: 'Level', y: 483, tableHeader: true},
@@ -84,16 +109,7 @@ describe('Section', () => {
                 {str: '    ', y: 428},
             ];
 
-            const section = new Section(0);
-            items.forEach(item => {
-                section.push(textItem(item));
-            });
-            section.postProcess();
-
-            section.parts.should.have.length(1);
-            section.parts[0].should.be.instanceof(TablePart);
-
-            const table = (section.parts[0] as TablePart).toJson();
+            const table = tableSection(items).toJson();
             table.headers.should.deep.equal([
                 ['Level', 'Proficiency Bonus', 'Martial Arts'],
             ]);
@@ -104,3 +120,16 @@ describe('Section', () => {
         });
     });
 });
+
+function tableSection(items: any[]): TablePart {
+    const section = new Section(0);
+    items.forEach(item => {
+        section.push(textItem(item));
+    });
+    section.postProcess();
+
+    section.parts.should.have.length(1);
+    section.parts[0].should.be.instanceof(TablePart);
+
+    return section.parts[0] as TablePart;
+}
