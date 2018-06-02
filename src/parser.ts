@@ -6,6 +6,10 @@ import { ITextItem, processPdf } from './pdf';
 
 export const TABLE_HEADER_FONT_NAME = 'g_d0_f6';
 
+const UNNECESSARY_HEADER_COLS = new Set([
+    'Spell Slots per Spell Level',
+]);
+
 const stringIsOnlyWhitespace =
     (str: string): boolean =>
         str.match(/^[ ]+$/) != null;
@@ -30,6 +34,10 @@ export class StringPart {
     append(item: ITextItem) {
         this.str += normalizeString(item.str);
         this.width += item.width;
+    }
+
+    prepend(item: StringPart) {
+        this.str = item.str.trimRight() + ' ' + this.str.trimLeft();
     }
 
     /**
@@ -76,6 +84,11 @@ export class TablePart {
             : this.rows;
 
         if (item.y < this.lastY || !destination.length) {
+
+            if (destination === this.headers && destination.length) {
+                this.trimUnnecessaryHeaderRows();
+            }
+
             destination.push([]);
         }
 
@@ -104,6 +117,27 @@ export class TablePart {
             }
         }
 
+        // merge vertically-aligned headers in separate rows
+        if (this.headers.length === 3) {
+            // merge vertically-aligned headers *down*
+            for (const mergeCandidate of this.headers[1]) {
+                if (mergeCandidate.isOnlyWhitespace()) continue;
+
+                const mergeCenter = mergeCandidate.x + mergeCandidate.width / 2;
+                for (const destCandidate of this.headers[2]) {
+                    if (destCandidate.couldContain(mergeCenter)) {
+                        destCandidate.prepend(mergeCandidate);
+                        break;
+                    }
+                }
+            }
+
+            // remove the old row
+            this.headers.splice(1, 1);
+        } else if (this.headers.length > 3) {
+            console.warn('Unexpected number of header rows: ' + JSON.stringify(this.headers, null, ' '));
+        }
+
         for (const row of this.rows) {
             if (row[row.length - 1].isOnlyWhitespace()) {
                 row.pop();
@@ -127,6 +161,24 @@ export class TablePart {
         return 'TABLE: ' + JSON.stringify(
             this.toJson(), null, ' ',
         );
+    }
+
+    private trimUnnecessaryHeaderRows() {
+        const lastHeaderRow = this.headers[this.headers.length - 1];
+        let isAllWhitespace = true;
+        for (const col of lastHeaderRow) {
+            if (isAllWhitespace && col.str.length && !col.isOnlyWhitespace()) {
+                isAllWhitespace = false;
+            }
+            if (UNNECESSARY_HEADER_COLS.has(col.str)) {
+                this.headers.pop();
+                return;
+            }
+        }
+
+        if (isAllWhitespace) {
+            this.headers.pop();
+        }
     }
 
     private extractResumePart(destination: StringPart[][], item: ITextItem): StringPart {
@@ -363,6 +415,8 @@ export class Parser {
         );
 
         for (const section of this.sections) {
+            section.postProcess();
+
             const level = this.headerLevels.pickLevelFor(section.headerLevelValue);
             for (const part of section.parts) {
                 console.log(' '.repeat(level), part.toString(), `[${level}]`);

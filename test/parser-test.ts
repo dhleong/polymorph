@@ -193,7 +193,7 @@ describe('Section', () => {
 });
 
 describe('Parser', () => {
-    it.skip('Merges tables at different levels', () => {
+    it('Merges tables at different levels', () => {
         // Excerpt from "The Cleric" table (with header):
         const items = [
             {str: 'The    Cleric', width: 48, height: 144, x: 57, y: 486, tableHeader: true},
@@ -236,7 +236,10 @@ describe('Parser', () => {
 function parsePage(items: any[]): Section[] {
     const parser = new Parser();
     parser.processPage(items.map(raw => textItem(raw)));
-    return parser['sections'] as Section[]; // tslint:disable-line
+
+    const sections = parser['sections'] as Section[]; // tslint:disable-line
+    sections.forEach(s => s.postProcess());
+    return sections;
 }
 
 function tableSection(items: any[]): TablePart {
