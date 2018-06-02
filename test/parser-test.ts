@@ -156,7 +156,7 @@ describe('Section', () => {
             ]);
         });
 
-        it.skip('handles splits across page columns', () => {
+        it('handles splits across page columns', () => {
             // TODO see: "relentless rage" for 11th level Barbarian
             // from The Barbarian table
             const items = [

@@ -144,7 +144,9 @@ export class TablePart {
         ) {
             // can't resume, but *can* clean up excess whitespace
             row.pop();
-            return;
+
+            // well... maybe...
+            return this.detectSplitColumn(row, item);
         }
 
         const itemIsOnlyWhitespace = stringIsOnlyWhitespace(item.str);
@@ -154,6 +156,27 @@ export class TablePart {
         ) {
             return last;
         }
+    }
+
+    private detectSplitColumn(row: StringPart[], item: ITextItem): StringPart {
+        // table headers aren't split across 2-column pages
+        if (item.fontName === TABLE_HEADER_FONT_NAME) return;
+
+        let candidate: StringPart;
+        for (const col of row) {
+            if (item.y <= col.y) return;
+            if (item.x <= col.x + col.width) return;
+
+            if (!candidate && col.endsWithSpace()) {
+                candidate = col;
+            }
+        }
+
+        // okay, higher on the page and further-right on the page
+        // than anyone else in this row...
+        // If anyone ends with whitespace, that's our guy (hopefully).
+
+        return candidate;
     }
 
     private itemShouldShareColumnWith(item: ITextItem, last: StringPart): boolean {
