@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import { Section, StringPart, TablePart } from '../src/parser';
+import { Parser, Section, StringPart, TablePart } from '../src/parser';
 import { textItem } from './test-utils';
 
 chai.should();
@@ -157,7 +157,7 @@ describe('Section', () => {
         });
 
         it('handles splits across page columns', () => {
-            // TODO see: "relentless rage" for 11th level Barbarian
+            // see: "relentless rage" for 11th level Barbarian
             // from The Barbarian table
             const items = [
                 {str: 'Level', x: 56, y: 320, width: 19, tableHeader: true},
@@ -188,8 +188,56 @@ describe('Section', () => {
                 ['11th', '+4', 'Relentless Rage', '4', '+3'],
             ]);
         });
+
     });
 });
+
+describe('Parser', () => {
+    it.skip('Merges tables at different levels', () => {
+        // Excerpt from "The Cleric" table (with header):
+        const items = [
+            {str: 'The    Cleric', width: 48, height: 144, x: 57, y: 486, tableHeader: true},
+            {str: '    ', width: 2, height: 144, x: 106, y: 486, tableHeader: true},
+            {str: '    ', width: 2, height: 78, x: 67, y: 471.36, tableHeader: true},
+            {str: 'Proficiency', width: 41, height: 78, x: 87, y: 471.36, tableHeader: true},
+            {str: '    ', width: 2, height: 78, x: 129, y: 471.36, tableHeader: true},
+            {str: '    ', width: 2, height: 78, x: 139, y: 471.36, tableHeader: true},
+            {str: 'Cantrips', width: 30, height: 78, x: 312, y: 471.36, tableHeader: true},
+            {str: '    ', width: 2, height: 78, x: 343, y: 471.36, tableHeader: true},
+            {str: '', width: 0, height: 76, x: 398, y: 470, tableHeader: true},
+            {str: 'Spell    Slots    per    Spell    Level',
+                width: 94, height: 78, x: 407, y: 470.64, tableHeader: true}, // tslint:disable-line
+            {str: '', width: 0, height: 76, x: 501, y: 470, tableHeader: true},
+            {str: '    ', width: 2, height: 78, x: 510, y: 470.64, tableHeader: true},
+            {str: 'Level', width: 19, height: 78, x: 57, y: 459.6, tableHeader: true},
+            {str: '    ', width: 2, height: 78, x: 76, y: 459.6, tableHeader: true},
+            {str: 'Bonus', width: 23, height: 78, x: 96, y: 459.6, tableHeader: true},
+            {str: '    ', width: 2, height: 78, x: 120, y: 459.6, tableHeader: true},
+            {str: 'Features', width: 32, height: 78, x: 139, y: 459.6, tableHeader: true},
+            {str: '    ', width: 2, height: 78, x: 172, y: 459.6, tableHeader: true},
+            {str: 'Known', width: 26, height: 78, x: 315, y: 459.6, tableHeader: true},
+            {str: '    ', width: 2, height: 78, x: 341, y: 459.6, tableHeader: true},
+        ];
+
+        const sections = parsePage(items);
+        sections.should.have.lengthOf(1);
+
+        const section = sections[0];
+        section.parts.should.have.lengthOf(1);
+
+        const table = section.parts[0] as TablePart;
+        table.toJson().headers.should.deep.equal([
+            ['The Cleric'],
+            ['Level', 'Proficiency Bonus', 'Features', 'Cantrips Known'],
+        ]);
+    });
+});
+
+function parsePage(items: any[]): Section[] {
+    const parser = new Parser();
+    parser.processPage(items.map(raw => textItem(raw)));
+    return parser['sections'] as Section[]; // tslint:disable-line
+}
 
 function tableSection(items: any[]): TablePart {
     const section = new Section(0);

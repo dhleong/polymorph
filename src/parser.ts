@@ -370,12 +370,13 @@ export class Parser {
         }
     }
 
-    async processPage(content: ITextItem[]) {
+    processPage(content: ITextItem[]) {
         for (const item of content) {
             // this will store it at an appropriate place in the headerLevels list
             this.headerLevels.feed(item.height);
 
-            if (!this.currentSection || this.currentSection.headerLevelValue !== item.height) {
+            if ((!this.currentSection || this.currentSection.headerLevelValue !== item.height)
+                    && !this.shouldMergeTable(item)) {
                 const newSection = new Section(item.height);
                 this.currentSection = newSection;
                 this.sections.push(newSection);
@@ -383,6 +384,19 @@ export class Parser {
 
             this.currentSection.push(item);
         }
+    }
+
+    private shouldMergeTable(item: ITextItem): boolean {
+        if (item.fontName !== TABLE_HEADER_FONT_NAME) return false;
+        if (!this.currentSection) return false;
+
+        const parts = this.currentSection.parts;
+        if (!parts.length) return false;
+
+        const lastPart = parts[parts.length - 1];
+        if (!(lastPart instanceof TablePart)) return false;
+
+        return !lastPart.rows.length;
     }
 
     private skipFooters(items: ITextItem[]) {
