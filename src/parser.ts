@@ -16,6 +16,7 @@ export class StringPart {
             normalizeString(item.str),
             item.x,
             item.y,
+            item.width,
         );
     }
 
@@ -23,10 +24,20 @@ export class StringPart {
         public str: string,
         readonly x: number = 0,
         readonly y: number = 0,
+        public width: number = 0,
     ) { }
 
     append(item: ITextItem) {
         this.str += normalizeString(item.str);
+        this.width += item.width;
+    }
+
+    /**
+     * @return True if the column starting at our `.x` with
+     *  our `.width` could contain the given `x` value
+     */
+    couldContain(x: number): boolean {
+        return this.x <= x && x <= this.x + this.width;
     }
 
     postProcess() {
@@ -137,9 +148,24 @@ export class TablePart {
         }
 
         const itemIsOnlyWhitespace = stringIsOnlyWhitespace(item.str);
-        if (!lastIsOnlyWhitespace && !itemIsOnlyWhitespace) {
+        if (!lastIsOnlyWhitespace
+            && !itemIsOnlyWhitespace
+            && this.itemShouldShareColumnWith(item, last)
+        ) {
             return last;
         }
+    }
+
+    private itemShouldShareColumnWith(item: ITextItem, last: StringPart): boolean {
+        // guess which column `last` belongs to, then see if
+        // item.x is within that range
+        for (const header of this.headers[0]) {
+            if (header.couldContain(last.x)) {
+                return header.couldContain(item.x);
+            }
+        }
+
+        return false;
     }
 
     private consolidateColumnCell(
@@ -162,6 +188,8 @@ export class TablePart {
             destination.pop();
             return last;
         }
+
+        // TODO handle split across page
 
         if (lastIsOnlyWhitespace && prevRow.length > 1) {
             const possibleColumn = prevRow[prevRow.length - 2];
