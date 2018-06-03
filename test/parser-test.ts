@@ -193,6 +193,52 @@ describe('Section', () => {
 });
 
 describe('Parser', () => {
+    it.only('Creates tables with rows', () => {
+        // from The Barbarian table
+        const items = [
+            {str: 'The    Barbarian', x: 57, y: 346, height: 144, tableHeader: true},
+            {str: '    ', x: 127, y: 346, height: 144, tableHeader: true},
+
+            {str: 'Level', x: 56, y: 320, height: 78, tableHeader: true},
+            {str: '    ', x: 76, y: 320, height: 78, tableHeader: true},
+            {str: 'Proficiency    ', x: 88, y: 331, height: 78, tableHeader: true},
+            {str: 'Bonus', x: 97, y: 320, height: 78, tableHeader: true},
+            {str: '    ', x: 120, y: 320, height: 78, tableHeader: true},
+            {str: 'Features', x: 141, y: 320, height: 78, tableHeader: true},
+            {str: '    ', x: 173, y: 320, height: 78, tableHeader: true},
+            {str: 'Rages', x: 212, y: 320, height: 78, tableHeader: true},
+            {str: '    ', x: 233, y: 320, height: 78, tableHeader: true},
+
+            {str: '5th', height: 78, x: 61, y: 210},
+            {str: '    ', height: 78, x: 73, y: 210},
+            {str: '+3', height: 78, x: 104, y: 210},
+            {str: '    ', height: 78, x: 113, y: 210},
+            {str: 'Extra    Attack,', height: 78, x: 141, y: 210},
+            {str: '    ', height: 78, x: 187, y: 210},
+            {str: 'Fast    ', height: 78, x: 141, y: 199},
+            {str: 'Movement', height: 78, x: 141, y: 189},
+            {str: '    ', height: 78, x: 181, y: 189},
+            {str: '3', height: 78, x: 220, y: 210},
+            {str: '    ', height: 78, x: 225, y: 210},
+        ];
+
+        const sections = parsePage(items);
+        sections.should.have.lengthOf(1, JSON.stringify(sections));
+
+        const section = sections[0];
+        section.parts.should.have.lengthOf(1);
+
+        const table = (section.parts[0] as TablePart).toJson();
+        table.headers.should.deep.equal([
+            ['The Barbarian'],
+            ['Level', 'Proficiency Bonus', 'Features', 'Rages'],
+        ]);
+
+        table.rows.should.deep.equal([
+            ['5th', '+3', 'Extra Attack, Fast Movement', '3'],
+        ]);
+    });
+
     it('Merges tables at different levels', () => {
         // Excerpt from "The Cleric" table (with header):
         const items = [

@@ -441,7 +441,6 @@ export class Parser {
     }
 
     private shouldMergeTable(item: ITextItem): boolean {
-        if (item.fontName !== TABLE_HEADER_FONT_NAME) return false;
         if (!this.currentSection) return false;
 
         const parts = this.currentSection.parts;
@@ -450,7 +449,14 @@ export class Parser {
         const lastPart = parts[parts.length - 1];
         if (!(lastPart instanceof TablePart)) return false;
 
-        return !lastPart.rows.length;
+        if (item.fontName !== TABLE_HEADER_FONT_NAME) {
+            // if it's not a table header, allow it if its height
+            // is *at least* that of the table headers.
+            // In practice, the heights should be the same...
+            return item.height >= lastPart.lastHeight;
+        } else {
+            return !lastPart.rows.length;
+        }
     }
 
     private skipFooters(items: ITextItem[]) {
