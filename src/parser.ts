@@ -2,6 +2,7 @@ import { fs } from 'mz';
 
 import { DepthTracker } from './depth-tracker';
 import { normalizeString } from './format';
+import { ISection, IStringPart, ITablePart } from './parser-interface';
 import { ITextItem, processPdf } from './pdf';
 
 export const TABLE_HEADER_FONT_NAME = 'g_d0_f6';
@@ -19,7 +20,7 @@ const stringIsOnlyWhitespace =
     (str: string): boolean =>
         str.match(/^[ ]+$/) != null;
 
-export class StringPart {
+export class StringPart implements IStringPart {
     static from(item: ITextItem): StringPart {
         return new StringPart(
             normalizeString(item.str),
@@ -76,7 +77,7 @@ export class StringPart {
     }
 }
 
-export class TablePart {
+export class TablePart implements ITablePart {
 
     headers: StringPart[][] = [];
     rows: StringPart[][] = [];
@@ -353,9 +354,12 @@ export class TablePart {
 // union type of all part kinds
 export type Part = StringPart | TablePart;
 
-export class Section {
+export class Section implements ISection {
     /** value in Parser.headerLevels array */
     headerLevelValue: number;
+
+    /** Integer section level from ISection interface */
+    level: number;
 
     parts: Part[] = [];
 
@@ -383,7 +387,6 @@ export class Section {
     }
 
     pushString(str: string) {
-        // const lastPart = this.parts[this.parts.length - 1];
         const partToContinue = this.extractStringPartToContinueFor(str);
         if (partToContinue) {
             partToContinue.str += normalizeString(str);
@@ -478,8 +481,7 @@ export class Parser {
     private sections: Section[] = [];
     private currentSection: Section;
 
-    async run(file: string) {
-        const data = await fs.readFile(file);
+    async* parse(data: Buffer): AsyncIterableIterator<ISection> {
         await processPdf(data, (page, content) =>
             this.processPage(this.skipFooters(content.items)),
         );
@@ -487,10 +489,8 @@ export class Parser {
         for (const section of this.sections) {
             section.postProcess();
 
-            const level = this.headerLevels.pickLevelFor(section.headerLevelValue);
-            for (const part of section.parts) {
-                console.log(' '.repeat(level), part.toString(), `[${level}]`);
-            }
+            section.level = this.headerLevels.pickLevelFor(section.headerLevelValue);
+            yield section;
         }
     }
 
@@ -541,4 +541,10 @@ export class Parser {
         const footersOffset = 10;
         return items.slice(footersOffset);
     }
+}
+
+export async function* parseFile(file: string): AsyncIterableIterator<ISection> {
+    const parser = new Parser();
+    const data = await fs.readFile(file);
+    yield* parser.parse(data);
 }
