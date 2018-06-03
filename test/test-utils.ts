@@ -1,5 +1,5 @@
 
-import { Parser, Section, TABLE_HEADER_FONT_NAME } from '../src/parser';
+import { Parser, Section, TABLE_HEADER_FONT_NAME, TablePart } from '../src/parser';
 import { ITextItem } from '../src/pdf';
 
 export function parsePage(items: any[]): Section[] {
@@ -12,6 +12,20 @@ export function parsePage(items: any[]): Section[] {
     const sections = parser['sections'] as Section[]; // tslint:disable-line
     sections.forEach(s => s.postProcess());
     return sections;
+}
+
+/**
+ * Parse the given items and assert tha they belong to
+ * a single Table in a single Section
+ */
+export function tableSection(items: any[]): TablePart {
+    const sections = parsePage(items);
+    sections.should.have.lengthOf(1, JSON.stringify(items));
+
+    const section = sections[0];
+    section.parts.should.have.lengthOf(1);
+
+    return section.parts[0] as TablePart;
 }
 
 export function textItem(obj: any): ITextItem {

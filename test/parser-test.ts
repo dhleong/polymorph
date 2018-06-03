@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 
 import { Section, StringPart, TablePart } from '../src/parser';
-import { parsePage, textItem } from './test-utils';
+import { tableSection, textItem } from './test-utils';
 
 chai.should();
 
@@ -227,13 +227,7 @@ describe('Section', () => {
                 {str: '    ', width: 2, height: 78, x: 385, y: 414.96, fontName: 'g_d0_f2'},
             ];
 
-            const sections = parsePage(items);
-            sections.should.have.lengthOf(1, JSON.stringify(items));
-
-            const section = sections[0];
-            section.parts.should.have.lengthOf(1);
-
-            const table = section.parts[0] as TablePart;
+            const table = tableSection(items);
 
             // before, due to the .72 difference in y caused by the g_font_error
             //  and its whitespace, this would have been split into two rows:
@@ -274,13 +268,7 @@ describe('Parser', () => {
             {str: '    ', height: 78, x: 225, y: 210},
         ];
 
-        const sections = parsePage(items);
-        sections.should.have.lengthOf(1, JSON.stringify(sections));
-
-        const section = sections[0];
-        section.parts.should.have.lengthOf(1);
-
-        const table = (section.parts[0] as TablePart).toJson();
+        const table = tableSection(items).toJson();
         table.headers.should.deep.equal([
             ['The Barbarian'],
             ['Level', 'Proficiency Bonus', 'Features', 'Rages'],
@@ -317,29 +305,10 @@ describe('Parser', () => {
             {str: '    ', width: 2, height: 78, x: 341, y: 459.6, tableHeader: true},
         ];
 
-        const sections = parsePage(items);
-        sections.should.have.lengthOf(1);
-
-        const section = sections[0];
-        section.parts.should.have.lengthOf(1);
-
-        const table = section.parts[0] as TablePart;
+        const table = tableSection(items);
         table.toJson().headers.should.deep.equal([
             ['The Cleric'],
             ['Level', 'Proficiency Bonus', 'Features', 'Cantrips Known'],
         ]);
     });
 });
-
-function tableSection(items: any[]): TablePart {
-    const section = new Section(0);
-    items.forEach(item => {
-        section.push(textItem(item));
-    });
-    section.postProcess();
-
-    section.parts.should.have.length(1);
-    section.parts[0].should.be.instanceof(TablePart);
-
-    return section.parts[0] as TablePart;
-}
