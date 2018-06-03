@@ -275,6 +275,27 @@ describe('Section', () => {
             ['16th', '+5', 'Ability Score Improvement'],
         ]);
     });
+
+    it('Handles vertically aligned header names', () => {
+        const items = [
+            { str: 'Creating    Spell    Slots', width: 95, height: 144, x: 328.5602, y: 212.4, fontName: 'g_d0_f6' },
+            { str: '    ', width: 2.712, height: 144, x: 423.8688, y: 212.4, fontName: 'g_d0_f6' },
+            { str: 'Spell    Slot', width: 34, height: 78, x: 328.5639, y: 197.76, fontName: 'g_d0_f6' },
+            { str: '    ', width: 2, height: 78, x: 363.0566, y: 197.76, fontName: 'g_d0_f6' },
+            { str: 'Level', width: 19, height: 78, x: 336.1422, y: 186.72, fontName: 'g_d0_f6' },
+            { str: '    ', width: 2, height: 78, x: 355.4782, y: 186.72, fontName: 'g_d0_f6' },
+            { str: 'Sorcery', width: 28, height: 78, x: 378.73, y: 197.76, fontName: 'g_d0_f6' },
+            { str: '    ', width: 2, height: 78, x: 406.7803, y: 197.76, fontName: 'g_d0_f6' },
+            { str: 'Point    Cost', width: 38, height: 78, x: 373.6873, y: 186.72, fontName: 'g_d0_f6' },
+            { str: '    ', width: 2, height: 78, x: 411.8231, y: 186.72, fontName: 'g_d0_f6' },
+        ];
+
+        const table = tableSection(items).toJson();
+        table.headers.should.deep.equal([
+            ['Creating Spell Slots'],
+            ['Spell Slot Level', 'Sorcery Point Cost'],
+        ]);
+    });
 });
 
 describe('Parser', () => {

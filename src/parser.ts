@@ -26,6 +26,7 @@ export class StringPart {
             item.x,
             item.y,
             item.width,
+            item.height,
         );
     }
 
@@ -34,6 +35,7 @@ export class StringPart {
         readonly x: number = 0,
         readonly y: number = 0,
         public width: number = 0,
+        readonly height: number = 0,
     ) { }
 
     append(item: ITextItem) {
@@ -333,12 +335,11 @@ export class TablePart {
             return last;
         }
 
-        // TODO handle split across page
-
         if (lastIsOnlyWhitespace && prevRow.length > 1) {
             const possibleColumn = prevRow[prevRow.length - 2];
             if (!possibleColumn.isOnlyWhitespace()
-                && possibleColumn.x === item.x
+                && possibleColumn.height === item.height
+                && possibleColumn.couldContain(item.x + item.width / 2)
             ) {
                 prevRow.pop();
                 destination.pop();
