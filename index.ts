@@ -10,9 +10,14 @@ export * from './src/parser-interface';
 
 import { CompositeFormatter } from './src/formatters/composite';
 import { DebugFormatter } from './src/formatters/debug';
+import { JsonFormatter } from './src/formatters/json';
 
 const formatterFactories = {
     '--debug': (stream) => new DebugFormatter(stream),
+    '--json': (stream) => new JsonFormatter(stream),
+    '--json-pretty': (stream) => new JsonFormatter(stream, {
+        pretty: true,
+    }),
 };
 
 function createFormatter(
@@ -33,7 +38,9 @@ Usage:
     polymorph -h | --help | --version
 
 Options:
-    --debug=<file>  Output debug-formatted output
+    --debug=<file>        Simple output mostly only useful for debugging
+    --json=<file>         JSON format
+    --json-pretty=<file>  Identical to --json, but prettier
 
 Notes:
     A hyphen (-) can be used in place of any <file> to write to
@@ -42,7 +49,7 @@ Notes:
         version: `polymorph ${version}`,
     });
 
-    const sections = parseFile('/Users/dhleong/Documents/DND/SRD-OGL_V5.1.pdf');
+    const sections = parseFile(opts['<srd.pdf>']);
 
     // create formatter(s)
     const formatters: IFormatter[] = [];
