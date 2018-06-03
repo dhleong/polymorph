@@ -6,6 +6,10 @@ import { ITextItem, processPdf } from './pdf';
 
 export const TABLE_HEADER_FONT_NAME = 'g_d0_f6';
 
+const SKIPPED_FONT_NAMES = new Set([
+    'g_font_error',
+]);
+
 const UNNECESSARY_HEADER_COLS = new Set([
     'Spell Slots per Spell Level',
 ]);
@@ -426,6 +430,13 @@ export class Parser {
 
     processPage(content: ITextItem[]) {
         for (const item of content) {
+            if (SKIPPED_FONT_NAMES.has(item.fontName)) {
+                if (item.str.length) {
+                    throw new Error('Expected error fonts to be blank');
+                }
+                continue;
+            }
+
             // this will store it at an appropriate place in the headerLevels list
             this.headerLevels.feed(item.height);
 

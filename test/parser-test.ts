@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 
-import { Parser, Section, StringPart, TablePart } from '../src/parser';
-import { textItem } from './test-utils';
+import { Section, StringPart, TablePart } from '../src/parser';
+import { parsePage, textItem } from './test-utils';
 
 chai.should();
 
@@ -193,7 +193,7 @@ describe('Section', () => {
 });
 
 describe('Parser', () => {
-    it.only('Creates tables with rows', () => {
+    it('Creates tables with rows', () => {
         // from The Barbarian table
         const items = [
             {str: 'The    Barbarian', x: 57, y: 346, height: 144, tableHeader: true},
@@ -250,10 +250,10 @@ describe('Parser', () => {
             {str: '    ', width: 2, height: 78, x: 139, y: 471.36, tableHeader: true},
             {str: 'Cantrips', width: 30, height: 78, x: 312, y: 471.36, tableHeader: true},
             {str: '    ', width: 2, height: 78, x: 343, y: 471.36, tableHeader: true},
-            {str: '', width: 0, height: 76, x: 398, y: 470, tableHeader: true},
+            {str: '', width: 0, height: 76, x: 398, y: 470, fontName: 'g_font_error'},
             {str: 'Spell    Slots    per    Spell    Level',
                 width: 94, height: 78, x: 407, y: 470.64, tableHeader: true}, // tslint:disable-line
-            {str: '', width: 0, height: 76, x: 501, y: 470, tableHeader: true},
+            {str: '', width: 0, height: 76, x: 501, y: 470, fontName: 'g_font_error'},
             {str: '    ', width: 2, height: 78, x: 510, y: 470.64, tableHeader: true},
             {str: 'Level', width: 19, height: 78, x: 57, y: 459.6, tableHeader: true},
             {str: '    ', width: 2, height: 78, x: 76, y: 459.6, tableHeader: true},
@@ -278,15 +278,6 @@ describe('Parser', () => {
         ]);
     });
 });
-
-function parsePage(items: any[]): Section[] {
-    const parser = new Parser();
-    parser.processPage(items.map(raw => textItem(raw)));
-
-    const sections = parser['sections'] as Section[]; // tslint:disable-line
-    sections.forEach(s => s.postProcess());
-    return sections;
-}
 
 function tableSection(items: any[]): TablePart {
     const section = new Section(0);
