@@ -1,23 +1,43 @@
 {
-  "name": "srd-to-json",
+  "name": "polymorph",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Transform the D&D 5e System Reference Document into a new form",
+  "main": "lib/index.js",
   "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
     "test": "mocha -r ts-node/register 'test/**/*.ts'"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dhleong/polymorph"
+  },
+  "keywords": [
+    "dnd",
+    "d&d",
+    "dnd5e"
+  ],
+  "author": "Daniel Leong <me@dhleong.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dhleong/polymorph/issues"
+  },
+  "homepage": "https://github.com/dhleong/polymorph",
+  "//": [
+    "NOTE: tslint complains if chai is just a devDependency...."
+  ],
   "dependencies": {
+    "chai": "^4.1.2",
+    "binary-search": "^1.3.3",
+    "mz": "^2.7.0",
+    "pdf-parse": "^1.0.8",
+    "promisify-node": "^0.4.0"
+  },
+  "devDependencies": {
     "@types/chai": "^4.1.3",
     "@types/mocha": "^5.2.0",
     "@types/mz": "0.0.32",
     "@types/node": "^10.1.3",
-    "binary-search": "^1.3.3",
-    "chai": "^4.1.2",
-    "mocha": "^5.2.0",
-    "mz": "^2.7.0",
-    "pdf-parse": "^1.0.8",
-    "promisify-node": "^0.4.0"
+    "mocha": "^5.2.0"
   }
 }
