@@ -104,6 +104,9 @@ export class TablePart {
         if (resumePart) {
             resumePart.append(item);
         } else {
+            // attempt to handle a split table
+            this.startSplitTableRowWith(item);
+
             const row = destination[destination.length - 1];
             row.push(StringPart.from(item));
         }
@@ -144,9 +147,16 @@ export class TablePart {
             console.warn('Unexpected number of header rows: ' + JSON.stringify(this.headers, null, ' '));
         }
 
-        for (const row of this.rows) {
-            if (row[row.length - 1].isOnlyWhitespace()) {
+        for (let i = 0; i < this.rows.length; ++i) {
+            const row = this.rows[i];
+            if (row.length && row[row.length - 1].isOnlyWhitespace()) {
                 row.pop();
+            }
+
+            // clean out empty rows
+            if (!row.length) {
+                this.rows.splice(i, 1);
+                --i;
             }
         }
     }
@@ -177,7 +187,53 @@ export class TablePart {
             // ignore small deltas
             return false;
         }
-        return delta > 0;
+
+        if (delta > 0) {
+            // item.y < last.y; simple case, it's lower on the page
+            return true;
+        }
+
+        // if (delta < 0) {
+        //     // higher on the page. If it's a new column, it should
+        //     // be a new row
+        //     const lastHeaderRow = this.headers[this.headers.length - 1];
+        //     const rightmostHeader = lastHeaderRow[lastHeaderRow.length - 1];
+        //     if (item.x > rightmostHeader.x + rightmostHeader.width) {
+        //         return true;
+        //     }
+        // }
+
+        return false;
+    }
+
+    /**
+     * If the item belongs to the first column of a split table
+     * (such as level 16 of the Fighter table), then this will
+     * create a new row and return True.
+     *
+     * Note that this has to be separate from `itemStartsNewRow`
+     * in order to be able to handle a column continued in a spli
+     * table, such as for "Relentless / Rage" from The Barbarian.
+     */
+    private startSplitTableRowWith(item: ITextItem): boolean {
+        if (!this.rows.length) return false;
+
+        const lastRow = this.rows[this.rows.length - 1];
+        if (!lastRow.length) return false;
+
+        const lastItem = lastRow[lastRow.length - 1];
+        if (item.y <= lastItem.y) return false;
+
+        // higher on the page. If it's a new column, it should
+        // be a new row
+        const lastHeaderRow = this.headers[this.headers.length - 1];
+        const rightmostHeader = lastHeaderRow[lastHeaderRow.length - 1];
+        if (item.x > rightmostHeader.x + rightmostHeader.width) {
+            this.rows.push([]);
+            return true;
+        }
+
+        return false;
     }
 
     private trimUnnecessaryHeaderRows() {
