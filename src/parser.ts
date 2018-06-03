@@ -12,6 +12,7 @@ const SKIPPED_FONT_NAMES = new Set([
 
 const UNNECESSARY_HEADER_COLS = new Set([
     'Spell Slots per Spell Level',
+    '—',
 ]);
 
 const stringIsOnlyWhitespace =
@@ -87,7 +88,7 @@ export class TablePart {
             ? this.headers
             : this.rows;
 
-        if (item.y < this.lastY || !destination.length) {
+        if (this.itemStartsNewRow(item) || !destination.length) {
 
             if (destination === this.headers && destination.length) {
                 this.trimUnnecessaryHeaderRows();
@@ -126,6 +127,7 @@ export class TablePart {
             // merge vertically-aligned headers *down*
             for (const mergeCandidate of this.headers[1]) {
                 if (mergeCandidate.isOnlyWhitespace()) continue;
+                if (UNNECESSARY_HEADER_COLS.has(mergeCandidate.str)) continue;
 
                 const mergeCenter = mergeCandidate.x + mergeCandidate.width / 2;
                 for (const destCandidate of this.headers[2]) {
@@ -167,16 +169,23 @@ export class TablePart {
         );
     }
 
+    private itemStartsNewRow(item: ITextItem): boolean {
+        // return item.y < this.lastY;
+
+        const delta = this.lastY - item.y;
+        if (Math.abs(delta) < 1) {
+            // ignore small deltas
+            return false;
+        }
+        return delta > 0;
+    }
+
     private trimUnnecessaryHeaderRows() {
         const lastHeaderRow = this.headers[this.headers.length - 1];
         let isAllWhitespace = true;
         for (const col of lastHeaderRow) {
             if (isAllWhitespace && col.str.length && !col.isOnlyWhitespace()) {
                 isAllWhitespace = false;
-            }
-            if (UNNECESSARY_HEADER_COLS.has(col.str)) {
-                this.headers.pop();
-                return;
             }
         }
 

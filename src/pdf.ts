@@ -58,10 +58,16 @@ class WrappedTextItem implements ITextItem {
         // transform => [scaleX, 0, 0, scaleY, x, y];
         return this.base.transform[4];
     }
+    set x(value) {
+        this.base.transform[4] = value;
+    }
 
     get y() {
         // transform => [scaleX, 0, 0, scaleY, x, y];
         return this.base.transform[5];
+    }
+    set y(value) {
+        this.base.transform[5] = value;
     }
 }
 

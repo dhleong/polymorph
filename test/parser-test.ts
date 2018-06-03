@@ -189,6 +189,58 @@ describe('Section', () => {
             ]);
         });
 
+        it('Consolidates long rows', () => {
+            const items = [
+                {str: 'The    Cleric', width: 48, height: 144, x: 57, y: 486, tableHeader: true},
+                {str: '    ', width: 2, height: 144, x: 106, y: 486, tableHeader: true},
+                {str: '    ', width: 2, height: 78, x: 67, y: 471.36, tableHeader: true},
+                {str: 'Proficiency', width: 41, height: 78, x: 87, y: 471.36, tableHeader: true},
+                {str: '    ', width: 2, height: 78, x: 129, y: 471.36, tableHeader: true},
+                {str: '    ', width: 2, height: 78, x: 139, y: 471.36, tableHeader: true},
+                {str: 'Cantrips', width: 30, height: 78, x: 312, y: 471.36, tableHeader: true},
+                {str: '    ', width: 2, height: 78, x: 343, y: 471.36, tableHeader: true},
+                {str: '', width: 0, height: 76, x: 398, y: 470, fontName: 'g_font_error'},
+                {str: 'Spell    Slots    per    Spell    Level',
+                    width: 94, height: 78, x: 407, y: 470.64, tableHeader: true}, // tslint:disable-line
+                {str: '', width: 0, height: 76, x: 501, y: 470, fontName: 'g_font_error'},
+                {str: '    ', width: 2, height: 78, x: 510, y: 470.64, tableHeader: true},
+                {str: 'Level', width: 19, height: 78, x: 57, y: 459.6, tableHeader: true},
+                {str: '    ', width: 2, height: 78, x: 76, y: 459.6, tableHeader: true},
+                {str: 'Bonus', width: 23, height: 78, x: 96, y: 459.6, tableHeader: true},
+                {str: '    ', width: 2, height: 78, x: 120, y: 459.6, tableHeader: true},
+                {str: 'Features', width: 32, height: 78, x: 139, y: 459.6, tableHeader: true},
+                {str: '    ', width: 2, height: 78, x: 172, y: 459.6, tableHeader: true},
+                {str: 'Known', width: 26, height: 78, x: 315, y: 459.6, tableHeader: true},
+                {str: '    ', width: 2, height: 78, x: 341, y: 459.6, tableHeader: true},
+
+                {str: '3rd', width: 12, height: 78, x: 61, y: 414.96, fontName: 'g_d0_f2'},
+                {str: '    ', width: 2, height: 78, x: 73, y: 414.96, fontName: 'g_d0_f2'},
+                {str: '+2', width: 9, height: 78, x: 103, y: 414.96, fontName: 'g_d0_f2'},
+                {str: '    ', width: 2, height: 78, x: 113, y: 414.96, fontName: 'g_d0_f2'},
+                {str: '', width: 0, height: 78, x: 139, y: 414.24, fontName: 'g_font_error'},
+                {str: '    ', width: 2, height: 78, x: 148, y: 414.24, fontName: 'g_d0_f2'},
+                {str: '3', width: 4, height: 78, x: 325, y: 414.96, fontName: 'g_d0_f2'},
+                {str: '    ', width: 2, height: 78, x: 330, y: 414.96, fontName: 'g_d0_f2'},
+                {str: '4', width: 4, height: 78, x: 357, y: 414.96, fontName: 'g_d0_f2'},
+                {str: '    ', width: 2, height: 78, x: 362, y: 414.96, fontName: 'g_d0_f2'},
+                {str: '2', width: 4, height: 78, x: 381, y: 414.96, fontName: 'g_d0_f2'},
+                {str: '    ', width: 2, height: 78, x: 385, y: 414.96, fontName: 'g_d0_f2'},
+            ];
+
+            const sections = parsePage(items);
+            sections.should.have.lengthOf(1, JSON.stringify(items));
+
+            const section = sections[0];
+            section.parts.should.have.lengthOf(1);
+
+            const table = section.parts[0] as TablePart;
+
+            // before, due to the .72 difference in y caused by the g_font_error
+            //  and its whitespace, this would have been split into two rows:
+            table.toJson().rows.should.deep.equal([
+                ['3rd', '+2', '3', '4', '2'],
+            ]);
+        });
     });
 });
 
