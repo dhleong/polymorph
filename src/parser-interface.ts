@@ -1,9 +1,19 @@
 
-export interface IStringPart {
+export enum PartType {
+    STRING,
+    TABLE,
+}
+
+export interface IPart {
+    type: PartType;
+    toJson(): any;
+}
+
+export interface IStringPart extends IPart {
     str: string;
 }
 
-export interface ITablePart {
+export interface ITablePart extends IPart {
     headers: IStringPart[][];
     rows: IStringPart[][];
 }

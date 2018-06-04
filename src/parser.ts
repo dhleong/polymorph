@@ -2,7 +2,7 @@ import { fs } from 'mz';
 
 import { DepthTracker } from './depth-tracker';
 import { normalizeString } from './format';
-import { ISection, IStringPart, ITablePart } from './parser-interface';
+import { ISection, IStringPart, ITablePart, PartType } from './parser-interface';
 import { ITextItem, processPdf } from './pdf';
 
 export const TABLE_HEADER_FONT_NAME = 'g_d0_f6';
@@ -21,6 +21,7 @@ const stringIsOnlyWhitespace =
         str.match(/^[ ]+$/) != null;
 
 export class StringPart implements IStringPart {
+
     static from(item: ITextItem): StringPart {
         return new StringPart(
             normalizeString(item.str),
@@ -30,6 +31,8 @@ export class StringPart implements IStringPart {
             item.height,
         );
     }
+
+    readonly type = PartType.STRING;
 
     constructor(
         public str: string,
@@ -68,6 +71,10 @@ export class StringPart implements IStringPart {
         return this.str.endsWith(' ');
     }
 
+    toJson(): any {
+        return this.str;
+    }
+
     toString(): string {
         return this.str;
     }
@@ -78,6 +85,8 @@ export class StringPart implements IStringPart {
 }
 
 export class TablePart implements ITablePart {
+
+    readonly type = PartType.TABLE;
 
     headers: StringPart[][] = [];
     rows: StringPart[][] = [];
