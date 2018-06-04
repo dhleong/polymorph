@@ -506,7 +506,7 @@ export class Parser {
     private sections: Section[] = [];
     private currentSection: Section;
 
-    async* parse(data: Buffer): AsyncIterableIterator<ISection> {
+    async parse(data: Buffer): Promise<ISection[]> {
         await processPdf(data, (page, content) =>
             this.processPage(this.skipFooters(content.items)),
         );
@@ -515,8 +515,9 @@ export class Parser {
             section.postProcess();
 
             section.level = this.headerLevels.pickLevelFor(section.headerLevelValue);
-            yield section;
         }
+
+        return this.sections;
     }
 
     processPage(content: ITextItem[]) {
@@ -568,8 +569,8 @@ export class Parser {
     }
 }
 
-export async function* parseFile(file: string): AsyncIterableIterator<ISection> {
+export async function parseFile(file: string): Promise<ISection[]> {
     const parser = new Parser();
     const data = await fs.readFile(file);
-    yield* parser.parse(data);
+    return parser.parse(data);
 }

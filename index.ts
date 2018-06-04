@@ -49,7 +49,7 @@ Notes:
         version: `polymorph ${version}`,
     });
 
-    const sections = parseFile(opts['<srd.pdf>']);
+    const sections = await parseFile(opts['<srd.pdf>']);
 
     // create formatter(s)
     const formatters: IFormatter[] = [];
@@ -67,7 +67,7 @@ Notes:
     const formatter: IFormatter = new CompositeFormatter(formatters);
 
     // process and format
-    for await (const section of sections) {
+    for (const section of sections) {
         await formatter.format(section);
     }
 

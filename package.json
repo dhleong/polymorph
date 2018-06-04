@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Transform the D&D 5e System Reference Document into a new form",
   "main": "lib/index.js",
+  "engines": {
+    "node": ">=10.7.0"
+  },
   "scripts": {
     "lint": "tslint --project tsconfig.json",
     "build": "tsc",
