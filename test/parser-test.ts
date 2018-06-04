@@ -60,26 +60,42 @@ describe('Section', () => {
         });
 
         it('merges obvious splits', () => {
-            // from The Monk table
+            // from the Draconic Ancestry table
             const items = [
-                {str: 'Dragon', x: 328, y: 483, width: 27, tableHeader: true},
-                {str: '    ', x: 355, y: 483, width: 2, tableHeader: true},
-                {str: 'Damage    Type', x: 382, width: 50, y: 483, tableHeader: true},
-                {str: '    ', x: 433, y: 483, width: 2, tableHeader: true},
-                {str: 'Breath    Weapon', x: 450, y: 483, width: 58, tableHeader: true},
-                {str: '    ', x: 509, y: 483, width: 2, tableHeader: true},
+                {str: 'Draconic    Ancestry', width: 90, height: 144, x: 328.5602, y: 436.32, fontName: 'g_d0_f6' },
+                {str: '    ', width: 2.712, height: 144, x: 418.5777, y: 436.32, fontName: 'g_d0_f6' },
 
-                {str: 'Blue', x: 328, y: 472},
-                {str: '    ', x: 344, y: 472},
-                {str: 'Lightning', x: 382, y: 472},
-                {str: '    ', x: 416, y: 472},
-                {str: '5    by    30    ft.    line    ', x: 450, y: 472},
-                {str: '(Dex.    save)', x: 504, y: 472},
-                {str: '    ', x: 545, y: 472},
+                { str: 'Dragon', width: 27, height: 78.85439999999998, x: 328.5602, y: 421.44, fontName: 'g_d0_f6' },
+                { str: '    ', width: 2, height: 78, x: 355.8106, y: 421.44, fontName: 'g_d0_f6' },
+                { str: 'Damage    Type', width: 50, height: 78, x: 382.5602, y: 421.44, fontName: 'g_d0_f6' },
+                { str: '    ', width: 2, height: 78, x: 433.3521, y: 421.44, fontName: 'g_d0_f6' },
+                { str: 'Breath    Weapon', width: 58, height: 78, x: 450.9601, y: 421.44, fontName: 'g_d0_f6' },
+                { str: '    ', width: 2, height: 78, x: 509.7897, y: 421.44, fontName: 'g_d0_f6' },
+                { str: 'Black', width: 19, height: 78, x: 328.5602, y: 410.64, fontName: 'g_d0_f2' },
+                { str: '    ', width: 2, height: 78, x: 347.7291, y: 410.64, fontName: 'g_d0_f2' },
+                { str: 'Acid', width: 15, height: 78, x: 382.5602, y: 410.64, fontName: 'g_d0_f2' },
+                { str: '    ', width: 2, height: 78, x: 398.3673, y: 410.64, fontName: 'g_d0_f2' },
+                { str: '5    by    30    ft.    line    (Dex.    save)',
+                    width: 94, height: 78, x: 450.9601, y: 410.64, fontName: 'g_d0_f2' }, // tslint:disable-line
+                { str: '    ', width: 2, height: 78, x: 545.0427, y: 410.64, fontName: 'g_d0_f2' },
+
+                { str: 'Blue', width: 16, height: 78, x: 328.5602, y: 399.6, fontName: 'g_d0_f2' },
+                { str: '    ', width: 2, height: 78, x: 344.7276, y: 399.6, fontName: 'g_d0_f2' },
+                { str: 'Lightning', width: 33, height: 78, x: 382.5602, y: 399.6, fontName: 'g_d0_f2' },
+                { str: '    ', width: 2, height: 78, x: 416.1476, y: 399.6, fontName: 'g_d0_f2' },
+                { str: '5    by    30    ft.    line    ',
+                    width: 54, height: 78, x: 450.9601, y: 399.6, fontName: 'g_d0_f2' }, // tslint:disable-line
+                { str: '(Dex.    save)', width: 40, height: 78, x: 504.9909, y: 399.6, fontName: 'g_d0_f2' },
+                { str: '    ', width: 2, height: 78, x: 545.0427, y: 399.6, fontName: 'g_d0_f2' },
             ];
 
             const table = tableSection(items).toJson();
+            table.headers.should.deep.equal([
+                ['Draconic Ancestry'],
+                ['Dragon', 'Damage Type', 'Breath Weapon'],
+            ]);
             table.rows.should.deep.equal([
+                ['Black', 'Acid', '5 by 30 ft. line (Dex. save)'],
                 ['Blue', 'Lightning', '5 by 30 ft. line (Dex. save)'],
             ]);
         });

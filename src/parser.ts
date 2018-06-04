@@ -315,9 +315,25 @@ export class TablePart implements ITablePart {
     private itemShouldShareColumnWith(item: ITextItem, last: StringPart): boolean {
         // guess which column `last` belongs to, then see if
         // item.x is within that range
+        let colIndex = 0;
         for (const header of this.headers[0]) {
             if (header.couldContain(last.x)) {
-                return header.couldContain(item.x);
+                if (header.couldContain(item.x)) {
+                    return true;
+                }
+                break;
+            }
+
+            ++colIndex;
+        }
+
+        // okay, the header couldn't quite fit us, but perhaps
+        // this same column in a previous row could
+        for (const row of this.rows) {
+            if (colIndex < row.length) {
+                if (row[colIndex].couldContain(item.x)) {
+                    return true;
+                }
             }
         }
 
