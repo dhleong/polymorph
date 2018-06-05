@@ -36,6 +36,7 @@ export interface IPart {
 
 export interface IStringPart extends IPart {
     str: string;
+    formatting: FormatSpan[];
 }
 
 export interface ITablePart extends IPart {

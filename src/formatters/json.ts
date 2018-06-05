@@ -1,6 +1,10 @@
 
 import { IFormatter } from '../formatter';
-import { ISection, IStringPart, ITablePart, PartType } from '../parser-interface';
+import {
+    FormatSpan,
+    ISection, IStringPart, ITablePart,
+    PartType,
+} from '../parser-interface';
 
 // laziness
 const CONTENT_SECTION_LEVEL = 5;
@@ -17,7 +21,7 @@ class JsonSection {
         case PartType.STRING:
             return new JsonSection(
                 section.level,
-                section.parts.splice(0, 1).toString(),
+                (section.parts.splice(0, 1)[0] as IStringPart).str,
             );
 
         case PartType.TABLE:
@@ -37,10 +41,54 @@ class JsonSection {
         readonly level: number,
         readonly title: string,
     ) {}
-
 }
 
-type JsonPart = JsonSection | string | any;
+class JsonFormatSpan {
+    static from(span: FormatSpan): JsonFormatSpan {
+        return new JsonFormatSpan(
+            JsonFormatSpan.formatToStyleString(span),
+            span.start,
+            span.length,
+        );
+    }
+
+    private static formatToStyleString(span: FormatSpan): string {
+        let str = '';
+
+        if (span.isBold) str += 'b';
+        if (span.isItalic) str += 'i';
+
+        return str;
+    }
+
+    constructor(
+        readonly style: string,
+        readonly start: number,
+        readonly length: number,
+    ) {}
+}
+
+class FormattedText {
+    static from(part: IStringPart): FormattedText | string {
+        if (!part.formatting || !part.formatting.length) {
+            // simple case
+            return part.str;
+        }
+
+        const result = new FormattedText();
+        result.text = part.str;
+        result.spans = part.formatting.map(fmt => JsonFormatSpan.from(fmt));
+
+        return result;
+    }
+
+    type = 'text';
+    text: string;
+
+    spans: JsonFormatSpan[];
+}
+
+type JsonPart = JsonSection | FormattedText | string | any;
 
 export interface IJsonOptions {
     debug?: boolean;
@@ -100,9 +148,14 @@ export class JsonFormatter implements IFormatter {
                 continue;
             }
 
-            const partAsJson = part.toJson();
-            if (part.type === PartType.TABLE) {
+            let partAsJson;
+            switch (part.type) {
+            case PartType.TABLE:
+                partAsJson = part.toJson();
                 partAsJson.type = 'table';
+
+            case PartType.STRING:
+                partAsJson = FormattedText.from(part as IStringPart);
             }
             this.current.contents.push(partAsJson);
         }
