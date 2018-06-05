@@ -86,8 +86,49 @@ describe('StringPart', () => {
             ]);
         });
 
-        it.skip('append combines FormatSpans', () => {
-            // TODO
+        it('append combines FormatSpans', () => {
+            const part = StringPart.from({
+                fontName: 'g_d0_f3',
+
+                str: 'Bold',
+            });
+
+            part.append({
+                fontName: 'g_d0_f3',
+
+                str: '+Also Bold',
+            });
+
+            part.formatting.should.deep.equal([
+                new FormatSpan(
+                    Formatting.Bold,
+                    0,
+                    14,
+                ),
+            ]);
+        });
+
+        it('append combines FormatSpans', () => {
+            const part = StringPart.from({
+                fontName: 'g_d0_f3',
+
+                str: 'Bold',
+            });
+
+            part.prepend(StringPart.from({
+                fontName: 'g_d0_f3',
+
+                str: 'Also Bold',
+            }));
+
+            part.str.should.equal('Also Bold Bold');
+            part.formatting.should.deep.equal([
+                new FormatSpan(
+                    Formatting.Bold,
+                    0,
+                    14,
+                ),
+            ]);
         });
     });
 });

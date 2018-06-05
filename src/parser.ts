@@ -70,19 +70,39 @@ export class StringPart implements IStringPart {
         this.pushFormattingForFont(item.fontName, start);
     }
 
-    prepend(item: StringPart) {
+    prepend(item: StringPart, separator = ' ') {
         const oldLen = this.str.length;
         const prefix = item.str.trimRight();
         const trimmed = this.str.trimLeft();
-        const increment = prefix.length + 1 - (oldLen - trimmed.length);
 
-        this.str = prefix + ' ' + trimmed;
+        const increment = prefix.length +
+            separator.length -
+            (oldLen - trimmed.length);
+
+        this.str = prefix + separator + trimmed;
 
         for (const span of this.formatting) {
             span.start += increment;
         }
 
         this.formatting.splice(0, 0, ...item.formatting);
+
+        // attempt to merge spans
+        const lastNewI = item.formatting.length - 1;
+        const firstOldI = item.formatting.length;
+        const lastNew = this.formatting[lastNewI];
+        if (firstOldI >= this.formatting.length) {
+            // no existing formatting; nothing to merge
+            return;
+        }
+
+        const firstOld = this.formatting[firstOldI];
+        if (lastNew.start + lastNew.length + separator.length === firstOld.start
+            && lastNew.format === firstOld.format
+        ) {
+            this.formatting.splice(firstOldI, 1);
+            lastNew.length += firstOld.length + separator.length;
+        }
     }
 
     /**
@@ -143,12 +163,24 @@ export class StringPart implements IStringPart {
     }
 
     private pushFormattingForFont(fontName: string, start: number) {
+        const length = this.str.length - start;
         const formatting = fontToFormatting[fontName];
+        if (formatting && this.formatting.length) {
+            // attempt to combine with a previous span
+            const prev = this.formatting[this.formatting.length - 1];
+            if (prev.start + prev.length === start
+                && prev.format === formatting
+            ) {
+                prev.length += length;
+                return;
+            }
+        }
+
         if (formatting) {
             this.formatting.push(new FormatSpan(
                 formatting,
                 start,
-                this.str.length - start,
+                length,
             ));
         }
     }

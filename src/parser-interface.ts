@@ -10,7 +10,7 @@ export class FormatSpan {
     constructor(
         readonly format: Formatting,
         public start: number,
-        readonly length: number,
+        public length: number,
     ) {}
 
     get isBold(): boolean {
