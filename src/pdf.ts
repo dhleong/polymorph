@@ -22,14 +22,14 @@ export interface ITextContent {
 
 export interface ITextItem {
     str: string;
-    dir: string;
-    height: number;
-    width: number;
-    fontName: string;
-    transform: number[];
+    dir?: string;
+    height?: number;
+    width?: number;
+    fontName?: string;
+    transform?: number[];
 
-    x: number;
-    y: number;
+    x?: number;
+    y?: number;
 }
 
 export interface ITextStyle {

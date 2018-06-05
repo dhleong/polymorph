@@ -1,4 +1,29 @@
 
+export const enum Formatting {
+    None = 0,
+    Bold = 1,
+    Italic = 2,
+    BoldItalic = 3,
+}
+
+export class FormatSpan {
+    constructor(
+        readonly format: Formatting,
+        public start: number,
+        readonly length: number,
+    ) {}
+
+    get isBold(): boolean {
+        /* tslint:disable-next-line:no-bitwise */
+        return (this.format & Formatting.Bold) !== 0;
+    }
+
+    get isItalic(): boolean {
+        /* tslint:disable-next-line:no-bitwise */
+        return (this.format & Formatting.Italic) !== 0;
+    }
+}
+
 export enum PartType {
     STRING,
     TABLE,

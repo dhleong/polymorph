@@ -1,6 +1,7 @@
 import * as chai from 'chai';
 
 import { Section, StringPart, TablePart } from '../src/parser';
+import { FormatSpan, Formatting } from '../src/parser-interface';
 import { tableSection, textItem } from './test-utils';
 
 chai.should();
@@ -12,30 +13,107 @@ describe('StringPart', () => {
             new StringPart('a ').isOnlyWhitespace().should.be.false;
         });
     });
+
+    describe('formatSpan handling', () => {
+        it('picks formatting on create', () => {
+            StringPart.from({
+                fontName: 'g_d0_f8',
+
+                str: 'Bold',
+            }).formatting.should.deep.include(
+                new FormatSpan(
+                    Formatting.Bold,
+                    0,
+                    4,
+                ),
+            );
+        });
+
+        it('picks formatting on append', () => {
+            const part = StringPart.from({
+                str: 'Norm',
+            });
+            part.formatting.should.be.empty;
+
+            part.append({
+                fontName: 'g_d0_f5',
+
+                str: 'BoldItalic',
+            });
+
+            part.formatting.should.deep.include(
+                new FormatSpan(
+                    Formatting.BoldItalic,
+                    4,
+                    10,
+                ),
+            );
+        });
+
+        it('repositions formatting on prepend', () => {
+            const part = StringPart.from({
+                fontName: 'g_d0_f3',
+
+                str: 'Bold',
+            });
+            part.formatting.should.deep.equal([
+                new FormatSpan(
+                    Formatting.Bold,
+                    0,
+                    4,
+                ),
+            ]);
+
+            part.prepend(StringPart.from({
+                fontName: 'g_d0_f7',
+
+                str: 'Italic',
+            }));
+
+            part.str.should.equal('Italic Bold');
+            part.formatting.should.deep.equal([
+                new FormatSpan(
+                    Formatting.Italic,
+                    0,
+                    6,
+                ),
+
+                new FormatSpan(
+                    Formatting.Bold,
+                    7,
+                    4,
+                ),
+            ]);
+        });
+
+        it.skip('append combines FormatSpans', () => {
+            // TODO
+        });
+    });
 });
 
 describe('Section', () => {
     describe('pushString', () => {
         it("Doesn't add whitespace-only to non-whitespace", () => {
             const section = new Section(0);
-            section.pushString('Test ');
-            section.pushString('  ');
+            section.pushString(new StringPart('Test '));
+            section.pushString(new StringPart('  '));
             section.parts.should.have.length(2);
         });
 
         it('Adds whitespace between parts', () => {
             const section = new Section(0);
-            section.pushString('on using');
-            section.pushString('    ');
-            section.pushString('the    ');
+            section.pushString(new StringPart('on using'));
+            section.pushString(new StringPart('    '));
+            section.pushString(new StringPart('the    '));
             section.parts.should.have.length(1);
             section.parts[0].toString().should.equal('on using the ');
         });
 
         it("Doesn't add unnecessary whitespace between parts", () => {
             const section = new Section(0);
-            section.pushString('Sys');
-            section.pushString('tem    Reference');
+            section.pushString(new StringPart('Sys'));
+            section.pushString(new StringPart('tem    Reference'));
             section.parts.should.have.length(1);
             section.parts[0].toString().should.equal('System Reference');
         });

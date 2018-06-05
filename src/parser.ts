@@ -2,10 +2,24 @@ import { fs } from 'mz';
 
 import { DepthTracker } from './depth-tracker';
 import { normalizeString } from './format';
-import { ISection, IStringPart, ITablePart, PartType } from './parser-interface';
+import {
+    FormatSpan, Formatting,
+    ISection, IStringPart, ITablePart,
+    PartType,
+} from './parser-interface';
 import { ITextItem, processPdf } from './pdf';
 
 export const TABLE_HEADER_FONT_NAME = 'g_d0_f6';
+
+const fontToFormatting = {
+    g_d0_f1: Formatting.Italic,
+    g_d0_f12: Formatting.Bold,
+    g_d0_f14: Formatting.Bold,
+    g_d0_f3: Formatting.Bold,
+    g_d0_f5: Formatting.BoldItalic,
+    g_d0_f7: Formatting.Italic,
+    g_d0_f8: Formatting.Bold,
+};
 
 const SKIPPED_FONT_NAMES = new Set([
     'g_font_error',
@@ -29,10 +43,13 @@ export class StringPart implements IStringPart {
             item.y,
             item.width,
             item.height,
+            item.fontName,
         );
     }
 
     readonly type = PartType.STRING;
+
+    formatting: FormatSpan[] = [];
 
     constructor(
         public str: string,
@@ -40,15 +57,32 @@ export class StringPart implements IStringPart {
         readonly y: number = 0,
         public width: number = 0,
         readonly height: number = 0,
-    ) { }
+        fontName: string = null,
+    ) {
+        this.pushFormattingForFont(fontName, 0);
+    }
 
     append(item: ITextItem) {
+        const start = this.str.length;
         this.str += normalizeString(item.str);
         this.width += item.width;
+
+        this.pushFormattingForFont(item.fontName, start);
     }
 
     prepend(item: StringPart) {
-        this.str = item.str.trimRight() + ' ' + this.str.trimLeft();
+        const oldLen = this.str.length;
+        const prefix = item.str.trimRight();
+        const trimmed = this.str.trimLeft();
+        const increment = prefix.length + 1 - (oldLen - trimmed.length);
+
+        this.str = prefix + ' ' + trimmed;
+
+        for (const span of this.formatting) {
+            span.start += increment;
+        }
+
+        this.formatting.splice(0, 0, ...item.formatting);
     }
 
     /**
@@ -76,12 +110,49 @@ export class StringPart implements IStringPart {
     }
 
     toString(): string {
-        return this.str;
+        let str = '';
+        let i = 0;
+        for (const span of this.formatting) {
+            // if there are unformatted parts in-between, add them:
+            if (span.start > i) {
+                str += this.str.substring(i, span.start);
+                i = span.start;
+            }
+
+            if (span.isBold) str += '**';
+            if (span.isItalic) str += '_';
+
+            str += this.str.substr(span.start, span.length);
+
+            if (span.isItalic) str += '_';
+            if (span.isBold) str += '**';
+
+            i += span.length;
+        }
+
+        if (i < this.str.length) {
+            // add any un-spanned
+            str += this.str.substr(i);
+        }
+
+        return str;
     }
 
     valueOf(): string {
         return this.str;
     }
+
+    private pushFormattingForFont(fontName: string, start: number) {
+        const formatting = fontToFormatting[fontName];
+        if (formatting) {
+            this.formatting.push(new FormatSpan(
+                formatting,
+                start,
+                this.str.length - start,
+            ));
+        }
+    }
+
 }
 
 export class TablePart implements ITablePart {
@@ -408,17 +479,17 @@ export class Section implements ISection {
             return;
         }
 
-        this.pushString(item.str);
+        this.pushString(item);
     }
 
-    pushString(str: string) {
-        const partToContinue = this.extractStringPartToContinueFor(str);
+    pushString(item: ITextItem) {
+        const partToContinue = this.extractStringPartToContinueFor(item.str);
         if (partToContinue) {
-            partToContinue.str += normalizeString(str);
+            partToContinue.append(item);
             return;
         }
 
-        this.parts.push(new StringPart(normalizeString(str)));
+        this.parts.push(StringPart.from(item));
     }
 
     pushTablePart(item: ITextItem) {
