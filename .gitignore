@@ -1,3 +1,6 @@
 node_modules/
 lib/
 *.sw[nop]
+srd.json
+srd.min.json
+srd.txt
