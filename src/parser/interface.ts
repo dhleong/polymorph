@@ -35,13 +35,39 @@ export interface IPart {
     toJson(): any;
 }
 
+export enum SpellSchool {
+    Abjuration,
+    Conjuration,
+    Divination,
+    Enchantment,
+    Evocation,
+    Illusion,
+    Necromancy,
+    Transmutation,
+}
+
 export interface ISpellPart extends IPart {
     name: string;
+    level: number;
+    school: SpellSchool;
+    concentration: boolean;
+    ritual: boolean;
+    castTime: string;
+    range: string;
+    components: string;
+    duration: string;
+    info: Part[];
 }
 
 export interface IStringPart extends IPart {
     str: string;
     formatting: FormatSpan[];
+
+    /**
+     * Get the substring of this IStringPart covered
+     * by the provided FormatSpan
+     */
+    get(fmt: FormatSpan): string;
 }
 
 export interface ITablePart extends IPart {

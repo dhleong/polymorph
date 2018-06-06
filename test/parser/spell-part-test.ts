@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 
 import { Section, SpellPart, StringPart } from '../../src/parser';
-import { FormatSpan, Formatting } from '../../src/parser/interface';
+import { FormatSpan, Formatting, SpellSchool } from '../../src/parser/interface';
 
 chai.should();
 
@@ -73,7 +73,18 @@ describe('SpellPart parsing', () => {
         spellBodySection,
     );
 
-    it('extracts name', () => {
+    it('works for Polymorph', () => {
         spellPart.name.should.equal('Polymorph');
+        spellPart.level.should.equal(4);
+        spellPart.school.should.equal(SpellSchool.Transmutation);
+        spellPart.concentration.should.be.true;
+        spellPart.ritual.should.be.false;
+        spellPart.castTime.should.equal('1 action');
+        spellPart.range.should.equal('60 feet');
+        spellPart.components.should.equal('V, S, M (a caterpillar cocoon)');
+
+        // TODO:
+        // spellPart.duration.should.equal('Concentration, up to 1 hour');
+        // spellPart.info.should.have.lengthOf(5);
     });
 });

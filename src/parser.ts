@@ -37,13 +37,13 @@ export class Parser {
 
             if (section.level <= 1) {
                 currentHeader = section.getHeader();
-                console.log('<-- ', currentHeader);
             }
 
             if (currentHeader === 'Spell Descriptions'
                 && section.level === 5
             ) {
-                this.tryConsolidateSpell(i);
+                this.consolidateSpell(i);
+                i -= 1;
             }
         }
 
@@ -98,7 +98,7 @@ export class Parser {
         return items.slice(footersOffset);
     }
 
-    private tryConsolidateSpell(atIndex: number) {
+    private consolidateSpell(atIndex: number) {
         const nameI = atIndex - 1;
         const bodySection = this.sections[atIndex];
         const nameSection = this.sections[nameI];

@@ -3,7 +3,7 @@ import { IFormatter } from '../formatter';
 import {
     FormatSpan,
     ISection, IStringPart,
-    PartType,
+    Part, PartType,
 } from '../parser/interface';
 
 // laziness
@@ -83,6 +83,40 @@ export interface IJsonOptions {
     pretty?: boolean;
 }
 
+function partToJson(part: Part) {
+
+    let partAsJson;
+    switch (part.type) {
+        case PartType.TABLE:
+            partAsJson = part.toJson();
+            partAsJson.type = 'table';
+            break;
+
+        case PartType.STRING:
+            if ((part as IStringPart).str === '') {
+                // drop empty parts; this may be something we should
+                // move into Parser...
+                return;
+            }
+
+            partAsJson = FormattedText.from(part as IStringPart);
+            break;
+
+        case PartType.SPELL:
+            partAsJson = part.toJson();
+            partAsJson.type = 'spell';
+            partAsJson.info = (partAsJson.info as Part[])
+                .map(p => partToJson(p))
+                .filter(p => p); // remove blank lines
+            break;
+
+        default:
+            throw new Error(`Unsupported part type: ${part.type}`);
+    }
+
+    return partAsJson;
+}
+
 /**
  * Formats the SRD as a big JSON object
  */
@@ -128,24 +162,10 @@ export class JsonFormatter implements IFormatter {
         }
 
         for (const part of section.parts) {
-            if (part.type === PartType.STRING
-                && (part as IStringPart).str === ''
-            ) {
-                // drop empty parts; this may be something we should
-                // move into Parser...
-                continue;
+            const partAsJson = partToJson(part);
+            if (partAsJson) {
+                this.current.contents.push(partAsJson);
             }
-
-            let partAsJson;
-            switch (part.type) {
-            case PartType.TABLE:
-                partAsJson = part.toJson();
-                partAsJson.type = 'table';
-
-            case PartType.STRING:
-                partAsJson = FormattedText.from(part as IStringPart);
-            }
-            this.current.contents.push(partAsJson);
         }
     }
 
