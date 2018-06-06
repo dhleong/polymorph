@@ -2,7 +2,7 @@
 import { IFormatter } from '../formatter';
 import {
     FormatSpan,
-    ISection, IStringPart, ITablePart,
+    ISection, IStringPart,
     PartType,
 } from '../parser/interface';
 
@@ -16,22 +16,10 @@ function jsonPropertyFilter(key: string, value: any) {
 
 class JsonSection {
     static extractFrom(section: ISection): JsonSection {
-        const firstPart = section.parts[0];
-        switch (firstPart.type) {
-        case PartType.STRING:
-            return new JsonSection(
-                section.level,
-                (section.parts.splice(0, 1)[0] as IStringPart).str,
-            );
-
-        case PartType.TABLE:
-            return new JsonSection(
-                section.level,
-                (firstPart as ITablePart).headers.splice(0, 1)[0][0].str,
-            );
-        }
-
-        throw new Error(`Unexpected section: ${section}`);
+        return new JsonSection(
+            section.level,
+            section.getHeader(/* removeIt = */true),
+        );
     }
 
     type = 'section';

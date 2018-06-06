@@ -25,6 +25,7 @@ export class FormatSpan {
 }
 
 export enum PartType {
+    SPELL,
     STRING,
     TABLE,
 }
@@ -32,6 +33,10 @@ export enum PartType {
 export interface IPart {
     type: PartType;
     toJson(): any;
+}
+
+export interface ISpellPart extends IPart {
+    name: string;
 }
 
 export interface IStringPart extends IPart {
@@ -45,9 +50,15 @@ export interface ITablePart extends IPart {
 }
 
 // union type of all part kinds
-export type Part = IStringPart | ITablePart;
+export type Part = ISpellPart | IStringPart | ITablePart;
 
 export interface ISection {
     level: number;
     parts: Part[];
+
+    /**
+     * Abstract the header, optionally removing it
+     * from the source Part
+     */
+    getHeader(removeIt: boolean): string;
 }
