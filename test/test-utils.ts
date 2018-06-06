@@ -1,5 +1,7 @@
 
-import { Parser, Section, TABLE_HEADER_FONT_NAME, TablePart } from '../src/parser';
+import { Parser, Section, TablePart } from '../src/parser';
+import { TABLE_HEADER_FONT_NAME } from '../src/parser/utils';
+
 import { ITextItem } from '../src/pdf';
 
 export function parsePage(items: any[]): Section[] {

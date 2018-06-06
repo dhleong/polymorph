@@ -1,6 +1,6 @@
 
 import { IFormatter } from '../formatter';
-import { ISection } from '../parser-interface';
+import { ISection } from '../parser/interface';
 
 /**
  * CompositeFormatter can be used to output multiple

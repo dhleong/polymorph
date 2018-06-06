@@ -4,7 +4,7 @@ import {
     FormatSpan,
     ISection, IStringPart, ITablePart,
     PartType,
-} from '../parser-interface';
+} from '../parser/interface';
 
 // laziness
 const CONTENT_SECTION_LEVEL = 5;

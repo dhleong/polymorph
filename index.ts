@@ -6,7 +6,7 @@ import { fs } from 'mz';
 import { IFormatter } from './src/formatter';
 import { parseFile } from './src/parser';
 export { Parser, parseFile } from './src/parser';
-export * from './src/parser-interface';
+export * from './src/parser/interface';
 
 import { CompositeFormatter } from './src/formatters/composite';
 import { DebugFormatter } from './src/formatters/debug';

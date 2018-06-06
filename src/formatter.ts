@@ -1,5 +1,5 @@
 
-import { ISection } from './parser-interface';
+import { ISection } from './parser/interface';
 
 export interface IFormatter {
 
