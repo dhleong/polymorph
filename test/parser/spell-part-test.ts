@@ -82,9 +82,10 @@ describe('SpellPart parsing', () => {
         spellPart.castTime.should.equal('1 action');
         spellPart.range.should.equal('60 feet');
         spellPart.components.should.equal('V, S, M (a caterpillar cocoon)');
+        spellPart.duration.should.equal('Concentration, up to 1 hour');
+        spellPart.info.should.have.lengthOf(5);
 
-        // TODO:
-        // spellPart.duration.should.equal('Concentration, up to 1 hour');
-        // spellPart.info.should.have.lengthOf(5);
+        spellPart.info[0].toString()
+            .should.match(/^This spell transforms a creature/);
     });
 });

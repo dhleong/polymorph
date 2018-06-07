@@ -4,6 +4,27 @@ import {
     Part, PartType,
     SpellSchool,
 } from './interface';
+import { StringPart } from './string-part';
+
+/**
+ * Current parsing concatenates the first paragraph of
+ * info on a Spell to the end of its Duration. There's
+ * no obvious way to safely separate this into a separate
+ * StringPart, so we split it up ourselves (for now...)
+ * by finding the first capital letter.
+ */
+function findDurationSplitIndex(duration: string): number {
+    // NOTE: skip i == 0 since that will probably be
+    // upper case and confuse us since it's not
+    // definitely not what we want, anyway
+    for (let i = 1; i < duration.length; ++i) {
+        if (duration[i].match(/[A-Z]/)) {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 export class SpellPart implements ISpellPart {
     static from(
@@ -44,6 +65,8 @@ export class SpellPart implements ISpellPart {
         let duration: string = '';
         let concentration: boolean = false;
 
+        const info: Part[] = bodySection.parts.slice(1);
+
         for (let i = 0; i < fmts.length; ++i) {
             const fmt = fmts[i];
             const label = firstPart.get(fmt)
@@ -78,11 +101,17 @@ export class SpellPart implements ISpellPart {
                 if (duration.indexOf('Concentration') !== -1) {
                     concentration = true;
                 }
+
+                const splitI = findDurationSplitIndex(duration);
+                if (splitI !== -1) {
+                    const infoPart = duration.substring(splitI);
+                    duration = duration.substring(0, splitI).trimRight();
+                    info.splice(0, 0, new StringPart(infoPart));
+                }
+
                 break;
             }
         }
-
-        const info: Part[] = bodySection.parts.slice(1);
 
         return new SpellPart(
             name,
