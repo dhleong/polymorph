@@ -147,6 +147,6 @@ export class SpellPart implements ISpellPart {
     }
 
     toJson() {
-        return this;
+        return Object.assign({}, this);
     }
 }

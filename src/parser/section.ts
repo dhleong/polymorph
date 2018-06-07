@@ -26,10 +26,25 @@ export class Section implements ISection {
         this.headerLevelValue = headerLevelValue;
     }
 
+    clone(): Section {
+        const clone = new Section(this.headerLevelValue);
+        clone.level = this.level;
+        clone.parts = this.parts.map(p => {
+            if (p instanceof TablePart) {
+                // special case because the getHeader modifies it
+                return p.clone();
+            } else {
+                return p;
+            }
+        });
+        return clone;
+    }
+
     getHeader(removeIt: boolean = false): string {
         const firstPart = this.parts[0];
+        const partType = firstPart.type;
 
-        switch (firstPart.type) {
+        switch (partType) {
         case PartType.STRING:
             const stringSrc = removeIt
                 ? this.parts.splice(0, 1)[0]
@@ -50,7 +65,7 @@ export class Section implements ISection {
             return spell.name;
         }
 
-        throw new Error(`Unexpected section: ${this}`);
+        throw new Error(`Unexpected section: ${partType} / ${PartType.SPELL}`);
     }
 
     postProcess() {

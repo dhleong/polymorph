@@ -22,9 +22,9 @@ export class TablePart implements ITablePart {
     headers: StringPart[][] = [];
     rows: StringPart[][] = [];
 
-    lastX = -1;
-    lastY = Number.MAX_VALUE;
     lastHeight = Number.MAX_VALUE;
+
+    private lastY = Number.MAX_VALUE;
 
     feed(item: ITextItem) {
         const destination = (item.fontName === TABLE_HEADER_FONT_NAME)
@@ -54,7 +54,6 @@ export class TablePart implements ITablePart {
             row.push(StringPart.from(item));
         }
 
-        this.lastX = item.x;
         this.lastY = item.y;
         this.lastHeight = item.height;
     }
@@ -120,6 +119,13 @@ export class TablePart implements ITablePart {
         return 'TABLE: ' + JSON.stringify(
             this.toJson(), null, ' ',
         );
+    }
+
+    clone(): TablePart {
+        const clone = new TablePart();
+        clone.headers = this.headers.slice();
+        clone.rows = this.rows; // shallow copy
+        return clone;
     }
 
     private itemStartsNewRow(item: ITextItem): boolean {

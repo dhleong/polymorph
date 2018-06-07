@@ -164,6 +164,9 @@ export class JsonFormatter implements IFormatter {
     }
 
     async format(section: ISection) {
+        // clone it because JsonSection.extractFrom modifies
+        section = section.clone();
+
         let newSectionParent: JsonSection;
         if (section.level <= this.current.level) {
             while (section.level <= this.current.level) {

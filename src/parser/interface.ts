@@ -83,6 +83,11 @@ export interface ISection {
     parts: Part[];
 
     /**
+     * Makes a somewhat shallow copy of this ISection
+     */
+    clone(): ISection;
+
+    /**
      * Abstract the header, optionally removing it
      * from the source Part
      */
