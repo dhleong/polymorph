@@ -25,6 +25,7 @@ export class FormatSpan {
 }
 
 export enum PartType {
+    SPELL,
     STRING,
     TABLE,
 }
@@ -34,9 +35,39 @@ export interface IPart {
     toJson(): any;
 }
 
+export enum SpellSchool {
+    Abjuration,
+    Conjuration,
+    Divination,
+    Enchantment,
+    Evocation,
+    Illusion,
+    Necromancy,
+    Transmutation,
+}
+
+export interface ISpellPart extends IPart {
+    name: string;
+    level: number;
+    school: SpellSchool;
+    concentration: boolean;
+    ritual: boolean;
+    castTime: string;
+    range: string;
+    components: string;
+    duration: string;
+    info: Part[];
+}
+
 export interface IStringPart extends IPart {
     str: string;
     formatting: FormatSpan[];
+
+    /**
+     * Get the substring of this IStringPart covered
+     * by the provided FormatSpan
+     */
+    get(fmt: FormatSpan): string;
 }
 
 export interface ITablePart extends IPart {
@@ -45,9 +76,15 @@ export interface ITablePart extends IPart {
 }
 
 // union type of all part kinds
-export type Part = IStringPart | ITablePart;
+export type Part = ISpellPart | IStringPart | ITablePart;
 
 export interface ISection {
     level: number;
     parts: Part[];
+
+    /**
+     * Abstract the header, optionally removing it
+     * from the source Part
+     */
+    getHeader(removeIt: boolean): string;
 }

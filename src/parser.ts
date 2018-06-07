@@ -3,13 +3,14 @@ import { fs } from 'mz';
 import { DepthTracker } from './depth-tracker';
 import { ISection } from './parser/interface';
 import { Part, Section } from './parser/section';
+import { SpellPart } from './parser/spell-part';
 import { StringPart } from './parser/string-part';
 import { TablePart } from './parser/table-part';
 import { TABLE_HEADER_FONT_NAME } from './parser/utils';
 import { ITextItem, processPdf } from './pdf';
 
 // re-export as appropriate:
-export { Part, TablePart, Section, StringPart };
+export { Part, Section, SpellPart, StringPart, TablePart };
 
 const SKIPPED_FONT_NAMES = new Set([
     'g_font_error',
@@ -27,10 +28,23 @@ export class Parser {
             this.processPage(this.skipFooters(content.items)),
         );
 
-        for (const section of this.sections) {
+        let currentHeader = '';
+        for (let i = 0; i < this.sections.length; ++i) {
+            const section = this.sections[i];
             section.postProcess();
 
             section.level = this.headerLevels.pickLevelFor(section.headerLevelValue);
+
+            if (section.level <= 1) {
+                currentHeader = section.getHeader();
+            }
+
+            if (currentHeader === 'Spell Descriptions'
+                && section.level === 5
+            ) {
+                this.consolidateSpell(i);
+                i -= 1;
+            }
         }
 
         return this.sections;
@@ -82,6 +96,21 @@ export class Parser {
         // is this safe to hard-code?
         const footersOffset = 10;
         return items.slice(footersOffset);
+    }
+
+    private consolidateSpell(atIndex: number) {
+        const nameI = atIndex - 1;
+        const bodySection = this.sections[atIndex];
+        const nameSection = this.sections[nameI];
+
+        const spellSection = new Section(nameSection.headerLevelValue);
+        spellSection.level = nameSection.level;
+        spellSection.parts.push(SpellPart.from(
+            nameSection,
+            bodySection,
+        ));
+
+        this.sections.splice(nameI, 2, spellSection);
     }
 }
 

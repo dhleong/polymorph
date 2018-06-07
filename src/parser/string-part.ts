@@ -47,6 +47,10 @@ export class StringPart implements IStringPart {
         this.pushFormattingForFont(fontName, 0);
     }
 
+    postProcess() {
+        this.str = this.str.trimRight();
+    }
+
     append(item: ITextItem) {
         const start = this.str.length;
         this.str += normalizeString(item.str);
@@ -98,8 +102,8 @@ export class StringPart implements IStringPart {
         return this.x <= x && x <= this.x + this.width;
     }
 
-    postProcess() {
-        this.str = this.str.trimRight();
+    get(fmt: FormatSpan): string {
+        return this.str.substr(fmt.start, fmt.length);
     }
 
     isOnlyWhitespace() {

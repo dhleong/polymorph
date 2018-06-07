@@ -1,5 +1,6 @@
 
-import { ISection } from './interface';
+import { ISection, PartType } from './interface';
+import { SpellPart } from './spell-part';
 import { StringPart } from './string-part';
 import { TablePart } from './table-part';
 import {
@@ -10,7 +11,7 @@ import {
 import { ITextItem } from '../pdf';
 
 // union type of all part kinds
-export type Part = StringPart | TablePart;
+export type Part = SpellPart | StringPart | TablePart;
 
 export class Section implements ISection {
     /** value in Parser.headerLevels array */
@@ -23,6 +24,33 @@ export class Section implements ISection {
 
     constructor(headerLevelValue) {
         this.headerLevelValue = headerLevelValue;
+    }
+
+    getHeader(removeIt: boolean = false): string {
+        const firstPart = this.parts[0];
+
+        switch (firstPart.type) {
+        case PartType.STRING:
+            const stringSrc = removeIt
+                ? this.parts.splice(0, 1)[0]
+                : this.parts[0];
+
+            return (stringSrc as StringPart).str;
+
+        case PartType.TABLE:
+            const headers = (firstPart as TablePart).headers;
+            const tableSrc = removeIt
+                ? headers.splice(0, 1)[0]
+                : headers[0];
+            return tableSrc[0].str;
+
+        case PartType.SPELL:
+            // NOTE: there's nothing to remove from a SpellPart
+            const spell = firstPart as SpellPart;
+            return spell.name;
+        }
+
+        throw new Error(`Unexpected section: ${this}`);
     }
 
     postProcess() {

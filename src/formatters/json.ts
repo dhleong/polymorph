@@ -2,12 +2,24 @@
 import { IFormatter } from '../formatter';
 import {
     FormatSpan,
-    ISection, IStringPart, ITablePart,
-    PartType,
+    ISection, ISpellPart, IStringPart,
+    Part, PartType,
+    SpellSchool,
 } from '../parser/interface';
 
 // laziness
 const CONTENT_SECTION_LEVEL = 5;
+
+const spellSchoolJson = {
+    [SpellSchool.Abjuration]: 'A',
+    [SpellSchool.Conjuration]: 'C',
+    [SpellSchool.Divination]: 'D',
+    [SpellSchool.Enchantment]: 'E',
+    [SpellSchool.Evocation]: 'V',
+    [SpellSchool.Illusion]: 'I',
+    [SpellSchool.Necromancy]: 'N',
+    [SpellSchool.Transmutation]: 'T',
+};
 
 function jsonPropertyFilter(key: string, value: any) {
     if (key === 'level') return;
@@ -16,22 +28,10 @@ function jsonPropertyFilter(key: string, value: any) {
 
 class JsonSection {
     static extractFrom(section: ISection): JsonSection {
-        const firstPart = section.parts[0];
-        switch (firstPart.type) {
-        case PartType.STRING:
-            return new JsonSection(
-                section.level,
-                (section.parts.splice(0, 1)[0] as IStringPart).str,
-            );
-
-        case PartType.TABLE:
-            return new JsonSection(
-                section.level,
-                (firstPart as ITablePart).headers.splice(0, 1)[0][0].str,
-            );
-        }
-
-        throw new Error(`Unexpected section: ${section}`);
+        return new JsonSection(
+            section.level,
+            section.getHeader(/* removeIt = */true),
+        );
     }
 
     type = 'section';
@@ -95,6 +95,51 @@ export interface IJsonOptions {
     pretty?: boolean;
 }
 
+function partToJson(part: Part) {
+
+    let partAsJson;
+    switch (part.type) {
+        case PartType.TABLE:
+            partAsJson = part.toJson();
+            partAsJson.type = 'table';
+            break;
+
+        case PartType.STRING:
+            if ((part as IStringPart).str === '') {
+                // drop empty parts; this may be something we should
+                // move into Parser...
+                return;
+            }
+
+            partAsJson = FormattedText.from(part as IStringPart);
+            break;
+
+        case PartType.SPELL:
+            const spell = part as ISpellPart;
+            partAsJson = part.toJson();
+            partAsJson.type = 'spell';
+
+            partAsJson.school = spellSchoolJson[spell.school];
+            partAsJson.info = (partAsJson.info as Part[])
+                .map(p => partToJson(p))
+                .filter(p => p); // remove blank lines
+
+            // remove `false` boolean values
+            if (!spell.concentration) {
+                delete partAsJson.concentration;
+            }
+            if (!spell.ritual) {
+                delete partAsJson.ritual;
+            }
+            break;
+
+        default:
+            throw new Error(`Unsupported part type: ${part.type}`);
+    }
+
+    return partAsJson;
+}
+
 /**
  * Formats the SRD as a big JSON object
  */
@@ -140,24 +185,10 @@ export class JsonFormatter implements IFormatter {
         }
 
         for (const part of section.parts) {
-            if (part.type === PartType.STRING
-                && (part as IStringPart).str === ''
-            ) {
-                // drop empty parts; this may be something we should
-                // move into Parser...
-                continue;
+            const partAsJson = partToJson(part);
+            if (partAsJson) {
+                this.current.contents.push(partAsJson);
             }
-
-            let partAsJson;
-            switch (part.type) {
-            case PartType.TABLE:
-                partAsJson = part.toJson();
-                partAsJson.type = 'table';
-
-            case PartType.STRING:
-                partAsJson = FormattedText.from(part as IStringPart);
-            }
-            this.current.contents.push(partAsJson);
         }
     }
 
