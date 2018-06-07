@@ -25,6 +25,7 @@ export class FormatSpan {
 }
 
 export enum PartType {
+    CREATURE,
     SPELL,
     STRING,
     TABLE,
@@ -33,6 +34,10 @@ export enum PartType {
 export interface IPart {
     type: PartType;
     toJson(): any;
+}
+
+export interface ICreaturePart extends IPart {
+    name: string;
 }
 
 export enum SpellSchool {
@@ -76,7 +81,7 @@ export interface ITablePart extends IPart {
 }
 
 // union type of all part kinds
-export type Part = ISpellPart | IStringPart | ITablePart;
+export type Part = ICreaturePart | ISpellPart | IStringPart | ITablePart;
 
 export interface ISection {
     level: number;

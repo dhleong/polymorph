@@ -14,6 +14,13 @@ import { ITextItem } from '../pdf';
 export type Part = SpellPart | StringPart | TablePart;
 
 export class Section implements ISection {
+    static fromSectionPart(oldSection: Section, part: Part): Section {
+        const newSection = new Section(oldSection.headerLevelValue);
+        newSection.level = oldSection.level;
+        newSection.parts.push(part);
+        return newSection;
+    }
+
     /** value in Parser.headerLevels array */
     headerLevelValue: number;
 

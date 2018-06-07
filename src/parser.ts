@@ -16,6 +16,16 @@ const SKIPPED_FONT_NAMES = new Set([
     'g_font_error',
 ]);
 
+export function isCreatureHeader(header: string): boolean {
+    return header.startsWith('Appendix MM-A')
+        || header.startsWith('Monsters (');
+}
+
+function consolidateCreature(sections: Section[]): Section {
+    // TODO
+    return null;
+}
+
 export class Parser {
 
     private headerLevels = new DepthTracker();
@@ -28,24 +38,7 @@ export class Parser {
             this.processPage(this.skipFooters(content.items)),
         );
 
-        let currentHeader = '';
-        for (let i = 0; i < this.sections.length; ++i) {
-            const section = this.sections[i];
-            section.postProcess();
-
-            section.level = this.headerLevels.pickLevelFor(section.headerLevelValue);
-
-            if (section.level <= 1) {
-                currentHeader = section.getHeader();
-            }
-
-            if (currentHeader === 'Spell Descriptions'
-                && section.level === 5
-            ) {
-                this.consolidateSpell(i);
-                i -= 1;
-            }
-        }
+        this.postProcess();
 
         return this.sections;
     }
@@ -70,6 +63,46 @@ export class Parser {
             }
 
             this.currentSection.push(item);
+        }
+    }
+
+    postProcess() {
+        let currentHeader = '';
+        let currentCreature: Section[] = [];
+        for (let i = 0; i < this.sections.length; ++i) {
+            const section = this.sections[i];
+            section.postProcess();
+
+            section.level = this.headerLevels.pickLevelFor(section.headerLevelValue);
+
+            if (section.level <= 1) {
+                currentHeader = section.getHeader();
+            }
+
+            if (currentHeader === 'Spell Descriptions'
+                && section.level === 5
+            ) {
+                this.consolidateSpell(i);
+                --i;
+            }
+
+            if (isCreatureHeader(currentHeader)) {
+                // TODO monster categories, like *Angels*
+
+                if (section.level <= 3) {
+                    const creatureSection = consolidateCreature(currentCreature);
+                    if (creatureSection) {
+                        this.sections.splice(i, 0, creatureSection);
+                    }
+                    currentCreature = [];
+                }
+
+                if (section.level >= 3) {
+                    currentCreature.push(section);
+                    this.sections.splice(i, 1);
+                    --i;
+                }
+            }
         }
     }
 
@@ -103,9 +136,7 @@ export class Parser {
         const bodySection = this.sections[atIndex];
         const nameSection = this.sections[nameI];
 
-        const spellSection = new Section(nameSection.headerLevelValue);
-        spellSection.level = nameSection.level;
-        spellSection.parts.push(SpellPart.from(
+        const spellSection = Section.fromSectionPart(nameSection, SpellPart.from(
             nameSection,
             bodySection,
         ));

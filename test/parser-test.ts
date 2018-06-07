@@ -1,10 +1,25 @@
 import * as chai from 'chai';
 
-import { Section, TablePart } from '../src/parser';
+import { isCreatureHeader, Section, TablePart } from '../src/parser';
 import { StringPart } from '../src/parser/string-part';
 import { tableSection, textItem } from './test-utils';
 
 chai.should();
+
+describe('isCreatureHeader', () => {
+    it('detects Misc Creatures Appendix', () => {
+        isCreatureHeader('Appendix MM-A: Miscellaneous Creatures').should.be.true;
+    });
+
+    it('detects alphabetic monster listings', () => {
+        isCreatureHeader('Monsters (A)').should.be.true;
+        isCreatureHeader('Monsters (B)').should.be.true;
+    });
+
+    it('ignores the Monsters section', () => {
+        isCreatureHeader('Monsters').should.be.false;
+    });
+});
 
 describe('Section', () => {
     describe('pushString', () => {
