@@ -2,12 +2,24 @@
 import { IFormatter } from '../formatter';
 import {
     FormatSpan,
-    ISection, IStringPart,
+    ISection, ISpellPart, IStringPart,
     Part, PartType,
+    SpellSchool,
 } from '../parser/interface';
 
 // laziness
 const CONTENT_SECTION_LEVEL = 5;
+
+const spellSchoolJson = {
+    [SpellSchool.Abjuration]: 'A',
+    [SpellSchool.Conjuration]: 'C',
+    [SpellSchool.Divination]: 'D',
+    [SpellSchool.Enchantment]: 'E',
+    [SpellSchool.Evocation]: 'V',
+    [SpellSchool.Illusion]: 'I',
+    [SpellSchool.Necromancy]: 'N',
+    [SpellSchool.Transmutation]: 'T',
+};
 
 function jsonPropertyFilter(key: string, value: any) {
     if (key === 'level') return;
@@ -103,11 +115,22 @@ function partToJson(part: Part) {
             break;
 
         case PartType.SPELL:
+            const spell = part as ISpellPart;
             partAsJson = part.toJson();
             partAsJson.type = 'spell';
+
+            partAsJson.school = spellSchoolJson[spell.school];
             partAsJson.info = (partAsJson.info as Part[])
                 .map(p => partToJson(p))
                 .filter(p => p); // remove blank lines
+
+            // remove `false` boolean values
+            if (!spell.concentration) {
+                delete partAsJson.concentration;
+            }
+            if (!spell.ritual) {
+                delete partAsJson.ritual;
+            }
             break;
 
         default:
