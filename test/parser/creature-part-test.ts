@@ -12,6 +12,8 @@ chai.should();
 
 describe('alignmentFromString', () => {
     it('works', () => {
+        alignmentFromString('unaligned').should.equal(Alignment.Unaligned);
+
         alignmentFromString('lawful good').should.equal(Alignment.LawfulGood);
         alignmentFromString('lawful neutral').should.equal(Alignment.LawfulNeutral);
         alignmentFromString('lawful evil').should.equal(Alignment.LawfulEvil);
@@ -27,6 +29,17 @@ describe('alignmentFromString', () => {
 });
 
 describe('CreaturePart', () => {
+    describe('sizeKindAlign parsing', () => {
+        it('handles very specific kinds', () => {
+            const c = new CreaturePart();
+            c.readSizeKindAlign('Medium humanoid (human, shapechanger), neutral good');
+
+            c.size.should.equal(Size.Medium);
+            c.kind.should.equal('humanoid (human, shapechanger)');
+            c.align.should.equal(Alignment.NeutralGood);
+        });
+    });
+
     describe('parsing', () => {
         const creaturePromise =
             loadJsonSections('aboleth.raw.json')
@@ -62,6 +75,9 @@ describe('CreaturePart', () => {
             part.languages.should.equal('Deep Speech, telepathy 120 ft.');
             part.cr.should.equal(10);
             part.exp.should.equal(5900);
+
+            part.parts.should.not.be.empty;
+            part.parts[0].str.should.include('Amphibious');
         });
     });
 });

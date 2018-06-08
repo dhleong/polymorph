@@ -13,29 +13,37 @@ export enum Alignment {
     ChaoticGood,
     ChaoticNeutral,
     ChaoticEvil,
+
+    Unaligned,
 }
 
 export function alignmentFromString(alignmentStr: string): Alignment {
-    if (alignmentStr === 'neutral') {
-        return Alignment.TrueNeutral;
-    } else {
-        const [lawVsChaos, goodVsEvil] = alignmentStr
-            .toLowerCase().split(' ');
-        let align = 0;
+    try {
+        if (alignmentStr === 'unaligned') {
+            return Alignment.Unaligned;
+        } else if (alignmentStr === 'neutral') {
+            return Alignment.TrueNeutral;
+        } else {
+            const [lawVsChaos, goodVsEvil] = alignmentStr
+                .toLowerCase().split(' ');
+            let align = 0;
 
-        if (lawVsChaos[0] === 'n') {
-            align += Alignment.NeutralGood;
-        } else if (lawVsChaos[0] === 'c') {
-            align += Alignment.ChaoticGood;
+            if (lawVsChaos[0] === 'n') {
+                align += Alignment.NeutralGood;
+            } else if (lawVsChaos[0] === 'c') {
+                align += Alignment.ChaoticGood;
+            }
+
+            if (goodVsEvil[0] === 'n') {
+                align += 1;
+            } else if (goodVsEvil[0] === 'e') {
+                align += 2;
+            }
+
+            return align;
         }
-
-        if (goodVsEvil[0] === 'n') {
-            align += 1;
-        } else if (goodVsEvil[0] === 'e') {
-            align += 2;
-        }
-
-        return align;
+    } catch (e) {
+        throw new Error(`Failed to parse alignment '${alignmentStr}': ${e.message}`);
     }
 }
 
@@ -77,6 +85,17 @@ function splitByNumber(value: string): [number, string] {
     return [first, second];
 }
 
+function splitAt(
+    value: string,
+    splitI: number,
+    separatorWidth: number = 1,
+): [string, string] {
+    return [
+        value.substring(0, splitI),
+        value.substring(splitI + separatorWidth),
+    ];
+}
+
 export class CreaturePart implements ICreaturePart {
     static from(sections: Section[]): CreaturePart {
         if (sections.length < 2) return;
@@ -92,11 +111,7 @@ export class CreaturePart implements ICreaturePart {
         [creature.hp, creature.hpRoll] = splitByNumber(firstMap['Hit Points']);
         creature.speed = firstMap.Speed;
 
-        const [sizeAndKind, alignmentStr] = firstMap[0].split(', ');
-        const [sizeRaw, kind] = sizeAndKind.split(' ');
-        creature.size = sizeByString[sizeRaw.toLowerCase()];
-        creature.kind = kind;
-        creature.align = alignmentFromString(alignmentStr);
+        creature.readSizeKindAlign(firstMap[0]);
 
         const nextMap = parts.length >= 3
             ? (parts[2] as IStringPart).toMapBySpans()
@@ -132,7 +147,17 @@ export class CreaturePart implements ICreaturePart {
             creature.exp = parseInt(rawExp.replace(/[, ()]/g, ''), 10);
         }
 
-        // TODO
+        // TODO: future work could split up these parts by formatting
+        for (let i = 3; i < parts.length; ++i) {
+            if (!creature.parts) creature.parts = [];
+            creature.parts.push(parts[i] as IStringPart);
+        }
+
+        for (let i = 2; i < sections.length; ++i) {
+            if (!creature.parts) creature.parts = [];
+            creature.parts.push(...sections[i].parts as IStringPart[]);
+        }
+
         return creature;
     }
 
@@ -164,8 +189,23 @@ export class CreaturePart implements ICreaturePart {
     cr: number;
     exp: number;
 
+    // NOTE: this property is lazy-init'd so it can be omitted
+    // for any creature that doesn't have any text parts
+    parts: IStringPart[];
+
     postProcess() {
         /* nop */
+    }
+
+    readSizeKindAlign(input: string) {
+        const splitI = input.lastIndexOf(', ');
+        const [sizeAndKind, alignmentStr] = splitAt(input, splitI, 2);
+
+        const sizeKindSplitI = sizeAndKind.indexOf(' ');
+        const [sizeRaw, kind] = splitAt(sizeAndKind, sizeKindSplitI);
+        this.size = sizeByString[sizeRaw.toLowerCase()];
+        this.kind = kind;
+        this.align = alignmentFromString(alignmentStr);
     }
 
     toJson() {
