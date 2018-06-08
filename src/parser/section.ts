@@ -180,7 +180,7 @@ export class Section implements ISection {
         // continue the non-whitespace-only
         if (!beforeLast.endsWithSpace()) {
             // fill in a missing space
-            beforeLast.str += ' ';
+            beforeLast.appendString(' ');
         }
 
         return beforeLast;

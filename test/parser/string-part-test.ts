@@ -109,7 +109,7 @@ describe('StringPart', () => {
             ]);
         });
 
-        it('append combines FormatSpans', () => {
+        it('prepend combines FormatSpans', () => {
             const part = StringPart.from({
                 fontName: 'g_d0_f3',
 

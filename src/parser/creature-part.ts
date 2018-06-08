@@ -100,6 +100,15 @@ export class CreaturePart implements ICreaturePart {
     static from(sections: Section[]): CreaturePart {
         if (sections.length < 2) return;
 
+        try {
+            return CreaturePart.parseUnsafe(sections);
+        } catch (e) {
+            const message = `Error parsing creature ${sections[0].getHeader()}:\n  ${e.stack}`;
+            throw new Error(message);
+        }
+    }
+
+    private static parseUnsafe(sections: Section[]): CreaturePart {
         const creature = new CreaturePart();
         creature.name = sections[0].getHeader();
 
@@ -107,6 +116,12 @@ export class CreaturePart implements ICreaturePart {
         if (!parts.length) return;
 
         const firstMap = (parts[0] as IStringPart).toMapBySpans();
+        if (!firstMap['Armor Class']) {
+            // things like "Black Dragon" that are just a header for
+            // variants
+            return;
+        }
+
         [creature.ac, creature.acSource] = splitByNumber(firstMap['Armor Class']);
         [creature.hp, creature.hpRoll] = splitByNumber(firstMap['Hit Points']);
         creature.speed = firstMap.Speed;

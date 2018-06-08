@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import { isCreatureHeader, Section, TablePart } from '../src/parser';
+import { FormatSpan, Formatting, isCreatureHeader, Section, TablePart } from '../src/parser';
 import { StringPart } from '../src/parser/string-part';
 import { tableSection, textItem } from './test-utils';
 
@@ -38,6 +38,34 @@ describe('Section', () => {
             section.pushString(new StringPart('the    '));
             section.parts.should.have.length(1);
             section.parts[0].toString().should.equal('on using the ');
+        });
+
+        it('Expands formatting when adding whitespace between parts', () => {
+            const section = new Section(0);
+            section.pushString({
+                fontName: 'g_d0_f3',
+                str: 'Bold',
+            });
+            section.pushString({
+                fontName: 'g_d0_f3',
+                str: '    ',
+            });
+            section.pushString({
+                fontName: 'g_d0_f3',
+                str: '+Also Bold',
+            });
+
+            section.parts.should.have.lengthOf(1);
+
+            const part = section.parts[0] as StringPart;
+            part.str.should.equal('Bold +Also Bold');
+            part.formatting.should.deep.equal([
+                new FormatSpan(
+                    Formatting.Bold,
+                    0,
+                    15,
+                ),
+            ]);
         });
 
         it("Doesn't add unnecessary whitespace between parts", () => {

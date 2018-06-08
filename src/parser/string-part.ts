@@ -64,6 +64,18 @@ export class StringPart implements IStringPart {
         this.pushFormattingForFont(item.fontName, start);
     }
 
+    appendString(str: string) {
+        if (this.formatting.length) {
+            // attempt to stretch the previous formatting
+            const lastFormat = this.formatting[this.formatting.length - 1];
+            if (lastFormat.start + lastFormat.length === this.str.length) {
+                lastFormat.length += str.length;
+            }
+        }
+
+        this.str += str;
+    }
+
     prepend(item: StringPart, separator = ' ') {
         const oldLen = this.str.length;
         const prefix = item.str.trimRight();
