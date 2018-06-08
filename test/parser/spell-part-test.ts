@@ -1,15 +1,11 @@
 import * as chai from 'chai';
 
 import { Section, SpellPart, StringPart } from '../../src/parser';
-import { FormatSpan, Formatting, SpellSchool } from '../../src/parser/interface';
+import { SpellSchool } from '../../src/parser/interface';
+
+import { formatSpansFromJson } from '../test-utils';
 
 chai.should();
-
-const formattingByStr = {
-    b: Formatting.Bold,
-    bi: Formatting.BoldItalic,
-    i: Formatting.Italic,
-};
 
 describe('SpellPart parsing', () => {
     /* tslint:disable */
@@ -20,7 +16,7 @@ describe('SpellPart parsing', () => {
     const firstBody = new StringPart(
         '4th-level transmutation Casting Time: 1 action Range: 60 feet Components: V, S, M (a caterpillar cocoon) Duration: Concentration, up to 1 hour This spell transforms a creature that you can see within range into a new form. An unwilling creature must make a Wisdom saving throw to avoid the effect. The spell has no effect on a shapechanger or a creature with 0 hit points.'
     );
-    firstBody.formatting = [
+    firstBody.formatting = formatSpansFromJson([
         {
             style: 'i',
             start: 0,
@@ -46,11 +42,7 @@ describe('SpellPart parsing', () => {
             start: 105,
             length: 9,
         },
-    ].map(json => new FormatSpan(
-        formattingByStr[json.style],
-        json.start,
-        json.length,
-    ));
+    ]);
 
     const spellBodySection = new Section(5);
     spellBodySection.parts.push(firstBody);

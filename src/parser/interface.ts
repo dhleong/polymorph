@@ -73,6 +73,14 @@ export interface IStringPart extends IPart {
      * by the provided FormatSpan
      */
     get(fmt: FormatSpan): string;
+
+    /**
+     * Extract a Map where the keys are the parts of
+     * this StringPart that have a FormatSpan on them,
+     * and the values are the non-spanned parts following
+     * the key.
+     */
+    toMapBySpans();
 }
 
 export interface ITablePart extends IPart {

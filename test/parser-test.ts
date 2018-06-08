@@ -7,8 +7,9 @@ import { tableSection, textItem } from './test-utils';
 chai.should();
 
 describe('isCreatureHeader', () => {
-    it('detects Misc Creatures Appendix', () => {
+    it('detects Misc Creatures and NPCs Appendices', () => {
         isCreatureHeader('Appendix MM-A: Miscellaneous Creatures').should.be.true;
+        isCreatureHeader('Appendix MM-B: Nonplayer Characters').should.be.true;
     });
 
     it('detects alphabetic monster listings', () => {

@@ -11,6 +11,7 @@ export * from './src/parser/interface';
 import { CompositeFormatter } from './src/formatters/composite';
 import { DebugFormatter } from './src/formatters/debug';
 import { JsonFormatter } from './src/formatters/json';
+import { JsonSectionsFormatter } from './src/formatters/json-sections';
 
 const formatterFactories = {
     '--debug': (stream) => new DebugFormatter(stream),
@@ -18,6 +19,7 @@ const formatterFactories = {
     '--json-pretty': (stream) => new JsonFormatter(stream, {
         pretty: true,
     }),
+    '--json-sections': (stream) => new JsonSectionsFormatter(stream),
 };
 
 function createFormatter(
@@ -38,9 +40,10 @@ Usage:
     polymorph -h | --help | --version
 
 Options:
-    --debug=<file>        Simple output mostly only useful for debugging
-    --json=<file>         JSON format
-    --json-pretty=<file>  Identical to --json, but prettier
+    --debug=<file>          Simple output mostly only useful for debugging
+    --json=<file>           JSON format
+    --json-pretty=<file>    Identical to --json, but prettier
+    --json-sections=<file>  Similar to --json, but flat (mostly for tests)
 
 Notes:
     A hyphen (-) can be used in place of any <file> to write to

@@ -26,7 +26,7 @@ function jsonPropertyFilter(key: string, value: any) {
     return value;
 }
 
-class JsonSection {
+export class JsonSection {
     static extractFrom(section: ISection): JsonSection {
         return new JsonSection(
             section.level,
@@ -41,6 +41,15 @@ class JsonSection {
         readonly level: number,
         readonly title: string,
     ) {}
+
+    addContentFrom(section: ISection) {
+        for (const part of section.parts) {
+            const partAsJson = partToJson(part);
+            if (partAsJson) {
+                this.contents.push(partAsJson);
+            }
+        }
+    }
 }
 
 class JsonFormatSpan {
@@ -187,12 +196,7 @@ export class JsonFormatter implements IFormatter {
             this.stack.push(this.current);
         }
 
-        for (const part of section.parts) {
-            const partAsJson = partToJson(part);
-            if (partAsJson) {
-                this.current.contents.push(partAsJson);
-            }
-        }
+        this.current.addContentFrom(section);
     }
 
     async end() {

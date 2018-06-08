@@ -1,4 +1,5 @@
 
+import { CreaturePart } from './creature-part';
 import { ISection, PartType } from './interface';
 import { SpellPart } from './spell-part';
 import { StringPart } from './string-part';
@@ -11,7 +12,7 @@ import {
 import { ITextItem } from '../pdf';
 
 // union type of all part kinds
-export type Part = SpellPart | StringPart | TablePart;
+export type Part = CreaturePart | SpellPart | StringPart | TablePart;
 
 export class Section implements ISection {
     static fromSectionPart(oldSection: Section, part: Part): Section {
@@ -20,6 +21,8 @@ export class Section implements ISection {
         newSection.parts.push(part);
         return newSection;
     }
+
+    canHaveTables = true;
 
     /** value in Parser.headerLevels array */
     headerLevelValue: number;
@@ -48,6 +51,8 @@ export class Section implements ISection {
     }
 
     getHeader(removeIt: boolean = false): string {
+        if (!this.parts.length) return;
+
         const firstPart = this.parts[0];
         const partType = firstPart.type;
 
@@ -80,7 +85,7 @@ export class Section implements ISection {
     }
 
     push(item: ITextItem) {
-        if (item.fontName === TABLE_HEADER_FONT_NAME) {
+        if (this.canHaveTables && item.fontName === TABLE_HEADER_FONT_NAME) {
             this.pushTablePart(item);
             return;
         }

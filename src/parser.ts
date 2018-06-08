@@ -1,6 +1,7 @@
 import { fs } from 'mz';
 
 import { DepthTracker } from './depth-tracker';
+import { CreaturePart } from './parser/creature-part';
 import { ISection } from './parser/interface';
 import { Part, Section } from './parser/section';
 import { SpellPart } from './parser/spell-part';
@@ -11,6 +12,7 @@ import { ITextItem, processPdf } from './pdf';
 
 // re-export as appropriate:
 export { Part, Section, SpellPart, StringPart, TablePart };
+export { FormatSpan, Formatting } from './parser/interface';
 
 const SKIPPED_FONT_NAMES = new Set([
     'g_font_error',
@@ -18,12 +20,8 @@ const SKIPPED_FONT_NAMES = new Set([
 
 export function isCreatureHeader(header: string): boolean {
     return header.startsWith('Appendix MM-A')
+        || header.startsWith('Appendix MM-B')
         || header.startsWith('Monsters (');
-}
-
-function consolidateCreature(sections: Section[]): Section {
-    // TODO
-    return null;
 }
 
 export class Parser {
@@ -32,6 +30,8 @@ export class Parser {
 
     private sections: Section[] = [];
     private currentSection: Section;
+
+    private topmostHeader = '';
 
     async parse(data: Buffer): Promise<ISection[]> {
         await processPdf(data, (page, content) =>
@@ -58,11 +58,25 @@ export class Parser {
             if ((!this.currentSection || this.currentSection.headerLevelValue !== item.height)
                     && !this.shouldMergeTable(item)) {
                 const newSection = new Section(item.height);
+                if (isCreatureHeader(this.topmostHeader)) {
+                    newSection.canHaveTables = false;
+                }
+
                 this.currentSection = newSection;
                 this.sections.push(newSection);
             }
 
             this.currentSection.push(item);
+
+            // NOTE: recalculate each time, because a subsequent push()
+            // might amend the header
+            const estimatedLevel = this.headerLevels.pickLevelFor(item.height);
+            if (estimatedLevel <= 1) {
+                const header = this.currentSection.getHeader();
+                if (header) {
+                    this.topmostHeader = header;
+                }
+            }
         }
     }
 
@@ -86,14 +100,32 @@ export class Parser {
                 --i;
             }
 
+            // const b: number = 2;
+            // const c: number = 3;
+            // const a = b === c;
+            // if (a) {
             if (isCreatureHeader(currentHeader)) {
                 // TODO monster categories, like *Angels*
 
                 if (section.level <= 3) {
-                    const creatureSection = consolidateCreature(currentCreature);
-                    if (creatureSection) {
-                        this.sections.splice(i, 0, creatureSection);
+                    const creaturePart = CreaturePart.from(currentCreature);
+                    if (creaturePart) {
+                        const firstCreatureSection = currentCreature[0];
+                        this.sections.splice(
+                            i, 0,
+                            Section.fromSectionPart(
+                                firstCreatureSection,
+                                creaturePart,
+                            ),
+                        );
+                    } else {
+                        // restore unparsed parts
+                        this.sections.splice(
+                            i, 0, ...currentCreature,
+                        );
+                        i += currentCreature.length;
                     }
+
                     currentCreature = [];
                 }
 

@@ -17,6 +17,11 @@ const fontToFormatting = {
     g_d0_f5: Formatting.BoldItalic,
     g_d0_f7: Formatting.Italic,
     g_d0_f8: Formatting.Bold,
+
+    // NOTE: this is also the table header font, but we disable
+    // tables for monster cards to simplify parsing, and having
+    // this formatting info is very useful
+    g_d0_f6: Formatting.Bold,
 };
 
 export class StringPart implements IStringPart {
@@ -114,6 +119,49 @@ export class StringPart implements IStringPart {
         return this.str.endsWith(' ');
     }
 
+    /**
+     * Extract a Map where the keys are the parts of
+     * this StringPart that have a FormatSpan on them,
+     * and the values are the non-spanned parts following
+     * the key.
+     */
+    toMapBySpans() {
+        const fmts = this.formatting;
+        const map = {};
+
+        let indexedProperties = 0;
+        if (fmts.length && fmts[0].start > 0) {
+            map[indexedProperties++] = this.str.substring(
+                0,
+                fmts[0].start,
+            ).trim();
+        }
+
+        for (let i = 0; i < fmts.length; ++i) {
+            const fmt = fmts[i];
+            const label = this.get(fmt)
+                .replace(/[:]/, '')
+                .trim();
+
+            const nextStringEnd = i + 1 < fmts.length
+                ? fmts[i + 1].start
+                : this.str.length;
+
+            const nextString = this.str.substring(
+                fmt.start + fmt.length,
+                nextStringEnd,
+            ).trim();
+
+            if (nextString.length) {
+                map[label] = nextString;
+            } else {
+                map[indexedProperties++] = label;
+            }
+        }
+
+        return map;
+    }
+
     toJson(): any {
         return this.str;
     }
@@ -152,6 +200,8 @@ export class StringPart implements IStringPart {
     }
 
     private pushFormattingForFont(fontName: string, start: number) {
+        if (!fontName) return;
+
         const length = this.str.length - start;
         const formatting = fontToFormatting[fontName];
         if (formatting && this.formatting.length) {
