@@ -100,11 +100,10 @@ export class Parser {
                 --i;
             }
 
-            // const b: number = 2;
-            // const c: number = 3;
-            // const a = b === c;
-            // if (a) {
-            if (isCreatureHeader(currentHeader)) {
+            const b: number = 2;
+            const c: number = 3;
+            if (b === c) {
+            // if (isCreatureHeader(currentHeader)) {
                 // TODO monster categories, like *Angels*
 
                 if (section.level <= 3) {
