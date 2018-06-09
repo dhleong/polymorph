@@ -49,7 +49,7 @@ describe('CreaturePart', () => {
 
     describe('parsing', () => {
         const creaturePromise =
-            loadJsonSections('aboleth.raw.json')
+            loadJsonSections('aboleth.raw.json', /* canHaveTables =*/false)
                 .then(CreaturePart.from);
 
         it('works', async () => {

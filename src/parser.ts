@@ -32,6 +32,7 @@ export class Parser {
     private currentSection: Section;
 
     private topmostHeader = '';
+    private inCreatureTemplate = false;
 
     async parse(data: Buffer): Promise<ISection[]> {
         await processPdf(data, (page, content) =>
@@ -59,7 +60,7 @@ export class Parser {
                     && !this.shouldMergeTable(item)) {
                 const newSection = new Section(item.height);
                 if (isCreatureHeader(this.topmostHeader)) {
-                    newSection.canHaveTables = false;
+                    newSection.canHaveTables = this.inCreatureTemplate;
                 }
 
                 this.currentSection = newSection;
@@ -76,6 +77,9 @@ export class Parser {
                 if (header) {
                     this.topmostHeader = header;
                 }
+            } else if (estimatedLevel <= 3) {
+                this.inCreatureTemplate = (this.currentSection.getHeader() || '').endsWith(' Template');
+                this.currentSection.canHaveTables = this.inCreatureTemplate;
             }
         }
     }
@@ -107,6 +111,10 @@ export class Parser {
                 if (section.level <= 3) {
                     const creaturePart = CreaturePart.from(currentCreature);
                     if (creaturePart) {
+                        if (!creaturePart.name) {
+                            console.warn('Nameless:', JSON.stringify(creaturePart));
+                        }
+
                         const firstCreatureSection = currentCreature[0];
                         this.sections.splice(
                             i, 0,
@@ -117,6 +125,18 @@ export class Parser {
                         );
                         ++i;
                     } else if (currentCreature.length) {
+
+                        // templates have an obnoxious header that makes them
+                        // look like they contain the rest of the creatures in
+                        // the section
+                        if (currentCreature[0].level === 2
+                            && currentCreature[0].getHeader().endsWith(' Template')
+                        ) {
+                            for (const s of currentCreature) {
+                                ++s.level;
+                            }
+                        }
+
                         // restore unparsed parts
                         this.sections.splice(
                             i, 0, ...currentCreature,
@@ -127,7 +147,7 @@ export class Parser {
                     currentCreature = [];
                 }
 
-                if (section.level >= 3) {
+                if (section.level >= 2) {
                     if (section.parts.length) {
                         currentCreature.push(section);
                     }

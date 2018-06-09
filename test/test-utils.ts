@@ -69,8 +69,9 @@ export function formatSpansFromJson(json: any[]): FormatSpan[] {
 
 export class JsonParser {
 
-    static section(json: any): Section {
+    static section(json: any, canHaveTables: boolean = true): Section {
         const section = new Section(-1);
+        section.canHaveTables = canHaveTables;
         section.level = json.level;
         section.parts = json.contents.map(JsonParser.thing);
         return section;
@@ -100,21 +101,27 @@ export class JsonParser {
     }
 }
 
-export function parseJsonSections(text: string): Section[] {
+export function parseJsonSections(
+    text: string,
+    canHaveTables: boolean = true,
+): Section[] {
     return text.split('\n')
         .filter(t => t.length)
         .map(t => JSON.parse(t))
-        .map(JsonParser.section);
+        .map(json => JsonParser.section(json, canHaveTables));
 }
 
-export async function loadJsonSections(dataFileName: string): Promise<Section[]> {
+export async function loadJsonSections(
+    dataFileName: string,
+    canHaveTables: boolean = true,
+): Promise<Section[]> {
     let root = process.cwd();
     while (root.includes('/test')) {
         root = path.dirname(root);
     }
 
     const data = await fs.readFile(`${root}/test/data/${dataFileName}`);
-    return parseJsonSections(data.toString());
+    return parseJsonSections(data.toString(), canHaveTables);
 }
 
 export function postProcessSections(input: Section[]): Section[] {

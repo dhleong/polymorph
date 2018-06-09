@@ -97,7 +97,7 @@ describe('Parser', () => {
 
     it('gracefully handles empty creature sections', async () => {
         const sections = postProcessSections(
-            await loadJsonSections('monsters-b.raw.json'),
+            await loadJsonSections('monsters-b.raw.json', /* canHaveTables =*/false),
         );
         sections.should.have.lengthOf(3);
         sections[0].getHeader().should.equal('Monsters (B)');
