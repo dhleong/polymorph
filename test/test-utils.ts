@@ -9,6 +9,7 @@ import {
 } from '../src/parser';
 import { TABLE_HEADER_FONT_NAME } from '../src/parser/utils';
 
+import { DepthTracker } from '../src/depth-tracker';
 import { ITextItem } from '../src/pdf';
 
 const formattingByStr = {
@@ -114,4 +115,24 @@ export async function loadJsonSections(dataFileName: string): Promise<Section[]>
 
     const data = await fs.readFile(`${root}/test/data/${dataFileName}`);
     return parseJsonSections(data.toString());
+}
+
+export function postProcessSections(input: Section[]): Section[] {
+    const parser = new Parser();
+
+    // Mock the DepthTracker so it returns the actual heights;
+    // tslint:disable-next-line
+    const headerLevels: DepthTracker = parser['headerLevels'];
+    headerLevels.pickLevelFor = (height) => height;
+
+    for (const s of input) {
+        s.headerLevelValue = s.level;
+    }
+
+    // tslint:disable-next-line
+    parser['sections'] = input;
+    parser.postProcess();
+
+    // tslint:disable-next-line
+    return parser['sections'];
 }

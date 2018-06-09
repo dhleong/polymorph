@@ -100,12 +100,10 @@ export class Parser {
                 --i;
             }
 
-            const b: number = 2;
-            const c: number = 3;
-            if (b === c) {
-            // if (isCreatureHeader(currentHeader)) {
-                // TODO monster categories, like *Angels*
-
+            // const b: number = 2;
+            // const c: number = 3;
+            // if (b === c) {
+            if (isCreatureHeader(currentHeader)) {
                 if (section.level <= 3) {
                     const creaturePart = CreaturePart.from(currentCreature);
                     if (creaturePart) {
@@ -117,7 +115,8 @@ export class Parser {
                                 creaturePart,
                             ),
                         );
-                    } else {
+                        ++i;
+                    } else if (currentCreature.length) {
                         // restore unparsed parts
                         this.sections.splice(
                             i, 0, ...currentCreature,
@@ -129,10 +128,25 @@ export class Parser {
                 }
 
                 if (section.level >= 3) {
-                    currentCreature.push(section);
+                    if (section.parts.length) {
+                        currentCreature.push(section);
+                    }
                     this.sections.splice(i, 1);
                     --i;
                 }
+            }
+        }
+
+        if (currentCreature.length) {
+            const creaturePart = CreaturePart.from(currentCreature);
+            if (creaturePart) {
+                const firstCreatureSection = currentCreature[0];
+                this.sections.push(
+                    Section.fromSectionPart(
+                        firstCreatureSection,
+                        creaturePart,
+                    ),
+                );
             }
         }
     }

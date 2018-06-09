@@ -84,7 +84,11 @@ export class CreaturePart implements ICreaturePart {
         if (sections.length < 2) return;
 
         try {
-            return CreaturePart.parseUnsafe(sections);
+            const part = CreaturePart.parseUnsafe(sections);
+            if (!part) {
+                console.warn('Unable to parse:', JSON.stringify(sections));
+            }
+            return part;
         } catch (e) {
             const message = `Error parsing creature '${sections[0].getHeader()}':\n  ${e.stack}`;
             throw new Error(message);

@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 
 import { isCreatureHeader } from '../src/parser';
-import { tableSection } from './test-utils';
+import { loadJsonSections, postProcessSections, tableSection } from './test-utils';
 
 chai.should();
 
@@ -93,5 +93,15 @@ describe('Parser', () => {
             ['The Cleric'],
             ['Level', 'Proficiency Bonus', 'Features', 'Cantrips Known'],
         ]);
+    });
+
+    it('gracefully handles empty creature sections', async () => {
+        const sections = postProcessSections(
+            await loadJsonSections('monsters-b.raw.json'),
+        );
+        sections.should.have.lengthOf(3);
+        sections[0].getHeader().should.equal('Monsters (B)');
+        sections[1].getHeader().should.equal('Basilisk');
+        sections[2].getHeader().should.equal('Behir');
     });
 });
