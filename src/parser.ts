@@ -24,6 +24,10 @@ export function isCreatureHeader(header: string): boolean {
         || header.startsWith('Monsters (');
 }
 
+export interface IParserConfig {
+    processCreatures: boolean;
+}
+
 export class Parser {
 
     private headerLevels = new DepthTracker();
@@ -33,6 +37,18 @@ export class Parser {
 
     private topmostHeader = '';
     private inCreatureTemplate = false;
+
+    private opts: IParserConfig;
+
+    constructor(
+        opts?: IParserConfig,
+    ) {
+        this.opts = {
+            processCreatures: true,
+
+            ...opts,
+        };
+    }
 
     async parse(data: Buffer): Promise<ISection[]> {
         await processPdf(data, (page, content) =>
@@ -104,15 +120,12 @@ export class Parser {
                 --i;
             }
 
-            // const b: number = 2;
-            // const c: number = 3;
-            // if (b === c) {
-            if (isCreatureHeader(currentHeader)) {
+            if (this.opts.processCreatures && isCreatureHeader(currentHeader)) {
                 if (section.level <= 3) {
                     const creaturePart = CreaturePart.from(currentCreature);
                     if (creaturePart) {
                         if (!creaturePart.name) {
-                            console.warn('Nameless:', JSON.stringify(creaturePart));
+                            console.warn('Nameless:', JSON.stringify(currentCreature));
                         }
 
                         const firstCreatureSection = currentCreature[0];
@@ -210,8 +223,11 @@ export class Parser {
     }
 }
 
-export async function parseFile(file: string): Promise<ISection[]> {
-    const parser = new Parser();
+export async function parseFile(
+    file: string,
+    opts?: IParserConfig,
+): Promise<ISection[]> {
+    const parser = new Parser(opts);
     const data = await fs.readFile(file);
     return parser.parse(data);
 }

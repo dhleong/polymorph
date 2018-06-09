@@ -4,7 +4,7 @@ import { docopt } from 'docopt';
 import { fs } from 'mz';
 
 import { IFormatter } from './src/formatter';
-import { parseFile } from './src/parser';
+import { IParserConfig, parseFile } from './src/parser';
 export { Parser, parseFile } from './src/parser';
 export * from './src/parser/interface';
 
@@ -40,6 +40,9 @@ Usage:
     polymorph -h | --help | --version
 
 Options:
+    --no-creatures          Disable creature processing; mostly useful for
+                            debugging, along with --json-sections format
+  Formatters:
     --debug=<file>          Simple output mostly only useful for debugging
     --json=<file>           JSON format
     --json-pretty=<file>    Identical to --json, but prettier
@@ -52,7 +55,11 @@ Notes:
         version: `polymorph ${version}`,
     });
 
-    const sections = await parseFile(opts['<srd.pdf>']);
+    const parserConfig: IParserConfig = {
+        processCreatures: !opts['--no-creatures'],
+    };
+
+    const sections = await parseFile(opts['<srd.pdf>'], parserConfig);
 
     // create formatter(s)
     const formatters: IFormatter[] = [];
