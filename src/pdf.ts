@@ -30,6 +30,8 @@ export interface ITextItem {
 
     x?: number;
     y?: number;
+
+    toJson();
 }
 
 export interface ITextStyle {
@@ -68,6 +70,16 @@ class WrappedTextItem implements ITextItem {
     }
     set y(value) {
         this.base.transform[5] = value;
+    }
+
+    toJson() {
+        const base = this.base;
+        return {
+            ...base,
+
+            x: this.x,
+            y: this.y,
+        };
     }
 }
 

@@ -5,6 +5,8 @@ import { fs } from 'mz';
 
 import { IFormatter } from './src/formatter';
 import { IParserConfig, parseFile } from './src/parser';
+import { processPdf } from './src/pdf';
+
 export { Parser, parseFile } from './src/parser';
 export * from './src/parser/interface';
 
@@ -22,14 +24,28 @@ const formatterFactories = {
     '--json-sections': (stream) => new JsonSectionsFormatter(stream),
 };
 
+function streamForDestination(destination: string): NodeJS.WritableStream {
+    return (destination === '-' || destination === '')
+        ? process.stdout
+        : fs.createWriteStream(destination);
+}
+
 function createFormatter(
     key: string,
     destination: string,
 ): IFormatter {
-    const stream = (destination === '-' || destination === '')
-        ? process.stdout
-        : fs.createWriteStream(destination);
+    const stream = streamForDestination(destination);
     return formatterFactories[key](stream);
+}
+
+async function dumpRawTo(srd: string, stream: NodeJS.WritableStream) {
+    const data = await fs.readFile(srd);
+    await processPdf(data, (_, content) => {
+        for (const textItem of content.items) {
+            stream.write(JSON.stringify(textItem.toJson()));
+            stream.write('\n');
+        }
+    });
 }
 
 async function main() {
@@ -37,6 +53,7 @@ async function main() {
     const opts = docopt(`
 Usage:
     polymorph <srd.pdf> [options]
+    polymorph <srd.pdf> --raw=<file>
     polymorph -h | --help | --version
 
 Options:
@@ -47,6 +64,9 @@ Options:
     --json=<file>           JSON format
     --json-pretty=<file>    Identical to --json, but prettier
     --json-sections=<file>  Similar to --json, but flat (mostly for tests)
+    --raw=<file>            Output a newline-separted list of raw PDF TextItems.
+                            Note that if this is provided, no other
+                            formatters will run
 
 Notes:
     A hyphen (-) can be used in place of any <file> to write to
@@ -54,6 +74,13 @@ Notes:
     `.trimRight(), {
         version: `polymorph ${version}`,
     });
+
+    if (opts['--raw']) {
+        const stream = streamForDestination(opts['--raw']);
+        await dumpRawTo(opts['<srd.pdf>'], stream);
+        stream.end();
+        return;
+    }
 
     const parserConfig: IParserConfig = {
         processCreatures: !opts['--no-creatures'],

@@ -131,17 +131,28 @@ export function parseJsonSections(
         .map(json => JsonParser.section(json, canHaveTables));
 }
 
-export async function loadJsonSections(
-    dataFileName: string,
-    canHaveTables: boolean = true,
-): Promise<Section[]> {
+async function resolveFileData(dataFileName: string): Promise<Buffer> {
     let root = process.cwd();
     while (root.includes('/test')) {
         root = path.dirname(root);
     }
 
-    const data = await fs.readFile(`${root}/test/data/${dataFileName}`);
+    return fs.readFile(`${root}/test/data/${dataFileName}`);
+}
+
+export async function loadJsonSections(
+    dataFileName: string,
+    canHaveTables: boolean = true,
+): Promise<Section[]> {
+    const data = await resolveFileData(dataFileName);
     return parseJsonSections(data.toString(), canHaveTables);
+}
+
+export async function loadTextItems(
+    dataFileName: string,
+): Promise<ITextItem[]> {
+    const data = await resolveFileData(dataFileName);
+    return data.toString().split('\n').map(textItem);
 }
 
 export function postProcessSections(input: Section[]): Section[] {
