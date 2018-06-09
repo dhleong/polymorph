@@ -48,12 +48,16 @@ describe('CreaturePart', () => {
     });
 
     describe('parsing', () => {
-        const creaturePromise =
+        const abolethPromise =
             loadJsonSections('aboleth.raw.json', /* canHaveTables =*/false)
                 .then(CreaturePart.from);
 
-        it('works', async () => {
-            const part = await creaturePromise;
+        const waterElementalPromise =
+            loadJsonSections('water-elemental.raw.json', /* canHaveTables =*/false)
+                .then(CreaturePart.from);
+
+        it('handles legendary creatures', async () => {
+            const part = await abolethPromise;
 
             part.name.should.equal('Aboleth');
             part.size.should.equal(Size.Large);
@@ -85,6 +89,12 @@ describe('CreaturePart', () => {
 
             part.info.should.not.be.empty;
             part.info[0].str.should.include('Amphibious');
+        });
+
+        it('handles water elemental', async () => {
+            const part = await waterElementalPromise;
+
+            part.name.should.equal('Water Elemental');
         });
     });
 });

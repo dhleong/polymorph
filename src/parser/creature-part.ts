@@ -59,6 +59,16 @@ class Abilities implements IAbilities {
     ) {}
 }
 
+function getArmorClass(map): string {
+    if (map['Armor Class']) {
+        return map['Armor Class'];
+    }
+
+    if (map.Armor) {
+        return map.Armor.replace('Class ', '');
+    }
+}
+
 function splitByNumber(value: string): [number, string] {
     const first = parseInt(value, 10);
     const second = value
@@ -86,10 +96,7 @@ export class CreaturePart implements ICreaturePart {
         try {
             const part = CreaturePart.parseUnsafe(sections);
 
-            // this if is gross, but only needed during dev for simpler logs:
-            if (!part && !sections[0].canHaveTables
-                && (sections.length > 2 || sections[0].parts.length > 3)
-            ) {
+            if (!part && !sections[0].canHaveTables) {
                 console.warn('Unable to parse:', JSON.stringify(sections));
             }
             return part;
@@ -110,7 +117,8 @@ export class CreaturePart implements ICreaturePart {
         if (!parts.length) return;
 
         const firstMap = (parts[0] as IStringPart).toMapBySpans();
-        if (!firstMap['Armor Class']) {
+        const rawAC = getArmorClass(firstMap);
+        if (!rawAC) {
             // things like "Black Dragon" that are just a header for
             // variants
             return;
@@ -120,7 +128,7 @@ export class CreaturePart implements ICreaturePart {
             throw new Error(JSON.stringify(firstMap));
         }
 
-        [creature.ac, creature.acSource] = splitByNumber(firstMap['Armor Class']);
+        [creature.ac, creature.acSource] = splitByNumber(rawAC);
         [creature.hp, creature.hpRoll] = splitByNumber(firstMap['Hit Points']);
         creature.speed = firstMap.Speed;
 
