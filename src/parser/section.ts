@@ -75,6 +75,11 @@ export class Section implements ISection {
             // NOTE: there's nothing to remove from a SpellPart
             const spell = firstPart as SpellPart;
             return spell.name;
+
+        case PartType.CREATURE:
+            // NOTE: there's also nothing to remove from a CreaturePart
+            const creature = firstPart as CreaturePart;
+            return creature.name;
         }
 
         throw new Error(`Unexpected section: ${partType} / ${PartType.SPELL}`);

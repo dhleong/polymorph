@@ -1,26 +1,18 @@
-import { ICreaturePart, IStringPart, PartType } from './interface';
+import {
+    Alignment,
+    IAbilities,
+    ICreaturePart,
+    IStringPart, PartType,
+    Size,
+} from './interface';
 import { Section } from './section';
-
-export enum Alignment {
-    LawfulGood,
-    LawfulNeutral,
-    LawfulEvil,
-
-    NeutralGood,
-    TrueNeutral,
-    NeutralEvil,
-
-    ChaoticGood,
-    ChaoticNeutral,
-    ChaoticEvil,
-
-    Unaligned,
-}
 
 export function alignmentFromString(alignmentStr: string): Alignment {
     try {
         if (alignmentStr === 'unaligned') {
             return Alignment.Unaligned;
+        } else if (alignmentStr.startsWith('any')) {
+            return Alignment.Any;
         } else if (alignmentStr === 'neutral') {
             return Alignment.TrueNeutral;
         } else {
@@ -47,15 +39,6 @@ export function alignmentFromString(alignmentStr: string): Alignment {
     }
 }
 
-export enum Size {
-    Tiny,
-    Small,
-    Medium,
-    Large,
-    Huge,
-    Gargantuan,
-}
-
 const sizeByString = {
     gargantuan: Size.Gargantuan,
     huge: Size.Huge,
@@ -65,7 +48,7 @@ const sizeByString = {
     tiny: Size.Tiny,
 };
 
-class Abilities {
+class Abilities implements IAbilities {
     constructor(
         readonly str: number,
         readonly dex: number,
@@ -103,7 +86,7 @@ export class CreaturePart implements ICreaturePart {
         try {
             return CreaturePart.parseUnsafe(sections);
         } catch (e) {
-            const message = `Error parsing creature ${sections[0].getHeader()}:\n  ${e.stack}`;
+            const message = `Error parsing creature '${sections[0].getHeader()}':\n  ${e.stack}`;
             throw new Error(message);
         }
     }
@@ -120,6 +103,10 @@ export class CreaturePart implements ICreaturePart {
             // things like "Black Dragon" that are just a header for
             // variants
             return;
+        }
+
+        if (!firstMap['Hit Points']) {
+            throw new Error(JSON.stringify(firstMap));
         }
 
         [creature.ac, creature.acSource] = splitByNumber(firstMap['Armor Class']);
@@ -164,13 +151,13 @@ export class CreaturePart implements ICreaturePart {
 
         // TODO: future work could split up these parts by formatting
         for (let i = 3; i < parts.length; ++i) {
-            if (!creature.parts) creature.parts = [];
-            creature.parts.push(parts[i] as IStringPart);
+            if (!creature.info) creature.info = [];
+            creature.info.push(parts[i] as IStringPart);
         }
 
         for (let i = 2; i < sections.length; ++i) {
-            if (!creature.parts) creature.parts = [];
-            creature.parts.push(...sections[i].parts as IStringPart[]);
+            if (!creature.info) creature.info = [];
+            creature.info.push(...sections[i].parts as IStringPart[]);
         }
 
         return creature;
@@ -206,7 +193,7 @@ export class CreaturePart implements ICreaturePart {
 
     // NOTE: this property is lazy-init'd so it can be omitted
     // for any creature that doesn't have any text parts
-    parts: IStringPart[];
+    info: IStringPart[];
 
     postProcess() {
         /* nop */

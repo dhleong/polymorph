@@ -109,6 +109,50 @@ describe('StringPart', () => {
             ]);
         });
 
+        it('append extends FormatSpans for continued words', () => {
+            const part = StringPart.from({
+                fontName: 'g_d0_f3',
+
+                str: 'Bold',
+            });
+
+            part.append({
+                fontName: 'g_d0_f2',
+
+                str: 's Not bolds',
+            });
+
+            part.formatting.should.deep.equal([
+                new FormatSpan(
+                    Formatting.Bold,
+                    0,
+                    5,
+                ),
+            ]);
+        });
+
+        it('append extends FormatSpans for continued final words', () => {
+            const part = StringPart.from({
+                fontName: 'g_d0_f3',
+
+                str: 'Bold',
+            });
+
+            part.append({
+                fontName: 'g_d0_f2',
+
+                str: 'er',
+            });
+
+            part.formatting.should.deep.equal([
+                new FormatSpan(
+                    Formatting.Bold,
+                    0,
+                    6,
+                ),
+            ]);
+        });
+
         it('prepend combines FormatSpans', () => {
             const part = StringPart.from({
                 fontName: 'g_d0_f3',

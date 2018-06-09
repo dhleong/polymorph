@@ -75,6 +75,7 @@ describe('Section', () => {
             section.parts.should.have.length(1);
             section.parts[0].toString().should.equal('System Reference');
         });
+
     });
 
     describe('Table handling', () => {

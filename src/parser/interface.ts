@@ -36,8 +36,69 @@ export interface IPart {
     toJson(): any;
 }
 
+export enum Alignment {
+    LawfulGood,
+    LawfulNeutral,
+    LawfulEvil,
+
+    NeutralGood,
+    TrueNeutral,
+    NeutralEvil,
+
+    ChaoticGood,
+    ChaoticNeutral,
+    ChaoticEvil,
+
+    Unaligned,
+    Any,
+}
+
+export enum Size {
+    Tiny,
+    Small,
+    Medium,
+    Large,
+    Huge,
+    Gargantuan,
+}
+
+export interface IAbilities {
+    str: number;
+    dex: number;
+    con: number;
+    int: number;
+    wis: number;
+    cha: number;
+}
+
 export interface ICreaturePart extends IPart {
     name: string;
+    size: Size;
+    kind: string;
+    align: Alignment;
+
+    ac: number;
+    acSource: string;
+    hp: number;
+    hpRoll: string;
+
+    speed: string;
+
+    abilities: IAbilities;
+
+    savingThrows: string;
+    senses: string;
+    skills: string;
+    immunities: string;
+    resistances: string;
+    vulnerabilities: string;
+    conditionImmunities: string;
+
+    languages: string;
+    cr: number;
+    exp: number;
+
+    info: IStringPart[];
 }
 
 export enum SpellSchool {

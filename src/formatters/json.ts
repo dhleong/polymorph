@@ -1,9 +1,12 @@
 
 import { IFormatter } from '../formatter';
 import {
+    Alignment,
     FormatSpan,
-    ISection, ISpellPart, IStringPart,
-    Part, PartType,
+    ICreaturePart, ISection, ISpellPart,
+    IStringPart, Part,
+    PartType,
+    Size,
     SpellSchool,
 } from '../parser/interface';
 
@@ -19,6 +22,29 @@ const spellSchoolJson = {
     [SpellSchool.Illusion]: 'I',
     [SpellSchool.Necromancy]: 'N',
     [SpellSchool.Transmutation]: 'T',
+};
+
+const sizeJson = {
+    [Size.Tiny]: 'T',
+    [Size.Small]: 'S',
+    [Size.Medium]: 'M',
+    [Size.Large]: 'L',
+    [Size.Huge]: 'H',
+    [Size.Gargantuan]: 'G',
+};
+
+const alignmentJson = {
+    [Alignment.Any]: 'any',
+    [Alignment.Unaligned]: 'unligned',
+    [Alignment.LawfulGood]: 'LG',
+    [Alignment.LawfulNeutral]: 'LN',
+    [Alignment.LawfulEvil]: 'LE',
+    [Alignment.NeutralGood]: 'NG',
+    [Alignment.TrueNeutral]: 'N',
+    [Alignment.NeutralEvil]: 'NE',
+    [Alignment.ChaoticGood]: 'CG',
+    [Alignment.ChaoticNeutral]: 'CN',
+    [Alignment.ChaoticEvil]: 'CE',
 };
 
 function jsonPropertyFilter(key: string, value: any) {
@@ -140,6 +166,19 @@ function partToJson(part: Part) {
             if (!spell.ritual) {
                 delete partAsJson.ritual;
             }
+            break;
+
+        case PartType.CREATURE:
+            const creature = part as ICreaturePart;
+            partAsJson = part.toJson();
+            partAsJson.type = 'creature';
+
+            partAsJson.size = sizeJson[creature.size];
+            partAsJson.align = alignmentJson[creature.align];
+
+            partAsJson.info = (partAsJson.info as Part[])
+                .map(p => partToJson(p))
+                .filter(p => p); // remove blank lines
             break;
 
         default:

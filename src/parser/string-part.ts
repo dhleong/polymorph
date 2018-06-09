@@ -233,6 +233,21 @@ export class StringPart implements IStringPart {
                 start,
                 length,
             ));
+        } else if (start > 0
+            && !stringIsOnlyWhitespace(this.str[start - 1])
+            && !stringIsOnlyWhitespace(this.str[start])
+            && this.formatting.length
+        ) {
+            // try to extend formatting to continued words
+            const lastFormat = this.formatting[this.formatting.length - 1];
+            if (lastFormat.start + lastFormat.length === start) {
+                const wordEnd = this.str.indexOf(' ', start);
+                if (wordEnd >= 0) {
+                    lastFormat.length += wordEnd - start;
+                } else {
+                    lastFormat.length += this.str.length - start;
+                }
+            }
         }
     }
 

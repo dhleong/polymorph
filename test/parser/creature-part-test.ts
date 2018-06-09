@@ -3,17 +3,18 @@ import * as chai from 'chai';
 import { loadJsonSections } from '../test-utils';
 
 import {
-    Alignment, alignmentFromString,
+    alignmentFromString,
     CreaturePart,
-    Size,
 } from '../../src/parser/creature-part';
+import {
+    Alignment,
+    Size,
+} from '../../src/parser/interface';
 
 chai.should();
 
 describe('alignmentFromString', () => {
     it('works', () => {
-        alignmentFromString('unaligned').should.equal(Alignment.Unaligned);
-
         alignmentFromString('lawful good').should.equal(Alignment.LawfulGood);
         alignmentFromString('lawful neutral').should.equal(Alignment.LawfulNeutral);
         alignmentFromString('lawful evil').should.equal(Alignment.LawfulEvil);
@@ -25,6 +26,12 @@ describe('alignmentFromString', () => {
         alignmentFromString('chaotic good').should.equal(Alignment.ChaoticGood);
         alignmentFromString('chaotic neutral').should.equal(Alignment.ChaoticNeutral);
         alignmentFromString('chaotic evil').should.equal(Alignment.ChaoticEvil);
+    });
+
+    it('handles special cases', () => {
+        alignmentFromString('unaligned').should.equal(Alignment.Unaligned);
+        alignmentFromString('any alignment').should.equal(Alignment.Any);
+
     });
 });
 
@@ -76,8 +83,8 @@ describe('CreaturePart', () => {
             part.cr.should.equal(10);
             part.exp.should.equal(5900);
 
-            part.parts.should.not.be.empty;
-            part.parts[0].str.should.include('Amphibious');
+            part.info.should.not.be.empty;
+            part.info[0].str.should.include('Amphibious');
         });
     });
 });
