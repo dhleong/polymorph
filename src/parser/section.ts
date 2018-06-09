@@ -69,7 +69,7 @@ export class Section implements ISection {
             const tableSrc = removeIt
                 ? headers.splice(0, 1)[0]
                 : headers[0];
-            return tableSrc[0].str;
+            return tableSrc.map(h => h.str).join('');
 
         case PartType.SPELL:
             // NOTE: there's nothing to remove from a SpellPart

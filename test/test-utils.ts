@@ -89,6 +89,14 @@ export class JsonParser {
         return part;
     }
 
+    static table(json: any): TablePart {
+        const part = new TablePart();
+        part.headers = json.headers.map(row =>
+            row.map(h => JsonParser.thing(h)),
+        );
+        return part;
+    }
+
     /** when you're not sure what it is */
     static thing(json: any) {
         if (typeof(json) === 'string') {
@@ -100,6 +108,9 @@ export class JsonParser {
             return JsonParser.section(json);
         case 'text':
             return JsonParser.text(json);
+
+        case 'table':
+            return JsonParser.table(json);
 
         case 2:
             return JsonParser.stringPart(json);

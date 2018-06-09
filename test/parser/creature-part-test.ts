@@ -94,6 +94,14 @@ describe('CreaturePart', () => {
             part.name.should.equal('Water Elemental');
         });
 
+        it('handles multi-line creature names', async () => {
+            const part = await loadJsonSections(
+                'half-dragon.raw.json', /* canHaveTables =*/false,
+            ).then(CreaturePart.from);
+
+            part.name.should.equal('Half-Red Dragon Veteran');
+        });
+
         it('handles blank strings', async () => {
             const part = await loadJsonSections(
                 'sea-hag.raw.json', /* canHaveTables =*/false,
