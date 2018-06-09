@@ -1,7 +1,5 @@
 node_modules/
 lib/
 *.sw[nop]
-srd.json
-srd.min.json
-srd.txt
 .last-release-notes
+out/

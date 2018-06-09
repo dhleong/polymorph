@@ -96,8 +96,8 @@ version = verify(File("package.json")
                 ).valueElse(echoAndDie("No version!?"))
 versionTag = git.Tag(version)
 
-verify(versionTag.exists())\
-    .then(echoAndDie("Version `%s` already exists!" % version))
+# verify(versionTag.exists())\
+#     .then(echoAndDie("Version `%s` already exists!" % version))
 
 #
 # Make sure all the tests pass
@@ -121,16 +121,20 @@ releaseNotes = notes.contents()
 # Build published formats
 #
 
+formatters = {
+    'json': 'out/srd.min.json',
+    'json-pretty': 'out/srd.json',
+}
+
 cmd = [
     "ts-node", "index.ts",
     "/Users/dhleong/Documents/DND/SRD-OGL_V5.1.pdf",
-    "--json=srd.min.json",
-    "--json-pretty=srd.json",
 ]
-filesToUpload = [
-    "srd.min.json",
-    "srd.json",
-]
+
+for kind, path in formatters.iteritems():
+    cmd.append('--%s=%s' % (kind, path))
+
+filesToUpload = formatters.values()
 verify(Execute(cmd)).succeeds(silent=False).orElse(die())
 
 #
