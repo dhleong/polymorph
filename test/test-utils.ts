@@ -152,7 +152,10 @@ export async function loadTextItems(
     dataFileName: string,
 ): Promise<ITextItem[]> {
     const data = await resolveFileData(dataFileName);
-    return data.toString().split('\n').map(textItem);
+    return data.toString().split('\n')
+        .filter(line => line)
+        .map(line => JSON.parse(line))
+        .map(textItem);
 }
 
 export function postProcessSections(input: Section[]): Section[] {

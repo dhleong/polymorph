@@ -1,7 +1,12 @@
 import * as chai from 'chai';
 
 import { isCreatureHeader } from '../src/parser';
-import { loadJsonSections, postProcessSections, tableSection } from './test-utils';
+import {
+    loadJsonSections, loadTextItems,
+    parsePage,
+    postProcessSections,
+    tableSection,
+} from './test-utils';
 
 chai.should();
 
@@ -103,5 +108,15 @@ describe('Parser', () => {
         sections[0].getHeader().should.equal('Monsters (B)');
         sections[1].getHeader().should.equal('Basilisk');
         sections[2].getHeader().should.equal('Behir');
+    });
+
+    it.skip('correctly separates a series of tables', async () => {
+        const sections = parsePage(
+            await loadTextItems('druid-circle-spells.txt'),
+        );
+
+        sections.should.have.lengthOf(2);
+        sections[0].getHeader().should.equal('Arctic');
+        sections[1].getHeader().should.equal('Coast');
     });
 });
