@@ -31,7 +31,7 @@ export interface ITextItem {
     x?: number;
     y?: number;
 
-    toJson();
+    toJson?();
 }
 
 export interface ITextStyle {
