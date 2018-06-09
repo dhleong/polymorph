@@ -1,6 +1,7 @@
 import { fs } from 'mz';
 
 import { DepthTracker } from './depth-tracker';
+import { CreaturePart } from './parser/creature-part';
 import { ISection } from './parser/interface';
 import { Part, Section } from './parser/section';
 import { SpellPart } from './parser/spell-part';
@@ -11,10 +12,21 @@ import { ITextItem, processPdf } from './pdf';
 
 // re-export as appropriate:
 export { Part, Section, SpellPart, StringPart, TablePart };
+export { FormatSpan, Formatting } from './parser/interface';
 
 const SKIPPED_FONT_NAMES = new Set([
     'g_font_error',
 ]);
+
+export function isCreatureHeader(header: string): boolean {
+    return header.startsWith('Appendix MM-A')
+        || header.startsWith('Appendix MM-B')
+        || header.startsWith('Monsters (');
+}
+
+export interface IParserConfig {
+    processCreatures: boolean;
+}
 
 export class Parser {
 
@@ -23,29 +35,27 @@ export class Parser {
     private sections: Section[] = [];
     private currentSection: Section;
 
+    private topmostHeader = '';
+    private inCreatureTemplate = false;
+
+    private opts: IParserConfig;
+
+    constructor(
+        opts?: IParserConfig,
+    ) {
+        this.opts = {
+            processCreatures: true,
+
+            ...opts,
+        };
+    }
+
     async parse(data: Buffer): Promise<ISection[]> {
         await processPdf(data, (page, content) =>
             this.processPage(this.skipFooters(content.items)),
         );
 
-        let currentHeader = '';
-        for (let i = 0; i < this.sections.length; ++i) {
-            const section = this.sections[i];
-            section.postProcess();
-
-            section.level = this.headerLevels.pickLevelFor(section.headerLevelValue);
-
-            if (section.level <= 1) {
-                currentHeader = section.getHeader();
-            }
-
-            if (currentHeader === 'Spell Descriptions'
-                && section.level === 5
-            ) {
-                this.consolidateSpell(i);
-                i -= 1;
-            }
-        }
+        this.postProcess();
 
         return this.sections;
     }
@@ -65,11 +75,112 @@ export class Parser {
             if ((!this.currentSection || this.currentSection.headerLevelValue !== item.height)
                     && !this.shouldMergeTable(item)) {
                 const newSection = new Section(item.height);
+                if (isCreatureHeader(this.topmostHeader)) {
+                    newSection.canHaveTables = this.inCreatureTemplate;
+                }
+
                 this.currentSection = newSection;
                 this.sections.push(newSection);
             }
 
             this.currentSection.push(item);
+
+            // NOTE: recalculate each time, because a subsequent push()
+            // might amend the header
+            const estimatedLevel = this.headerLevels.pickLevelFor(item.height);
+            if (estimatedLevel <= 1) {
+                const header = this.currentSection.getHeader();
+                if (header) {
+                    this.topmostHeader = header;
+                }
+            } else if (estimatedLevel <= 3) {
+                this.inCreatureTemplate = (this.currentSection.getHeader() || '').endsWith(' Template');
+                this.currentSection.canHaveTables = this.inCreatureTemplate;
+            }
+        }
+    }
+
+    postProcess() {
+        let currentHeader = '';
+        let currentCreature: Section[] = [];
+        for (let i = 0; i < this.sections.length; ++i) {
+            const section = this.sections[i];
+            section.postProcess();
+
+            section.level = this.headerLevels.pickLevelFor(section.headerLevelValue);
+
+            if (section.level <= 1) {
+                currentHeader = section.getHeader();
+            }
+
+            if (currentHeader === 'Spell Descriptions'
+                && section.level === 5
+            ) {
+                this.consolidateSpell(i);
+                --i;
+            }
+
+            if (this.opts.processCreatures && isCreatureHeader(currentHeader)) {
+                if (section.level <= 3) {
+                    const creaturePart = CreaturePart.from(currentCreature);
+                    if (creaturePart) {
+                        if (!creaturePart.name) {
+                            console.warn('Nameless:', JSON.stringify(currentCreature));
+                        }
+
+                        const firstCreatureSection = currentCreature[0];
+                        this.sections.splice(
+                            i, 0,
+                            Section.fromSectionPart(
+                                firstCreatureSection,
+                                creaturePart,
+                            ),
+                        );
+                        ++i;
+                    } else if (currentCreature.length) {
+
+                        // templates have an obnoxious header that makes them
+                        // look like they contain the rest of the creatures in
+                        // the section
+                        if (currentCreature[0].level === 2
+                            && currentCreature[0].getHeader().endsWith(' Template')
+                        ) {
+                            for (const s of currentCreature) {
+                                ++s.level;
+                            }
+                        }
+
+                        // restore unparsed parts
+                        this.sections.splice(
+                            i, 0, ...currentCreature,
+                        );
+                        i += currentCreature.length;
+                    }
+
+                    currentCreature = [];
+                }
+
+                if (section.level >= 2) {
+                    if (section.parts.length) {
+                        currentCreature.push(section);
+                    }
+                    this.sections.splice(i, 1);
+                    --i;
+                }
+            }
+        }
+
+        if (currentCreature.length) {
+            const creaturePart = CreaturePart.from(currentCreature);
+            if (creaturePart) {
+                const firstCreatureSection = currentCreature[0];
+                this.sections.push(
+                    Section.fromSectionPart(
+                        firstCreatureSection,
+                        creaturePart,
+                    ),
+                );
+            }
         }
     }
 
@@ -103,9 +214,7 @@ export class Parser {
         const bodySection = this.sections[atIndex];
         const nameSection = this.sections[nameI];
 
-        const spellSection = new Section(nameSection.headerLevelValue);
-        spellSection.level = nameSection.level;
-        spellSection.parts.push(SpellPart.from(
+        const spellSection = Section.fromSectionPart(nameSection, SpellPart.from(
             nameSection,
             bodySection,
         ));
@@ -114,8 +223,11 @@ export class Parser {
     }
 }
 
-export async function parseFile(file: string): Promise<ISection[]> {
-    const parser = new Parser();
+export async function parseFile(
+    file: string,
+    opts?: IParserConfig,
+): Promise<ISection[]> {
+    const parser = new Parser(opts);
     const data = await fs.readFile(file);
     return parser.parse(data);
 }

@@ -1,4 +1,5 @@
 
+import { CreaturePart } from './creature-part';
 import { ISection, PartType } from './interface';
 import { SpellPart } from './spell-part';
 import { StringPart } from './string-part';
@@ -11,9 +12,18 @@ import {
 import { ITextItem } from '../pdf';
 
 // union type of all part kinds
-export type Part = SpellPart | StringPart | TablePart;
+export type Part = CreaturePart | SpellPart | StringPart | TablePart;
 
 export class Section implements ISection {
+    static fromSectionPart(oldSection: Section, part: Part): Section {
+        const newSection = new Section(oldSection.headerLevelValue);
+        newSection.level = oldSection.level;
+        newSection.parts.push(part);
+        return newSection;
+    }
+
+    canHaveTables = true;
+
     /** value in Parser.headerLevels array */
     headerLevelValue: number;
 
@@ -41,6 +51,8 @@ export class Section implements ISection {
     }
 
     getHeader(removeIt: boolean = false): string {
+        if (!this.parts.length) return;
+
         const firstPart = this.parts[0];
         const partType = firstPart.type;
 
@@ -57,12 +69,17 @@ export class Section implements ISection {
             const tableSrc = removeIt
                 ? headers.splice(0, 1)[0]
                 : headers[0];
-            return tableSrc[0].str;
+            return tableSrc.map(h => h.str).join('');
 
         case PartType.SPELL:
             // NOTE: there's nothing to remove from a SpellPart
             const spell = firstPart as SpellPart;
             return spell.name;
+
+        case PartType.CREATURE:
+            // NOTE: there's also nothing to remove from a CreaturePart
+            const creature = firstPart as CreaturePart;
+            return creature.name;
         }
 
         throw new Error(`Unexpected section: ${partType} / ${PartType.SPELL}`);
@@ -73,7 +90,7 @@ export class Section implements ISection {
     }
 
     push(item: ITextItem) {
-        if (item.fontName === TABLE_HEADER_FONT_NAME) {
+        if (this.canHaveTables && item.fontName === TABLE_HEADER_FONT_NAME) {
             this.pushTablePart(item);
             return;
         }
@@ -168,7 +185,7 @@ export class Section implements ISection {
         // continue the non-whitespace-only
         if (!beforeLast.endsWithSpace()) {
             // fill in a missing space
-            beforeLast.str += ' ';
+            beforeLast.appendString(' ');
         }
 
         return beforeLast;

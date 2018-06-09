@@ -25,6 +25,7 @@ export class FormatSpan {
 }
 
 export enum PartType {
+    CREATURE,
     SPELL,
     STRING,
     TABLE,
@@ -33,6 +34,71 @@ export enum PartType {
 export interface IPart {
     type: PartType;
     toJson(): any;
+}
+
+export enum Alignment {
+    LawfulGood,
+    LawfulNeutral,
+    LawfulEvil,
+
+    NeutralGood,
+    TrueNeutral,
+    NeutralEvil,
+
+    ChaoticGood,
+    ChaoticNeutral,
+    ChaoticEvil,
+
+    Unaligned,
+    Any,
+}
+
+export enum Size {
+    Tiny,
+    Small,
+    Medium,
+    Large,
+    Huge,
+    Gargantuan,
+}
+
+export interface IAbilities {
+    str: number;
+    dex: number;
+    con: number;
+    int: number;
+    wis: number;
+    cha: number;
+}
+
+export interface ICreaturePart extends IPart {
+    name: string;
+    size: Size;
+    kind: string;
+    align: Alignment;
+
+    ac: number;
+    acSource: string;
+    hp: number;
+    hpRoll: string;
+
+    speed: string;
+
+    abilities: IAbilities;
+
+    savingThrows: string;
+    senses: string;
+    skills: string;
+    immunities: string;
+    resistances: string;
+    vulnerabilities: string;
+    conditionImmunities: string;
+
+    languages: string;
+    cr: number;
+    exp: number;
+
+    info: IStringPart[];
 }
 
 export enum SpellSchool {
@@ -68,6 +134,14 @@ export interface IStringPart extends IPart {
      * by the provided FormatSpan
      */
     get(fmt: FormatSpan): string;
+
+    /**
+     * Extract a Map where the keys are the parts of
+     * this StringPart that have a FormatSpan on them,
+     * and the values are the non-spanned parts following
+     * the key.
+     */
+    toMapBySpans();
 }
 
 export interface ITablePart extends IPart {
@@ -76,7 +150,7 @@ export interface ITablePart extends IPart {
 }
 
 // union type of all part kinds
-export type Part = ISpellPart | IStringPart | ITablePart;
+export type Part = ICreaturePart | ISpellPart | IStringPart | ITablePart;
 
 export interface ISection {
     level: number;

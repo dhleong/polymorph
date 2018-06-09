@@ -57,60 +57,23 @@ export class SpellPart implements ISpellPart {
         }
         const ritual: boolean = levelAndSchool.indexOf('ritual') !== -1;
 
-        // TODO:
-        let castTime: string = '';
-        let range: string = '';
-        let components: string = '';
-
-        let duration: string = '';
-        let concentration: boolean = false;
-
         const info: Part[] = bodySection.parts.slice(1);
 
-        for (let i = 0; i < fmts.length; ++i) {
-            const fmt = fmts[i];
-            const label = firstPart.get(fmt)
-                .replace(/[:]/, '')
-                .trim();
+        const map = firstPart.toMapBySpans();
+        const castTime = map['Casting Time'] || '';
+        const components = map.Components || '';
+        const range = map.Range || '';
+        let duration = map.Duration || '';
+        let concentration: boolean = false;
+        if (duration.indexOf('Concentration') !== -1) {
+            concentration = true;
+        }
 
-            const nextStringEnd = i + 1 < fmts.length
-                ? fmts[i + 1].start
-                : firstPart.str.length;
-
-            const nextString = firstPart.str.substring(
-                fmt.start + fmt.length,
-                nextStringEnd,
-            ).trim();
-
-            switch (label) {
-            case 'Casting Time':
-                castTime = nextString;
-                break;
-
-            case 'Components':
-                components = nextString;
-                break;
-
-            case 'Range':
-                range = nextString;
-                break;
-
-            case 'Duration':
-                duration = nextString;
-
-                if (duration.indexOf('Concentration') !== -1) {
-                    concentration = true;
-                }
-
-                const splitI = findDurationSplitIndex(duration);
-                if (splitI !== -1) {
-                    const infoPart = duration.substring(splitI);
-                    duration = duration.substring(0, splitI).trimRight();
-                    info.splice(0, 0, new StringPart(infoPart));
-                }
-
-                break;
-            }
+        const splitI = findDurationSplitIndex(duration);
+        if (splitI !== -1) {
+            const infoPart = duration.substring(splitI);
+            duration = duration.substring(0, splitI).trimRight();
+            info.splice(0, 0, new StringPart(infoPart));
         }
 
         return new SpellPart(

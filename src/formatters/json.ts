@@ -1,9 +1,12 @@
 
 import { IFormatter } from '../formatter';
 import {
+    Alignment,
     FormatSpan,
-    ISection, ISpellPart, IStringPart,
-    Part, PartType,
+    ICreaturePart, ISection, ISpellPart,
+    IStringPart, Part,
+    PartType,
+    Size,
     SpellSchool,
 } from '../parser/interface';
 
@@ -21,12 +24,35 @@ const spellSchoolJson = {
     [SpellSchool.Transmutation]: 'T',
 };
 
+const sizeJson = {
+    [Size.Tiny]: 'T',
+    [Size.Small]: 'S',
+    [Size.Medium]: 'M',
+    [Size.Large]: 'L',
+    [Size.Huge]: 'H',
+    [Size.Gargantuan]: 'G',
+};
+
+const alignmentJson = {
+    [Alignment.Any]: 'any',
+    [Alignment.Unaligned]: 'unligned',
+    [Alignment.LawfulGood]: 'LG',
+    [Alignment.LawfulNeutral]: 'LN',
+    [Alignment.LawfulEvil]: 'LE',
+    [Alignment.NeutralGood]: 'NG',
+    [Alignment.TrueNeutral]: 'N',
+    [Alignment.NeutralEvil]: 'NE',
+    [Alignment.ChaoticGood]: 'CG',
+    [Alignment.ChaoticNeutral]: 'CN',
+    [Alignment.ChaoticEvil]: 'CE',
+};
+
 function jsonPropertyFilter(key: string, value: any) {
     if (key === 'level') return;
     return value;
 }
 
-class JsonSection {
+export class JsonSection {
     static extractFrom(section: ISection): JsonSection {
         return new JsonSection(
             section.level,
@@ -41,6 +67,15 @@ class JsonSection {
         readonly level: number,
         readonly title: string,
     ) {}
+
+    addContentFrom(section: ISection) {
+        for (const part of section.parts) {
+            const partAsJson = partToJson(part);
+            if (partAsJson) {
+                this.contents.push(partAsJson);
+            }
+        }
+    }
 }
 
 class JsonFormatSpan {
@@ -133,6 +168,19 @@ function partToJson(part: Part) {
             }
             break;
 
+        case PartType.CREATURE:
+            const creature = part as ICreaturePart;
+            partAsJson = part.toJson();
+            partAsJson.type = 'creature';
+
+            partAsJson.size = sizeJson[creature.size];
+            partAsJson.align = alignmentJson[creature.align];
+
+            partAsJson.info = (partAsJson.info as Part[])
+                .map(p => partToJson(p))
+                .filter(p => p); // remove blank lines
+            break;
+
         default:
             throw new Error(`Unsupported part type: ${part.type}`);
     }
@@ -187,12 +235,7 @@ export class JsonFormatter implements IFormatter {
             this.stack.push(this.current);
         }
 
-        for (const part of section.parts) {
-            const partAsJson = partToJson(part);
-            if (partAsJson) {
-                this.current.contents.push(partAsJson);
-            }
-        }
+        this.current.addContentFrom(section);
     }
 
     async end() {

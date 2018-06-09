@@ -24,4 +24,8 @@ export class DepthTracker {
         return insertAt;
     }
 
+    pickValueForLevel(level: number): number {
+        return this.depths[this.depths.length - 1 - level];
+    }
+
 }

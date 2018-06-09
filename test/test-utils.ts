@@ -1,18 +1,29 @@
+import * as path from 'path';
 
-import { Parser, Section, TablePart } from '../src/parser';
+import { fs } from 'mz';
+
+import {
+    FormatSpan, Formatting,
+    Parser, Section,
+    StringPart, TablePart,
+} from '../src/parser';
 import { TABLE_HEADER_FONT_NAME } from '../src/parser/utils';
 
+import { DepthTracker } from '../src/depth-tracker';
 import { ITextItem } from '../src/pdf';
+
+const formattingByStr = {
+    b: Formatting.Bold,
+    bi: Formatting.BoldItalic,
+    i: Formatting.Italic,
+};
 
 export function parsePage(items: any[]): Section[] {
     const parser = new Parser();
     parser.processPage(items.map(raw => textItem(raw)));
-    // console.log(
-    //     items.map(raw => textItem(raw)),
-    // );
+    parser.postProcess();
 
     const sections = parser['sections'] as Section[]; // tslint:disable-line
-    sections.forEach(s => s.postProcess());
     return sections;
 }
 
@@ -42,4 +53,113 @@ export function textItem(obj: any): ITextItem {
 
         ...obj,
     };
+}
+
+export function formatSpanFromJson(json): FormatSpan {
+    return new FormatSpan(
+        formattingByStr[json.style],
+        json.start,
+        json.length,
+    );
+}
+
+export function formatSpansFromJson(json: any[]): FormatSpan[] {
+    return json.map(formatSpanFromJson);
+}
+
+export class JsonParser {
+
+    static section(json: any, canHaveTables: boolean = true): Section {
+        const section = new Section(-1);
+        section.canHaveTables = canHaveTables;
+        section.level = json.level;
+        section.parts = (json.contents || json.parts).map(JsonParser.thing);
+        return section;
+    }
+
+    static text(json: any): StringPart {
+        const part = new StringPart(json.text);
+        part.formatting = formatSpansFromJson(json.spans);
+        return part;
+    }
+
+    static stringPart(json: any): StringPart {
+        const part = new StringPart(json.str);
+        part.formatting = json.formatting;
+        return part;
+    }
+
+    static table(json: any): TablePart {
+        const part = new TablePart();
+        part.headers = json.headers.map(row =>
+            row.map(h => JsonParser.thing(h)),
+        );
+        return part;
+    }
+
+    /** when you're not sure what it is */
+    static thing(json: any) {
+        if (typeof(json) === 'string') {
+            return new StringPart(json);
+        }
+
+        switch (json.type) {
+        case 'section':
+            return JsonParser.section(json);
+        case 'text':
+            return JsonParser.text(json);
+
+        case 'table':
+            return JsonParser.table(json);
+
+        case 2:
+            return JsonParser.stringPart(json);
+
+        default:
+            throw new Error(`Unhandled JSON type ${json.type}`);
+        }
+    }
+}
+
+export function parseJsonSections(
+    text: string,
+    canHaveTables: boolean = true,
+): Section[] {
+    return text.split('\n')
+        .filter(t => t.length)
+        .map(t => JSON.parse(t))
+        .map(json => JsonParser.section(json, canHaveTables));
+}
+
+export async function loadJsonSections(
+    dataFileName: string,
+    canHaveTables: boolean = true,
+): Promise<Section[]> {
+    let root = process.cwd();
+    while (root.includes('/test')) {
+        root = path.dirname(root);
+    }
+
+    const data = await fs.readFile(`${root}/test/data/${dataFileName}`);
+    return parseJsonSections(data.toString(), canHaveTables);
+}
+
+export function postProcessSections(input: Section[]): Section[] {
+    const parser = new Parser();
+
+    // Mock the DepthTracker so it returns the actual heights;
+    // tslint:disable-next-line
+    const headerLevels: DepthTracker = parser['headerLevels'];
+    headerLevels.pickLevelFor = (height) => height;
+
+    for (const s of input) {
+        s.headerLevelValue = s.level;
+    }
+
+    // tslint:disable-next-line
+    parser['sections'] = input;
+    parser.postProcess();
+
+    // tslint:disable-next-line
+    return parser['sections'];
 }
