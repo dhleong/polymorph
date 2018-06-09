@@ -1,6 +1,6 @@
 {
   "name": "polymorph",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Transform the D&D 5e System Reference Document into a new form",
   "main": "lib/index.js",
   "engines": {
