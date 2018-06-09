@@ -73,13 +73,19 @@ export class JsonParser {
         const section = new Section(-1);
         section.canHaveTables = canHaveTables;
         section.level = json.level;
-        section.parts = json.contents.map(JsonParser.thing);
+        section.parts = (json.contents || json.parts).map(JsonParser.thing);
         return section;
     }
 
     static text(json: any): StringPart {
         const part = new StringPart(json.text);
         part.formatting = formatSpansFromJson(json.spans);
+        return part;
+    }
+
+    static stringPart(json: any): StringPart {
+        const part = new StringPart(json.str);
+        part.formatting = json.formatting;
         return part;
     }
 
@@ -94,6 +100,9 @@ export class JsonParser {
             return JsonParser.section(json);
         case 'text':
             return JsonParser.text(json);
+
+        case 2:
+            return JsonParser.stringPart(json);
 
         default:
             throw new Error(`Unhandled JSON type ${json.type}`);

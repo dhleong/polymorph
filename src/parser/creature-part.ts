@@ -96,9 +96,10 @@ export class CreaturePart implements ICreaturePart {
         try {
             const part = CreaturePart.parseUnsafe(sections);
 
-            if (!part && !sections[0].canHaveTables) {
-                console.warn('Unable to parse:', JSON.stringify(sections));
-            }
+            // if (!part && !sections[0].canHaveTables) {
+            //     console.warn('Unable to parse:', JSON.stringify(sections));
+            // }
+
             return part;
         } catch (e) {
             const message = `Error parsing creature '${sections[0].getHeader()}':\n  ${e.stack}`;
@@ -108,7 +109,10 @@ export class CreaturePart implements ICreaturePart {
 
     private static parseUnsafe(sections: Section[]): CreaturePart {
         const creature = new CreaturePart();
-        creature.name = sections[0].getHeader();
+        const nameSection = sections[0].clone();
+        nameSection.parts = nameSection.parts
+            .filter(p => (p as IStringPart).str !== '');
+        creature.name = nameSection.getHeader();
 
         // sections like the half-dragon template
         if (sections[1].canHaveTables) return;

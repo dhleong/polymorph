@@ -48,16 +48,11 @@ describe('CreaturePart', () => {
     });
 
     describe('parsing', () => {
-        const abolethPromise =
-            loadJsonSections('aboleth.raw.json', /* canHaveTables =*/false)
-                .then(CreaturePart.from);
-
-        const waterElementalPromise =
-            loadJsonSections('water-elemental.raw.json', /* canHaveTables =*/false)
-                .then(CreaturePart.from);
 
         it('handles legendary creatures', async () => {
-            const part = await abolethPromise;
+            const part = await loadJsonSections(
+                'aboleth.raw.json', /* canHaveTables =*/false,
+            ).then(CreaturePart.from);
 
             part.name.should.equal('Aboleth');
             part.size.should.equal(Size.Large);
@@ -92,9 +87,19 @@ describe('CreaturePart', () => {
         });
 
         it('handles water elemental', async () => {
-            const part = await waterElementalPromise;
+            const part = await loadJsonSections(
+                'water-elemental.raw.json', /* canHaveTables =*/false,
+            ).then(CreaturePart.from);
 
             part.name.should.equal('Water Elemental');
+        });
+
+        it('handles blank strings', async () => {
+            const part = await loadJsonSections(
+                'sea-hag.raw.json', /* canHaveTables =*/false,
+            ).then(CreaturePart.from);
+
+            part.name.should.equal('Sea Hag');
         });
     });
 });
