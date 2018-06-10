@@ -12,6 +12,7 @@ import {
 
 const UNNECESSARY_HEADER_COLS = new Set([
     'Spell Slots per Spell Level',
+    'Spell    Slots    per    Spell    Level',
     '—',
 ]);
 
@@ -234,9 +235,14 @@ export class TablePart implements ITablePart {
         }
 
         const itemIsOnlyWhitespace = stringIsOnlyWhitespace(item.str);
+        const isHeaderPart = destination === this.headers;
+        if (isHeaderPart && UNNECESSARY_HEADER_COLS.has(item.str)) {
+            return;
+        }
+
         if (!lastIsOnlyWhitespace
             && !itemIsOnlyWhitespace
-            && this.itemShouldShareColumnWith(item, last)
+            && (isHeaderPart || this.itemShouldShareColumnWith(item, last))
         ) {
             if (followedWhitespace) {
                 last.appendString(' ');
