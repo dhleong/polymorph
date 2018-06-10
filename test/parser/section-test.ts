@@ -269,7 +269,7 @@ describe('Section', () => {
             // before, due to the .72 difference in y caused by the g_font_error
             //  and its whitespace, this would have been split into two rows:
             table.toJson().rows.should.deep.equal([
-                ['3rd', '+2', '3', '4', '2'],
+                ['3rd', '+2', '', '3', '4', '2'],
             ]);
         });
 
@@ -281,7 +281,9 @@ describe('Section', () => {
             bard.rows[4].should.deep.equal([
                 '5th', '+3',
                 'Bardic Inspiration (d8), Font of Inspiration',
-                '3', '8', '4', '3', '2',
+                '3', '8',
+                '4', '3', '2',
+                '', '', '', '', '', '',
             ]);
         });
     });

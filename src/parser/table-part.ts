@@ -56,6 +56,7 @@ export class TablePart implements ITablePart {
                 const last = row[row.length - 1];
                 last.effectiveWidth = item.x - last.x;
             }
+
             row.push(StringPart.from(item));
         }
 
@@ -216,10 +217,17 @@ export class TablePart implements ITablePart {
 
         if (lastIsOnlyWhitespace
             && row.length > 1
-            && !row[row.length - 2].isOnlyWhitespace()
         ) {
             // can't resume, but *can* clean up excess whitespace
             row.pop();
+
+            const beforeLast = row[row.length - 2];
+            if (stringIsOnlyWhitespace(item.str)
+                && beforeLast
+                && !beforeLast.isOnlyWhitespace()
+            ) {
+                row.push(new StringPart(''));
+            }
 
             // well... maybe...
             const splitColumn = this.detectSplitColumn(row, item);

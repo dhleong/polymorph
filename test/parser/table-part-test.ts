@@ -21,6 +21,22 @@ describe('TablePart', () => {
         ]);
     });
 
+    it('Includes intentionally blank column cells', async () => {
+        const bard = tableSection(
+            await loadTextItems('the-bard.txt'),
+        ).toJson();
+
+        bard.rows[6].should.deep.equal([
+            '7th', '+3',
+            '', // features column
+            '3', '10',
+            '4', '3', '3', '1',
+
+            // 5th-9th:
+            '', '', '', '', '',
+        ]);
+    });
+
     it('combines obviously connected headers', async () => {
         const table = tableSection(
             await loadTextItems('the-paladin-headers.txt'),

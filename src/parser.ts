@@ -85,7 +85,12 @@ export class Parser {
                 this.sections.push(newSection);
             }
 
-            this.currentSection.push(item);
+            try {
+                this.currentSection.push(item);
+            } catch (e) {
+                const sectionAsJson = JSON.stringify(this.currentSection, null, ' ');
+                throw new Error(`Error processing section:\n${sectionAsJson}\n  ${e.stack}`);
+            }
 
             // NOTE: recalculate each time, because a subsequent push()
             // might amend the header
