@@ -96,8 +96,8 @@ version = verify(File("package.json")
                 ).valueElse(echoAndDie("No version!?"))
 versionTag = git.Tag(version)
 
-# verify(versionTag.exists())\
-#     .then(echoAndDie("Version `%s` already exists!" % version))
+verify(versionTag.exists())\
+    .then(echoAndDie("Version `%s` already exists!" % version))
 
 #
 # Make sure all the tests pass
