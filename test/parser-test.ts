@@ -110,7 +110,7 @@ describe('Parser', () => {
         sections[2].getHeader().should.equal('Behir');
     });
 
-    it.skip('correctly separates a series of tables', async () => {
+    it('correctly separates a series of tables', async () => {
         const sections = parsePage(
             await loadTextItems('druid-circle-spells.txt'),
         );

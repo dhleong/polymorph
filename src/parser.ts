@@ -72,8 +72,10 @@ export class Parser {
             // this will store it at an appropriate place in the headerLevels list
             this.headerLevels.feed(item.height);
 
-            if ((!this.currentSection || this.currentSection.headerLevelValue !== item.height)
-                    && !this.shouldMergeTable(item)) {
+            if (!(this.currentSection
+                    && this.currentSection.canContainHeaderLevelValue(item.height)
+                ) && !this.shouldMergeTable(item)
+            ) {
                 const newSection = new Section(item.height);
                 if (isCreatureHeader(this.topmostHeader)) {
                     newSection.canHaveTables = this.inCreatureTemplate;

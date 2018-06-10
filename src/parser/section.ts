@@ -17,6 +17,7 @@ export type Part = CreaturePart | SpellPart | StringPart | TablePart;
 export class Section implements ISection {
     static fromSectionPart(oldSection: Section, part: Part): Section {
         const newSection = new Section(oldSection.headerLevelValue);
+        newSection.minHeaderLevelValue = oldSection.minHeaderLevelValue;
         newSection.level = oldSection.level;
         newSection.parts.push(part);
         return newSection;
@@ -26,6 +27,7 @@ export class Section implements ISection {
 
     /** value in Parser.headerLevels array */
     headerLevelValue: number;
+    minHeaderLevelValue: number;
 
     /** Integer section level from ISection interface */
     level: number;
@@ -34,6 +36,17 @@ export class Section implements ISection {
 
     constructor(headerLevelValue) {
         this.headerLevelValue = headerLevelValue;
+        this.minHeaderLevelValue = headerLevelValue;
+    }
+
+    canContainHeaderLevelValue(value: number) {
+        if (this.minHeaderLevelValue === this.headerLevelValue) {
+            return value === this.headerLevelValue;
+        } else {
+            // we've got a table merged in here that we want to continue,
+            // but hitting another header of same height starts a new table
+            return value < this.headerLevelValue;
+        }
     }
 
     clone(): Section {
@@ -90,6 +103,7 @@ export class Section implements ISection {
     }
 
     push(item: ITextItem) {
+        this.minHeaderLevelValue = Math.min(this.minHeaderLevelValue, item.height);
         if (this.canHaveTables && item.fontName === TABLE_HEADER_FONT_NAME) {
             this.pushTablePart(item);
             return;
