@@ -51,6 +51,10 @@ export class TablePart implements ITablePart {
             this.startSplitTableRowWith(item);
 
             const row = destination[destination.length - 1];
+            if (row.length && destination === this.headers) {
+                const last = row[row.length - 1];
+                last.effectiveWidth = item.x - last.x;
+            }
             row.push(StringPart.from(item));
         }
 
@@ -205,8 +209,9 @@ export class TablePart implements ITablePart {
             return this.consolidateColumnCell(destination, item);
         }
 
-        const last = row[row.length - 1];
-        const lastIsOnlyWhitespace = last.isOnlyWhitespace();
+        let last = row[row.length - 1];
+        let lastIsOnlyWhitespace = last.isOnlyWhitespace();
+        let followedWhitespace = false;
 
         if (lastIsOnlyWhitespace
             && row.length > 1
@@ -216,7 +221,16 @@ export class TablePart implements ITablePart {
             row.pop();
 
             // well... maybe...
-            return this.detectSplitColumn(row, item);
+            const splitColumn = this.detectSplitColumn(row, item);
+            if (splitColumn || item.fontName === TABLE_HEADER_FONT_NAME) {
+                // NOTE: table headers don't need to try to share columns;
+                // just abide by this result:
+                return splitColumn;
+            }
+
+            lastIsOnlyWhitespace = false; // not anymore
+            last = row[row.length - 1]; // new last
+            followedWhitespace = true;
         }
 
         const itemIsOnlyWhitespace = stringIsOnlyWhitespace(item.str);
@@ -224,6 +238,9 @@ export class TablePart implements ITablePart {
             && !itemIsOnlyWhitespace
             && this.itemShouldShareColumnWith(item, last)
         ) {
+            if (followedWhitespace) {
+                last.appendString(' ');
+            }
             return last;
         }
     }
@@ -252,29 +269,21 @@ export class TablePart implements ITablePart {
     private itemShouldShareColumnWith(item: ITextItem, last: StringPart): boolean {
         // guess which column `last` belongs to, then see if
         // item.x is within that range
-        let colIndex = 0;
-        for (const header of this.headers[0]) {
+        for (const header of this.pickActualHeadersRow()) {
             if (header.couldContain(last.x)) {
                 if (header.couldContain(item.x)) {
                     return true;
                 }
                 break;
             }
-
-            ++colIndex;
-        }
-
-        // okay, the header couldn't quite fit us, but perhaps
-        // this same column in a previous row could
-        for (const row of this.rows) {
-            if (colIndex < row.length) {
-                if (row[colIndex].couldContain(item.x)) {
-                    return true;
-                }
-            }
         }
 
         return false;
+    }
+
+    private pickActualHeadersRow(): StringPart[] {
+        // I *think* it's always the bottom-most?
+        return this.headers[this.headers.length - 1];
     }
 
     private consolidateColumnCell(

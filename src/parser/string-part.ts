@@ -41,6 +41,8 @@ export class StringPart implements IStringPart {
 
     formatting: FormatSpan[] = [];
 
+    effectiveWidth: number;
+
     constructor(
         public str: string,
         readonly x: number = 0,
@@ -49,6 +51,7 @@ export class StringPart implements IStringPart {
         readonly height: number = 0,
         fontName: string = null,
     ) {
+        this.effectiveWidth = width;
         this.pushFormattingForFont(fontName, 0);
     }
 
@@ -116,7 +119,7 @@ export class StringPart implements IStringPart {
      *  our `.width` could contain the given `x` value
      */
     couldContain(x: number): boolean {
-        return this.x <= x && x <= this.x + this.width;
+        return this.x <= x && x < this.x + this.effectiveWidth;
     }
 
     get(fmt: FormatSpan): string {

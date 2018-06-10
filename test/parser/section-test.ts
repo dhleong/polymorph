@@ -2,7 +2,7 @@ import * as chai from 'chai';
 
 import { FormatSpan, Formatting, Section, TablePart } from '../../src/parser';
 import { StringPart } from '../../src/parser/string-part';
-import { tableSection, textItem } from '../test-utils';
+import { loadTextItems, tableSection, textItem } from '../test-utils';
 
 chai.should();
 
@@ -272,34 +272,23 @@ describe('Section', () => {
                 ['3rd', '+2', '3', '4', '2'],
             ]);
         });
+
+        it('handles wide column cells', async () => {
+            const bard = tableSection(
+                await loadTextItems('the-bard.txt'),
+            ).toJson();
+
+            bard.rows[4].should.deep.equal([
+                '5th', '+3',
+                'Bardic Inspiration (d8), Font of Inspiration',
+                '3', '8', '4', '3', '2',
+            ]);
+        });
     });
 
-    it('Handles table with rows on multiple page columns', () => {
+    it('Handles table with rows on multiple page columns', async () => {
         // from The Fighter
-        const items = [
-            { str: 'The    Fighter', width: 56.179199999999994, height: 144, x: 57.6, y: 287.52, fontName: 'g_d0_f6' },
-            { str: '    ', width: 2.712, height: 144, x: 113.7855, y: 287.52, fontName: 'g_d0_f6' },
-            { str: 'Level', width: 19.36, height: 78, x: 57.60708, y: 261.6, fontName: 'g_d0_f6' },
-            { str: '    ', width: 2, height: 78, x: 76.94302, y: 261.6, fontName: 'g_d0_f6' },
-            { str: 'Proficiency    ', width: 43, height: 78, x: 95.41422, y: 272.64, fontName: 'g_d0_f6' },
-            { str: 'Bonus', width: 23.1546, height: 78, x: 104.4735, y: 261.6, fontName: 'g_d0_f6' },
-            { str: '    ', width: 2, height: 78, x: 127.6064, y: 261.6, fontName: 'g_d0_f6' },
-            { str: 'Features', width: 32.38180799999999, height: 78, x: 155.04, y: 261.6, fontName: 'g_d0_f6' },
-            { str: '    ', width: 2, height: 78, x: 187.4145, y: 261.6, fontName: 'g_d0_f6' },
-            { str: '15th', width: 16.861344, height: 78, x: 58.84194, y: 96.96001, fontName: 'g_d0_f2' },
-            { str: '    ', width: 2, height: 78, x: 75.70815, y: 96.96001, fontName: 'g_d0_f2' },
-            { str: '+5', width: 9.045168, height: 78, x: 111.518, y: 96.96001, fontName: 'g_d0_f2' },
-            { str: '    ', width: 2, height: 78, x: 120.5619, y: 96.96001, fontName: 'g_d0_f2' },
-            { str: 'Martial    Archetype    feature',
-                width: 95, height: 78, x: 155.04, y: 96.96001, fontName: 'g_d0_f2' }, // tslint:disable-line
-            { str: '    ', width: 2, height: 78, x: 250.2563, y: 96.96001, fontName: 'g_d0_f2' },
-            { str: '16th', width: 16.861344, height: 78, x: 329.8019, y: 711.6, fontName: 'g_d0_f2' },
-            { str: '    ', width: 2, height: 78, x: 346.6682, y: 711.6, fontName: 'g_d0_f2' },
-            { str: '+5', width: 9.045168, height: 78, x: 382.238, y: 711.6, fontName: 'g_d0_f2' },
-            { str: '    ', width: 2, height: 78, x: 391.2819, y: 711.6, fontName: 'g_d0_f2' },
-            { str: 'Ability    Score    Improvement',
-                width: 97, height: 78, x: 425.76, y: 711.6, fontName: 'g_d0_f2' }, // tslint:disable-line
-        ];
+        const items = await loadTextItems('the-fighter-split.txt');
 
         const table = tableSection(items).toJson();
         table.headers.should.deep.equal([
