@@ -43,7 +43,7 @@ describe('TablePart', () => {
         ).toJson();
 
         table.headers.should.deep.equal([
-            ['The Paladin'], // getHeader handles this
+            ['The Paladin'],
 
             ['Level', 'Proficiency Bonus', 'Features',
                 '1st', '2nd', '3rd', '4th', '5th'],

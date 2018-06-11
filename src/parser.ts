@@ -202,9 +202,8 @@ export class Parser {
 
         if (item.fontName !== TABLE_HEADER_FONT_NAME) {
             // if it's not a table header, allow it if its height
-            // is *at least* that of the table headers.
-            // In practice, the heights should be the same...
-            return item.height >= lastPart.lastHeight;
+            // is exactly that of the table headers.
+            return item.height === lastPart.lastHeight;
         } else {
             return !lastPart.rows.length;
         }

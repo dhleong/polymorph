@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import { isCreatureHeader } from '../src/parser';
+import { isCreatureHeader, TablePart } from '../src/parser';
 import {
     loadJsonSections, loadTextItems,
     parsePage,
@@ -118,5 +118,17 @@ describe('Parser', () => {
         sections.should.have.lengthOf(2);
         sections[0].getHeader().should.equal('Arctic');
         sections[1].getHeader().should.equal('Coast');
+    });
+
+    it("doesn't feed unrelated parts to a table section", async () => {
+        const sections = parsePage(
+            await loadTextItems('life-domain-spells.txt'),
+        );
+
+        // sections.should.have.lengthOf(2);
+        sections[0].getHeader().should.equal('Life Domain Spells');
+        sections[0].parts[sections[0].parts.length - 1].should.be.instanceOf(TablePart);
+        sections[0].parts.should.have.lengthOf(1);
+        sections[1].getHeader().should.equal('Bonus Proficiency');
     });
 });
