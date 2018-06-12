@@ -134,6 +134,10 @@ export class StringPart implements IStringPart {
         return this.str.endsWith(' ');
     }
 
+    endsWithComma(): boolean {
+        return !!this.str.match(/, +$/);
+    }
+
     /**
      * Extract a Map where the keys are the parts of
      * this StringPart that have a FormatSpan on them,

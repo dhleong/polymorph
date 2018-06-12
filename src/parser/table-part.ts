@@ -36,6 +36,26 @@ export class TablePart implements ITablePart {
 
             if (destination === this.headers && destination.length) {
                 this.trimUnnecessaryHeaderRows();
+            } else if (destination.length) {
+                // update effective width of header columns
+                const headersRow = this.pickActualHeadersRow();
+                const lastRow = destination[destination.length - 1];
+                for (let i = 0; i < lastRow.length; ++i) {
+                    if (i >= headersRow.length) {
+                        console.warn('More cols in row than headers:\n',
+                            this.headers[0].join(''), '\n',
+                            lastRow.map(it => it.str), '\n',
+                            headersRow.map(it => it.str),
+                        );
+                        break;
+                    }
+
+                    const itemsWidth = lastRow[i].width;
+                    headersRow[i].effectiveWidth = Math.max(
+                        headersRow[i].effectiveWidth,
+                        itemsWidth,
+                    );
+                }
             }
 
             destination.push([]);
@@ -281,6 +301,10 @@ export class TablePart implements ITablePart {
     }
 
     private itemShouldShareColumnWith(item: ITextItem, last: StringPart): boolean {
+        if (last.endsWithComma() || item.str.startsWith(', ')) {
+            return true;
+        }
+
         // guess which column `last` belongs to, then see if
         // item.x is within that range
         for (const header of this.pickActualHeadersRow()) {
