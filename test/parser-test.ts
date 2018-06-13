@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import { isCreatureHeader, TablePart } from '../src/parser';
+import { FormatSpan, Formatting, isCreatureHeader, StringPart, TablePart } from '../src/parser';
 import {
     loadJsonSections, loadTextItems,
     parsePage,
@@ -130,5 +130,30 @@ describe('Parser', () => {
         sections[0].parts[sections[0].parts.length - 1].should.be.instanceOf(TablePart);
         sections[0].parts.should.have.lengthOf(1);
         sections[1].getHeader().should.equal('Bonus Proficiency');
+    });
+
+    it("doesn't create a table where none belong", async () => {
+        const sections = parsePage(
+            await loadTextItems('schools-of-magic.txt'),
+        );
+
+        for (const section of sections) {
+            for (const part of section.parts) {
+                part.should.not.be.instanceOf(TablePart);
+            }
+        }
+
+        sections.should.have.lengthOf(1);
+
+        // NOTE: there's currently some extra whitespace
+        // parts here that we could probably trim...
+        const abjuration = sections[0].parts[3] as StringPart;
+        abjuration.formatting.should.deep.equal([
+            new FormatSpan(
+                Formatting.Bold,
+                0,
+                'abjuration'.length + 1,
+            ),
+        ]);
     });
 });

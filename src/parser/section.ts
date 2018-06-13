@@ -104,6 +104,7 @@ export class Section implements ISection {
 
     push(item: ITextItem) {
         this.minHeaderLevelValue = Math.min(this.minHeaderLevelValue, item.height);
+
         if (this.canHaveTables && item.fontName === TABLE_HEADER_FONT_NAME) {
             this.pushTablePart(item);
             return;
@@ -150,6 +151,19 @@ export class Section implements ISection {
         if (!item) return last;
 
         // if provided, compare with item
+        if (item.height === last.lastHeight) {
+            // in some special cases, the table header font is used as
+            // just "bold." Fun.
+            if (last.headers.length === 1
+                && last.headers[0].length === 1
+                && item.y === last.headers[0][0].y
+            ) {
+                this.parts.pop();
+                this.parts.push(last.headers[0][0]);
+                return;
+            }
+        }
+
         if (item.height <= last.lastHeight) {
             // continue as long as our font size is smaller or matching
             return last;
