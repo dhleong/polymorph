@@ -73,6 +73,20 @@ describe('TablePart', () => {
         ]);
     });
 
+    it('consolidates parts of the same, wide cell type 2', async () => {
+        const table = tableSection(
+            await loadTextItems('oath-of-devotion-spells.txt'),
+        ).toJson();
+
+        table.rows.should.deep.equal([
+            [ '3rd', 'protection from evil and good, sanctuary' ],
+            [ '5th', 'lesser restoration, zone of truth' ],
+            [ '9th', 'beacon of hope, dispel magic' ],
+            [ '13th', 'freedom of movement, guardian of faith' ],
+            [ '17th', 'commune, flame strike' ],
+        ]);
+    });
+
     it('handles tables split across pages', async () => {
         const table = tableSection(
             await loadTextItems('lifestyle-expenses.txt'),

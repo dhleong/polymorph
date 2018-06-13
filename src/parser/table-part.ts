@@ -310,6 +310,14 @@ export class TablePart implements ITablePart {
         if (last.endsWithComma() || item.str.startsWith(', ')) {
             return true;
         }
+        if (!last.endsWithSpace() && !item.str.startsWith(' ')
+            && last.y === item.y
+            && Math.abs(item.x - (last.x + last.width)) < 0.1
+        ) {
+            // same line, right after previous... seems like a
+            // strong indicator to me
+            return true;
+        }
 
         // guess which column `last` belongs to, then see if
         // item.x is within that range
