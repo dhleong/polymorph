@@ -72,4 +72,41 @@ describe('TablePart', () => {
             ['9th', 'conjure elemental, scrying'],
         ]);
     });
+
+    it('handles tables split across pages', async () => {
+        const table = tableSection(
+            await loadTextItems('lifestyle-expenses.txt'),
+        ).toJson();
+
+        table.rows.should.deep.equal([
+            [
+                'Wretched',
+                '—',
+            ],
+            [
+                'Squalid',
+                '1 sp',
+            ],
+            [
+                'Poor',
+                '2 sp',
+            ],
+            [
+                'Modest',
+                '1 gp',
+            ],
+            [
+                'Comfortable',
+                '2 gp',
+            ],
+            [
+                'Wealthy',
+                '4 gp',
+            ],
+            [
+                'Aristocratic',
+                '10 gp minimum',
+            ],
+        ]);
+    });
 });

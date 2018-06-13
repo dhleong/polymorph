@@ -168,6 +168,12 @@ export class TablePart implements ITablePart {
             return true;
         }
 
+        const headers = this.pickActualHeadersRow();
+        if (item.x <= headers[0].x) {
+            // new page... crap
+            return true;
+        }
+
         // if (delta < 0) {
         //     // higher on the page. If it's a new column, it should
         //     // be a new row
@@ -320,6 +326,8 @@ export class TablePart implements ITablePart {
     }
 
     private pickActualHeadersRow(): StringPart[] {
+        if (!this.headers.length) return;
+
         // I *think* it's always the bottom-most?
         return this.headers[this.headers.length - 1];
     }

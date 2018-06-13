@@ -12,6 +12,9 @@ import { TABLE_HEADER_FONT_NAME } from '../src/parser/utils';
 import { DepthTracker } from '../src/depth-tracker';
 import { ITextItem } from '../src/pdf';
 
+// tslint:disable-next-line
+const footerString = `Not    for    resale.    Permission    granted    to    print    or    photocopy    this    document    for    personal    use    only`;
+
 const formattingByStr = {
     b: Formatting.Bold,
     bi: Formatting.BoldItalic,
@@ -20,7 +23,21 @@ const formattingByStr = {
 
 export function parsePage(items: any[]): Section[] {
     const parser = new Parser();
-    parser.processPage(items.map(raw => textItem(raw)));
+
+    const pages = [];
+    const footerIndex = items.findIndex(item => item.str === footerString);
+    if (footerIndex === -1) {
+        pages.push(items);
+    } else {
+        pages.push(items.slice(0, footerIndex));
+
+        // tslint:disable-next-line
+        pages.push(parser['skipFooters'](items.slice(footerIndex)));
+    }
+
+    for (const page of pages) {
+        parser.processPage(page.map(raw => textItem(raw)));
+    }
     parser.postProcess();
 
     const sections = parser['sections'] as Section[]; // tslint:disable-line
@@ -36,7 +53,7 @@ export function tableSection(items: any[]): TablePart {
     sections.should.have.lengthOf(1, JSON.stringify(items));
 
     const section = sections[0];
-    section.parts.should.have.lengthOf(1);
+    section.parts.should.have.lengthOf(1, JSON.stringify(section));
 
     return section.parts[0] as TablePart;
 }
