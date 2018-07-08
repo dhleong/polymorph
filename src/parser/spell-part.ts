@@ -39,7 +39,7 @@ export class SpellPart implements ISpellPart {
         let level: number = 0;
         if (fmts.length > 0) {
             levelAndSchool = firstPart.get(fmts[0]).toLowerCase();
-            level = levelAndSchool[0] === 'c'
+            level = levelAndSchool.includes('cantrip')
                 ? 0
                 : parseInt(levelAndSchool[0], 10);
         }
