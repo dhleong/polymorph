@@ -36,6 +36,33 @@ function q(value: any) {
     return `"${value.toString().replace(/"/, '\"')}"`;
 }
 
+function formatComponents(raw: string): string {
+    if (!raw) return;
+
+    let result = '';
+
+    if (raw.startsWith('V')) {
+        result += 'v';
+    }
+
+    if (raw.endsWith('S') || raw.indexOf('S,') !== -1) {
+        result += 's';
+    }
+
+    if (result !== '') {
+        result = ':' + result;
+    }
+
+    const materialStart = raw.indexOf('(');
+    if (materialStart !== -1) {
+        result = '[' + result + ' ';
+        result += q(raw.substring(materialStart + 1, raw.lastIndexOf(')')));
+        result += ']';
+    }
+
+    return result;
+}
+
 function stringifyInfo(info: Part[]): string {
     return info.toString(); // FIXME
 }
@@ -92,14 +119,21 @@ export class WishFormatter implements IFormatter {
         for (const s of Object.values(this.spells)) {
 
             const desc = stringifyInfo(s.info);
+            const comp = formatComponents(s.components);
 
             this.output.write(`
   {:spell-level ${s.level}
    :id :${s.id}
    :name ${q(s.name)}
    :time ${q(s.castTime)}
-   :range ${q(s.range)}
-   :comp ${q(s.components)}
+   :range ${q(s.range)}`);
+
+            if (comp) {
+                this.output.write(`
+   :comp ${comp}`);
+            }
+
+            this.output.write(`
    :duration ${q(s.duration)}
    :school ${spellSchoolKeyword[s.school]}
    :desc ${q(desc)}
@@ -113,5 +147,7 @@ export class WishFormatter implements IFormatter {
         }
 
         this.output.write(` ]\n]`);
+
+        console.log(`Exported ${Object.keys(this.spells).length} spells`);
     }
 }
