@@ -63,13 +63,3 @@
 {"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,114.5189,710.64],"fontName":"g_d0_f4","x":114.5189,"y":710.64}
 {"str":"Guards    and    Wards","dir":"ltr","width":78.99355200000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,698.88],"fontName":"g_d0_f4","x":57.6,"y":698.88}
 {"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,136.5844,698.88],"fontName":"g_d0_f4","x":136.5844,"y":698.88}
-{"str":"Cleric Spells","dir":"ltr","width":75.514608,"height":193.7664,"transform":[13.92,0,0,13.92,57.6,349.68],"fontName":"g_d0_f3","x":57.6,"y":349.68}
-{"str":" ","dir":"ltr","width":3.8697600000000003,"height":193.7664,"transform":[13.92,0,0,13.92,133.0892,349.68],"fontName":"g_d0_f3","x":133.0892,"y":349.68}
-{"str":"Cantrips (0 Level)","dir":"ltr","width":94.14719999999998,"height":144,"transform":[12,0,0,12,57.6,323.52],"fontName":"g_d0_f3","x":57.6,"y":323.52}
-{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,151.7484,323.52],"fontName":"g_d0_f3","x":151.7484,"y":323.52}
-{"str":"Guidance","dir":"ltr","width":39.70833600000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,310.8],"fontName":"g_d0_f4","x":57.6,"y":310.8}
-{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,97.30703,310.8],"fontName":"g_d0_f4","x":97.30703,"y":310.8}
-{"str":"Light","dir":"ltr","width":22.00716,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,299.04],"fontName":"g_d0_f4","x":57.6,"y":299.04}
-{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,79.5873,299.04],"fontName":"g_d0_f4","x":79.5873,"y":299.04}
-{"str":"Mending","dir":"ltr","width":37.50909600000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,287.28],"fontName":"g_d0_f4","x":57.6,"y":287.28}
-{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,95.06094,287.28],"fontName":"g_d0_f4","x":95.06094,"y":287.28}

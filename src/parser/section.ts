@@ -212,11 +212,6 @@ export class Section implements ISection {
             return;
         }
 
-        // if (nearlyMatch(beforeLast.x, item.x)) {
-        //     console.log(beforeLast.str, ' -> ', item.str,
-        //         ';', beforeLast.y, item.y);
-        // }
-
         if (nearlyMatch(beforeLast.x, item.x)
             && !nearlyMatch(beforeLast.y, item.y)) {
             // new line, probably a list
@@ -240,7 +235,7 @@ export class Section implements ISection {
         } else if (
             beforeLast.x > item.x
             && beforeLast.y < item.y
-            && this.parts.length >= 2
+            && this.parts.length >= 1
         ) {
             if (this.parts.length <= 2) {
                 // only one item

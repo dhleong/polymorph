@@ -375,4 +375,20 @@ describe('Spell List Section', () => {
             'Guards and Wards',
         ]);
     });
+
+    it('works pt2', async () => {
+        const items = await loadTextItems('wizard-spell-lists.txt');
+        const sections = parsePage(items);
+
+        // wizard spells:
+        sections[0].getHeader().should.equal('5th Level');
+        const fifthLevel = listItems(sections[1]);
+        fifthLevel.should.deep.equal([
+            // NOTE: Eyebite is the last entry on its page;
+            'Animate Objects',
+            'Arcane Hand',
+            'Cloudkill',
+            'Cone of Cold',
+        ]);
+    });
 });
