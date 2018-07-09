@@ -1,30 +1,10 @@
 
+import { StringPart } from '../parser';
 import {
     ISection, ISpellPart, IStringPart,
     Part, PartType,
     SpellSchool,
 } from './interface';
-import { StringPart } from './string-part';
-
-/**
- * Current parsing concatenates the first paragraph of
- * info on a Spell to the end of its Duration. There's
- * no obvious way to safely separate this into a separate
- * StringPart, so we split it up ourselves (for now...)
- * by finding the first capital letter.
- */
-function findDurationSplitIndex(duration: string): number {
-    // NOTE: skip i == 0 since that will probably be
-    // upper case and confuse us since it's not
-    // definitely not what we want, anyway
-    for (let i = 1; i < duration.length; ++i) {
-        if (duration[i].match(/[A-Z]/)) {
-            return i;
-        }
-    }
-
-    return -1;
-}
 
 export class SpellPart implements ISpellPart {
     static from(
@@ -57,23 +37,37 @@ export class SpellPart implements ISpellPart {
         }
         const ritual: boolean = levelAndSchool.indexOf('ritual') !== -1;
 
-        const info: Part[] = bodySection.parts.slice(1);
+        let info: Part[];
+        let castTime = '';
+        let components = '';
+        let range = '';
+        let duration = '';
+        let concentration = false;
 
-        const map = firstPart.toMapBySpans();
-        const castTime = map['Casting Time'] || '';
-        const components = map.Components || '';
-        const range = map.Range || '';
-        let duration = map.Duration || '';
-        let concentration: boolean = false;
-        if (duration.indexOf('Concentration') !== -1) {
-            concentration = true;
-        }
-
-        const splitI = findDurationSplitIndex(duration);
-        if (splitI !== -1) {
-            const infoPart = duration.substring(splitI);
-            duration = duration.substring(0, splitI).trimRight();
-            info.splice(0, 0, new StringPart(infoPart));
+        // NOTE: skip the first part; we looked at it above
+        for (let i = 1; i < bodySection.parts.length; ++i) {
+            const part = bodySection.parts[i];
+            const map = (part as IStringPart).toMapBySpans();
+            if (map['Casting Time']) {
+                castTime = map['Casting Time'];
+            } else if (map.Components) {
+                components = map.Components;
+            } else if (map.Range) {
+                range = map.Range;
+            } else if (map.Duration) {
+                duration = map.Duration;
+                if (duration.indexOf('Concentration') !== -1) {
+                    concentration = true;
+                }
+            } else {
+                // must've started the info
+                info = bodySection.parts.slice(i)
+                    .filter(it =>
+                        !(it instanceof StringPart)
+                        || it.str !== '',
+                    );
+                break;
+            }
         }
 
         return new SpellPart(

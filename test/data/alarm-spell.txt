@@ -1,0 +1,48 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"Alarm","dir":"ltr","width":32.664,"height":144,"transform":[12,0,0,12,328.56,676.32],"fontName":"g_d0_f3","x":328.56,"y":676.32}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,361.226,676.32],"fontName":"g_d0_f3","x":361.226,"y":676.32}
+{"str":"1st","dir":"ltr","width":12.582408000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,663.84],"fontName":"g_d0_f7","x":328.56,"y":663.84}
+{"str":"-­‐‑","dir":"ltr","width":3.13896,"height":96.8256,"transform":[9.84,0,0,9.84,341.1137,663.84],"fontName":"g_d0_f7","x":341.1137,"y":663.84}
+{"str":"level    abjuration    (ritual)","dir":"ltr","width":98.81820000000002,"height":96.8256,"transform":[9.84,0,0,9.84,344.3022,663.84],"fontName":"g_d0_f7","x":344.3022,"y":663.84}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,443.1157,663.84],"fontName":"g_d0_f7","x":443.1157,"y":663.84}
+{"str":"Casting    Time:","dir":"ltr","width":62.511552000000016,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,646.08],"fontName":"g_d0_f8","x":328.56,"y":646.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.0112,646.08],"fontName":"g_d0_f4","x":391.0112,"y":646.08}
+{"str":"1    minute","dir":"ltr","width":38.224464000000005,"height":96.8256,"transform":[9.84,0,0,9.84,393.2133,646.08],"fontName":"g_d0_f4","x":393.2133,"y":646.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,431.4164,646.08],"fontName":"g_d0_f4","x":431.4164,"y":646.08}
+{"str":"Range:","dir":"ltr","width":31.364016000000007,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,634.32],"fontName":"g_d0_f8","x":328.56,"y":634.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,359.8686,634.32],"fontName":"g_d0_f4","x":359.8686,"y":634.32}
+{"str":"30    feet","dir":"ltr","width":29.469816000000012,"height":96.8256,"transform":[9.84,0,0,9.84,362.0708,634.32],"fontName":"g_d0_f4","x":362.0708,"y":634.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.5141,634.32],"fontName":"g_d0_f4","x":391.5141,"y":634.32}
+{"str":"Components:","dir":"ltr","width":60.47270400000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,622.8],"fontName":"g_d0_f8","x":328.56,"y":622.8}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,388.9702,622.8],"fontName":"g_d0_f4","x":388.9702,"y":622.8}
+{"str":"V,    S,    M    (a    tiny    bell    and    a    pie","dir":"ltr","width":116.23008000000002,"height":96.8256,"transform":[9.84,0,0,9.84,391.1723,622.8],"fontName":"g_d0_f4","x":391.1723,"y":622.8}
+{"str":"ce    of    fine    ","dir":"ltr","width":40.541784,"height":96.8256,"transform":[9.84,0,0,9.84,507.4174,622.8],"fontName":"g_d0_f4","x":507.4174,"y":622.8}
+{"str":"silver    wire)","dir":"ltr","width":49.410576,"height":96.8256,"transform":[9.84,0,0,9.84,337.56,611.04],"fontName":"g_d0_f4","x":337.56,"y":611.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,386.9594,611.04],"fontName":"g_d0_f4","x":386.9594,"y":611.04}
+{"str":"Duration:","dir":"ltr","width":44.37840000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,599.28],"fontName":"g_d0_f8","x":328.56,"y":599.28}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,372.8667,599.28],"fontName":"g_d0_f4","x":372.8667,"y":599.28}
+{"str":"8    hours","dir":"ltr","width":32.549736,"height":96.8256,"transform":[9.84,0,0,9.84,375.0688,599.28],"fontName":"g_d0_f4","x":375.0688,"y":599.28}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,407.5883,599.28],"fontName":"g_d0_f4","x":407.5883,"y":599.28}
+{"str":"You    set    an    alarm    against    unwanted    intrusion.    ","dir":"ltr","width":195.29448000000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,581.52],"fontName":"g_d0_f4","x":328.56,"y":581.52}
+{"str":"Choose    a    door,    a    window,    or    an    area    within    range    ","dir":"ltr","width":212.79393599999995,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,569.76],"fontName":"g_d0_f4","x":328.5601,"y":569.76}
+{"str":"that    is    no    larger    than    a    20","dir":"ltr","width":109.30567200000003,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,558],"fontName":"g_d0_f4","x":328.5601,"y":558}
+{"str":"-­‐‑","dir":"ltr","width":3.26688,"height":96.8256,"transform":[9.84,0,0,9.84,437.9155,558],"fontName":"g_d0_f4","x":437.9155,"y":558}
+{"str":"foot    cube.    Until    the    spell    ","dir":"ltr","width":105.27717600000001,"height":96.8256,"transform":[9.84,0,0,9.84,441.2358,558],"fontName":"g_d0_f4","x":441.2358,"y":558}
+{"str":"ends,    an    alarm    alerts    you    whenever    a    Tiny    or    larger    ","dir":"ltr","width":222.03369599999996,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,546.48],"fontName":"g_d0_f4","x":328.5601,"y":546.48}
+{"str":"creature    touc","dir":"ltr","width":57.055271999999995,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,534.72],"fontName":"g_d0_f4","x":328.5601,"y":534.72}
+{"str":"hes    or    enters    the    warded    area.    When    ","dir":"ltr","width":159.29188800000003,"height":96.8256,"transform":[9.84,0,0,9.84,385.6108,534.72],"fontName":"g_d0_f4","x":385.6108,"y":534.72}
+{"str":"you    cast    the    spell,    you    can    designate    creatures    that    ","dir":"ltr","width":218.36239200000006,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,522.96],"fontName":"g_d0_f4","x":328.5601,"y":522.96}
+{"str":"won’t    set    off    the    alarm.    You    also    choose    whether    the    ","dir":"ltr","width":224.35200000000003,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,511.2],"fontName":"g_d0_f4","x":328.5601,"y":511.2}
+{"str":"alarm    is    mental    or    audible.","dir":"ltr","width":113.921616,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,499.44],"fontName":"g_d0_f4","x":328.5601,"y":499.44}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,442.4322,499.44],"fontName":"g_d0_f4","x":442.4322,"y":499.44}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,487.68],"fontName":"g_d0_f4","x":328.5601,"y":487.68}
+{"str":"A    mental    alarm    alerts    you    with    a    ping    in    your    ","dir":"ltr","width":194.725728,"height":96.8256,"transform":[9.84,0,0,9.84,337.9102,487.68],"fontName":"g_d0_f4","x":337.9102,"y":487.68}
+{"str":"mind    if    you    are    within    1    mile    of    the    wa","dir":"ltr","width":164.41065599999993,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,475.92],"fontName":"g_d0_f4","x":328.5601,"y":475.92}
+{"str":"rded    area.    ","dir":"ltr","width":45.345671999999986,"height":96.8256,"transform":[9.84,0,0,9.84,492.9302,475.92],"fontName":"g_d0_f4","x":492.9302,"y":475.92}
+{"str":"This    ping    awakens    you    if    you    are    sleeping.","dir":"ltr","width":179.46979200000004,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,464.4],"fontName":"g_d0_f4","x":328.5601,"y":464.4}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,507.9888,464.4],"fontName":"g_d0_f4","x":507.9888,"y":464.4}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,452.64],"fontName":"g_d0_f4","x":328.5601,"y":452.64}
+{"str":"An    audible    alarm    produces    the    sound    of    a    hand    ","dir":"ltr","width":202.83388800000012,"height":96.8256,"transform":[9.84,0,0,9.84,337.9102,452.64],"fontName":"g_d0_f4","x":337.9102,"y":452.64}
+{"str":"bell    for    10    seconds    within    60    feet.","dir":"ltr","width":143.92475999999996,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,440.88],"fontName":"g_d0_f4","x":328.5602,"y":440.88}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,472.4908,440.88],"fontName":"g_d0_f4","x":472.4908,"y":440.88}

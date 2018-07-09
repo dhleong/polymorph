@@ -1,0 +1,67 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"Polymorph","dir":"ltr","width":57.71400000000001,"height":144,"transform":[12,0,0,12,328.5601,527.04],"fontName":"g_d0_f3","x":328.5601,"y":527.04}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,386.2749,527.04],"fontName":"g_d0_f3","x":386.2749,"y":527.04}
+{"str":"4th","dir":"ltr","width":14.038728,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,514.56],"fontName":"g_d0_f7","x":328.5601,"y":514.56}
+{"str":"-­‐‑","dir":"ltr","width":3.13896,"height":96.8256,"transform":[9.84,0,0,9.84,342.5982,514.56],"fontName":"g_d0_f7","x":342.5982,"y":514.56}
+{"str":"level    transmutation","dir":"ltr","width":81.82058400000001,"height":96.8256,"transform":[9.84,0,0,9.84,345.7867,514.56],"fontName":"g_d0_f7","x":345.7867,"y":514.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,427.647,514.56],"fontName":"g_d0_f7","x":427.647,"y":514.56}
+{"str":"Casting    Time:","dir":"ltr","width":62.511552000000016,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,496.8],"fontName":"g_d0_f8","x":328.5601,"y":496.8}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.0113,496.8],"fontName":"g_d0_f4","x":391.0113,"y":496.8}
+{"str":"1    action","dir":"ltr","width":34.07198400000001,"height":96.8256,"transform":[9.84,0,0,9.84,393.2134,496.8],"fontName":"g_d0_f4","x":393.2134,"y":496.8}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,427.2954,496.8],"fontName":"g_d0_f4","x":427.2954,"y":496.8}
+{"str":"Range:","dir":"ltr","width":31.364016000000007,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,485.04],"fontName":"g_d0_f8","x":328.5601,"y":485.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,359.8687,485.04],"fontName":"g_d0_f4","x":359.8687,"y":485.04}
+{"str":"60    feet","dir":"ltr","width":29.469816000000012,"height":96.8256,"transform":[9.84,0,0,9.84,362.0708,485.04],"fontName":"g_d0_f4","x":362.0708,"y":485.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.5142,485.04],"fontName":"g_d0_f4","x":391.5142,"y":485.04}
+{"str":"Components:","dir":"ltr","width":60.47270400000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,473.52],"fontName":"g_d0_f8","x":328.5601,"y":473.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,388.9703,473.52],"fontName":"g_d0_f4","x":388.9703,"y":473.52}
+{"str":"V,    S,    M    (a    caterpillar    cocoon)","dir":"ltr","width":121.60272000000002,"height":96.8256,"transform":[9.84,0,0,9.84,391.1724,473.52],"fontName":"g_d0_f4","x":391.1724,"y":473.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,512.7545,473.52],"fontName":"g_d0_f4","x":512.7545,"y":473.52}
+{"str":"Duration:","dir":"ltr","width":44.37840000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,461.76],"fontName":"g_d0_f8","x":328.5601,"y":461.76}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,372.8668,461.76],"fontName":"g_d0_f4","x":372.8668,"y":461.76}
+{"str":"Concentration,    up    to    1    hour","dir":"ltr","width":117.530928,"height":96.8256,"transform":[9.84,0,0,9.84,375.0689,461.76],"fontName":"g_d0_f4","x":375.0689,"y":461.76}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,492.5591,461.76],"fontName":"g_d0_f4","x":492.5591,"y":461.76}
+{"str":"This    spell    transforms    a    creature    that    you    can    see    within    ","dir":"ltr","width":227.52736799999997,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,444],"fontName":"g_d0_f4","x":328.5601,"y":444}
+{"str":"ra","dir":"ltr","width":8.60016,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,432.24],"fontName":"g_d0_f4","x":328.5602,"y":432.24}
+{"str":"nge    into    a    new    form.    An    unwilling    creature    must    ","dir":"ltr","width":208.17110399999999,"height":96.8256,"transform":[9.84,0,0,9.84,337.1788,432.24],"fontName":"g_d0_f4","x":337.1788,"y":432.24}
+{"str":"make    a    Wisdom    saving    throw    to    avoid    the    effect.    The    ","dir":"ltr","width":227.38468799999987,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,420.48],"fontName":"g_d0_f4","x":328.5602,"y":420.48}
+{"str":"s","dir":"ltr","width":4.2312,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,408.72],"fontName":"g_d0_f4","x":328.5602,"y":408.72}
+{"str":"pell    has    no    effect    on    a    shapechanger    or    a    creature    ","dir":"ltr","width":212.91004799999996,"height":96.8256,"transform":[9.84,0,0,9.84,332.857,408.72],"fontName":"g_d0_f4","x":332.857,"y":408.72}
+{"str":"with    0    hit    points.","dir":"ltr","width":72.30432,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,397.2],"fontName":"g_d0_f4","x":328.5602,"y":397.2}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,400.7672,397.2],"fontName":"g_d0_f4","x":400.7672,"y":397.2}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,385.44],"fontName":"g_d0_f4","x":328.5602,"y":385.44}
+{"str":"The    transformation    lasts    for    the    duration,    or    until    ","dir":"ltr","width":213.44731199999993,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,385.44],"fontName":"g_d0_f4","x":337.9103,"y":385.44}
+{"str":"the    target    drops    to    0    hit    points    or    dies.    The    new    form    ","dir":"ltr","width":227.77139999999997,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,373.68],"fontName":"g_d0_f4","x":328.5602,"y":373.68}
+{"str":"can    be    any    beast    whose    challenge    rating    is    equal    to    ","dir":"ltr","width":218.95180799999997,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,361.92],"fontName":"g_d0_f4","x":328.5602,"y":361.92}
+{"str":"or    less    than    the    target’s    ","dir":"ltr","width":101.93649599999999,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,350.16],"fontName":"g_d0_f4","x":328.5602,"y":350.16}
+{"str":"(or    the    target’s    level,    if    it    ","dir":"ltr","width":106.64591999999999,"height":96.8256,"transform":[9.84,0,0,9.84,430.4596,350.16],"fontName":"g_d0_f4","x":430.4596,"y":350.16}
+{"str":"doesn’t    have    a    challenge    rating).    The    target’s    game    ","dir":"ltr","width":217.57617600000003,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,338.4],"fontName":"g_d0_f4","x":328.5602,"y":338.4}
+{"str":"statistics,    including    mental    ability    scores,    are    ","dir":"ltr","width":193.171992,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,326.64],"fontName":"g_d0_f4","x":328.5602,"y":326.64}
+{"str":"replaced    by    the    statistics    of    the    chosen    beast.    It    ","dir":"ltr","width":202.66759199999996,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,315.12],"fontName":"g_d0_f4","x":328.5602,"y":315.12}
+{"str":"retains    its    alignment    and    personality.","dir":"ltr","width":158.90025600000004,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,303.36],"fontName":"g_d0_f4","x":328.5602,"y":303.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,487.4469,303.36],"fontName":"g_d0_f4","x":487.4469,"y":303.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,291.6],"fontName":"g_d0_f4","x":328.5602,"y":291.6}
+{"str":"The    target    assumes    the    hit    points    ","dir":"ltr","width":144.04382400000003,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,291.6],"fontName":"g_d0_f4","x":337.9103,"y":291.6}
+{"str":"of    its    new    form.    ","dir":"ltr","width":68.681232,"height":96.8256,"transform":[9.84,0,0,9.84,481.9142,291.6],"fontName":"g_d0_f4","x":481.9142,"y":291.6}
+{"str":"When    it    reverts    to    its    normal    form,    the    creature    ","dir":"ltr","width":204.89438399999995,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,279.84],"fontName":"g_d0_f4","x":328.5602,"y":279.84}
+{"str":"returns    to    the    number    of    hit    points    it    had    before    it    ","dir":"ltr","width":215.38677599999988,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,268.08],"fontName":"g_d0_f4","x":328.5602,"y":268.08}
+{"str":"transformed.    If    it    reverts    as    a    result    of    dropping    to    0    ","dir":"ltr","width":223.903296,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,256.32],"fontName":"g_d0_f4","x":328.5602,"y":256.32}
+{"str":"hit    points,    any    excess    damage    carries    over    to    its    ","dir":"ltr","width":205.08528,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,244.8],"fontName":"g_d0_f4","x":328.5602,"y":244.8}
+{"str":"normal    form.    As    long    as    the    exc","dir":"ltr","width":133.15684799999997,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,233.04],"fontName":"g_d0_f4","x":328.5602,"y":233.04}
+{"str":"ess    damage    doesn’t    ","dir":"ltr","width":84.79423200000002,"height":96.8256,"transform":[9.84,0,0,9.84,461.7096,233.04],"fontName":"g_d0_f4","x":461.7096,"y":233.04}
+{"str":"reduce    the    creature’s    normal    form    to    0    hit    points,    it    ","dir":"ltr","width":220.62460799999994,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,221.28],"fontName":"g_d0_f4","x":328.5602,"y":221.28}
+{"str":"isn’t    knocked    unconscious.","dir":"ltr","width":113.92555200000005,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,209.52],"fontName":"g_d0_f4","x":328.5602,"y":209.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,442.4909,209.52],"fontName":"g_d0_f4","x":442.4909,"y":209.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,197.76],"fontName":"g_d0_f4","x":328.5602,"y":197.76}
+{"str":"The    creature    is    limited    in    the    actions    it    can    ","dir":"ltr","width":183.706896,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,197.76],"fontName":"g_d0_f4","x":337.9103,"y":197.76}
+{"str":"perform    by    the    nature    of    its    new    form,    and    it    can’t    ","dir":"ltr","width":214.79145599999998,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,186],"fontName":"g_d0_f4","x":328.5602,"y":186}
+{"str":"speak,    cast    spells,    or    take    any    other    action    that    ","dir":"ltr","width":200.35223999999997,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,174.24],"fontName":"g_d0_f4","x":328.5602,"y":174.24}
+{"str":"require","dir":"ltr","width":31.784184,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,162.72],"fontName":"g_d0_f4","x":328.5602,"y":162.72}
+{"str":"s    hands    or    speech.","dir":"ltr","width":77.810784,"height":96.8256,"transform":[9.84,0,0,9.84,360.3571,162.72],"fontName":"g_d0_f4","x":360.3571,"y":162.72}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,438.1208,162.72],"fontName":"g_d0_f4","x":438.1208,"y":162.72}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,150.96],"fontName":"g_d0_f4","x":328.5602,"y":150.96}
+{"str":"The    target’s    gear    melds    into    the    new    form.    The    ","dir":"ltr","width":201.06859199999997,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,150.96],"fontName":"g_d0_f4","x":337.9103,"y":150.96}
+{"str":"creature    can’t    activate,    use,    wield,    or    otherwise    ","dir":"ltr","width":202.69416,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,139.2],"fontName":"g_d0_f4","x":328.5602,"y":139.2}
+{"str":"benefit    from    any    of    its    equipment.","dir":"ltr","width":144.53188799999992,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,127.44],"fontName":"g_d0_f4","x":328.5602,"y":127.44}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,473.0817,127.44],"fontName":"g_d0_f4","x":473.0817,"y":127.44}
