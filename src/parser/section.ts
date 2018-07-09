@@ -5,6 +5,7 @@ import { SpellPart } from './spell-part';
 import { StringPart } from './string-part';
 import { TablePart } from './table-part';
 import {
+    nearlyMatch,
     stringIsOnlyWhitespace,
     TABLE_HEADER_FONT_NAME,
 } from './utils';
@@ -120,7 +121,7 @@ export class Section implements ISection {
     }
 
     pushString(item: ITextItem) {
-        const partToContinue = this.extractStringPartToContinueFor(item.str);
+        const partToContinue = this.extractStringPartToContinueFor(item);
         if (partToContinue) {
             partToContinue.append(item);
             return;
@@ -170,9 +171,10 @@ export class Section implements ISection {
         }
     }
 
-    private extractStringPartToContinueFor(str: string): StringPart {
+    private extractStringPartToContinueFor(item: ITextItem): StringPart {
         if (!this.parts.length) return;
 
+        const str = item.str;
         if (str.startsWith('•')) {
             // bulleted list always gets a new part
             return;
@@ -208,6 +210,52 @@ export class Section implements ISection {
             // don't continue, and remove the whitespace
             this.parts.pop();
             return;
+        }
+
+        // if (nearlyMatch(beforeLast.x, item.x)) {
+        //     console.log(beforeLast.str, ' -> ', item.str,
+        //         ';', beforeLast.y, item.y);
+        // }
+
+        if (nearlyMatch(beforeLast.x, item.x)
+            && !nearlyMatch(beforeLast.y, item.y)) {
+            // new line, probably a list
+            return;
+
+        } else if (
+            beforeLast.x < item.x
+            && beforeLast.y < item.y
+            && this.parts.length > 2
+        ) {
+            // possibly new column in list
+            const wayBeforeLast = this.parts[this.parts.length - 2];
+            if (wayBeforeLast instanceof StringPart
+                && nearlyMatch(wayBeforeLast.x, beforeLast.x)
+                && wayBeforeLast.y > beforeLast.y
+            ) {
+                // yep, this looks like a list
+                return;
+            }
+
+        } else if (
+            beforeLast.x > item.x
+            && beforeLast.y < item.y
+            && this.parts.length >= 2
+        ) {
+            if (this.parts.length <= 2) {
+                // only one item
+                return;
+            }
+
+            // possibly new PAGE in list
+            const wayBeforeLast = this.parts[this.parts.length - 2];
+            if (wayBeforeLast instanceof StringPart
+                && nearlyMatch(wayBeforeLast.x, beforeLast.x)
+                && wayBeforeLast.y > beforeLast.y
+            ) {
+                // yep, this looks like a list
+                return;
+            }
         }
 
         // continue the non-whitespace-only

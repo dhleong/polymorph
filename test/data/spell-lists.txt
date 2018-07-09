@@ -1,0 +1,75 @@
+{"str":"Spell Lists","dir":"ltr","width":78.30180000000001,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,135.9017,697.2],"fontName":"g_d0_f3","x":135.9017,"y":697.2}
+{"str":"Bard Spells","dir":"ltr","width":67.95048,"height":193.7664,"transform":[13.92,0,0,13.92,57.6,679.68],"fontName":"g_d0_f3","x":57.6,"y":679.68}
+{"str":" ","dir":"ltr","width":3.8697600000000003,"height":193.7664,"transform":[13.92,0,0,13.92,125.5355,679.68],"fontName":"g_d0_f3","x":125.5355,"y":679.68}
+{"str":"Cantrips (0 Level)","dir":"ltr","width":94.14719999999998,"height":144,"transform":[12,0,0,12,57.6,653.28],"fontName":"g_d0_f3","x":57.6,"y":653.28}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,151.7484,653.28],"fontName":"g_d0_f3","x":151.7484,"y":653.28}
+{"str":"Dancing    Lights","dir":"ltr","width":63.32630400000002,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,640.56],"fontName":"g_d0_f4","x":57.6,"y":640.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,120.8764,640.56],"fontName":"g_d0_f4","x":120.8764,"y":640.56}
+{"str":"Light","dir":"ltr","width":22.00716,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,629.04],"fontName":"g_d0_f4","x":57.6,"y":629.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,79.5873,629.04],"fontName":"g_d0_f4","x":79.5873,"y":629.04}
+{"str":"Mage    Hand","dir":"ltr","width":47.963111999999995,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,617.28],"fontName":"g_d0_f4","x":57.6,"y":617.28}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,105.5346,617.28],"fontName":"g_d0_f4","x":105.5346,"y":617.28}
+{"str":"Mending","dir":"ltr","width":37.50909600000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,605.52],"fontName":"g_d0_f4","x":57.6,"y":605.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,95.06094,605.52],"fontName":"g_d0_f4","x":95.06094,"y":605.52}
+{"str":"Message","dir":"ltr","width":36.377496,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,593.76],"fontName":"g_d0_f4","x":57.6,"y":593.76}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,93.92812,593.76],"fontName":"g_d0_f4","x":93.92812,"y":593.76}
+{"str":"Minor    Illusion","dir":"ltr","width":60.366432,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,582],"fontName":"g_d0_f4","x":57.6,"y":582}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,117.9174,582],"fontName":"g_d0_f4","x":117.9174,"y":582}
+{"str":"Prestidigitation","dir":"ltr","width":66.51446399999999,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,570.24],"fontName":"g_d0_f4","x":57.6,"y":570.24}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,124.1137,570.24],"fontName":"g_d0_f4","x":124.1137,"y":570.24}
+{"str":"True    Strike","dir":"ltr","width":48.062495999999996,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,558.48],"fontName":"g_d0_f4","x":57.6,"y":558.48}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,105.6469,558.48],"fontName":"g_d0_f4","x":105.6469,"y":558.48}
+{"str":"Vicious    Mockery","dir":"ltr","width":70.49868000000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,546.96],"fontName":"g_d0_f4","x":57.6,"y":546.96}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,128.098,546.96],"fontName":"g_d0_f4","x":128.098,"y":546.96}
+{"str":"1st Level","dir":"ltr","width":46.6464,"height":144,"transform":[12,0,0,12,57.6,524.4],"fontName":"g_d0_f3","x":57.6,"y":524.4}
+{"str":" ","dir":"ltr","width":2.73552,"height":96.8256,"transform":[9.84,0,0,9.84,104.2699,524.4],"fontName":"g_d0_f3","x":104.2699,"y":524.4}
+{"str":"Animal    Friendship","dir":"ltr","width":79.13721600000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,511.92],"fontName":"g_d0_f4","x":57.6,"y":511.92}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,136.7504,511.92],"fontName":"g_d0_f4","x":136.7504,"y":511.92}
+{"str":"Bane","dir":"ltr","width":21.482688000000003,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,500.16],"fontName":"g_d0_f4","x":57.6,"y":500.16}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,79.05508,500.16],"fontName":"g_d0_f4","x":79.05508,"y":500.16}
+{"str":"Charm    Person","dir":"ltr","width":60.56716800000002,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,488.4],"fontName":"g_d0_f4","x":57.6,"y":488.4}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,118.1615,488.4],"fontName":"g_d0_f4","x":118.1615,"y":488.4}
+{"str":"Comprehend    Languages","dir":"ltr","width":102.89688000000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,476.64],"fontName":"g_d0_f4","x":57.6,"y":476.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,160.4467,476.64],"fontName":"g_d0_f4","x":160.4467,"y":476.64}
+{"str":"Magic    Mouth","dir":"ltr","width":55.288008000000005,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,101.52],"fontName":"g_d0_f4","x":57.6,"y":101.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,112.8539,101.52],"fontName":"g_d0_f4","x":112.8539,"y":101.52}
+{"str":"See    Invisibility","dir":"ltr","width":62.791008000000026,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,710.64],"fontName":"g_d0_f4","x":328.56,"y":710.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.3627,710.64],"fontName":"g_d0_f4","x":391.3627,"y":710.64}
+{"str":"Dispel    Ma","dir":"ltr","width":42.101424,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,605.28],"fontName":"g_d0_f4","x":328.56,"y":605.28}
+{"str":"gic","dir":"ltr","width":12.138624,"height":96.8256,"transform":[9.84,0,0,9.84,370.645,605.28],"fontName":"g_d0_f4","x":370.645,"y":605.28}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,382.7739,605.28],"fontName":"g_d0_f4","x":382.7739,"y":605.28}
+{"str":"Fear","dir":"ltr","width":19.278528,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,593.52],"fontName":"g_d0_f4","x":328.56,"y":593.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,347.8227,593.52],"fontName":"g_d0_f4","x":347.8227,"y":593.52}
+{"str":"Glyph    of    Warding","dir":"ltr","width":74.762352,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,581.76],"fontName":"g_d0_f4","x":328.5601,"y":581.76}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,403.3208,581.76],"fontName":"g_d0_f4","x":403.3208,"y":581.76}
+{"str":"Hypnotic    Pattern","dir":"ltr","width":73.04428800000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,570],"fontName":"g_d0_f4","x":328.5601,"y":570}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,401.6118,570],"fontName":"g_d0_f4","x":401.6118,"y":570}
+{"str":"6th Level","dir":"ltr","width":48.314400000000006,"height":144,"transform":[12,0,0,12,328.5602,114],"fontName":"g_d0_f3","x":328.5602,"y":114}
+{"str":" ","dir":"ltr","width":2.73552,"height":96.8256,"transform":[9.84,0,0,9.84,376.8766,114],"fontName":"g_d0_f3","x":376.8766,"y":114}
+{"str":"Eyebite","dir":"ltr","width":32.20140000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,101.52],"fontName":"g_d0_f4","x":328.5602,"y":101.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,360.7428,101.52],"fontName":"g_d0_f4","x":360.7428,"y":101.52}
+{"str":"Not    for    resale.    Permission    granted    to    print    or    photocopy    this    document    for    personal    use    only","dir":"ltr","width":298.30679999999995,"height":62.7264,"transform":[7.92,0,0,7.92,57.6,31.92002],"fontName":"g_d0_f1","x":57.6,"y":31.92002}
+{"str":".","dir":"ltr","width":2.47968,"height":96.8256,"transform":[9.84,0,0,9.84,356.0804,31.92002],"fontName":"g_d0_f1","x":356.0804,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.22384,"height":96.8256,"transform":[9.84,0,0,9.84,358.6049,31.92002],"fontName":"g_d0_f2","x":358.6049,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,360.8656,31.92002],"fontName":"g_d0_f2","x":360.8656,"y":31.92002}
+{"str":"System    Reference    ","dir":"ltr","width":82.8036,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,381.6,31.92002],"fontName":"g_d0_f2","x":381.6,"y":31.92002}
+{"str":"Document    5.1","dir":"ltr","width":63.149760000000015,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,464.3417,31.92002],"fontName":"g_d0_f2","x":464.3417,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,527.4789,31.92002],"fontName":"g_d0_f2","x":527.4789,"y":31.92002}
+{"str":" ","dir":"ltr","width":3.0024,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,552.6,31.92002],"fontName":"g_d0_f3","x":552.6,"y":31.92002}
+{"str":"106","dir":"ltr","width":17.41824,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,561.6,31.92002],"fontName":"g_d0_f3","x":561.6,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,579.0184,31.92002],"fontName":"g_d0_f2","x":579.0184,"y":31.92002}
+{"str":"Find    the    Path","dir":"ltr","width":56.903736,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,710.64],"fontName":"g_d0_f4","x":57.6,"y":710.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,114.5189,710.64],"fontName":"g_d0_f4","x":114.5189,"y":710.64}
+{"str":"Guards    and    Wards","dir":"ltr","width":78.99355200000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,698.88],"fontName":"g_d0_f4","x":57.6,"y":698.88}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,136.5844,698.88],"fontName":"g_d0_f4","x":136.5844,"y":698.88}
+{"str":"Cleric Spells","dir":"ltr","width":75.514608,"height":193.7664,"transform":[13.92,0,0,13.92,57.6,349.68],"fontName":"g_d0_f3","x":57.6,"y":349.68}
+{"str":" ","dir":"ltr","width":3.8697600000000003,"height":193.7664,"transform":[13.92,0,0,13.92,133.0892,349.68],"fontName":"g_d0_f3","x":133.0892,"y":349.68}
+{"str":"Cantrips (0 Level)","dir":"ltr","width":94.14719999999998,"height":144,"transform":[12,0,0,12,57.6,323.52],"fontName":"g_d0_f3","x":57.6,"y":323.52}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,151.7484,323.52],"fontName":"g_d0_f3","x":151.7484,"y":323.52}
+{"str":"Guidance","dir":"ltr","width":39.70833600000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,310.8],"fontName":"g_d0_f4","x":57.6,"y":310.8}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,97.30703,310.8],"fontName":"g_d0_f4","x":97.30703,"y":310.8}
+{"str":"Light","dir":"ltr","width":22.00716,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,299.04],"fontName":"g_d0_f4","x":57.6,"y":299.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,79.5873,299.04],"fontName":"g_d0_f4","x":79.5873,"y":299.04}
+{"str":"Mending","dir":"ltr","width":37.50909600000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,287.28],"fontName":"g_d0_f4","x":57.6,"y":287.28}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,95.06094,287.28],"fontName":"g_d0_f4","x":95.06094,"y":287.28}

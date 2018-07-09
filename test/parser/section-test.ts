@@ -2,7 +2,7 @@ import * as chai from 'chai';
 
 import { FormatSpan, Formatting, Section, TablePart } from '../../src/parser';
 import { StringPart } from '../../src/parser/string-part';
-import { loadTextItems, tableSection, textItem } from '../test-utils';
+import { loadTextItems, parsePage, tableSection, textItem } from '../test-utils';
 
 chai.should();
 
@@ -322,6 +322,57 @@ describe('Section', () => {
         table.headers.should.deep.equal([
             ['Creating Spell Slots'],
             ['Spell Slot Level', 'Sorcery Point Cost'],
+        ]);
+    });
+});
+
+describe('Spell List Section', () => {
+    function listItems(section: Section): string[] {
+        return section.parts.map(it =>
+            (it as StringPart).str,
+        ).filter(it => it !== '');
+    }
+
+    it('works', async () => {
+        const items = await loadTextItems('spell-lists.txt');
+        const sections = parsePage(items);
+
+        sections[0].getHeader().should.equal('Spell Lists');
+        sections[1].getHeader().should.equal('Bard Spells');
+        sections[2].getHeader().should.equal('Cantrips (0 Level)');
+
+        const cantrips = listItems(sections[3]);
+        cantrips.should.have.lengthOf(9, JSON.stringify(cantrips));
+
+        sections[4].getHeader().should.equal('1st Level');
+        const firstLevel = listItems(sections[5]);
+        firstLevel.should.deep.equal([
+            'Animal Friendship', 'Bane', 'Charm Person',
+            'Comprehend Languages',
+
+            // NOTE these are actually 2nd level spells, but
+            // Magic Mouth lines up with the others;
+            // See Invisibility is on the next column
+            'Magic Mouth',
+            'See Invisibility',
+
+            // NOTE: these are 3rd level spells that line up with
+            // See Invisibility; their xs are slightly off and
+            // have spaces. (Dispel Magic was put together correctly)
+            // but I'm including it just in case
+            'Dispel Magic',
+            'Fear',
+            'Glyph of Warding',
+            'Hypnotic Pattern',
+        ]);
+
+        sections[6].getHeader().should.equal('6th Level');
+        const sixthLevel = listItems(sections[7]);
+        sixthLevel.should.deep.equal([
+            // NOTE: Eyebite is the last entry on its page;
+            'Eyebite',
+            'Find the Path',
+            'Guards and Wards',
         ]);
     });
 });
