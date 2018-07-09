@@ -1,5 +1,6 @@
 
 import { IFormatter } from '../formatter';
+import { StringPart } from '../parser';
 import {
     ISection,
     ISpellPart,
@@ -25,8 +26,12 @@ const spellSchoolKeyword = {
 
 function nameToId(name: string): string {
     return name.toLowerCase()
-        .replace(/^ \/a-z/, '')
-        .replace(/[^a-z]+/, '-');
+        .replace(/^ \/a-z/g, '')
+        .replace(/[^a-z]+/g, '-');
+}
+
+function spellId(name: string): string {
+    return 'spells/' + nameToId(name);
 }
 
 /**
@@ -74,14 +79,39 @@ function stringifyInfo(info: Part[]): string {
 export class WishFormatter implements IFormatter {
 
     private spells: {[key: string]: IWishSpellPart} = {};
+    private lists: {[key: string]: string[]} = {};
+
+    private currentHeader = '';
+    private currentSpellList = '';
 
     constructor(
         readonly output: NodeJS.WriteStream,
     ) {}
 
     async format(section: ISection) {
-        // if (section.getHeader(fals
-        // TODO categorize by spell lists?
+
+        if (section.level === 1) {
+            this.currentHeader = section.getHeader(false);
+        }
+
+        // prep to categorize by spell lists:
+        if (this.currentHeader === 'Spell Lists') {
+            const header = section.getHeader(false);
+            if (header.endsWith(' Spells')) {
+                this.currentSpellList = nameToId(
+                    header.substring(0, header.indexOf(' ')),
+                );
+                this.lists[this.currentSpellList] = [];
+
+            } else if (section.level === 5) {
+                for (const part of section.parts) {
+                    const name = (part as StringPart).str;
+                    if (name.length) {
+                        this.lists[this.currentSpellList].push(spellId(name));
+                    }
+                }
+            }
+        }
 
         for (const part of section.parts) {
             switch (part.type) {
@@ -97,7 +127,7 @@ export class WishFormatter implements IFormatter {
             console.warn('No name for spell:', spell);
             return;
         }
-        const id = nameToId(spell.name);
+        const id = spellId(spell.name);
         if (this.spells[id]) {
             throw new Error(`Duplicated spell id: ${id}`);
         }
@@ -110,7 +140,7 @@ export class WishFormatter implements IFormatter {
     async end() {
         this.output.write(`
 [:!add-to-list
- {:id :all-spells-list
+ {:id :all-spells
   :type :5e/spell}
 
  [
@@ -147,6 +177,24 @@ export class WishFormatter implements IFormatter {
         }
 
         this.output.write(` ]\n]`);
+
+        console.log(this.lists);
+
+        for (const listId of Object.keys(this.lists)) {
+            this.output.write(`
+[:!add-to-list
+
+ {:id :${listId}/spells-list
+  :type :5e/spell}
+
+ [`);
+
+            for (const theSpellId of this.lists[listId]) {
+                this.output.write(`:${theSpellId}\n  `);
+            }
+
+            this.output.write(` ]\n]`);
+        }
 
         console.log(`Exported ${Object.keys(this.spells).length} spells`);
     }
