@@ -85,7 +85,7 @@ function formatComponents(raw: string): string {
 }
 
 function stringifyInfo(info: Part[]): string {
-    return info.toString(); // FIXME
+    return info.map(it => it.toString()).join('\n');
 }
 
 export function generateDiceFn(dice: ISpellDice, spellLevel: number): string {
