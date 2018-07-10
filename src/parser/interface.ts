@@ -62,6 +62,15 @@ export enum Size {
     Gargantuan,
 }
 
+export enum Ability {
+    Str,
+    Dex,
+    Con,
+    Int,
+    Wis,
+    Cha,
+}
+
 export interface IAbilities {
     str: number;
     dex: number;
@@ -101,6 +110,11 @@ export interface ICreaturePart extends IPart {
     info: IStringPart[];
 }
 
+export enum SpellAttackType {
+    Melee,
+    Ranged,
+}
+
 export enum SpellSchool {
     Abjuration,
     Conjuration,
@@ -110,6 +124,27 @@ export enum SpellSchool {
     Illusion,
     Necromancy,
     Transmutation,
+}
+
+export interface ISpellDice {
+    base?: string;
+
+    /** If any, how the spell scales with slot level expended */
+    slotLevelBuff?: string;
+
+    /**
+     * If any, how the spell scales with character level
+     * (added once each at 5th, 11th, and 17th)
+     */
+    charLevelBuff?: string;
+
+    save?: Ability;
+
+    /** If non-null, indicates the type of damage this spell does, if any */
+    damageType?: string;
+
+    /** If non-null, indicates spell attack type */
+    attackType?: SpellAttackType;
 }
 
 export interface ISpellPart extends IPart {
@@ -123,6 +158,8 @@ export interface ISpellPart extends IPart {
     components: string;
     duration: string;
     info: Part[];
+
+    dice?: ISpellDice;
 }
 
 export interface IStringPart extends IPart {

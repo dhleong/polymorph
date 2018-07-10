@@ -1,0 +1,35 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"Fire Bolt","dir":"ltr","width":45.7692,"height":144,"transform":[12,0,0,12,328.5601,547.44],"fontName":"g_d0_f3","x":328.5601,"y":547.44}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,374.3335,547.44],"fontName":"g_d0_f3","x":374.3335,"y":547.44}
+{"str":"Evocation    cantrip","dir":"ltr","width":74.15620799999999,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,534.96],"fontName":"g_d0_f7","x":328.5601,"y":534.96}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,402.73,534.96],"fontName":"g_d0_f7","x":402.73,"y":534.96}
+{"str":"Casting    Time:","dir":"ltr","width":62.511552000000016,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,517.2],"fontName":"g_d0_f8","x":328.5601,"y":517.2}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.0113,517.2],"fontName":"g_d0_f4","x":391.0113,"y":517.2}
+{"str":"1    action","dir":"ltr","width":34.07198400000001,"height":96.8256,"transform":[9.84,0,0,9.84,393.2134,517.2],"fontName":"g_d0_f4","x":393.2134,"y":517.2}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,427.2954,517.2],"fontName":"g_d0_f4","x":427.2954,"y":517.2}
+{"str":"Range:","dir":"ltr","width":31.364016000000007,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,505.44],"fontName":"g_d0_f8","x":328.5601,"y":505.44}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,359.8687,505.44],"fontName":"g_d0_f4","x":359.8687,"y":505.44}
+{"str":"120    feet","dir":"ltr","width":35.00678400000001,"height":96.8256,"transform":[9.84,0,0,9.84,362.0708,505.44],"fontName":"g_d0_f4","x":362.0708,"y":505.44}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,397.0513,505.44],"fontName":"g_d0_f4","x":397.0513,"y":505.44}
+{"str":"Compone","dir":"ltr","width":43.347168,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,493.68],"fontName":"g_d0_f8","x":328.5601,"y":493.68}
+{"str":"nts:","dir":"ltr","width":17.123568,"height":96.8256,"transform":[9.84,0,0,9.84,371.8951,493.68],"fontName":"g_d0_f8","x":371.8951,"y":493.68}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,388.9702,493.68],"fontName":"g_d0_f4","x":388.9702,"y":493.68}
+{"str":"V,    S","dir":"ltr","width":15.253967999999999,"height":96.8256,"transform":[9.84,0,0,9.84,391.1724,493.68],"fontName":"g_d0_f4","x":391.1724,"y":493.68}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,406.4214,493.68],"fontName":"g_d0_f4","x":406.4214,"y":493.68}
+{"str":"Duration:","dir":"ltr","width":44.37840000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,481.92],"fontName":"g_d0_f8","x":328.5601,"y":481.92}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,372.8668,481.92],"fontName":"g_d0_f4","x":372.8668,"y":481.92}
+{"str":"Instantaneous","dir":"ltr","width":60.81611999999999,"height":96.8256,"transform":[9.84,0,0,9.84,375.0689,481.92],"fontName":"g_d0_f4","x":375.0689,"y":481.92}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,435.8892,481.92],"fontName":"g_d0_f4","x":435.8892,"y":481.92}
+{"str":"You    hurl    a    mote    of    fire    at    a    creature    or    object    within    ","dir":"ltr","width":223.55496000000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,470.4],"fontName":"g_d0_f4","x":328.5601,"y":470.4}
+{"str":"range.    Make    a    ranged    spell    attack    against    the    target.    ","dir":"ltr","width":222.8287679999999,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,458.64],"fontName":"g_d0_f4","x":328.5601,"y":458.64}
+{"str":"On    a    hit,    the    target    takes    1d10    fire    damage.    A    ","dir":"ltr","width":193.6147919999999,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,446.88],"fontName":"g_d0_f4","x":328.5602,"y":446.88}
+{"str":"flammable    object    hit    by    this    spell    ignites    if    it    isn't    ","dir":"ltr","width":210.74819999999994,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,435.12],"fontName":"g_d0_f4","x":328.5602,"y":435.12}
+{"str":"being    worn    ","dir":"ltr","width":50.87575199999999,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,423.36],"fontName":"g_d0_f4","x":328.5602,"y":423.36}
+{"str":"or    carried.","dir":"ltr","width":44.510256000000005,"height":96.8256,"transform":[9.84,0,0,9.84,379.3853,423.36],"fontName":"g_d0_f4","x":379.3853,"y":423.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,423.8482,423.36],"fontName":"g_d0_f4","x":423.8482,"y":423.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,411.6],"fontName":"g_d0_f4","x":328.5602,"y":411.6}
+{"str":"This    spell's    damage    increases    by    1d10    when    you    ","dir":"ltr","width":208.83235199999993,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,411.6],"fontName":"g_d0_f4","x":337.9103,"y":411.6}
+{"str":"reach    5th    level    (2d10),    11th    level    (3d10),    and    17th    ","dir":"ltr","width":218.11934399999996,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,399.84],"fontName":"g_d0_f4","x":328.5602,"y":399.84}
+{"str":"level    (4d10).","dir":"ltr","width":54.29416799999999,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,388.32],"fontName":"g_d0_f4","x":328.5602,"y":388.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,382.8327,388.32],"fontName":"g_d0_f4","x":382.8327,"y":388.32}

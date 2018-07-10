@@ -1,0 +1,83 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"Disintegrate","dir":"ltr","width":64.50120000000001,"height":144,"transform":[12,0,0,12,328.5602,142.8],"fontName":"g_d0_f3","x":328.5602,"y":142.8}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,393.0661,142.8],"fontName":"g_d0_f3","x":393.0661,"y":142.8}
+{"str":"6th","dir":"ltr","width":14.038728,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,130.08],"fontName":"g_d0_f7","x":328.5602,"y":130.08}
+{"str":"-­‐‑","dir":"ltr","width":3.13896,"height":96.8256,"transform":[9.84,0,0,9.84,342.5983,130.08],"fontName":"g_d0_f7","x":342.5983,"y":130.08}
+{"str":"level    transmutation","dir":"ltr","width":81.82058400000001,"height":96.8256,"transform":[9.84,0,0,9.84,345.7868,130.08],"fontName":"g_d0_f7","x":345.7868,"y":130.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,427.6471,130.08],"fontName":"g_d0_f7","x":427.6471,"y":130.08}
+{"str":"Casting    Time:","dir":"ltr","width":62.511552000000016,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,112.56],"fontName":"g_d0_f8","x":328.5602,"y":112.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.0114,112.56],"fontName":"g_d0_f4","x":391.0114,"y":112.56}
+{"str":"1    action","dir":"ltr","width":34.07198400000001,"height":96.8256,"transform":[9.84,0,0,9.84,393.2136,112.56],"fontName":"g_d0_f4","x":393.2136,"y":112.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,427.2956,112.56],"fontName":"g_d0_f4","x":427.2956,"y":112.56}
+{"str":"Range:","dir":"ltr","width":31.364016000000007,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,100.8],"fontName":"g_d0_f8","x":328.5602,"y":100.8}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,359.8688,100.8],"fontName":"g_d0_f4","x":359.8688,"y":100.8}
+{"str":"60    feet","dir":"ltr","width":29.469816000000012,"height":96.8256,"transform":[9.84,0,0,9.84,362.071,100.8],"fontName":"g_d0_f4","x":362.071,"y":100.8}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.5143,100.8],"fontName":"g_d0_f4","x":391.5143,"y":100.8}
+{"str":"Not    for    resale.    Permission    granted    to    print    or    photocopy    this    document    for    personal    use    only","dir":"ltr","width":298.30679999999995,"height":62.7264,"transform":[7.92,0,0,7.92,57.6,31.92002],"fontName":"g_d0_f1","x":57.6,"y":31.92002}
+{"str":".","dir":"ltr","width":2.47968,"height":96.8256,"transform":[9.84,0,0,9.84,356.0804,31.92002],"fontName":"g_d0_f1","x":356.0804,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.22384,"height":96.8256,"transform":[9.84,0,0,9.84,358.6049,31.92002],"fontName":"g_d0_f2","x":358.6049,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,360.8656,31.92002],"fontName":"g_d0_f2","x":360.8656,"y":31.92002}
+{"str":"System    Reference    ","dir":"ltr","width":82.8036,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,381.6,31.92002],"fontName":"g_d0_f2","x":381.6,"y":31.92002}
+{"str":"Document    5.1","dir":"ltr","width":63.149760000000015,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,464.3417,31.92002],"fontName":"g_d0_f2","x":464.3417,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,527.4789,31.92002],"fontName":"g_d0_f2","x":527.4789,"y":31.92002}
+{"str":" ","dir":"ltr","width":3.0024,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,552.6,31.92002],"fontName":"g_d0_f3","x":552.6,"y":31.92002}
+{"str":"136","dir":"ltr","width":17.41824,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,561.6,31.92002],"fontName":"g_d0_f3","x":561.6,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,579.0184,31.92002],"fontName":"g_d0_f2","x":579.0184,"y":31.92002}
+{"str":"Components:","dir":"ltr","width":60.47270400000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,710.64],"fontName":"g_d0_f8","x":57.6,"y":710.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,118.0102,710.64],"fontName":"g_d0_f4","x":118.0102,"y":710.64}
+{"str":"V,    S,    M    (a    lodestone    and    a    pinch    of    ","dir":"ltr","width":146.741952,"height":96.8256,"transform":[9.84,0,0,9.84,120.2123,710.64],"fontName":"g_d0_f4","x":120.2123,"y":710.64}
+{"str":"dust)","dir":"ltr","width":22.597559999999998,"height":96.8256,"transform":[9.84,0,0,9.84,66.6,698.88],"fontName":"g_d0_f4","x":66.6,"y":698.88}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,89.16836,698.88],"fontName":"g_d0_f4","x":89.16836,"y":698.88}
+{"str":"Duration:","dir":"ltr","width":44.37840000000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,687.12],"fontName":"g_d0_f8","x":57.6,"y":687.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,101.9066,687.12],"fontName":"g_d0_f4","x":101.9066,"y":687.12}
+{"str":"Instantaneous","dir":"ltr","width":60.81611999999999,"height":96.8256,"transform":[9.84,0,0,9.84,104.1088,687.12],"fontName":"g_d0_f4","x":104.1088,"y":687.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,164.9291,687.12],"fontName":"g_d0_f4","x":164.9291,"y":687.12}
+{"str":"A    thin    green    ray    springs    from    your    pointing    finger    to    ","dir":"ltr","width":226.367232,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,669.36],"fontName":"g_d0_f4","x":57.6,"y":669.36}
+{"str":"a    target    that    you    can    see    within    range.    The    target    can    ","dir":"ltr","width":227.80583999999996,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,657.84],"fontName":"g_d0_f4","x":57.6,"y":657.84}
+{"str":"be    a    creature,    an    object,    or    a    creation    of    magical    ","dir":"ltr","width":205.11775199999983,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,646.08],"fontName":"g_d0_f4","x":57.6,"y":646.08}
+{"str":"force,    such    as    the    wall    created    by    ","dir":"ltr","width":142.62587999999997,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,634.32],"fontName":"g_d0_f4","x":57.6,"y":634.32}
+{"str":"wall    of    force.","dir":"ltr","width":53.309184,"height":96.8256,"transform":[9.84,0,0,9.84,200.2123,634.32],"fontName":"g_d0_f7","x":200.2123,"y":634.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,253.435,634.32],"fontName":"g_d0_f4","x":253.435,"y":634.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,622.56],"fontName":"g_d0_f4","x":57.6,"y":622.56}
+{"str":"A    creature    targeted    by    this    spell    must    make    a","dir":"ltr","width":192.49992000000003,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,622.56],"fontName":"g_d0_f4","x":66.9501,"y":622.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,259.4403,622.56],"fontName":"g_d0_f4","x":259.4403,"y":622.56}
+{"str":"Dexterity    saving    throw.    On    a    failed    save,    the    target    ","dir":"ltr","width":216.83620799999994,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,610.8],"fontName":"g_d0_f4","x":57.6,"y":610.8}
+{"str":"takes    10d6    +    40    force    damage.    If    this    damage    ","dir":"ltr","width":194.26619999999997,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,599.04],"fontName":"g_d0_f4","x":57.6,"y":599.04}
+{"str":"reduces    the    target    to    0    hit    points,    it    is    disintegrated.","dir":"ltr","width":220.000752,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,587.52],"fontName":"g_d0_f4","x":57.6,"y":587.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,277.639,587.52],"fontName":"g_d0_f4","x":277.639,"y":587.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,575.76],"fontName":"g_d0_f4","x":57.6,"y":575.76}
+{"str":"A    disintegrated    creature    and    everything    it    is    ","dir":"ltr","width":190.33708800000005,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,575.76],"fontName":"g_d0_f4","x":66.9501,"y":575.76}
+{"str":"wearing    and    carrying,    except    magic    items,    are    ","dir":"ltr","width":197.27232,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,564],"fontName":"g_d0_f4","x":57.6,"y":564}
+{"str":"reduced","dir":"ltr","width":34.883784000000006,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,552.24],"fontName":"g_d0_f4","x":57.6,"y":552.24}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,92.51699,552.24],"fontName":"g_d0_f4","x":92.51699,"y":552.24}
+{"str":"to    a    pile    of    fine    gray    dust.    The    creature    can    ","dir":"ltr","width":183.32313599999998,"height":96.8256,"transform":[9.84,0,0,9.84,94.71914,552.24],"fontName":"g_d0_f4","x":94.71914,"y":552.24}
+{"str":"be    restored    to    life    only    by    means    of    a    ","dir":"ltr","width":159.149208,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,540.48],"fontName":"g_d0_f4","x":57.6,"y":540.48}
+{"str":"true    ","dir":"ltr","width":19.67016,"height":96.8256,"transform":[9.84,0,0,9.84,216.7553,540.48],"fontName":"g_d0_f7","x":216.7553,"y":540.48}
+{"str":"resurrection","dir":"ltr","width":51.419904,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,528.72],"fontName":"g_d0_f7","x":57.6,"y":528.72}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,109.0404,528.72],"fontName":"g_d0_f4","x":109.0404,"y":528.72}
+{"str":"or    a    ","dir":"ltr","width":18.77472,"height":96.8256,"transform":[9.84,0,0,9.84,111.2426,528.72],"fontName":"g_d0_f4","x":111.2426,"y":528.72}
+{"str":"wish","dir":"ltr","width":19.134864000000004,"height":96.8256,"transform":[9.84,0,0,9.84,129.973,528.72],"fontName":"g_d0_f7","x":129.973,"y":528.72}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,149.0795,528.72],"fontName":"g_d0_f4","x":149.0795,"y":528.72}
+{"str":"spell.","dir":"ltr","width":22.250208,"height":96.8256,"transform":[9.84,0,0,9.84,151.2816,528.72],"fontName":"g_d0_f4","x":151.2816,"y":528.72}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,173.4984,528.72],"fontName":"g_d0_f4","x":173.4984,"y":528.72}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,516.96],"fontName":"g_d0_f4","x":57.6,"y":516.96}
+{"str":"This    spell    automatically    disintegrates    a    Large    or    ","dir":"ltr","width":206.68919999999986,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,516.96],"fontName":"g_d0_f4","x":66.9501,"y":516.96}
+{"str":"smaller    nonmagical    object    or    a    creation    of    magical    ","dir":"ltr","width":216.122808,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,505.44],"fontName":"g_d0_f4","x":57.6,"y":505.44}
+{"str":"force.    If    the    target    is    a    Huge    or","dir":"ltr","width":128.501544,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,493.68],"fontName":"g_d0_f4","x":57.6,"y":493.68}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,186.0863,493.68],"fontName":"g_d0_f4","x":186.0863,"y":493.68}
+{"str":"larger    object    or    ","dir":"ltr","width":67.83007199999999,"height":96.8256,"transform":[9.84,0,0,9.84,188.2885,493.68],"fontName":"g_d0_f4","x":188.2885,"y":493.68}
+{"str":"creation    of    force,    this    spell    disintegrates    a    10","dir":"ltr","width":190.81531200000003,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,481.92],"fontName":"g_d0_f4","x":57.6,"y":481.92}
+{"str":"-­‐‑","dir":"ltr","width":3.26688,"height":96.8256,"transform":[9.84,0,0,9.84,248.3764,481.92],"fontName":"g_d0_f4","x":248.3764,"y":481.92}
+{"str":"foot","dir":"ltr","width":17.021232,"height":96.8256,"transform":[9.84,0,0,9.84,251.6967,481.92],"fontName":"g_d0_f4","x":251.6967,"y":481.92}
+{"str":"-­‐‑","dir":"ltr","width":3.26688,"height":96.8256,"transform":[9.84,0,0,9.84,268.7231,481.92],"fontName":"g_d0_f4","x":268.7231,"y":481.92}
+{"str":"cube    portion    of    it.    A    magic    item    is    unaffected    by    this    ","dir":"ltr","width":222.82187999999996,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,470.16],"fontName":"g_d0_f4","x":57.6,"y":470.16}
+{"str":"spell.","dir":"ltr","width":22.250208,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,458.4],"fontName":"g_d0_f4","x":57.6,"y":458.4}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,79.8168,458.4],"fontName":"g_d0_f4","x":79.8168,"y":458.4}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,446.64],"fontName":"g_d0_f5","x":57.6,"y":446.64}
+{"str":"At    Higher    Levels.","dir":"ltr","width":75.08313599999998,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,446.64],"fontName":"g_d0_f5","x":66.9501,"y":446.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,141.9843,446.64],"fontName":"g_d0_f4","x":141.9843,"y":446.64}
+{"str":"When    you    cast    this    spell    using    a    ","dir":"ltr","width":137.663568,"height":96.8256,"transform":[9.84,0,0,9.84,144.1864,446.64],"fontName":"g_d0_f4","x":144.1864,"y":446.64}
+{"str":"spell    slot    of    7th    level    or    higher,    the    damage    increases    ","dir":"ltr","width":227.58148800000004,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,434.88],"fontName":"g_d0_f4","x":57.6,"y":434.88}
+{"str":"by    3d6    for    eac","dir":"ltr","width":60.370368,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,423.36],"fontName":"g_d0_f4","x":57.6,"y":423.36}
+{"str":"h    slot    level    above    6th.","dir":"ltr","width":92.35922399999998,"height":96.8256,"transform":[9.84,0,0,9.84,117.9809,423.36],"fontName":"g_d0_f4","x":117.9809,"y":423.36}

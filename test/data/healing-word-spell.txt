@@ -1,0 +1,35 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"H","dir":"ltr","width":9.216000000000001,"height":144,"transform":[12,0,0,12,328.5601,509.28],"fontName":"g_d0_f3","x":328.5601,"y":509.28}
+{"str":"ealing Word","dir":"ltr","width":65.17320000000001,"height":144,"transform":[12,0,0,12,337.7769,509.28],"fontName":"g_d0_f3","x":337.7769,"y":509.28}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,402.9507,509.28],"fontName":"g_d0_f3","x":402.9507,"y":509.28}
+{"str":"1st","dir":"ltr","width":12.582408000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,496.8],"fontName":"g_d0_f7","x":328.5601,"y":496.8}
+{"str":"-­‐‑","dir":"ltr","width":3.13896,"height":96.8256,"transform":[9.84,0,0,9.84,341.1138,496.8],"fontName":"g_d0_f7","x":341.1138,"y":496.8}
+{"str":"level    evocation","dir":"ltr","width":61.652519999999996,"height":96.8256,"transform":[9.84,0,0,9.84,344.3023,496.8],"fontName":"g_d0_f7","x":344.3023,"y":496.8}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,405.9868,496.8],"fontName":"g_d0_f7","x":405.9868,"y":496.8}
+{"str":"Casting    Time:    ","dir":"ltr","width":64.72161600000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,479.04],"fontName":"g_d0_f8","x":328.5601,"y":479.04}
+{"str":"1    bonus    action","dir":"ltr","width":62.47219200000001,"height":96.8256,"transform":[9.84,0,0,9.84,393.2134,479.04],"fontName":"g_d0_f4","x":393.2134,"y":479.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,455.6792,479.04],"fontName":"g_d0_f4","x":455.6792,"y":479.04}
+{"str":"Range:    ","dir":"ltr","width":33.572112000000004,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,467.52],"fontName":"g_d0_f8","x":328.5601,"y":467.52}
+{"str":"60    feet","dir":"ltr","width":29.469816000000012,"height":96.8256,"transform":[9.84,0,0,9.84,362.0709,467.52],"fontName":"g_d0_f4","x":362.0709,"y":467.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.5142,467.52],"fontName":"g_d0_f4","x":391.5142,"y":467.52}
+{"str":"Components:","dir":"ltr","width":60.47270400000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,455.76],"fontName":"g_d0_f8","x":328.5601,"y":455.76}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,388.9703,455.76],"fontName":"g_d0_f4","x":388.9703,"y":455.76}
+{"str":"V","dir":"ltr","width":5.943359999999999,"height":96.8256,"transform":[9.84,0,0,9.84,391.1724,455.76],"fontName":"g_d0_f4","x":391.1724,"y":455.76}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,397.2076,455.76],"fontName":"g_d0_f4","x":397.2076,"y":455.76}
+{"str":"Duration:    ","dir":"ltr","width":46.582560000000015,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,444],"fontName":"g_d0_f8","x":328.5601,"y":444}
+{"str":"Instantaneous","dir":"ltr","width":60.81611999999999,"height":96.8256,"transform":[9.84,0,0,9.84,375.0689,444],"fontName":"g_d0_f4","x":375.0689,"y":444}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,435.8892,444],"fontName":"g_d0_f4","x":435.8892,"y":444}
+{"str":"A    creature    of    your    choice    that    you    can    see    within    ","dir":"ltr","width":209.91671999999994,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,426.24],"fontName":"g_d0_f4","x":328.5602,"y":426.24}
+{"str":"range    regains    hit    points    equal    to    1d4    +    your    ","dir":"ltr","width":188.61803999999998,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,414.48],"fontName":"g_d0_f4","x":328.5602,"y":414.48}
+{"str":"spellcasting    ability    modifier.    This    spell    has    n","dir":"ltr","width":188.51373600000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,402.72],"fontName":"g_d0_f4","x":328.5602,"y":402.72}
+{"str":"o    effect    ","dir":"ltr","width":33.35366400000001,"height":96.8256,"transform":[9.84,0,0,9.84,517.0514,402.72],"fontName":"g_d0_f4","x":517.0514,"y":402.72}
+{"str":"on    undead    or    constructs.","dir":"ltr","width":105.72686399999996,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,391.2],"fontName":"g_d0_f4","x":328.5602,"y":391.2}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,434.234,391.2],"fontName":"g_d0_f4","x":434.234,"y":391.2}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,379.44],"fontName":"g_d0_f4","x":328.5602,"y":379.44}
+{"str":"At    Higher    Levels.","dir":"ltr","width":75.08313599999998,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,379.44],"fontName":"g_d0_f5","x":337.9103,"y":379.44}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,412.9445,379.44],"fontName":"g_d0_f4","x":412.9445,"y":379.44}
+{"str":"When    you    cast    this    spell    using    a    ","dir":"ltr","width":137.663568,"height":96.8256,"transform":[9.84,0,0,9.84,415.1466,379.44],"fontName":"g_d0_f4","x":415.1466,"y":379.44}
+{"str":"spell    slot    of    2nd    level    or    higher,    the    healing    increases    ","dir":"ltr","width":227.65725600000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,367.68],"fontName":"g_d0_f4","x":328.5602,"y":367.68}
+{"str":"by    1d4    for    each    slot    level    above    1st.","dir":"ltr","width":151.487784,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,355.92],"fontName":"g_d0_f4","x":328.5602,"y":355.92}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,480.0446,355.92],"fontName":"g_d0_f4","x":480.0446,"y":355.92}

@@ -2,10 +2,13 @@
 import { IFormatter } from '../formatter';
 import { StringPart } from '../parser';
 import {
+    Ability,
     ISection,
+    ISpellDice,
     ISpellPart,
     Part,
     PartType,
+    SpellAttackType,
     SpellSchool,
 } from '../parser/interface';
 
@@ -24,6 +27,15 @@ const spellSchoolKeyword = {
     [SpellSchool.Transmutation]: ':trx',
 };
 
+const abilityKeyword = {
+    [Ability.Str]: ':str',
+    [Ability.Dex]: ':dex',
+    [Ability.Con]: ':con',
+    [Ability.Int]: ':int',
+    [Ability.Wis]: ':wis',
+    [Ability.Cha]: ':cha',
+};
+
 function nameToId(name: string): string {
     return name.toLowerCase()
         .replace(/^ \/a-z/g, '')
@@ -32,6 +44,10 @@ function nameToId(name: string): string {
 
 function spellId(name: string): string {
     return 'spells/' + nameToId(name);
+}
+
+function splitDie(die: string): number[] {
+    return die.split('d').map(it => parseInt(it, 10));
 }
 
 /**
@@ -70,6 +86,97 @@ function formatComponents(raw: string): string {
 
 function stringifyInfo(info: Part[]): string {
     return info.toString(); // FIXME
+}
+
+export function generateDiceFn(dice: ISpellDice, spellLevel: number): string {
+    const plusStart = dice.base.indexOf('+');
+    if (
+        !(dice.slotLevelBuff || dice.charLevelBuff)
+        && plusStart === -1
+    ) {
+        return q(dice.base);
+    }
+
+    let params = '';
+    let parts = '';
+    if (dice.slotLevelBuff) {
+        params += 'spell-level ';
+        const [dieCount, dieSize] = splitDie(dice.base);
+        const [buffDieCount, buffDieSize] = splitDie(dice.slotLevelBuff);
+
+        if (dieSize !== buffDieSize) {
+            // mixed die sizes never happen normally, so this is
+            // probably not actually a spell we need to show dice for
+            // eg: arcane hand
+            return;
+        }
+
+        if (!dieSize) {
+            if (buffDieSize) {
+                throw new Error('Dice mixed with fixed heal amount?');
+            }
+
+            // fixed amount (eg: Heal)
+            parts += `(+ ${dice.base} (* ${dice.slotLevelBuff}`
+                + ` (- spell-level ${spellLevel})`
+                + `))`;
+
+        } else {
+            const totalDice = dieCount - spellLevel;
+            if (totalDice === 0) {
+                // can probably roll the above case into this
+                parts += 'spell-level';
+            } else if (buffDieCount === 1) {
+                parts += `(+ ${totalDice} spell-level)`;
+            } else {
+                // eg circle of death
+                parts += `(+ ${dieCount} (* ${buffDieCount} ` +
+                    `(- spell-level ${spellLevel})))`;
+            }
+        }
+
+        if (dieSize) {
+            parts += ` "d${dieSize}"`;
+        }
+    } else if (dice.charLevelBuff) {
+
+        params += 'total-level ';
+
+        const [dieCount, dieSize] = splitDie(dice.base);
+        const [buffDieCount, buffDieSize] = splitDie(dice.charLevelBuff);
+
+        if (dieSize !== buffDieSize) {
+            // mixed die sizes never happen normally, so this is
+            // probably not actually a spell we need to show dice for
+            // eg: arcane hand
+            return;
+        }
+
+        parts += `(cond
+    (< total-level 5) ${dieCount}
+    (< total-level 11) ${dieCount + buffDieCount}
+    (< total-level 17) ${dieCount + 2 * buffDieCount}
+    :else ${dieCount + 3 * buffDieCount})
+    "d${dieSize}"`;
+    }
+
+    if (!parts.length) {
+        if (plusStart !== -1) {
+            parts += q(dice.base.substring(0, plusStart).trimRight());
+        } else {
+            parts += q(dice.base);
+        }
+    }
+
+    if (dice.base.includes('spellcasting ability')) {
+        params += 'spell-mod ';
+        parts += ' " + " spell-mod';
+    }
+
+    parts = parts.replace('" "', '');
+
+    return `(fn [${params.trimRight()}]
+    (str ${parts}))`;
 }
 
 /**
@@ -156,29 +263,42 @@ export class WishFormatter implements IFormatter {
    :id :${s.id}
    :name ${q(s.name)}
    :time ${q(s.castTime)}
-   :range ${q(s.range)}`);
+   :range ${q(s.range)}
+   :duration ${q(s.duration)}
+   :school ${spellSchoolKeyword[s.school]}
+   :desc ${q(desc)}`);
 
-            if (comp) {
-                this.output.write(`
-   :comp ${comp}`);
+            // components?
+            if (comp) this.writePart('comp', comp);
+            if (s.ritual) this.writePart('rit?', 'true');
+            if (s.concentration) this.writePart('con?', 'true');
+
+            if (s.dice) {
+                if (s.dice.attackType) {
+                    this.writePart('attack', s.dice.attackType === SpellAttackType.Ranged
+                        ? ':ranged'
+                        : ':melee',
+                    );
+                }
+
+                if (s.dice.save) {
+                    this.writePart('save', abilityKeyword[s.dice.save]);
+                }
+
+                if (s.dice.damageType) {
+                    this.writePart('dam-type', ':' + s.dice.damageType.toLowerCase());
+                }
+
+                const dice = generateDiceFn(s.dice, s.level);
+                if (dice) this.writePart('dice', dice);
             }
 
             this.output.write(`
-   :duration ${q(s.duration)}
-   :school ${spellSchoolKeyword[s.school]}
-   :desc ${q(desc)}
    }
 `);
-
-            // TODO :dice calculation
-            // TODO :rit? and :con? tags
-            // TODO :attack ?
-            // TODO :damage ?
         }
 
         this.output.write(` ]\n]`);
-
-        console.log(this.lists);
 
         for (const listId of Object.keys(this.lists)) {
             this.output.write(`
@@ -197,5 +317,9 @@ export class WishFormatter implements IFormatter {
         }
 
         console.log(`Exported ${Object.keys(this.spells).length} spells`);
+    }
+
+    private writePart(key: string, value: string) {
+        this.output.write(`\n   :${key} ${value}`);
     }
 }

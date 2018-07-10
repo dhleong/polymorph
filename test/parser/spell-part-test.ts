@@ -1,13 +1,13 @@
 import * as chai from 'chai';
 
 import { SpellPart } from '../../src/parser';
-import { SpellSchool } from '../../src/parser/interface';
+import { Ability, ISpellPart, SpellAttackType, SpellSchool } from '../../src/parser/interface';
 
 import { loadTextItems, parsePage } from '../test-utils';
 
 chai.should();
 
-async function loadSpellFromItems(fileName: string) {
+async function loadSpellFromItems(fileName: string): Promise<ISpellPart> {
     const items = await loadTextItems(fileName);
     const sections = parsePage(items);
 
@@ -51,5 +51,60 @@ describe('SpellPart parsing', () => {
 
         alarm.info[0].toString()
             .should.match(/^You set an alarm against unwanted intrusion./);
+    });
+
+    it('guesses damage dice', async () => {
+        const fireball = await loadSpellFromItems('fireball-spell.txt');
+
+        fireball.name.should.equal('Fireball');
+        fireball.level.should.equal(3);
+        fireball.dice.base.should.equal('8d6');
+        fireball.dice.slotLevelBuff.should.equal('1d6');
+        fireball.dice.damageType.should.equal('fire');
+        fireball.dice.save.should.equal(Ability.Dex);
+    });
+
+    it('handles scaling cantrips and spell attacks', async () => {
+        const fireball = await loadSpellFromItems('firebolt-spell.txt');
+
+        fireball.name.should.equal('Fire Bolt');
+        fireball.level.should.equal(0);
+        fireball.dice.base.should.equal('1d10');
+        fireball.dice.charLevelBuff.should.equal('1d10');
+        fireball.dice.damageType.should.equal('fire');
+        fireball.dice.attackType.should.equal(SpellAttackType.Ranged);
+    });
+
+    it('handles constant damage bonuses', async () => {
+        const sp = await loadSpellFromItems('disintegrate-spell.txt');
+
+        sp.name.should.equal('Disintegrate');
+        sp.level.should.equal(6);
+        sp.dice.base.should.equal('10d6 + 40');
+        sp.dice.slotLevelBuff.should.equal('3d6');
+        sp.dice.damageType.should.equal('force');
+        sp.dice.save.should.equal(Ability.Dex);
+    });
+
+    it('handles healing spells with bonuses', async () => {
+        const word = await loadSpellFromItems('healing-word-spell.txt');
+
+        word.name.should.equal('Healing Word');
+        word.level.should.equal(1);
+        word.dice.base.should.equal('1d4 + your spellcasting ability modifier');
+        word.dice.slotLevelBuff.should.equal('1d4');
+        word.dice.should.not.have.property('damageType');
+        word.dice.should.not.have.property('attackType');
+    });
+
+    it('handles constant value healing spells', async () => {
+        const word = await loadSpellFromItems('heal-spell.txt');
+
+        word.name.should.equal('Heal');
+        word.level.should.equal(6);
+        word.dice.base.should.equal('70');
+        word.dice.slotLevelBuff.should.equal('10');
+        word.dice.should.not.have.property('damageType');
+        word.dice.should.not.have.property('attackType');
     });
 });

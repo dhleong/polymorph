@@ -1,10 +1,87 @@
 
 import { StringPart } from '../parser';
 import {
-    ISection, ISpellPart, IStringPart,
-    Part, PartType,
+    Ability, ISection, ISpellDice,
+    ISpellPart, IStringPart,
+    Part,
+    PartType,
+    SpellAttackType,
     SpellSchool,
 } from './interface';
+
+function abilityFromStr(str: string): Ability {
+    switch (str.toLowerCase()) {
+    case 'strength':
+        return Ability.Str;
+    case 'dexterity':
+        return Ability.Dex;
+    case 'constitution':
+        return Ability.Con;
+    case 'intelligence':
+        return Ability.Int;
+    case 'wisdom':
+        return Ability.Wis;
+    case 'charisma':
+        return Ability.Cha;
+    }
+}
+
+function extractDiceInfo(info: Part[]): ISpellDice {
+    const result: ISpellDice = {};
+
+    for (const p of info) {
+        if (p.type !== PartType.STRING) continue;
+
+        const str = (p as IStringPart).str;
+        let m = str.match(/(\d+[dD]\d+( [+] [^ ]+)?) ([a-zA-Z]+) damage/);
+        if (m) {
+            result.base = m[1];
+            result.damageType = m[3];
+        }
+
+        // healing spells are tricky
+        m = str.match(/regain[s]? hit points equal to (\d+[dD]\d+( [+] [^.]+)?)/);
+        if (m) {
+            result.base = m[1];
+        }
+
+        m = str.match(/regain[s]? (\d+([dD]\d+)?( [+] [^.]+)?) hit points/);
+        if (m) {
+            result.base = m[1];
+        }
+
+        // slot / char level scaling
+        m = str.match(/increases by (\d+([dD]\d+)?) for each slot/);
+        if (m) {
+            result.slotLevelBuff = m[1];
+        }
+
+        m = str.match(/increases by (\d+[dD]\d+) when you reach/);
+        if (m) {
+            result.charLevelBuff = m[1];
+        }
+
+        // saves?
+        m = str.match(/make[s]? a ([a-zA-Z]+) saving/);
+        if (m) {
+            result.save = abilityFromStr(m[1]);
+        }
+
+        // spell attack type
+        m = str.match(/[Mm]ake a ([a-z]+) spell attack/);
+        if (m) {
+            if (m[1] === 'ranged') {
+                result.attackType = SpellAttackType.Ranged;
+            } else if (m[1] === 'melee') {
+                result.attackType = SpellAttackType.Melee;
+            }
+        }
+    }
+
+    if (result.base) {
+        return result;
+    }
+}
 
 export class SpellPart implements ISpellPart {
     static from(
@@ -81,6 +158,8 @@ export class SpellPart implements ISpellPart {
             components,
             duration,
             info,
+
+            extractDiceInfo(info),
         );
     }
 
@@ -97,6 +176,8 @@ export class SpellPart implements ISpellPart {
         readonly components: string,
         readonly duration: string,
         readonly info: Part[],
+
+        readonly dice?: ISpellDice,
     ) {}
 
     postProcess() {

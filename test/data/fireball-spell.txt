@@ -1,0 +1,52 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"Fireball","dir":"ltr","width":38.9508,"height":144,"transform":[12,0,0,12,57.6,172.08],"fontName":"g_d0_f3","x":57.6,"y":172.08}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,96.55312,172.08],"fontName":"g_d0_f3","x":96.55312,"y":172.08}
+{"str":"3rd","dir":"ltr","width":14.599608000000002,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,159.36],"fontName":"g_d0_f7","x":57.6,"y":159.36}
+{"str":"-­‐‑","dir":"ltr","width":3.13896,"height":96.8256,"transform":[9.84,0,0,9.84,72.19473,159.36],"fontName":"g_d0_f7","x":72.19473,"y":159.36}
+{"str":"level    evocation","dir":"ltr","width":61.652519999999996,"height":96.8256,"transform":[9.84,0,0,9.84,75.3832,159.36],"fontName":"g_d0_f7","x":75.3832,"y":159.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,137.0678,159.36],"fontName":"g_d0_f7","x":137.0678,"y":159.36}
+{"str":"Casting    Time:","dir":"ltr","width":62.511552000000016,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,141.84],"fontName":"g_d0_f8","x":57.6,"y":141.84}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,120.0512,141.84],"fontName":"g_d0_f4","x":120.0512,"y":141.84}
+{"str":"1    action","dir":"ltr","width":34.07198400000001,"height":96.8256,"transform":[9.84,0,0,9.84,122.2533,141.84],"fontName":"g_d0_f4","x":122.2533,"y":141.84}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,156.3354,141.84],"fontName":"g_d0_f4","x":156.3354,"y":141.84}
+{"str":"Range:    ","dir":"ltr","width":33.572112000000004,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,130.08],"fontName":"g_d0_f8","x":57.6,"y":130.08}
+{"str":"150    feet","dir":"ltr","width":35.00678400000001,"height":96.8256,"transform":[9.84,0,0,9.84,91.11074,130.08],"fontName":"g_d0_f4","x":91.11074,"y":130.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,126.0912,130.08],"fontName":"g_d0_f4","x":126.0912,"y":130.08}
+{"str":"Components:","dir":"ltr","width":60.47270400000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,118.32],"fontName":"g_d0_f8","x":57.6,"y":118.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,118.0102,118.32],"fontName":"g_d0_f4","x":118.0102,"y":118.32}
+{"str":"V,    S,    M    (a    tiny    ball    of    bat    guano    and    ","dir":"ltr","width":150.89049600000004,"height":96.8256,"transform":[9.84,0,0,9.84,120.2123,118.32],"fontName":"g_d0_f4","x":120.2123,"y":118.32}
+{"str":"sulfur)","dir":"ltr","width":29.056536000000005,"height":96.8256,"transform":[9.84,0,0,9.84,66.6,106.56],"fontName":"g_d0_f4","x":66.6,"y":106.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,95.63808,106.56],"fontName":"g_d0_f4","x":95.63808,"y":106.56}
+{"str":"Duration:","dir":"ltr","width":44.37840000000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,94.80002],"fontName":"g_d0_f8","x":57.6,"y":94.80002}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,101.9066,94.80002],"fontName":"g_d0_f4","x":101.9066,"y":94.80002}
+{"str":"Instantaneous","dir":"ltr","width":60.81611999999999,"height":96.8256,"transform":[9.84,0,0,9.84,104.1088,94.80002],"fontName":"g_d0_f4","x":104.1088,"y":94.80002}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,164.9291,94.80002],"fontName":"g_d0_f4","x":164.9291,"y":94.80002}
+{"str":"A    bright    streak    flashes    from    your    pointing    finger    to    a    ","dir":"ltr","width":226.58568,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,710.64],"fontName":"g_d0_f4","x":328.56,"y":710.64}
+{"str":"point    you    choose    within    range    and    then    blossoms    ","dir":"ltr","width":213.42566399999993,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,698.88],"fontName":"g_d0_f4","x":328.56,"y":698.88}
+{"str":"with    a    low    roar    into    an    explosion    of    flame.    Each    ","dir":"ltr","width":204.17016000000012,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,687.12],"fontName":"g_d0_f4","x":328.56,"y":687.12}
+{"str":"creatu","dir":"ltr","width":27.193824,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,675.36],"fontName":"g_d0_f4","x":328.56,"y":675.36}
+{"str":"re    in    a    20","dir":"ltr","width":39.89135999999999,"height":96.8256,"transform":[9.84,0,0,9.84,355.7719,675.36],"fontName":"g_d0_f4","x":355.7719,"y":675.36}
+{"str":"-­‐‑","dir":"ltr","width":3.26688,"height":96.8256,"transform":[9.84,0,0,9.84,395.7084,675.36],"fontName":"g_d0_f4","x":395.7084,"y":675.36}
+{"str":"foot","dir":"ltr","width":17.021232,"height":96.8256,"transform":[9.84,0,0,9.84,399.0287,675.36],"fontName":"g_d0_f4","x":399.0287,"y":675.36}
+{"str":"-­‐‑","dir":"ltr","width":3.26688,"height":96.8256,"transform":[9.84,0,0,9.84,416.0551,675.36],"fontName":"g_d0_f4","x":416.0551,"y":675.36}
+{"str":"radius    sphere    centered    on    that    ","dir":"ltr","width":133.16767200000004,"height":96.8256,"transform":[9.84,0,0,9.84,419.3754,675.36],"fontName":"g_d0_f4","x":419.3754,"y":675.36}
+{"str":"point    must    make    a    Dexterity    saving    throw.    A    target    ","dir":"ltr","width":219.64060800000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,663.84],"fontName":"g_d0_f4","x":328.56,"y":663.84}
+{"str":"takes    8d6    fire    ","dir":"ltr","width":60.75708000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,652.08],"fontName":"g_d0_f4","x":328.56,"y":652.08}
+{"str":"damage    on    a    failed    save,    or    half    as    ","dir":"ltr","width":150.21153599999994,"height":96.8256,"transform":[9.84,0,0,9.84,389.2924,652.08],"fontName":"g_d0_f4","x":389.2924,"y":652.08}
+{"str":"much    damage    on    a    successful    one.","dir":"ltr","width":148.509216,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,640.32],"fontName":"g_d0_f4","x":328.56,"y":640.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,476.9585,640.32],"fontName":"g_d0_f4","x":476.9585,"y":640.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,628.56],"fontName":"g_d0_f4","x":328.56,"y":628.56}
+{"str":"The    fire    spreads    around    corners.    It    ignites    ","dir":"ltr","width":181.21934399999998,"height":96.8256,"transform":[9.84,0,0,9.84,337.9101,628.56],"fontName":"g_d0_f4","x":337.9101,"y":628.56}
+{"str":"flammable    objects    in    the    area","dir":"ltr","width":125.34487199999997,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,616.8],"fontName":"g_d0_f4","x":328.56,"y":616.8}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,453.9116,616.8],"fontName":"g_d0_f4","x":453.9116,"y":616.8}
+{"str":"that    aren’t    being    worn    ","dir":"ltr","width":97.46224800000002,"height":96.8256,"transform":[9.84,0,0,9.84,456.1137,616.8],"fontName":"g_d0_f4","x":456.1137,"y":616.8}
+{"str":"or    carried.","dir":"ltr","width":44.510256000000005,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,605.04],"fontName":"g_d0_f4","x":328.56,"y":605.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,373.0229,605.04],"fontName":"g_d0_f4","x":373.0229,"y":605.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,593.52],"fontName":"g_d0_f5","x":328.5601,"y":593.52}
+{"str":"At    Higher    Levels.","dir":"ltr","width":75.08313599999998,"height":96.8256,"transform":[9.84,0,0,9.84,337.9102,593.52],"fontName":"g_d0_f5","x":337.9102,"y":593.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,412.9443,593.52],"fontName":"g_d0_f4","x":412.9443,"y":593.52}
+{"str":"When    you    cast    this    spell    using    a    ","dir":"ltr","width":137.663568,"height":96.8256,"transform":[9.84,0,0,9.84,415.1465,593.52],"fontName":"g_d0_f4","x":415.1465,"y":593.52}
+{"str":"spell    slot    of    4th    level    or    higher,    the    damage    increases    ","dir":"ltr","width":227.58148800000004,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,581.76],"fontName":"g_d0_f4","x":328.5601,"y":581.76}
+{"str":"by    1d6    for    each    slot    level    above    3rd.","dir":"ltr","width":153.48530399999999,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,570],"fontName":"g_d0_f4","x":328.5601,"y":570}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,482.0464,570],"fontName":"g_d0_f4","x":482.0464,"y":570}

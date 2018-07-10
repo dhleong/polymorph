@@ -1,0 +1,40 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"Heal","dir":"ltr","width":24.184800000000003,"height":144,"transform":[12,0,0,12,328.56,708.72],"fontName":"g_d0_f3","x":328.56,"y":708.72}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,352.7416,708.72],"fontName":"g_d0_f3","x":352.7416,"y":708.72}
+{"str":"6th","dir":"ltr","width":14.038728,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,696.24],"fontName":"g_d0_f7","x":328.56,"y":696.24}
+{"str":"-­‐‑","dir":"ltr","width":3.13896,"height":96.8256,"transform":[9.84,0,0,9.84,342.5981,696.24],"fontName":"g_d0_f7","x":342.5981,"y":696.24}
+{"str":"level    evocation","dir":"ltr","width":61.652519999999996,"height":96.8256,"transform":[9.84,0,0,9.84,345.7866,696.24],"fontName":"g_d0_f7","x":345.7866,"y":696.24}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,407.4711,696.24],"fontName":"g_d0_f7","x":407.4711,"y":696.24}
+{"str":"Ca","dir":"ltr","width":11.091648000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,678.72],"fontName":"g_d0_f8","x":328.56,"y":678.72}
+{"str":"sting    Time:","dir":"ltr","width":51.388416,"height":96.8256,"transform":[9.84,0,0,9.84,339.644,678.72],"fontName":"g_d0_f8","x":339.644,"y":678.72}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.0112,678.72],"fontName":"g_d0_f4","x":391.0112,"y":678.72}
+{"str":"1    action","dir":"ltr","width":34.07198400000001,"height":96.8256,"transform":[9.84,0,0,9.84,393.2133,678.72],"fontName":"g_d0_f4","x":393.2133,"y":678.72}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,427.2953,678.72],"fontName":"g_d0_f4","x":427.2953,"y":678.72}
+{"str":"Range:","dir":"ltr","width":31.364016000000007,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,666.96],"fontName":"g_d0_f8","x":328.56,"y":666.96}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,359.8686,666.96],"fontName":"g_d0_f4","x":359.8686,"y":666.96}
+{"str":"60    feet","dir":"ltr","width":29.469816000000012,"height":96.8256,"transform":[9.84,0,0,9.84,362.0707,666.96],"fontName":"g_d0_f4","x":362.0707,"y":666.96}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.5141,666.96],"fontName":"g_d0_f4","x":391.5141,"y":666.96}
+{"str":"Components:","dir":"ltr","width":60.47270400000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,655.2],"fontName":"g_d0_f8","x":328.56,"y":655.2}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,388.9702,655.2],"fontName":"g_d0_f4","x":388.9702,"y":655.2}
+{"str":"V,    S","dir":"ltr","width":15.253967999999999,"height":96.8256,"transform":[9.84,0,0,9.84,391.1723,655.2],"fontName":"g_d0_f4","x":391.1723,"y":655.2}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,406.4213,655.2],"fontName":"g_d0_f4","x":406.4213,"y":655.2}
+{"str":"Duration:","dir":"ltr","width":44.37840000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,643.44],"fontName":"g_d0_f8","x":328.56,"y":643.44}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,372.8667,643.44],"fontName":"g_d0_f4","x":372.8667,"y":643.44}
+{"str":"Instantaneous","dir":"ltr","width":60.81611999999999,"height":96.8256,"transform":[9.84,0,0,9.84,375.0688,643.44],"fontName":"g_d0_f4","x":375.0688,"y":643.44}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,435.8891,643.44],"fontName":"g_d0_f4","x":435.8891,"y":643.44}
+{"str":"Choose    a    creature    that    you    can    see    within    range.    A    ","dir":"ltr","width":216.564624,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,625.68],"fontName":"g_d0_f4","x":328.56,"y":625.68}
+{"str":"surge    of    positive    energy    washes    through    the    ","dir":"ltr","width":190.795632,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,613.92],"fontName":"g_d0_f4","x":328.56,"y":613.92}
+{"str":"creature,    causing    it    to    regain    70    hit    points.    This    spell    ","dir":"ltr","width":225.23464800000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,602.16],"fontName":"g_d0_f4","x":328.56,"y":602.16}
+{"str":"also    ends    blindness,    ","dir":"ltr","width":87.341808,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,590.64],"fontName":"g_d0_f4","x":328.56,"y":590.64}
+{"str":"deafness,    and    any    diseases    ","dir":"ltr","width":115.65837600000003,"height":96.8256,"transform":[9.84,0,0,9.84,415.8696,590.64],"fontName":"g_d0_f4","x":415.8696,"y":590.64}
+{"str":"affecting    the    target.    This    spell    has    no    effect    on    ","dir":"ltr","width":196.96727999999987,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,578.88],"fontName":"g_d0_f4","x":328.5601,"y":578.88}
+{"str":"constructs    or    undead.","dir":"ltr","width":92.634744,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,567.12],"fontName":"g_d0_f4","x":328.5601,"y":567.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,421.1431,567.12],"fontName":"g_d0_f4","x":421.1431,"y":567.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,555.36],"fontName":"g_d0_f4","x":328.5601,"y":555.36}
+{"str":"At    Higher    Levels.","dir":"ltr","width":75.08313599999998,"height":96.8256,"transform":[9.84,0,0,9.84,337.9102,555.36],"fontName":"g_d0_f5","x":337.9102,"y":555.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,412.9443,555.36],"fontName":"g_d0_f4","x":412.9443,"y":555.36}
+{"str":"When    you    cast    this    spell    using    a    ","dir":"ltr","width":137.663568,"height":96.8256,"transform":[9.84,0,0,9.84,415.1465,555.36],"fontName":"g_d0_f4","x":415.1465,"y":555.36}
+{"str":"spell    slot    of    7th    level    or    higher,    the    amount    of    ","dir":"ltr","width":195.31711199999998,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,543.6],"fontName":"g_d0_f4","x":328.5601,"y":543.6}
+{"str":"healing    increases    by    10    for    each    slot    level    above    6th.","dir":"ltr","width":223.02163199999993,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,531.84],"fontName":"g_d0_f4","x":328.5601,"y":531.84}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,551.5533,531.84],"fontName":"g_d0_f4","x":551.5533,"y":531.84}
