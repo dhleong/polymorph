@@ -127,8 +127,8 @@ export class SpellPart implements ISpellPart {
             const map = (part as IStringPart).toMapBySpans();
             if (map['Casting Time']) {
                 castTime = map['Casting Time'];
-            } else if (map.Components) {
-                components = map.Components;
+            } else if (map.Components || map.Component) {
+                components = map.Components || map.Component;
             } else if (map.Range) {
                 range = map.Range;
             } else if (map.Duration) {

@@ -53,6 +53,24 @@ describe('SpellPart parsing', () => {
             .should.match(/^You set an alarm against unwanted intrusion./);
     });
 
+    it('works for Contagion', async () => {
+        const sp = await loadSpellFromItems('contagion-spell.txt');
+
+        sp.name.should.equal('Contagion');
+        sp.level.should.equal(5);
+        sp.school.should.equal(SpellSchool.Necromancy);
+        sp.concentration.should.be.false;
+        sp.ritual.should.be.false;
+        sp.castTime.should.equal('1 action');
+        sp.range.should.equal('Touch');
+        sp.components.should.equal('V, S');
+        sp.duration.should.equal('7 days');
+        sp.info.should.not.be.empty;
+
+        sp.info[0].toString()
+            .should.match(/^Your touch inflicts disease./);
+    });
+
     it('guesses damage dice', async () => {
         const fireball = await loadSpellFromItems('fireball-spell.txt');
 

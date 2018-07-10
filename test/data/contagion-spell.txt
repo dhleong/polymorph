@@ -1,0 +1,111 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"Contagion","dir":"ltr","width":54.524400000000014,"height":144,"transform":[12,0,0,12,328.5601,500.64],"fontName":"g_d0_f3","x":328.5601,"y":500.64}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,383.0874,500.64],"fontName":"g_d0_f3","x":383.0874,"y":500.64}
+{"str":"5th","dir":"ltr","width":14.038728,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,487.92],"fontName":"g_d0_f7","x":328.5601,"y":487.92}
+{"str":"-­‐‑","dir":"ltr","width":3.13896,"height":96.8256,"transform":[9.84,0,0,9.84,342.5982,487.92],"fontName":"g_d0_f7","x":342.5982,"y":487.92}
+{"str":"level    necromancy","dir":"ltr","width":72.170496,"height":96.8256,"transform":[9.84,0,0,9.84,345.7867,487.92],"fontName":"g_d0_f7","x":345.7867,"y":487.92}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,417.9839,487.92],"fontName":"g_d0_f7","x":417.9839,"y":487.92}
+{"str":"Casting    Time:","dir":"ltr","width":62.511552000000016,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,470.4],"fontName":"g_d0_f8","x":328.5601,"y":470.4}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.0113,470.4],"fontName":"g_d0_f4","x":391.0113,"y":470.4}
+{"str":"1    action","dir":"ltr","width":34.07198400000001,"height":96.8256,"transform":[9.84,0,0,9.84,393.2134,470.4],"fontName":"g_d0_f4","x":393.2134,"y":470.4}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,427.2955,470.4],"fontName":"g_d0_f4","x":427.2955,"y":470.4}
+{"str":"Range:","dir":"ltr","width":31.364016000000007,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,458.64],"fontName":"g_d0_f8","x":328.5601,"y":458.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,359.8687,458.64],"fontName":"g_d0_f4","x":359.8687,"y":458.64}
+{"str":"Touch","dir":"ltr","width":26.69592,"height":96.8256,"transform":[9.84,0,0,9.84,362.0709,458.64],"fontName":"g_d0_f4","x":362.0709,"y":458.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,388.7554,458.64],"fontName":"g_d0_f4","x":388.7554,"y":458.64}
+{"str":"Component:","dir":"ltr","width":55.88136,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,446.88],"fontName":"g_d0_f8","x":328.5602,"y":446.88}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,384.3805,446.88],"fontName":"g_d0_f4","x":384.3805,"y":446.88}
+{"str":"V,    S","dir":"ltr","width":15.253967999999999,"height":96.8256,"transform":[9.84,0,0,9.84,386.5826,446.88],"fontName":"g_d0_f4","x":386.5826,"y":446.88}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,401.8316,446.88],"fontName":"g_d0_f4","x":401.8316,"y":446.88}
+{"str":"Duration:","dir":"ltr","width":44.37840000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,435.12],"fontName":"g_d0_f8","x":328.5602,"y":435.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,372.8668,435.12],"fontName":"g_d0_f4","x":372.8668,"y":435.12}
+{"str":"7    days","dir":"ltr","width":27.514608000000003,"height":96.8256,"transform":[9.84,0,0,9.84,375.0689,435.12],"fontName":"g_d0_f4","x":375.0689,"y":435.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,402.5738,435.12],"fontName":"g_d0_f4","x":402.5738,"y":435.12}
+{"str":"Your    touch    ","dir":"ltr","width":49.27478399999999,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,417.36],"fontName":"g_d0_f4","x":328.5602,"y":417.36}
+{"str":"inflicts    disease.    Make    a    melee    spell    attack    ","dir":"ltr","width":178.01740800000002,"height":96.8256,"transform":[9.84,0,0,9.84,377.774,417.36],"fontName":"g_d0_f4","x":377.774,"y":417.36}
+{"str":"against    a    creature    within    your    reach.    On    a    hit,    you    ","dir":"ltr","width":214.21089600000005,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,405.6],"fontName":"g_d0_f4","x":328.5602,"y":405.6}
+{"str":"afflict    the    creature    with    a    disease    of    your    choice    ","dir":"ltr","width":205.598928,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,393.84],"fontName":"g_d0_f4","x":328.5602,"y":393.84}
+{"str":"from    any    of    the    ones    described    below.","dir":"ltr","width":161.83749600000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,382.32],"fontName":"g_d0_f4","x":328.5602,"y":382.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,490.3571,382.32],"fontName":"g_d0_f4","x":490.3571,"y":382.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,370.56],"fontName":"g_d0_f4","x":328.5602,"y":370.56}
+{"str":"At    the    end    of    each    of    the    target’s    turns,    it    must    ","dir":"ltr","width":198.58103999999997,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,370.56],"fontName":"g_d0_f4","x":337.9103,"y":370.56}
+{"str":"make    a    Constitution    ","dir":"ltr","width":87.85152000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,358.8],"fontName":"g_d0_f4","x":328.5602,"y":358.8}
+{"str":"saving    throw.    After    failing    three    ","dir":"ltr","width":137.89579199999997,"height":96.8256,"transform":[9.84,0,0,9.84,416.3044,358.8],"fontName":"g_d0_f4","x":416.3044,"y":358.8}
+{"str":"of    these    saving    throws,    the    disease’s    effects    last    for    ","dir":"ltr","width":218.55623999999997,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,347.04],"fontName":"g_d0_f4","x":328.5602,"y":347.04}
+{"str":"the    duration,    and    the    creature    stops    making    these    ","dir":"ltr","width":214.13808,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,335.28],"fontName":"g_d0_f4","x":328.5602,"y":335.28}
+{"str":"saves.    After    succeeding    on    three    of    these    saving    ","dir":"ltr","width":204.517512,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,323.52],"fontName":"g_d0_f4","x":328.5602,"y":323.52}
+{"str":"throws,    the    creature    recovers    from    the    disease,    and    ","dir":"ltr","width":221.31931199999997,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,312],"fontName":"g_d0_f4","x":328.5602,"y":312}
+{"str":"the    spell    ends.","dir":"ltr","width":60.73740000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,300.24],"fontName":"g_d0_f4","x":328.5602,"y":300.24}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,389.2634,300.24],"fontName":"g_d0_f4","x":389.2634,"y":300.24}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,288.48],"fontName":"g_d0_f4","x":328.5602,"y":288.48}
+{"str":"Since    this    spell    induces    a    natural    disease    in    its    ","dir":"ltr","width":197.99063999999998,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,288.48],"fontName":"g_d0_f4","x":337.9103,"y":288.48}
+{"str":"target,    any    effect    that    removes    a    disease    or    ","dir":"ltr","width":184.28844,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,276.72],"fontName":"g_d0_f4","x":328.5602,"y":276.72}
+{"str":"otherwise    ameliorates    a    disease’s    effects    apply    to    it.","dir":"ltr","width":220.33334400000007,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,264.96],"fontName":"g_d0_f4","x":328.5602,"y":264.96}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,548.8678,264.96],"fontName":"g_d0_f4","x":548.8678,"y":264.96}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,253.2],"fontName":"g_d0_f5","x":328.5602,"y":253.2}
+{"str":"Blinding    Sickness.","dir":"ltr","width":80.457744,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,253.2],"fontName":"g_d0_f5","x":337.9103,"y":253.2}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,418.3058,253.2],"fontName":"g_d0_f4","x":418.3058,"y":253.2}
+{"str":"Pain    grips    the    creature’s    mind,    ","dir":"ltr","width":132.517248,"height":96.8256,"transform":[9.84,0,0,9.84,420.508,253.2],"fontName":"g_d0_f4","x":420.508,"y":253.2}
+{"str":"and    its    eyes    turn    milky    white.    The    creature    has    ","dir":"ltr","width":201.75542400000003,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,241.44],"fontName":"g_d0_f4","x":328.5602,"y":241.44}
+{"str":"disad","dir":"ltr","width":23.050200000000004,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,229.92],"fontName":"g_d0_f4","x":328.5602,"y":229.92}
+{"str":"vantage    on    Wisdom    checks    and    Wisdom    saving    ","dir":"ltr","width":203.189112,"height":96.8256,"transform":[9.84,0,0,9.84,351.612,229.92],"fontName":"g_d0_f4","x":351.612,"y":229.92}
+{"str":"throws    and    is    blinded.","dir":"ltr","width":94.65883200000005,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,218.16],"fontName":"g_d0_f4","x":328.5602,"y":218.16}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,423.2086,218.16],"fontName":"g_d0_f4","x":423.2086,"y":218.16}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,206.4],"fontName":"g_d0_f5","x":328.5602,"y":206.4}
+{"str":"Filth    Fever.","dir":"ltr","width":50.191872000000004,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,206.4],"fontName":"g_d0_f5","x":337.9103,"y":206.4}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,388.0422,206.4],"fontName":"g_d0_f4","x":388.0422,"y":206.4}
+{"str":"A    raging    fever    sweeps    through    the    ","dir":"ltr","width":148.45411200000007,"height":96.8256,"transform":[9.84,0,0,9.84,390.2443,206.4],"fontName":"g_d0_f4","x":390.2443,"y":206.4}
+{"str":"creature’s    body.    The    creature    has    disadvantage    on    ","dir":"ltr","width":216.42096000000012,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,194.64],"fontName":"g_d0_f4","x":328.5602,"y":194.64}
+{"str":"Strength    checks,    Strength    saving    throws,    and    attack    ","dir":"ltr","width":222.02385600000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,182.88],"fontName":"g_d0_f4","x":328.5602,"y":182.88}
+{"str":"rolls    that    use    Strength.","dir":"ltr","width":96.493008,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,171.12],"fontName":"g_d0_f4","x":328.5602,"y":171.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,425.0348,171.12],"fontName":"g_d0_f4","x":425.0348,"y":171.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,159.6],"fontName":"g_d0_f5","x":328.5602,"y":159.6}
+{"str":"Flesh    Rot.","dir":"ltr","width":43.40424,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,159.6],"fontName":"g_d0_f5","x":337.9103,"y":159.6}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,381.2551,159.6],"fontName":"g_d0_f4","x":381.2551,"y":159.6}
+{"str":"The","dir":"ltr","width":16.336368,"height":96.8256,"transform":[9.84,0,0,9.84,383.4572,159.6],"fontName":"g_d0_f4","x":383.4572,"y":159.6}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,399.7805,159.6],"fontName":"g_d0_f4","x":399.7805,"y":159.6}
+{"str":"creature’s    flesh    decays.    The    ","dir":"ltr","width":119.48613600000003,"height":96.8256,"transform":[9.84,0,0,9.84,401.9826,159.6],"fontName":"g_d0_f4","x":401.9826,"y":159.6}
+{"str":"creature    has    disadvantage    on    Charisma    checks    and    ","dir":"ltr","width":219.16533600000005,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,147.84],"fontName":"g_d0_f4","x":328.5602,"y":147.84}
+{"str":"vulnerability    to    all    damage.","dir":"ltr","width":116.10019200000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,136.08],"fontName":"g_d0_f4","x":328.5602,"y":136.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,444.5954,136.08],"fontName":"g_d0_f4","x":444.5954,"y":136.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,124.32],"fontName":"g_d0_f5","x":328.5602,"y":124.32}
+{"str":"Mindfire.","dir":"ltr","width":40.86847200000001,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,124.32],"fontName":"g_d0_f5","x":337.9103,"y":124.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,378.6916,124.32],"fontName":"g_d0_f4","x":378.6916,"y":124.32}
+{"str":"The    creature’s    mind    becomes    feverish.    ","dir":"ltr","width":166.475088,"height":96.8256,"transform":[9.84,0,0,9.84,380.8937,124.32],"fontName":"g_d0_f4","x":380.8937,"y":124.32}
+{"str":"The    creature    has    disadvantage    on    Intelligence    ","dir":"ltr","width":198.02409600000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,112.56],"fontName":"g_d0_f4","x":328.5602,"y":112.56}
+{"str":"checks    and    Intelligence    saving    throws,    and    the    ","dir":"ltr","width":199.99504799999997,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,100.8],"fontName":"g_d0_f4","x":328.5602,"y":100.8}
+{"str":"Not    for    resale.    Permission    granted    to    print    or    photocopy    this    document    for    personal    use    only","dir":"ltr","width":298.30679999999995,"height":62.7264,"transform":[7.92,0,0,7.92,57.6,31.92002],"fontName":"g_d0_f1","x":57.6,"y":31.92002}
+{"str":".","dir":"ltr","width":2.47968,"height":96.8256,"transform":[9.84,0,0,9.84,356.0804,31.92002],"fontName":"g_d0_f1","x":356.0804,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.22384,"height":96.8256,"transform":[9.84,0,0,9.84,358.6049,31.92002],"fontName":"g_d0_f2","x":358.6049,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,360.8656,31.92002],"fontName":"g_d0_f2","x":360.8656,"y":31.92002}
+{"str":"System    Reference    ","dir":"ltr","width":82.8036,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,381.6,31.92002],"fontName":"g_d0_f2","x":381.6,"y":31.92002}
+{"str":"Document    5.1","dir":"ltr","width":63.149760000000015,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,464.3417,31.92002],"fontName":"g_d0_f2","x":464.3417,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,527.4789,31.92002],"fontName":"g_d0_f2","x":527.4789,"y":31.92002}
+{"str":" ","dir":"ltr","width":3.0024,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,552.6,31.92002],"fontName":"g_d0_f3","x":552.6,"y":31.92002}
+{"str":"130","dir":"ltr","width":17.41824,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,561.6,31.92002],"fontName":"g_d0_f3","x":561.6,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,579.0184,31.92002],"fontName":"g_d0_f2","x":579.0184,"y":31.92002}
+{"str":"creatu","dir":"ltr","width":27.193824,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,710.64],"fontName":"g_d0_f4","x":57.6,"y":710.64}
+{"str":"re    behaves    as    if    under    the    effects    of    the    ","dir":"ltr","width":168.1715039999999,"height":96.8256,"transform":[9.84,0,0,9.84,84.81191,710.64],"fontName":"g_d0_f4","x":84.81191,"y":710.64}
+{"str":"confusion","dir":"ltr","width":39.95925599999999,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,698.88],"fontName":"g_d0_f7","x":57.6,"y":698.88}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,97.57558,698.88],"fontName":"g_d0_f4","x":97.57558,"y":698.88}
+{"str":"spell    during    combat.","dir":"ltr","width":86.96592000000003,"height":96.8256,"transform":[9.84,0,0,9.84,99.77773,698.88],"fontName":"g_d0_f4","x":99.77773,"y":698.88}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,186.682,698.88],"fontName":"g_d0_f4","x":186.682,"y":698.88}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,687.12],"fontName":"g_d0_f5","x":57.6,"y":687.12}
+{"str":"Seizure.","dir":"ltr","width":35.412192000000005,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,687.12],"fontName":"g_d0_f5","x":66.9501,"y":687.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,102.331,687.12],"fontName":"g_d0_f4","x":102.331,"y":687.12}
+{"str":"The    creature    is    overcome    with    shaking.    ","dir":"ltr","width":169.863984,"height":96.8256,"transform":[9.84,0,0,9.84,104.5331,687.12],"fontName":"g_d0_f4","x":104.5331,"y":687.12}
+{"str":"The    creature    has    disadvantage    on    Dexterity    checks,    ","dir":"ltr","width":220.96113599999998,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,675.36],"fontName":"g_d0_f4","x":57.6,"y":675.36}
+{"str":"Dexterity    saving    throws,    and    attack    rolls    that    use    ","dir":"ltr","width":210.81609600000004,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,663.84],"fontName":"g_d0_f4","x":57.6,"y":663.84}
+{"str":"Dexterity.","dir":"ltr","width":42.05616,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,652.08],"fontName":"g_d0_f4","x":57.6,"y":652.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,99.57754,652.08],"fontName":"g_d0_f4","x":99.57754,"y":652.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,640.32],"fontName":"g_d0_f5","x":57.6,"y":640.32}
+{"str":"Slimy    Doom.","dir":"ltr","width":55.41986400000001,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,640.32],"fontName":"g_d0_f5","x":66.9501,"y":640.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,122.3163,640.32],"fontName":"g_d0_f4","x":122.3163,"y":640.32}
+{"str":"The    crea","dir":"ltr","width":36.833088000000004,"height":96.8256,"transform":[9.84,0,0,9.84,124.5185,640.32],"fontName":"g_d0_f4","x":124.5185,"y":640.32}
+{"str":"ture    begins    to    bleed    ","dir":"ltr","width":86.86653600000001,"height":96.8256,"transform":[9.84,0,0,9.84,161.3495,640.32],"fontName":"g_d0_f4","x":161.3495,"y":640.32}
+{"str":"uncontrollably.    The    creature    has    disadvantage    on    ","dir":"ltr","width":212.83723199999986,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,628.56],"fontName":"g_d0_f4","x":57.6,"y":628.56}
+{"str":"Constitution    checks    and    Constitution    saving    throws.    ","dir":"ltr","width":223.85212800000005,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,616.8],"fontName":"g_d0_f4","x":57.6,"y":616.8}
+{"str":"In    addition,    whenever    the    creature    takes    damage,    it    ","dir":"ltr","width":221.30159999999998,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,605.04],"fontName":"g_d0_f4","x":57.6,"y":605.04}
+{"str":"is    stunned    until    the    end    of    its    next    turn.","dir":"ltr","width":167.354784,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,593.52],"fontName":"g_d0_f4","x":57.6,"y":593.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,224.9926,593.52],"fontName":"g_d0_f4","x":224.9926,"y":593.52}
