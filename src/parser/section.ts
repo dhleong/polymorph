@@ -214,8 +214,11 @@ export class Section implements ISection {
 
         if (nearlyMatch(beforeLast.x, item.x)
             && !nearlyMatch(beforeLast.y, item.y)) {
-            // new line, probably a list
-            return;
+
+            if (item.str[0] === item.str[0].toUpperCase()) {
+                // new line, starting capital; probably a list
+                return;
+            }
 
         } else if (
             beforeLast.x < item.x

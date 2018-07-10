@@ -1,0 +1,41 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"Hellish Rebuke","dir":"ltr","width":78.40559999999999,"height":144,"transform":[12,0,0,12,57.6,664.56],"fontName":"g_d0_f3","x":57.6,"y":664.56}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,136.0101,664.56],"fontName":"g_d0_f3","x":136.0101,"y":664.56}
+{"str":"1st","dir":"ltr","width":12.582408000000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,652.08],"fontName":"g_d0_f7","x":57.6,"y":652.08}
+{"str":"-­‐‑","dir":"ltr","width":3.13896,"height":96.8256,"transform":[9.84,0,0,9.84,70.15371,652.08],"fontName":"g_d0_f7","x":70.15371,"y":652.08}
+{"str":"level    evocation","dir":"ltr","width":61.652519999999996,"height":96.8256,"transform":[9.84,0,0,9.84,73.34219,652.08],"fontName":"g_d0_f7","x":73.34219,"y":652.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,135.0267,652.08],"fontName":"g_d0_f7","x":135.0267,"y":652.08}
+{"str":"Casting    Time:","dir":"ltr","width":62.511552000000016,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,634.32],"fontName":"g_d0_f8","x":57.6,"y":634.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,120.0512,634.32],"fontName":"g_d0_f4","x":120.0512,"y":634.32}
+{"str":"1    reaction,    which    you    take    in    ","dir":"ltr","width":124.79088000000004,"height":96.8256,"transform":[9.84,0,0,9.84,122.2533,634.32],"fontName":"g_d0_f4","x":122.2533,"y":634.32}
+{"str":"response    to    being    damaged    by    a    creature    within    60","dir":"ltr","width":218.287608,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,622.8],"fontName":"g_d0_f4","x":57.6,"y":622.8}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,275.974,622.8],"fontName":"g_d0_f4","x":275.974,"y":622.8}
+{"str":"feet    of    you    that    you    can    see","dir":"ltr","width":115.52750400000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,611.04],"fontName":"g_d0_f4","x":57.6,"y":611.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,173.1469,611.04],"fontName":"g_d0_f4","x":173.1469,"y":611.04}
+{"str":"Range:","dir":"ltr","width":31.364016000000007,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,599.28],"fontName":"g_d0_f8","x":57.6,"y":599.28}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,88.90859,599.28],"fontName":"g_d0_f4","x":88.90859,"y":599.28}
+{"str":"60    feet","dir":"ltr","width":29.469816000000012,"height":96.8256,"transform":[9.84,0,0,9.84,91.11074,599.28],"fontName":"g_d0_f4","x":91.11074,"y":599.28}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,120.5541,599.28],"fontName":"g_d0_f4","x":120.5541,"y":599.28}
+{"str":"Components:","dir":"ltr","width":60.47270400000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,587.52],"fontName":"g_d0_f8","x":57.6,"y":587.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,118.0102,587.52],"fontName":"g_d0_f4","x":118.0102,"y":587.52}
+{"str":"V,    S","dir":"ltr","width":15.253967999999999,"height":96.8256,"transform":[9.84,0,0,9.84,120.2123,587.52],"fontName":"g_d0_f4","x":120.2123,"y":587.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,135.4613,587.52],"fontName":"g_d0_f4","x":135.4613,"y":587.52}
+{"str":"Duration:","dir":"ltr","width":44.37840000000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,575.76],"fontName":"g_d0_f8","x":57.6,"y":575.76}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,101.9066,575.76],"fontName":"g_d0_f4","x":101.9066,"y":575.76}
+{"str":"Instantaneous","dir":"ltr","width":60.81611999999999,"height":96.8256,"transform":[9.84,0,0,9.84,104.1088,575.76],"fontName":"g_d0_f4","x":104.1088,"y":575.76}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,164.9291,575.76],"fontName":"g_d0_f4","x":164.9291,"y":575.76}
+{"str":"You    point    your    finger,    and    the    creature    that    ","dir":"ltr","width":187.42247999999998,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,564],"fontName":"g_d0_f4","x":57.6,"y":564}
+{"str":"damaged    you    is    momentarily    surrounded    by    hellish    ","dir":"ltr","width":222.17047200000005,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,552.48],"fontName":"g_d0_f4","x":57.6,"y":552.48}
+{"str":"flames.    The    creature    must    make    a    Dexterity    saving    ","dir":"ltr","width":217.57224000000005,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,540.72],"fontName":"g_d0_f4","x":57.6,"y":540.72}
+{"str":"throw.    It    takes    2d10    fire    ","dir":"ltr","width":105.45921600000003,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,528.96],"fontName":"g_d0_f4","x":57.6,"y":528.96}
+{"str":"damage    on    a    failed    save,    or    ","dir":"ltr","width":116.885424,"height":96.8256,"transform":[9.84,0,0,9.84,163.0394,528.96],"fontName":"g_d0_f4","x":163.0394,"y":528.96}
+{"str":"half    as    much    damage    on    a    successful    one.","dir":"ltr","width":174.95520000000005,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,517.2],"fontName":"g_d0_f4","x":57.6,"y":517.2}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,232.5219,517.2],"fontName":"g_d0_f4","x":232.5219,"y":517.2}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,505.44],"fontName":"g_d0_f4","x":57.6,"y":505.44}
+{"str":"At    Higher    Levels.","dir":"ltr","width":75.08313599999998,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,505.44],"fontName":"g_d0_f5","x":66.9501,"y":505.44}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,141.9843,505.44],"fontName":"g_d0_f4","x":141.9843,"y":505.44}
+{"str":"When    you    cast    this    spell    using    a    ","dir":"ltr","width":137.663568,"height":96.8256,"transform":[9.84,0,0,9.84,144.1864,505.44],"fontName":"g_d0_f4","x":144.1864,"y":505.44}
+{"str":"spell    slot    of    2nd    level    or    higher,    the    damage    ","dir":"ltr","width":187.463808,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,493.68],"fontName":"g_d0_f4","x":57.6,"y":493.68}
+{"str":"increases    by    1d10    for    each    slot    level    above    1st.","dir":"ltr","width":199.29345599999996,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,481.92],"fontName":"g_d0_f4","x":57.6,"y":481.92}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,256.9604,481.92],"fontName":"g_d0_f4","x":256.9604,"y":481.92}

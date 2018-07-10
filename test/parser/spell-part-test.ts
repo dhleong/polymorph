@@ -71,6 +71,27 @@ describe('SpellPart parsing', () => {
             .should.match(/^Your touch inflicts disease./);
     });
 
+    it('works for Hellish Rebuke', async () => {
+        const sp = await loadSpellFromItems('hellish-rebuke-spell.txt');
+
+        sp.name.should.equal('Hellish Rebuke');
+        sp.level.should.equal(1);
+        sp.school.should.equal(SpellSchool.Evocation);
+        sp.concentration.should.be.false;
+        sp.ritual.should.be.false;
+        sp.castTime.should.equal(
+            '1 reaction, which you take in response to being' +
+            ' damaged by a creature within 60 feet of you that you can see',
+        );
+        sp.range.should.equal('60 feet');
+        sp.components.should.equal('V, S');
+        sp.duration.should.equal('Instantaneous');
+        sp.info.should.not.be.empty;
+
+        sp.info[0].toString()
+            .should.match(/^You point your finger/);
+    });
+
     it('guesses damage dice', async () => {
         const fireball = await loadSpellFromItems('fireball-spell.txt');
 
