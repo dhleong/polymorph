@@ -43,7 +43,7 @@ function nameToId(name: string): string {
 }
 
 function spellId(name: string): string {
-    return 'spells/' + nameToId(name);
+    return 'spell/' + nameToId(name);
 }
 
 function splitDie(die: string): number[] {
