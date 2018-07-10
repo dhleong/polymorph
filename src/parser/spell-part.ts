@@ -33,14 +33,14 @@ function extractDiceInfo(info: Part[]): ISpellDice {
         if (p.type !== PartType.STRING) continue;
 
         const str = (p as IStringPart).str;
-        let m = str.match(/(\d+[dD]\d+( [+] [^ ]+)?) ([a-zA-Z]+) damage/);
+        let m = str.match(/(\d+[dD]\d+(?: [+] [^ ]+)?) ([a-zA-Z]+) damage/);
         if (m) {
             result.base = m[1];
-            result.damageType = m[3];
+            result.damageType = m[2];
         }
 
         // healing spells are tricky
-        m = str.match(/regain[s]? hit points equal to (\d+[dD]\d+( [+] [^.]+)?)/);
+        m = str.match(/regain[s]?(?: a number of)? hit points equal to (\d+[dD]\d+( [+] [^.]+)?)/);
         if (m) {
             result.base = m[1];
         }
