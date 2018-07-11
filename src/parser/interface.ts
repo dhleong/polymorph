@@ -26,6 +26,7 @@ export class FormatSpan {
 
 export enum PartType {
     CREATURE,
+    ITEM,
     SPELL,
     STRING,
     TABLE,
@@ -110,6 +111,67 @@ export interface ICreaturePart extends IPart {
     info: IStringPart[];
 }
 
+export enum ItemKind {
+    Ammunition,
+    Armor,
+
+    /**
+     * Anything that can be equipped that doesn't have
+     * a more specific type
+     */
+    Gear,
+
+    MeleeWeapon,
+    Potion,
+    RangedWeapon,
+    Wondrous,
+}
+
+export enum ItemRarity {
+    Common,
+    Uncommon,
+    Rare,
+    VeryRare,
+    Legendary,
+}
+
+export enum ArmorType {
+    // light:
+    Padded, // 5 gp, 11 + Dex modifier — Disadvantage; 8 lb.
+    Leather, // 10 gp, 11 + Dex; 10 lb
+    StuddedLeather, // 45 gp, 11 + Dex; 13 lb
+
+    // med:
+    Hide, // 10 gp, 12 + Dex (max 2); 12 lb
+    ChainShirt, // 50 gb, 13 + Dex (max 2); 20lb
+    ScaleMail, // 50 gp, 14 + Dex (max 2) — Disadvantage; 45 lb.
+    Breastplate, // 400 gp, 14 + Dex (max 2); 20 lb
+    HalfPlate, // 750 gp, 15 + Dex (max 2)— Disadvantage; 40 lb.
+
+    // heavy:
+    RingMail, // 30 gp, 14— Disadvantage; 40 lb.
+    ChainMail, // 75 gp, 16, Str 13— Disadvantage; 55 lb.
+    Splint, // 200 gp, 17, Str 15— Disadvantage; 60 lb.
+    Plate, // 1500 gp, 18, Str 15— Disadvantage; 65 lb.
+
+    // shield:
+    Shield, // 10gp, +2; 6 lb
+}
+
+export interface IItemPart extends IPart {
+    name: string;
+
+    kind: ItemKind;
+    rarity: ItemRarity;
+
+    armorType?: ArmorType;
+
+    /** where attunement is required */
+    attunes?: boolean;
+
+    info: Part[];
+}
+
 export enum SpellAttackType {
     Melee,
     Ranged,
@@ -186,7 +248,7 @@ export interface ITablePart extends IPart {
 }
 
 // union type of all part kinds
-export type Part = ICreaturePart | ISpellPart | IStringPart | ITablePart;
+export type Part = ICreaturePart | IItemPart | ISpellPart | IStringPart | ITablePart;
 
 export interface ISection {
     level: number;

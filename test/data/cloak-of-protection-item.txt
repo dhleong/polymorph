@@ -1,0 +1,11 @@
+{"str":"Magic Items A","dir":"ltr","width":112.0122,"height":324,"transform":[18,0,0,18,328.56,667.68],"fontName":"g_d0_f3","x":328.56,"y":667.68}
+{"str":"-","dir":"ltr","width":5.922000000000001,"height":324,"transform":[18,0,0,18,440.5766,667.68],"fontName":"g_d0_f3","x":440.5766,"y":667.68}
+{"str":"Z","dir":"ltr","width":11.934000000000001,"height":324,"transform":[18,0,0,18,446.5004,667.68],"fontName":"g_d0_f3","x":446.5004,"y":667.68}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,458.436,667.68],"fontName":"g_d0_f3","x":458.436,"y":667.68}
+{"str":"Cloak of Protection","dir":"ltr","width":103.21920000000001,"height":144,"transform":[12,0,0,12,328.56,676.32],"fontName":"g_d0_f3","x":328.56,"y":676.32}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,431.7846,676.32],"fontName":"g_d0_f3","x":431.7846,"y":676.32}
+{"str":"Wondrous    item,    uncommon    (requires    attunement)","dir":"ltr","width":209.68548000000004,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,663.84],"fontName":"g_d0_f7","x":328.56,"y":663.84}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,538.1254,663.84],"fontName":"g_d0_f7","x":538.1254,"y":663.84}
+{"str":"You    gain    a    +1    bonus    to    AC    and    saving    throws    while    ","dir":"ltr","width":219.25487999999993,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,646.08],"fontName":"g_d0_f4","x":328.56,"y":646.08}
+{"str":"you    wear    this    cloak.","dir":"ltr","width":84.76176000000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,634.32],"fontName":"g_d0_f4","x":328.56,"y":634.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,413.2622,634.32],"fontName":"g_d0_f4","x":413.2622,"y":634.32}

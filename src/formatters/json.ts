@@ -134,55 +134,64 @@ function partToJson(part: Part) {
 
     let partAsJson;
     switch (part.type) {
-        case PartType.TABLE:
-            partAsJson = part.toJson();
-            partAsJson.type = 'table';
-            break;
+    case PartType.TABLE:
+        partAsJson = part.toJson();
+        partAsJson.type = 'table';
+        break;
 
-        case PartType.STRING:
-            if ((part as IStringPart).str === '') {
-                // drop empty parts; this may be something we should
-                // move into Parser...
-                return;
-            }
+    case PartType.STRING:
+        if ((part as IStringPart).str === '') {
+            // drop empty parts; this may be something we should
+            // move into Parser...
+            return;
+        }
 
-            partAsJson = FormattedText.from(part as IStringPart);
-            break;
+        partAsJson = FormattedText.from(part as IStringPart);
+        break;
 
-        case PartType.SPELL:
-            const spell = part as ISpellPart;
-            partAsJson = part.toJson();
-            partAsJson.type = 'spell';
+    case PartType.ITEM:
+        partAsJson = part.toJson();
+        partAsJson.type = 'item';
 
-            partAsJson.school = spellSchoolJson[spell.school];
-            partAsJson.info = (partAsJson.info as Part[])
-                .map(p => partToJson(p))
-                .filter(p => p); // remove blank lines
+        partAsJson.info = (partAsJson.info as Part[])
+            .map(p => partToJson(p))
+            .filter(p => p); // remove blank lines
+        break;
 
-            // remove `false` boolean values
-            if (!spell.concentration) {
-                delete partAsJson.concentration;
-            }
-            if (!spell.ritual) {
-                delete partAsJson.ritual;
-            }
-            break;
+    case PartType.SPELL:
+        const spell = part as ISpellPart;
+        partAsJson = part.toJson();
+        partAsJson.type = 'spell';
 
-        case PartType.CREATURE:
-            const creature = part as ICreaturePart;
-            partAsJson = part.toJson();
-            partAsJson.type = 'creature';
+        partAsJson.school = spellSchoolJson[spell.school];
+        partAsJson.info = (partAsJson.info as Part[])
+            .map(p => partToJson(p))
+            .filter(p => p); // remove blank lines
 
-            partAsJson.size = sizeJson[creature.size];
-            partAsJson.align = alignmentJson[creature.align];
+        // remove `false` boolean values
+        if (!spell.concentration) {
+            delete partAsJson.concentration;
+        }
+        if (!spell.ritual) {
+            delete partAsJson.ritual;
+        }
+        break;
 
-            partAsJson.info = (partAsJson.info as Part[])
-                .map(p => partToJson(p))
-                .filter(p => p); // remove blank lines
-            break;
+    case PartType.CREATURE:
+        const creature = part as ICreaturePart;
+        partAsJson = part.toJson();
+        partAsJson.type = 'creature';
 
-        default:
-            throw new Error(`Unsupported part type: ${part.type}`);
+        partAsJson.size = sizeJson[creature.size];
+        partAsJson.align = alignmentJson[creature.align];
+
+        partAsJson.info = (partAsJson.info as Part[])
+            .map(p => partToJson(p))
+            .filter(p => p); // remove blank lines
+        break;
+
+    default:
+        throw new Error(`Unsupported part type: ${part.type}`);
     }
 
     return partAsJson;

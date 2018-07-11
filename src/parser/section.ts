@@ -11,9 +11,10 @@ import {
 } from './utils';
 
 import { ITextItem } from '../pdf';
+import { ItemPart } from './item-part';
 
 // union type of all part kinds
-export type Part = CreaturePart | SpellPart | StringPart | TablePart;
+export type Part = CreaturePart | ItemPart | SpellPart | StringPart | TablePart;
 
 export class Section implements ISection {
     static fromSectionPart(oldSection: Section, part: Part): Section {
@@ -84,6 +85,11 @@ export class Section implements ISection {
                 ? headers.splice(0, 1)[0]
                 : headers[0];
             return tableSrc.map(h => h.str).join('');
+
+        case PartType.ITEM:
+            // NOTE: there's nothing to remove from an ItemPart
+            const item = firstPart as ItemPart;
+            return item.name;
 
         case PartType.SPELL:
             // NOTE: there's nothing to remove from a SpellPart

@@ -3,6 +3,7 @@ import { fs } from 'mz';
 import { DepthTracker } from './depth-tracker';
 import { CreaturePart } from './parser/creature-part';
 import { ISection } from './parser/interface';
+import { ItemPart } from './parser/item-part';
 import { Part, Section } from './parser/section';
 import { SpellPart } from './parser/spell-part';
 import { StringPart } from './parser/string-part';
@@ -11,7 +12,7 @@ import { TABLE_HEADER_FONT_NAME } from './parser/utils';
 import { ITextItem, processPdf } from './pdf';
 
 // re-export as appropriate:
-export { Part, Section, SpellPart, StringPart, TablePart };
+export { ItemPart, Part, Section, SpellPart, StringPart, TablePart };
 export { FormatSpan, Formatting } from './parser/interface';
 
 const SKIPPED_FONT_NAMES = new Set([
@@ -127,6 +128,18 @@ export class Parser {
                 --i;
             }
 
+            if (currentHeader === 'Magic Items A-Z'
+                && section.level === 5
+
+                // NOTE: the Magic Items section has a bit of text
+                // to start.
+                && this.sections[i - 1].getHeader() !== 'Magic Items A-Z'
+
+                && this.consolidateItem(i)
+            ) {
+                --i;
+            }
+
             if (this.opts.processCreatures && isCreatureHeader(currentHeader)) {
                 if (section.level <= 3) {
                     const creaturePart = CreaturePart.from(currentCreature);
@@ -215,17 +228,29 @@ export class Parser {
         return items.slice(footersOffset);
     }
 
+    private consolidateItem(atIndex: number) {
+        return this.consolidate(atIndex, ItemPart.from);
+    }
+
     private consolidateSpell(atIndex: number) {
+        return this.consolidate(atIndex, SpellPart.from);
+    }
+
+    private consolidate(
+        atIndex: number,
+        factory: (name: ISection, body: ISection) => Part,
+    ) {
         const nameI = atIndex - 1;
         const bodySection = this.sections[atIndex];
         const nameSection = this.sections[nameI];
 
-        const spellSection = Section.fromSectionPart(nameSection, SpellPart.from(
-            nameSection,
-            bodySection,
-        ));
+        const part = factory(nameSection, bodySection);
+        if (!part) return;
+
+        const spellSection = Section.fromSectionPart(nameSection, part);
 
         this.sections.splice(nameI, 2, spellSection);
+        return part;
     }
 }
 
