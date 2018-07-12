@@ -273,16 +273,16 @@ export class WishFormatter implements IFormatter {
             if (s.ritual) this.writePart('rit?', 'true');
             if (s.concentration) this.writePart('con?', 'true');
 
+            if (s.save) {
+                this.writePart('save', abilityKeyword[s.save]);
+            }
+
             if (s.dice) {
                 if (s.dice.attackType) {
                     this.writePart('attack', s.dice.attackType === SpellAttackType.Ranged
                         ? ':ranged'
                         : ':melee',
                     );
-                }
-
-                if (s.dice.save) {
-                    this.writePart('save', abilityKeyword[s.dice.save]);
                 }
 
                 if (s.dice.damageType) {

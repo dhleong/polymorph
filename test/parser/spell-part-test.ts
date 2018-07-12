@@ -3,6 +3,7 @@ import * as chai from 'chai';
 import { SpellPart } from '../../src/parser';
 import { Ability, ISpellPart, SpellAttackType, SpellSchool } from '../../src/parser/interface';
 
+import { extractSave } from '../../src/parser/spell-part';
 import { loadTextItems, parsePage } from '../test-utils';
 
 chai.should();
@@ -15,6 +16,26 @@ async function loadSpellFromItems(fileName: string): Promise<ISpellPart> {
 
     return SpellPart.from(sections[1], sections[2]);
 }
+
+describe('SpellPart save extraction', () => {
+    it('works for Blindness/Deafness', () => {
+        // tslint:disable-next-line
+        extractSave('You can blind or deafen a foe. Choose one creature that you can see within range to make a Constitution saving throw. If it fails, the target is either blinded or deafened (your choice) for the duration. At the end of each of its turns, the target can make a Constitution saving throw. On a success, the spell ends.')
+        .should.equal(Ability.Con);
+    });
+
+    it('works for Hold Person', () => {
+        // tslint:disable-next-line
+        extractSave('Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target.')
+        .should.equal(Ability.Wis);
+    });
+
+    it('works for Zone of Truth', () => {
+        // tslint:disable-next-line
+        extractSave('You create a magical zone that guards against deception in a 15-foot-radius sphere centered on a point of your choice within range. Until the spell ends, a creature that enters the spell’s area for the first time on a turn or starts its turn there must make a Charisma saving throw. On a failed save, a creature can’t speak a deliberate lie while in the radius. You know whether each creature succeeds or fails on its saving throw.')
+        .should.equal(Ability.Cha);
+    });
+});
 
 describe('SpellPart parsing', () => {
     it('works for Polymorph', async () => {
@@ -100,7 +121,7 @@ describe('SpellPart parsing', () => {
         fireball.dice.base.should.equal('8d6');
         fireball.dice.slotLevelBuff.should.equal('1d6');
         fireball.dice.damageType.should.equal('fire');
-        fireball.dice.save.should.equal(Ability.Dex);
+        fireball.save.should.equal(Ability.Dex);
     });
 
     it('handles scaling cantrips and spell attacks', async () => {
@@ -122,7 +143,7 @@ describe('SpellPart parsing', () => {
         sp.dice.base.should.equal('10d6 + 40');
         sp.dice.slotLevelBuff.should.equal('3d6');
         sp.dice.damageType.should.equal('force');
-        sp.dice.save.should.equal(Ability.Dex);
+        sp.save.should.equal(Ability.Dex);
     });
 
     it('handles healing spells with bonuses', async () => {

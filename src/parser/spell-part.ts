@@ -26,6 +26,26 @@ function abilityFromStr(str: string): Ability {
     }
 }
 
+export function extractSave(str: string): Ability {
+    // saves?
+    const m = str.match(/(?:make[s]?|succeed on) a ([a-zA-Z]+) saving/);
+    if (m) {
+        return abilityFromStr(m[1]);
+    }
+}
+
+function extractSaveFrom(info: Part[]): Ability {
+    for (const p of info) {
+        if (p.type !== PartType.STRING) continue;
+
+        const str = (p as IStringPart).str;
+        const save = extractSave(str);
+        if (save) {
+            return save;
+        }
+    }
+}
+
 function extractDiceInfo(info: Part[]): ISpellDice {
     const result: ISpellDice = {};
 
@@ -59,12 +79,6 @@ function extractDiceInfo(info: Part[]): ISpellDice {
         m = str.match(/increases by (\d+[dD]\d+) when you reach/);
         if (m) {
             result.charLevelBuff = m[1];
-        }
-
-        // saves?
-        m = str.match(/make[s]? a ([a-zA-Z]+) saving/);
-        if (m) {
-            result.save = abilityFromStr(m[1]);
         }
 
         // spell attack type
@@ -159,6 +173,7 @@ export class SpellPart implements ISpellPart {
             duration,
             info,
 
+            extractSaveFrom(info),
             extractDiceInfo(info),
         );
     }
@@ -177,6 +192,7 @@ export class SpellPart implements ISpellPart {
         readonly duration: string,
         readonly info: Part[],
 
+        readonly save?: Ability,
         readonly dice?: ISpellDice,
     ) {}
 

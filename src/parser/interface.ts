@@ -138,8 +138,6 @@ export interface ISpellDice {
      */
     charLevelBuff?: string;
 
-    save?: Ability;
-
     /** If non-null, indicates the type of damage this spell does, if any */
     damageType?: string;
 
@@ -159,6 +157,7 @@ export interface ISpellPart extends IPart {
     duration: string;
     info: Part[];
 
+    save?: Ability;
     dice?: ISpellDice;
 }
 
