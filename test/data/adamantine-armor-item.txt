@@ -1,0 +1,14 @@
+{"str":"Magic Items A","dir":"ltr","width":112.0122,"height":324,"transform":[18,0,0,18,328.56,667.68],"fontName":"g_d0_f3","x":328.56,"y":667.68}
+{"str":"-","dir":"ltr","width":5.922000000000001,"height":324,"transform":[18,0,0,18,440.5766,667.68],"fontName":"g_d0_f3","x":440.5766,"y":667.68}
+{"str":"Z","dir":"ltr","width":11.934000000000001,"height":324,"transform":[18,0,0,18,446.5004,667.68],"fontName":"g_d0_f3","x":446.5004,"y":667.68}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,458.436,667.68],"fontName":"g_d0_f3","x":458.436,"y":667.68}
+{"str":"Adamantine Armor","dir":"ltr","width":102.74999999999997,"height":144,"transform":[12,0,0,12,328.56,595.92],"fontName":"g_d0_f3","x":328.56,"y":595.92}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,431.31,595.92],"fontName":"g_d0_f3","x":431.31,"y":595.92}
+{"str":"Armor    (medium    or    heavy,    but    not    hide),    uncommon","dir":"ltr","width":213.49159200000005,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,583.44],"fontName":"g_d0_f7","x":328.56,"y":583.44}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,542.0024,583.44],"fontName":"g_d0_f7","x":542.0024,"y":583.44}
+{"str":"This    suit    of    armor    is    reinforced    with    adamantine,    ","dir":"ltr","width":211.21559999999988,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,565.68],"fontName":"g_d0_f4","x":328.56,"y":565.68}
+{"str":"one    of    the    hard","dir":"ltr","width":64.5504,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,554.16],"fontName":"g_d0_f4","x":328.5601,"y":554.16}
+{"str":"est    substances    in    existence.    While    ","dir":"ltr","width":146.08956,"height":96.8256,"transform":[9.84,0,0,9.84,393.1304,554.16],"fontName":"g_d0_f4","x":393.1304,"y":554.16}
+{"str":"you’re    wearing    it,    any    critical    hit    against    you    ","dir":"ltr","width":191.208912,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,542.4],"fontName":"g_d0_f4","x":328.5601,"y":542.4}
+{"str":"becomes    a    normal    hit.","dir":"ltr","width":93.758472,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,530.64],"fontName":"g_d0_f4","x":328.5601,"y":530.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,422.2856,530.64],"fontName":"g_d0_f4","x":422.2856,"y":530.64}

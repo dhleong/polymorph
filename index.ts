@@ -14,7 +14,7 @@ import { CompositeFormatter } from './src/formatters/composite';
 import { DebugFormatter } from './src/formatters/debug';
 import { JsonFormatter } from './src/formatters/json';
 import { JsonSectionsFormatter } from './src/formatters/json-sections';
-import { WishFormatter } from './src/formatters/wish';
+import { WishItemsFormatter, WishSpellsFormatter } from './src/formatters/wish';
 
 const formatterFactories = {
     '--debug': (stream) => new DebugFormatter(stream),
@@ -23,7 +23,8 @@ const formatterFactories = {
         pretty: true,
     }),
     '--json-sections': (stream) => new JsonSectionsFormatter(stream),
-    '--wish': (stream) => new WishFormatter(stream),
+    '--wish-items': (stream) => new WishItemsFormatter(stream),
+    '--wish-spells': (stream) => new WishSpellsFormatter(stream),
 };
 
 function streamForDestination(destination: string): NodeJS.WritableStream {
@@ -69,7 +70,8 @@ Options:
     --raw=<file>            Output a newline-separted list of raw PDF TextItems.
                             Note that if this is provided, no other
                             formatters will run
-    --wish=<file>           Formatted for use with the WISH project
+    --wish-spells=<file>    Formatters for use with the WISH project
+    --wish-items=<file>
 
 Notes:
     A hyphen (-) can be used in place of any <file> to write to

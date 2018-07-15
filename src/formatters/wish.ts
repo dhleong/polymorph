@@ -3,9 +3,12 @@ import { IFormatter } from '../formatter';
 import { StringPart } from '../parser';
 import {
     Ability,
+    ArmorType,
+    IItemPart,
     ISection,
     ISpellDice,
     ISpellPart,
+    ItemKind,
     Part,
     PartType,
     SpellAttackType,
@@ -54,7 +57,7 @@ function splitDie(die: string): number[] {
  * Quote-ify a string
  */
 function q(value: any) {
-    return `"${value.toString().replace(/"/, '\"')}"`;
+    return `"${value.toString().trim().replace(/"/, '\"')}"`;
 }
 
 function formatComponents(raw: string): string {
@@ -180,10 +183,10 @@ export function generateDiceFn(dice: ISpellDice, spellLevel: number): string {
 }
 
 /**
- * Formats item and spell data in a way that can be used
+ * Formats spell data in a way that can be used
  * by WISH.
  */
-export class WishFormatter implements IFormatter {
+export class WishSpellsFormatter implements IFormatter {
 
     private spells: {[key: string]: IWishSpellPart} = {};
     private lists: {[key: string]: string[]} = {};
@@ -321,5 +324,213 @@ export class WishFormatter implements IFormatter {
 
     private writePart(key: string, value: string) {
         this.output.write(`\n   :${key} ${value}`);
+    }
+}
+
+const armorTypeKeyword = {
+    [ArmorType.Padded]: ':padded',
+    [ArmorType.Leather]: ':leather',
+    [ArmorType.StuddedLeather]: ':studded',
+    [ArmorType.Hide]: ':hide',
+    [ArmorType.ChainShirt]: ':chain-shirt',
+    [ArmorType.ScaleMail]: ':scale-mail',
+    [ArmorType.Breastplate]: ':breastplate',
+    [ArmorType.HalfPlate]: ':half-plate',
+    [ArmorType.RingMail]: ':ring-mail',
+    [ArmorType.ChainMail]: ':chain-mail',
+    [ArmorType.Splint]: ':splint',
+    [ArmorType.Plate]: ':plate',
+};
+
+function stringifyItemKind(kind: ItemKind) {
+    switch (kind) {
+    case ItemKind.Ammunition:
+        return 'ammunition';
+    case ItemKind.Armor:
+        return 'armor';
+    case ItemKind.Gear:
+        return 'gear';
+    case ItemKind.MeleeWeapon:
+    case ItemKind.RangedWeapon:
+        return 'weapon';
+    case ItemKind.Potion:
+        return 'potion';
+    case ItemKind.Wondrous:
+        return 'wondrous';
+    }
+}
+
+export class WishItemsFormatter implements IFormatter {
+
+    private itemGroups: IItemPart[] = [];
+    private potions: IItemPart[] = [];
+    private written = 0;
+
+    constructor(
+        readonly output: NodeJS.WriteStream,
+    ) {
+        output.write(`
+[:!declare-items
+ {}
+`);
+    }
+
+    async format(section: ISection) {
+        for (const p of section.parts) {
+            if (p.type !== PartType.ITEM) continue;
+
+            this.onItem(p as IItemPart);
+        }
+    }
+
+    async end() {
+        this.output.write(`
+ ]`);
+
+        // potions group
+        this.writeGroup({
+            type: ':potion',
+        }, this.potions.map(p => [p, {}]));
+
+        for (const item of this.itemGroups) {
+            if (item.armorTypes) {
+                this.writeArmorGroup(item);
+            }
+        }
+
+        console.log(`Exported ${this.written} items`);
+    }
+
+    private onItem(item: IItemPart) {
+        if (item.name.includes('or +3')) {
+            // TODO handle these like armorTypes below
+            console.log('TODO handle "+1, +2, or +3" items');
+            return;
+        }
+
+        if (item.armorTypes && item.armorTypes.length > 1) {
+            this.itemGroups.push(item);
+            return;
+        } else if (item.armorTypes) {
+            const opts = this.armorOpts(item.armorTypes[0]);
+            if (
+                item.armorTypes[0] === ArmorType.Shield
+                    && item.name.includes('Shield')
+            ) {
+                delete opts.prefix;
+            }
+
+            this.writeItem(item, opts);
+            return;
+        }
+
+        if (item.kind === ItemKind.Potion) {
+            // group these together
+            this.potions.push(item);
+            return;
+        }
+
+        // just do the normal thing
+        this.writeItem(item, {});
+    }
+
+    private armorOpts(type: ArmorType) {
+        // TODO ac values
+        return {
+            kind: armorTypeKeyword[type],
+            prefix: ArmorType[type],
+        };
+    }
+
+    private writeArmorGroup(item: IItemPart) {
+        this.writeItemGroup(item, {
+            desc: q(stringifyInfo(item.info)),
+            type: ':armor',
+        }, item.armorTypes.map(this.armorOpts.bind(this)));
+    }
+
+    private writeItemGroup(item: IItemPart, header, options) {
+        // auto extract some shared props
+        if (item.attunes) {
+            header['attunes?'] = 'true';
+        }
+
+        this.writeGroup(header, options.map(o => [item, o]));
+    }
+
+    private writeGroup(header, itemOptionPairs) {
+
+        this.output.write(`
+
+[:!declare-items
+`);
+        this.writeEdn(header);
+
+        for (const [item, o] of itemOptionPairs) {
+            this.writeItem(item, {
+                noAttunes: !!header['attunes?'],
+
+                noDesc: !!header.desc,
+                noType: !!header.type,
+
+                ...o,
+            });
+        }
+
+        this.output.write(`]
+`);
+    }
+
+    private writeEdn(edn, indent = 1) {
+        for (let i = 0; i < indent; ++i) {
+            this.output.write(' ');
+        }
+
+        let first = true;
+        this.output.write('{');
+        for (const k of Object.keys(edn)) {
+            if (first) {
+                this.writePart(k, edn[k], '');
+            } else {
+                this.writePart(k, edn[k]);
+            }
+            first = false;
+        }
+        this.output.write('}\n');
+    }
+
+    private writeItem(item: IItemPart, options) {
+        ++this.written;
+
+        let name = item.name;
+        if (options.prefix) name = options.prefix + ' ' + name;
+
+        options.id = `:${nameToId(name)}`;
+        options.name = q(name);
+
+        if (!options.noType) {
+            options.type = ':' + stringifyItemKind(item.kind);
+        }
+
+        if (!options.noDesc) {
+            options.desc = q(stringifyInfo(item.info));
+        }
+
+        if (!options.noAttunes && item.attunes) {
+            options['attunes?'] = 'true';
+        }
+
+        // if (options.kind) this.writePart('kind', options.kind);
+        // this.output.write(`}`);
+
+        delete options.noType;
+        delete options.noDesc;
+        delete options.noAttunes;
+        delete options.prefix;
+        this.writeEdn(options);
+    }
+
+    private writePart(key: string, value: string, prefix = '\n  ') {
+        this.output.write(`${prefix}:${key} ${value}`);
     }
 }

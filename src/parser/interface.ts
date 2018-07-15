@@ -158,13 +158,36 @@ export enum ArmorType {
     Shield, // 10gp, +2; 6 lb
 }
 
+export const lightArmorTypes = [
+    ArmorType.Padded, // 5 gp, 11 + Dex modifier — Disadvantage; 8 lb.
+    ArmorType.Leather, // 10 gp, 11 + Dex; 10 lb
+    ArmorType.StuddedLeather, // 45 gp, 11 + Dex; 13 lb
+];
+
+export const mediumArmorTypes = [
+    // med:
+    ArmorType.Hide, // 10 gp, 12 + Dex (max 2); 12 lb
+    ArmorType.ChainShirt, // 50 gb, 13 + Dex (max 2); 20lb
+    ArmorType.ScaleMail, // 50 gp, 14 + Dex (max 2) — Disadvantage; 45 lb.
+    ArmorType.Breastplate, // 400 gp, 14 + Dex (max 2); 20 lb
+    ArmorType.HalfPlate, // 750 gp, 15 + Dex (max 2)— Disadvantage; 40 lb.
+];
+
+export const heavyArmorTypes = [
+    // heavy:
+    ArmorType.RingMail, // 30 gp, 14— Disadvantage; 40 lb.
+    ArmorType.ChainMail, // 75 gp, 16, Str 13— Disadvantage; 55 lb.
+    ArmorType.Splint, // 200 gp, 17, Str 15— Disadvantage; 60 lb.
+    ArmorType.Plate, // 1500 gp, 18, Str 15— Disadvantage; 65 lb.
+];
+
 export interface IItemPart extends IPart {
     name: string;
 
     kind: ItemKind;
     rarity: ItemRarity;
 
-    armorType?: ArmorType;
+    armorTypes?: ArmorType[];
 
     /** where attunement is required */
     attunes?: boolean;
