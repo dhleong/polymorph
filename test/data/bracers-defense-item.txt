@@ -1,0 +1,11 @@
+{"str":"Magic Items A","dir":"ltr","width":112.0122,"height":324,"transform":[18,0,0,18,328.56,667.68],"fontName":"g_d0_f3","x":328.56,"y":667.68}
+{"str":"-","dir":"ltr","width":5.922000000000001,"height":324,"transform":[18,0,0,18,440.5766,667.68],"fontName":"g_d0_f3","x":440.5766,"y":667.68}
+{"str":"Z","dir":"ltr","width":11.934000000000001,"height":324,"transform":[18,0,0,18,446.5004,667.68],"fontName":"g_d0_f3","x":446.5004,"y":667.68}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,458.436,667.68],"fontName":"g_d0_f3","x":458.436,"y":667.68}
+{"str":"Bracers of Defense","dir":"ltr","width":99.2172,"height":144,"transform":[12,0,0,12,328.5602,331.92],"fontName":"g_d0_f3","x":328.5602,"y":331.92}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,427.7829,331.92],"fontName":"g_d0_f3","x":427.7829,"y":331.92}
+{"str":"Wondrous    item,    rare    (requires    attunement)","dir":"ltr","width":181.14554400000006,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,319.44],"fontName":"g_d0_f7","x":328.5602,"y":319.44}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,509.6003,319.44],"fontName":"g_d0_f7","x":509.6003,"y":319.44}
+{"str":"While    wearing    these    bracers,    you    gain    a    +2    bonus    to    ","dir":"ltr","width":224.23195199999975,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,301.68],"fontName":"g_d0_f4","x":328.5602,"y":301.68}
+{"str":"AC    if    you    are    wearing    no    armor    and    using    no    shield.","dir":"ltr","width":219.90628800000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,289.92],"fontName":"g_d0_f4","x":328.5602,"y":289.92}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,548.4235,289.92],"fontName":"g_d0_f4","x":548.4235,"y":289.92}

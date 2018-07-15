@@ -135,6 +135,21 @@ export enum ItemRarity {
     Legendary,
 }
 
+export enum BonusType {
+    AbilityChecks,
+    AC,
+    AttackRolls,
+    DamageRolls,
+    SavingThrows,
+    SpellAttackRolls,
+}
+
+export interface IBonus {
+    type: BonusType;
+    value: number;
+    conditions?: string;
+}
+
 export enum ArmorType {
     // light:
     Padded, // 5 gp, 11 + Dex modifier — Disadvantage; 8 lb.
@@ -191,6 +206,8 @@ export interface IItemPart extends IPart {
 
     /** where attunement is required */
     attunes?: boolean;
+
+    bonuses?: IBonus[];
 
     info: Part[];
 }

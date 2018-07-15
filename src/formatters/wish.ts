@@ -4,6 +4,7 @@ import { StringPart } from '../parser';
 import {
     Ability,
     ArmorType,
+    BonusType,
     IItemPart,
     ISection,
     ISpellDice,
@@ -340,9 +341,11 @@ const armorTypeKeyword = {
     [ArmorType.ChainMail]: ':chain-mail',
     [ArmorType.Splint]: ':splint',
     [ArmorType.Plate]: ':plate',
+    [ArmorType.Shield]: ':shield',
 };
 
-function stringifyItemKind(kind: ItemKind) {
+function stringifyItemKind(item: IItemPart) {
+    const kind = item.kind;
     switch (kind) {
     case ItemKind.Ammunition:
         return 'ammunition';
@@ -356,9 +359,25 @@ function stringifyItemKind(kind: ItemKind) {
     case ItemKind.Potion:
         return 'potion';
     case ItemKind.Wondrous:
-        return 'wondrous';
+        // NOTE: "wondrous" is not very useful for WISH
+        for (const p of item.info) {
+            if (p.type !== PartType.STRING) continue;
+            const str = (p as StringPart).str;
+            if (str.match(/\b[wW]ear/)) {
+                // if we can wear it, it's gear
+                return 'gear';
+            }
+        }
+        return 'other';
     }
 }
+
+const bonusPaths = {
+    [BonusType.AbilityChecks]: ':buffs :checks',
+    [BonusType.AC]: ':buffs :ac',
+    [BonusType.SavingThrows]: ':buffs :saves',
+    [BonusType.SpellAttackRolls]: ':buffs :spell-atk',
+};
 
 export class WishItemsFormatter implements IFormatter {
 
@@ -412,13 +431,9 @@ export class WishItemsFormatter implements IFormatter {
             this.itemGroups.push(item);
             return;
         } else if (item.armorTypes) {
+            // with a single armor type, we don't need the prefix
             const opts = this.armorOpts(item.armorTypes[0]);
-            if (
-                item.armorTypes[0] === ArmorType.Shield
-                    && item.name.includes('Shield')
-            ) {
-                delete opts.prefix;
-            }
+            delete opts.prefix;
 
             this.writeItem(item, opts);
             return;
@@ -509,7 +524,7 @@ export class WishItemsFormatter implements IFormatter {
         options.name = q(name);
 
         if (!options.noType) {
-            options.type = ':' + stringifyItemKind(item.kind);
+            options.type = ':' + stringifyItemKind(item);
         }
 
         if (!options.noDesc) {
@@ -520,8 +535,21 @@ export class WishItemsFormatter implements IFormatter {
             options['attunes?'] = 'true';
         }
 
-        // if (options.kind) this.writePart('kind', options.kind);
-        // this.output.write(`}`);
+        const directives = [];
+        for (const b of item.bonuses || []) {
+            const path = bonusPaths[b.type];
+            if (path && !b.conditions) {
+                directives.push(`[:!provide-attrs [${path} ${options.id}] ${b.value}]`);
+            } else if (!path && !b.conditions) {
+                options['+'] = b.value;
+            }
+
+            // TODO weapon type-specific bonuses, eg: bracers of archery
+        }
+
+        if (directives.length) {
+            options['!'] = `[${directives.join('\n      ')}]`;
+        }
 
         delete options.noType;
         delete options.noDesc;

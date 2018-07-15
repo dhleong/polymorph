@@ -1,6 +1,8 @@
 import {
     ArmorType,
+    BonusType,
     heavyArmorTypes,
+    IBonus,
     IItemPart,
     ISection,
     IStringPart,
@@ -77,6 +79,62 @@ function extractArmorTypes(str: string): ArmorType[] {
     }
 }
 
+const bonusSearches: Array<[BonusType, RegExp]> = [
+    [BonusType.AC, /AC/],
+    [BonusType.DamageRolls, /damage rolls/],
+    [BonusType.AttackRolls, /^attack rolls/],
+    [BonusType.AbilityChecks, /ability checks/],
+    [BonusType.SpellAttackRolls, /spell attack rolls/],
+    [BonusType.SavingThrows, /saving throws/],
+];
+
+function extractBonuses(info: Part[]): IBonus[] {
+    const results: IBonus[] = [];
+
+    for (const p of info) {
+        if (p.type !== PartType.STRING) continue;
+        const str = (p as IStringPart).str;
+
+        // omitting Y is intentional to simplify the match
+        // since it could be Y or y.
+        const m = str.match(/ou gain a \+(\d+) bonus to ([^.]+)\./);
+        if (!m) continue;
+
+        const [, bonus, to] = m;
+        if (!to) continue;
+
+        let conditions: string;
+        const withStart = to.lastIndexOf('with');
+        if (withStart !== -1 && !to.includes('this')) {
+            conditions = to.substring(withStart + 'with '.length);
+        } else {
+            const againstStart = to.lastIndexOf('against');
+            if (againstStart !== -1) {
+                conditions = to.substring(againstStart + 'against '.length);
+            }
+        }
+
+        for (const [type, matcher] of bonusSearches) {
+            if (to.match(matcher)) {
+                const v: IBonus = {
+                    type,
+                    value: parseInt(bonus, 10),
+                };
+
+                if (conditions) {
+                    v.conditions = conditions;
+                }
+
+                results.push(v);
+            }
+        }
+    }
+
+    if (results.length) {
+        return results;
+    }
+}
+
 export class ItemPart implements IItemPart {
     static from(
         nameSection: ISection,
@@ -92,7 +150,6 @@ export class ItemPart implements IItemPart {
         const meta = (bodySection.parts.shift() as IStringPart).str.toLowerCase();
         const info = bodySection.parts;
 
-        // const [kindRaw, rarityRaw] = meta.split(/, +/);
         const [, kindRaw, rarityRaw] = meta.match(/^(.*?(?:\([^)]+\))?), (.*)$/);
         if (!rarityRaw) {
             throw new Error(`No rarity part for ${name}: ${meta}`);
@@ -110,15 +167,15 @@ export class ItemPart implements IItemPart {
             kind = ItemKind.Ammunition;
         } else if (kindRaw.includes('weapon')) {
             kind = ItemKind.MeleeWeapon;
+            // TODO extract weapon types
         } else if (kindRaw.includes('potion')) {
             kind = ItemKind.Potion;
         } else if (kindRaw.includes('armor')) {
             kind = ItemKind.Armor;
             armorTypes = extractArmorTypes(kindRaw);
         }
-        // FIXME all the things
 
-        // TODO charges
+        // TODO charges ?
 
         return new ItemPart(
             name,
@@ -128,6 +185,7 @@ export class ItemPart implements IItemPart {
             info,
             armorTypes,
             attunes,
+            extractBonuses(info),
         );
     }
 
@@ -141,6 +199,7 @@ export class ItemPart implements IItemPart {
         readonly info: Part[],
         readonly armorTypes?: ArmorType[],
         readonly attunes?: boolean,
+        readonly bonuses?: IBonus[],
     ) {}
 
     postProcess() { /* nop */ }

@@ -1,7 +1,13 @@
 import * as chai from 'chai';
 
 import { ItemPart } from '../../src/parser';
-import { ArmorType, IItemPart, ItemKind, ItemRarity } from '../../src/parser/interface';
+import {
+    ArmorType,
+    BonusType,
+    IItemPart,
+    ItemKind,
+    ItemRarity,
+} from '../../src/parser/interface';
 import { loadTextItems, parsePage } from '../test-utils';
 
 chai.should();
@@ -25,6 +31,33 @@ describe('ItemPart parsing', () => {
         item.attunes.should.be.true;
 
         item.info.toString().should.match(/^You gain a \+1/);
+        item.bonuses.should.deep.equal([
+            {
+                type: BonusType.AC,
+                value: 1,
+            },
+            {
+                type: BonusType.SavingThrows,
+                value: 1,
+            },
+        ]);
+    });
+
+    it('extracts bonuses for Bracers of Defense', async () => {
+        const item = await loadItemFromItems('bracers-defense-item.txt');
+
+        item.name.should.equal('Bracers of Defense');
+        item.kind.should.equal(ItemKind.Wondrous);
+        item.rarity.should.equal(ItemRarity.Rare);
+        item.attunes.should.be.true;
+
+        item.info.toString().should.match(/^While wearing/);
+        item.bonuses.should.deep.equal([
+            {
+                type: BonusType.AC,
+                value: 2,
+            },
+        ]);
     });
 
     it('extracts armor types', async () => {
