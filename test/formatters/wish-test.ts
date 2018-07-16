@@ -1,12 +1,33 @@
 import * as chai from 'chai';
 
-import { ISpellDice } from '../..';
-import { generateDiceFn } from '../../src/formatters/wish';
+import {
+    IItemPart,
+    ISpellDice,
+    PartType,
+} from '../..';
+import { generateDiceFn, weaponOpts } from '../../src/formatters/wish';
+import {
+    ItemKind,
+    ItemRarity,
+    WeaponType,
+} from '../../src/parser/interface';
 
 chai.should();
 
 function simpleDiceFn(dice: ISpellDice, level: number = 1) {
     return generateDiceFn(dice, level).replace(/\s+/g, ' ');
+}
+
+function stubItem(parts: {name}): IItemPart {
+    return {
+        kind: ItemKind.MeleeWeapon,
+        rarity: ItemRarity.Rare,
+        type: PartType.ITEM,
+
+        toJson: () => null,
+
+        ...parts,
+    };
 }
 
 describe('generateDiceFn supports', () => {
@@ -95,4 +116,36 @@ describe('generateDiceFn supports', () => {
         );
     });
 
+});
+
+describe('weaponOpts', () => {
+    it('picks appropriate names', () => {
+        weaponOpts(
+            stubItem({
+                name: 'Flame Tongue',
+            }), WeaponType.Longsword,
+
+        ).name.should.equal('Flame Tongue Longsword');
+
+        weaponOpts(
+            stubItem({
+                name: 'Berserker Axe',
+            }), WeaponType.Greataxe,
+
+        ).name.should.equal('Berserker Greataxe');
+
+        weaponOpts(
+            stubItem({
+                name: 'Sword of Lifestealing',
+            }), WeaponType.Shortsword,
+
+        ).name.should.equal('Shortsword of Lifestealing');
+
+        weaponOpts(
+            stubItem({
+                name: 'Viscious Weapon',
+            }), WeaponType.Dart,
+
+        ).name.should.equal('Viscious Dart');
+    });
 });

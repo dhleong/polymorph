@@ -18,6 +18,10 @@ import {
     WeaponType,
 } from './interface';
 
+function isNumber(n) {
+    return !isNaN(parseInt(n, 10));
+}
+
 function rarityFromString(str: string) {
     const justRarity = str.replace(/ (.*)$/, '');
     switch (justRarity) {
@@ -40,7 +44,7 @@ function extractArmorTypes(str: string): ArmorType[] {
     const includeAll = str.includes('all');
 
     for (const k of Object.keys(ArmorType)) {
-        if (parseInt(k, 10)) continue;
+        if (isNumber(k)) continue;
 
         if (includeAll || includeStr.includes(k.toLowerCase())) {
             results.push(ArmorType[k]);
@@ -66,7 +70,7 @@ function extractArmorTypes(str: string): ArmorType[] {
     }
 
     for (const k of Object.keys(ArmorType)) {
-        if (parseInt(k, 10)) continue;
+        if (isNumber(k)) continue;
 
         if (excludeStr && excludeStr.includes(k.toLowerCase())) {
             const idx = results.indexOf(ArmorType[k]);
@@ -90,6 +94,14 @@ function extractWeaponTypes(str: string): WeaponType[] {
 
     let results: WeaponType[] = [];
 
+    if (str.includes('(any)')) {
+        for (const k of Object.keys(WeaponType)) {
+            if (isNumber(k)) continue;
+            results.push(WeaponType[k]);
+        }
+        return results;
+    }
+
     if (str.match(/any.*sword/)) {
         results = results.concat(swordWeaponTypes);
     }
@@ -98,12 +110,8 @@ function extractWeaponTypes(str: string): WeaponType[] {
         results = results.concat(axeWeaponTypes);
     }
 
-    if (str.includes('(any)')) {
-        return Object.values(WeaponType);
-    }
-
-    for (const k of Object.keys(ArmorType)) {
-        if (parseInt(k, 10)) continue;
+    for (const k of Object.keys(WeaponType)) {
+        if (!isNumber(k)) continue;
 
         if (str.includes(k.toLowerCase())) {
             results.push(WeaponType[k]);

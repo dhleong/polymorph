@@ -187,7 +187,7 @@ export enum WeaponType {
     Spear,
 
     // Simple Ranged Weapons
-    Crossbow, light,
+    LightCrossbow,
     Dart,
     Shortbow,
     Sling,
@@ -278,7 +278,7 @@ export interface IItemPart extends IPart {
 
     bonuses?: IBonus[];
 
-    info: Part[];
+    info?: Part[];
 }
 
 export enum SpellAttackType {

@@ -14,6 +14,7 @@ import {
     PartType,
     SpellAttackType,
     SpellSchool,
+    WeaponType,
 } from '../parser/interface';
 
 interface IWishSpellPart extends ISpellPart {
@@ -42,6 +43,7 @@ const abilityKeyword = {
 
 function nameToId(name: string): string {
     return name.toLowerCase()
+        .trim()
         .replace(/^ \/a-z/g, '')
         .replace(/[^a-z]+/g, '-');
 }
@@ -344,6 +346,46 @@ const armorTypeKeyword = {
     [ArmorType.Shield]: ':shield',
 };
 
+const weaponTypeMeta = {
+    [WeaponType.Club]: {kind: ':club', category: ':simple'},
+    [WeaponType.Dagger]: {kind: ':dagger', category: ':simple'},
+    [WeaponType.Greatclub]: {kind: ':greatclub', category: ':simple'},
+    [WeaponType.Handaxe]: {kind: ':handaxe', category: ':simple'},
+    [WeaponType.Javelin]: {kind: ':javelin', category: ':simple'},
+    [WeaponType.LightHammer]: {kind: ':light-hammer', category: ':simple'},
+    [WeaponType.Mace]: {kind: ':mace', category: ':simple'},
+    [WeaponType.Quarterstaff]: {kind: ':quarterstaff', category: ':simple'},
+    [WeaponType.Sickle]: {kind: ':sickle', category: ':simple'},
+    [WeaponType.Spear]: {kind: ':spear', category: ':simple'},
+    [WeaponType.LightCrossbow]: {kind: ':light-crossbow', category: ':simple'},
+    [WeaponType.Dart]: {kind: ':dart', category: ':simple'},
+    [WeaponType.Shortbow]: {kind: ':shortbow', category: ':simple'},
+    [WeaponType.Sling]: {kind: ':sling', category: ':simple'},
+    [WeaponType.Battleaxe]: {kind: ':battleaxe', category: ':martial'},
+    [WeaponType.Flail]: {kind: ':flail', category: ':martial'},
+    [WeaponType.Glaive]: {kind: ':glaive', category: ':martial'},
+    [WeaponType.Greataxe]: {kind: ':greataxe', category: ':martial'},
+    [WeaponType.Greatsword]: {kind: ':greatsword', category: ':martial'},
+    [WeaponType.Halberd]: {kind: ':halberd', category: ':martial'},
+    [WeaponType.Lance]: {kind: ':lance', category: ':martial'},
+    [WeaponType.Longsword]: {kind: ':longsword', category: ':martial'},
+    [WeaponType.Maul]: {kind: ':maul', category: ':martial'},
+    [WeaponType.Morningstar]: {kind: ':morningstar', category: ':martial'},
+    [WeaponType.Pike]: {kind: ':pike', category: ':martial'},
+    [WeaponType.Rapier]: {kind: ':rapier', category: ':martial'},
+    [WeaponType.Scimitar]: {kind: ':scimitar', category: ':martial'},
+    [WeaponType.Shortsword]: {kind: ':shortsword', category: ':martial'},
+    [WeaponType.Trident]: {kind: ':trident', category: ':martial'},
+    [WeaponType.WarPick]: {kind: ':warpick', category: ':martial'},
+    [WeaponType.Warhammer]: {kind: ':warhammer', category: ':martial'},
+    [WeaponType.Whip]: {kind: ':whip', category: ':martial'},
+    [WeaponType.Blowgun]: {kind: ':blowgun', category: ':martial'},
+    [WeaponType.HandCrossbow]: {kind: ':hand-crossbow', category: ':martial'},
+    [WeaponType.HeavyCrossbow]: {kind: ':heavy-crossbow', category: ':martial'},
+    [WeaponType.Longbow]: {kind: ':longbow', category: ':martial'},
+    [WeaponType.Net]: {kind: ':net', category: ':martial'},
+};
+
 function stringifyItemKind(item: IItemPart) {
     const kind = item.kind;
     switch (kind) {
@@ -378,6 +420,25 @@ const bonusPaths = {
     [BonusType.SavingThrows]: ':buffs :saves',
     [BonusType.SpellAttackRolls]: ':buffs :spell-atk',
 };
+
+// public for testing
+export function weaponOpts(item: IItemPart, type: WeaponType) {
+    const opts = {
+        name: item.name.toLowerCase().match(/sword|axe|weapon/)
+            ? item.name.replace(
+                /([sS]word|[aA]xe|[wW]eapon)/,
+                WeaponType[type],
+            )
+            : item.name + ' ' + WeaponType[type],
+
+        ...weaponTypeMeta[type],
+    };
+
+    // TODO dice?
+    // TODO damage type?
+    // TODO versatile?
+    return opts;
+}
 
 export class WishItemsFormatter implements IFormatter {
 
@@ -414,6 +475,8 @@ export class WishItemsFormatter implements IFormatter {
         for (const item of this.itemGroups) {
             if (item.armorTypes) {
                 this.writeArmorGroup(item);
+            } else if (item.weaponTypes) {
+                this.writeWeaponGroup(item);
             }
         }
 
@@ -423,7 +486,7 @@ export class WishItemsFormatter implements IFormatter {
     private onItem(item: IItemPart) {
         if (item.name.includes('or +3')) {
             // TODO handle these like armorTypes below
-            console.log('TODO handle "+1, +2, or +3" items');
+            console.log('TODO handle "+1, +2, or +3" items:', item.name);
             return;
         }
 
@@ -439,7 +502,18 @@ export class WishItemsFormatter implements IFormatter {
             return;
         }
 
-        // TODO weaponTypes group
+        if (item.weaponTypes && item.weaponTypes.length > 1) {
+            this.itemGroups.push(item);
+            return;
+        } else if (item.weaponTypes) {
+            // similar to above; for single-type weapons,
+            // don't change the name
+            const opts = weaponOpts(item, item.weaponTypes[0]);
+            delete opts.name;
+
+            this.writeItem(item, opts);
+            return;
+        }
 
         if (item.kind === ItemKind.Potion) {
             // group these together
@@ -464,6 +538,13 @@ export class WishItemsFormatter implements IFormatter {
             desc: q(stringifyInfo(item.info)),
             type: ':armor',
         }, item.armorTypes.map(this.armorOpts.bind(this)));
+    }
+
+    private writeWeaponGroup(item: IItemPart) {
+        this.writeItemGroup(item, {
+            desc: q(stringifyInfo(item.info)),
+            type: ':weapon',
+        }, item.weaponTypes.map(weaponOpts.bind(weaponOpts, item)));
     }
 
     private writeItemGroup(item: IItemPart, header, options) {
@@ -520,10 +601,11 @@ export class WishItemsFormatter implements IFormatter {
         ++this.written;
 
         let name = item.name;
+        if (options.name) name = options.name;
         if (options.prefix) name = options.prefix + ' ' + name;
 
-        options.id = `:${nameToId(name)}`;
         options.name = q(name);
+        options.id = `:${nameToId(name)}`;
 
         if (!options.noType) {
             options.type = ':' + stringifyItemKind(item);
