@@ -173,6 +173,74 @@ export enum ArmorType {
     Shield, // 10gp, +2; 6 lb
 }
 
+export enum WeaponType {
+    // Simple Melee weapons
+    Club,
+    Dagger,
+    Greatclub,
+    Handaxe,
+    Javelin,
+    LightHammer,
+    Mace,
+    Quarterstaff,
+    Sickle,
+    Spear,
+
+    // Simple Ranged Weapons
+    Crossbow, light,
+    Dart,
+    Shortbow,
+    Sling,
+
+    // Martial Melee Weapons
+    Battleaxe,
+    Flail,
+    Glaive,
+    Greataxe,
+    Greatsword,
+    Halberd,
+    Lance,
+    Longsword,
+    Maul,
+    Morningstar,
+    Pike,
+    Rapier,
+    Scimitar,
+    Shortsword,
+    Trident,
+    WarPick,
+    Warhammer,
+    Whip,
+
+    // Martial Ranged Weapons
+    Blowgun,
+    HandCrossbow,
+    HeavyCrossbow,
+    Longbow,
+    Net,
+}
+
+export const slashingWeaponTypes = [
+    WeaponType.Greatsword,
+    WeaponType.Longsword,
+    WeaponType.Scimitar,
+    WeaponType.Shortsword,
+];
+
+export const swordWeaponTypes = [
+    WeaponType.Greatsword,
+    WeaponType.Longsword,
+    WeaponType.Rapier,
+    WeaponType.Scimitar,
+    WeaponType.Shortsword,
+];
+
+export const axeWeaponTypes = [
+    WeaponType.Handaxe,
+    WeaponType.Battleaxe,
+    WeaponType.Greataxe,
+];
+
 export const lightArmorTypes = [
     ArmorType.Padded, // 5 gp, 11 + Dex modifier — Disadvantage; 8 lb.
     ArmorType.Leather, // 10 gp, 11 + Dex; 10 lb
@@ -203,6 +271,7 @@ export interface IItemPart extends IPart {
     rarity: ItemRarity;
 
     armorTypes?: ArmorType[];
+    weaponTypes?: WeaponType[];
 
     /** where attunement is required */
     attunes?: boolean;

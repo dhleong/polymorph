@@ -1,0 +1,21 @@
+{"str":"Magic Items A","dir":"ltr","width":112.0122,"height":324,"transform":[18,0,0,18,328.56,667.68],"fontName":"g_d0_f3","x":328.56,"y":667.68}
+{"str":"-","dir":"ltr","width":5.922000000000001,"height":324,"transform":[18,0,0,18,440.5766,667.68],"fontName":"g_d0_f3","x":440.5766,"y":667.68}
+{"str":"Z","dir":"ltr","width":11.934000000000001,"height":324,"transform":[18,0,0,18,446.5004,667.68],"fontName":"g_d0_f3","x":446.5004,"y":667.68}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,458.436,667.68],"fontName":"g_d0_f3","x":458.436,"y":667.68}
+{"str":"Flame Tongue","dir":"ltr","width":74.80200000000002,"height":144,"transform":[12,0,0,12,57.6,664.56],"fontName":"g_d0_f3","x":57.6,"y":664.56}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,132.4066,664.56],"fontName":"g_d0_f3","x":132.4066,"y":664.56}
+{"str":"Weapon    (any    sword),    rare    (requires    attunement)","dir":"ltr","width":204.2646240000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,652.08],"fontName":"g_d0_f7","x":57.6,"y":652.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,261.7846,652.08],"fontName":"g_d0_f7","x":261.7846,"y":652.08}
+{"str":"You    can    use    a    bonus    action    to    speak    this    magic    ","dir":"ltr","width":200.47228799999996,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,634.32],"fontName":"g_d0_f4","x":57.6,"y":634.32}
+{"str":"sword’s    command    word,    causing    flames    to    erupt    ","dir":"ltr","width":208.89532800000006,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,622.8],"fontName":"g_d0_f4","x":57.6,"y":622.8}
+{"str":"from    the    blade.    These    flames    shed    bright    light    in    a    ","dir":"ltr","width":214.86033599999996,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,611.04],"fontName":"g_d0_f4","x":57.6,"y":611.04}
+{"str":"40","dir":"ltr","width":11.073936000000002,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,599.28],"fontName":"g_d0_f4","x":57.6,"y":599.28}
+{"str":"-­‐‑","dir":"ltr","width":3.26688,"height":96.8256,"transform":[9.84,0,0,9.84,68.67422,599.28],"fontName":"g_d0_f4","x":68.67422,"y":599.28}
+{"str":"foot    radius    and    dim    light    for    an    additional    40","dir":"ltr","width":192.97420800000006,"height":96.8256,"transform":[9.84,0,0,9.84,71.99453,599.28],"fontName":"g_d0_f4","x":71.99453,"y":599.28}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,264.9167,599.28],"fontName":"g_d0_f4","x":264.9167,"y":599.28}
+{"str":"feet.    ","dir":"ltr","width":20.429808,"height":96.8256,"transform":[9.84,0,0,9.84,267.3329,599.28],"fontName":"g_d0_f4","x":267.3329,"y":599.28}
+{"str":"While    the    sword    is    ablaze,    it    deals    an    extra    2d6    fire    ","dir":"ltr","width":219.1623839999999,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,587.52],"fontName":"g_d0_f4","x":57.6,"y":587.52}
+{"str":"damage    to    any    target    it    hits.    The    flames    last    until    you    ","dir":"ltr","width":227.25676799999994,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,575.76],"fontName":"g_d0_f4","x":57.6,"y":575.76}
+{"str":"use    a    bonus    action    to    speak    the    command    word    ","dir":"ltr","width":204.39647999999994,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,564],"fontName":"g_d0_f4","x":57.6,"y":564}
+{"str":"again    or    until    you    drop    or    sheathe    the    sword.","dir":"ltr","width":192.26375999999993,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,552.48],"fontName":"g_d0_f4","x":57.6,"y":552.48}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,249.7875,552.48],"fontName":"g_d0_f4","x":249.7875,"y":552.48}

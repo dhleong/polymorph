@@ -439,6 +439,8 @@ export class WishItemsFormatter implements IFormatter {
             return;
         }
 
+        // TODO weaponTypes group
+
         if (item.kind === ItemKind.Potion) {
             // group these together
             this.potions.push(item);

@@ -1,5 +1,6 @@
 import {
     ArmorType,
+    axeWeaponTypes,
     BonusType,
     heavyArmorTypes,
     IBonus,
@@ -12,6 +13,9 @@ import {
     mediumArmorTypes,
     Part,
     PartType,
+    slashingWeaponTypes,
+    swordWeaponTypes,
+    WeaponType,
 } from './interface';
 
 function rarityFromString(str: string) {
@@ -31,8 +35,6 @@ function rarityFromString(str: string) {
 }
 
 function extractArmorTypes(str: string): ArmorType[] {
-    console.log('extract armor types from', str);
-
     const [includeStr, excludeStr] = str.split('but not');
     const results = [];
     const includeAll = str.includes('all');
@@ -71,6 +73,40 @@ function extractArmorTypes(str: string): ArmorType[] {
             if (idx !== -1) {
                 results.splice(idx, 1);
             }
+        }
+    }
+
+    if (results.length) {
+        return results;
+    }
+}
+
+function extractWeaponTypes(str: string): WeaponType[] {
+    str = str.toLowerCase();
+
+    if (str.includes('(any sword that deals slashing damage)')) {
+        return slashingWeaponTypes;
+    }
+
+    let results: WeaponType[] = [];
+
+    if (str.match(/any.*sword/)) {
+        results = results.concat(swordWeaponTypes);
+    }
+
+    if (str.match(/any.*axe/)) {
+        results = results.concat(axeWeaponTypes);
+    }
+
+    if (str.includes('(any)')) {
+        return Object.values(WeaponType);
+    }
+
+    for (const k of Object.keys(ArmorType)) {
+        if (parseInt(k, 10)) continue;
+
+        if (str.includes(k.toLowerCase())) {
+            results.push(WeaponType[k]);
         }
     }
 
@@ -157,6 +193,7 @@ export class ItemPart implements IItemPart {
         const attunes = rarityRaw.includes('attunement');
 
         let armorTypes: ArmorType[];
+        let weaponTypes: WeaponType[];
         let kind = ItemKind.Gear;
         if (kindRaw.includes('wondrous')) {
             kind = ItemKind.Wondrous;
@@ -167,7 +204,7 @@ export class ItemPart implements IItemPart {
             kind = ItemKind.Ammunition;
         } else if (kindRaw.includes('weapon')) {
             kind = ItemKind.MeleeWeapon;
-            // TODO extract weapon types
+            weaponTypes = extractWeaponTypes(kindRaw);
         } else if (kindRaw.includes('potion')) {
             kind = ItemKind.Potion;
         } else if (kindRaw.includes('armor')) {
@@ -184,6 +221,7 @@ export class ItemPart implements IItemPart {
             rarityFromString(rarityRaw),
             info,
             armorTypes,
+            weaponTypes,
             attunes,
             extractBonuses(info),
         );
@@ -198,6 +236,7 @@ export class ItemPart implements IItemPart {
         readonly rarity: ItemRarity,
         readonly info: Part[],
         readonly armorTypes?: ArmorType[],
+        readonly weaponTypes?: WeaponType[],
         readonly attunes?: boolean,
         readonly bonuses?: IBonus[],
     ) {}

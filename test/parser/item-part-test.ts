@@ -7,6 +7,7 @@ import {
     IItemPart,
     ItemKind,
     ItemRarity,
+    swordWeaponTypes,
 } from '../../src/parser/interface';
 import { loadTextItems, parsePage } from '../test-utils';
 
@@ -78,5 +79,16 @@ describe('ItemPart parsing', () => {
             ArmorType.Splint,
             ArmorType.Plate,
         ]);
+    });
+
+    it('extracts weapon types', async () => {
+        const item = await loadItemFromItems('flame-tongue-item.txt');
+
+        item.name.should.equal('Flame Tongue');
+        item.kind.should.equal(ItemKind.MeleeWeapon);
+        item.rarity.should.equal(ItemRarity.Rare);
+        item.attunes.should.be.true;
+
+        item.weaponTypes.should.deep.equal(swordWeaponTypes);
     });
 });
