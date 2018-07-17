@@ -5,7 +5,13 @@ import {
     ISpellDice,
     PartType,
 } from '../..';
-import { generateDiceFn, weaponOpts } from '../../src/formatters/wish';
+
+import {
+    generateDiceFn,
+    nameToId,
+    weaponOpts,
+} from '../../src/formatters/wish';
+
 import {
     ItemKind,
     ItemRarity,
@@ -29,6 +35,16 @@ function stubItem(parts: {name}): IItemPart {
         ...parts,
     };
 }
+
+describe('nameToId', () => {
+    it('handles symbols', () => {
+        nameToId('Antipathy/Sympathy').should.equal('antipathy-sympathy');
+    });
+
+    it('handles +modifiers', () => {
+        nameToId('Arrows +1').should.equal('arrows+1');
+    });
+});
 
 describe('generateDiceFn supports', () => {
 

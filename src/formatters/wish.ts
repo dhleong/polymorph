@@ -3,6 +3,7 @@ import { IFormatter } from '../formatter';
 import { StringPart } from '../parser';
 import {
     Ability,
+    AmmunitionType,
     ArmorType,
     BonusType,
     IItemPart,
@@ -16,6 +17,7 @@ import {
     SpellSchool,
     WeaponType,
 } from '../parser/interface';
+import { isNumber } from '../parser/utils';
 
 interface IWishSpellPart extends ISpellPart {
     id: string;
@@ -41,11 +43,12 @@ const abilityKeyword = {
     [Ability.Cha]: ':cha',
 };
 
-function nameToId(name: string): string {
+export function nameToId(name: string): string {
     return name.toLowerCase()
         .trim()
-        .replace(/^ \/a-z/g, '')
-        .replace(/[^a-z]+/g, '-');
+        // .replace(/^ \/a-z/g, '')
+        .replace(/[^a-z0-9+]+/g, '-')
+        .replace('-+', '+');
 }
 
 function spellId(name: string): string {
@@ -477,6 +480,8 @@ export class WishItemsFormatter implements IFormatter {
                 this.writeArmorGroup(item);
             } else if (item.weaponTypes) {
                 this.writeWeaponGroup(item);
+            } else if (item.kind === ItemKind.Ammunition) {
+                this.writeAmmunitionGroup(item);
             }
         }
 
@@ -484,9 +489,31 @@ export class WishItemsFormatter implements IFormatter {
     }
 
     private onItem(item: IItemPart) {
-        if (item.name.includes('or +3')) {
-            // TODO handle these like armorTypes below
-            console.log('TODO handle "+1, +2, or +3" items:', item.name);
+        if (item.name.includes(' or +3')) {
+            // special case for generic magic items
+            const baseName = item.name.substring(0, item.name.indexOf(','));
+
+            for (let bonus = 1; bonus <= 3; ++bonus) {
+                this.onItem({
+                    ...item,
+                    name: `${baseName} +${bonus}`,
+
+                    bonuses: [
+                        {type: BonusType.AttackRolls, value: bonus},
+                        {type: BonusType.DamageRolls, value: bonus},
+                    ],
+                });
+            }
+
+            return;
+        }
+
+        if (
+            item.kind === ItemKind.Ammunition
+                && item.name.includes('Ammunition')
+        ) {
+            // there's only one, so this is pretty safe
+            this.itemGroups.push(item);
             return;
         }
 
@@ -531,6 +558,24 @@ export class WishItemsFormatter implements IFormatter {
             kind: armorTypeKeyword[type],
             prefix: ArmorType[type],
         };
+    }
+
+    private writeAmmunitionGroup(item: IItemPart) {
+        this.writeItemGroup(item, {
+            desc: q(stringifyInfo(item.info)),
+            type: ':ammunition',
+        }, Object.keys(AmmunitionType)
+            .filter(type => !isNumber(type))
+            .map(type => {
+                const t = AmmunitionType[type];
+                return {
+                    'name': item.name.replace('Ammunition', type),
+
+                    'default-amount': t === AmmunitionType.BlowgunNeedles
+                        ? 50
+                        : 20,
+                };
+            }));
     }
 
     private writeArmorGroup(item: IItemPart) {

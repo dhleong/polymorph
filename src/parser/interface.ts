@@ -150,11 +150,18 @@ export interface IBonus {
     conditions?: string;
 }
 
+export enum AmmunitionType {
+    Arrows,
+    BlowgunNeedles,
+    CrossbowBolts,
+    SlingBullets,
+}
+
 export enum ArmorType {
     // light:
     Padded, // 5 gp, 11 + Dex modifier — Disadvantage; 8 lb.
     Leather, // 10 gp, 11 + Dex; 10 lb
-    StuddedLeather, // 45 gp, 11 + Dex; 13 lb
+    StuddedLeather, // 45 gp, 12 + Dex; 13 lb
 
     // med:
     Hide, // 10 gp, 12 + Dex (max 2); 12 lb

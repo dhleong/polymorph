@@ -17,10 +17,7 @@ import {
     swordWeaponTypes,
     WeaponType,
 } from './interface';
-
-function isNumber(n) {
-    return !isNaN(parseInt(n, 10));
-}
+import { isNumber } from './utils';
 
 function rarityFromString(str: string) {
     const justRarity = str.replace(/ (.*)$/, '');
