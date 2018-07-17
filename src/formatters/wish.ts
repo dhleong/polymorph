@@ -349,6 +349,15 @@ const armorTypeKeyword = {
     [ArmorType.Shield]: ':shield',
 };
 
+const armorTypeName = {
+    [ArmorType.StuddedLeather]: 'Studded Leather',
+    [ArmorType.ChainShirt]: 'Chain Shirt',
+    [ArmorType.ScaleMail]: 'Scale Mail',
+    [ArmorType.HalfPlate]: 'Half Plate',
+    [ArmorType.RingMail]: 'Ring Mail',
+    [ArmorType.ChainMail]: 'Chain Mail',
+};
+
 const weaponTypeMeta = {
     [WeaponType.Club]: {kind: ':club', category: ':simple'},
     [WeaponType.Dagger]: {kind: ':dagger', category: ':simple'},
@@ -389,6 +398,14 @@ const weaponTypeMeta = {
     [WeaponType.Net]: {kind: ':net', category: ':martial'},
 };
 
+const weaponTypeName = {
+    [WeaponType.LightHammer]: 'Light Hammer',
+    [WeaponType.LightCrossbow]: 'Light Crossbow',
+    [WeaponType.WarPick]: 'War Pick',
+    [WeaponType.HandCrossbow]: 'Hand Crossbow',
+    [WeaponType.HeavyCrossbow]: 'Heavy Crossbow',
+};
+
 function stringifyItemKind(item: IItemPart) {
     const kind = item.kind;
     switch (kind) {
@@ -426,21 +443,19 @@ const bonusPaths = {
 
 // public for testing
 export function weaponOpts(item: IItemPart, type: WeaponType) {
-    const opts = {
+    // NOTE: stuff like dice, damage type, versatile-ness
+    // will be filled in by Wish
+    const weaponName = weaponTypeName[type] || WeaponType[type];
+    return {
         name: item.name.toLowerCase().match(/sword|axe|weapon/)
             ? item.name.replace(
                 /([sS]word|[aA]xe|[wW]eapon)/,
-                WeaponType[type],
+                weaponName,
             )
-            : item.name + ' ' + WeaponType[type],
+            : item.name + ' ' + weaponName,
 
         ...weaponTypeMeta[type],
     };
-
-    // TODO dice?
-    // TODO damage type?
-    // TODO versatile?
-    return opts;
 }
 
 export class WishItemsFormatter implements IFormatter {
@@ -553,10 +568,9 @@ export class WishItemsFormatter implements IFormatter {
     }
 
     private armorOpts(type: ArmorType) {
-        // TODO ac values
         return {
             kind: armorTypeKeyword[type],
-            prefix: ArmorType[type],
+            prefix: armorTypeName[type] || ArmorType[type],
         };
     }
 
