@@ -91,4 +91,33 @@ describe('ItemPart parsing', () => {
 
         item.weaponTypes.should.deep.equal(swordWeaponTypes);
     });
+
+    it('extracts limited uses from Luck Blade', async () => {
+        const item = await loadItemFromItems('luck-blade-item.txt');
+
+        item.name.should.equal('Luck Blade');
+        item.kind.should.equal(ItemKind.MeleeWeapon);
+        item.rarity.should.equal(ItemRarity.Legendary);
+        item.attunes.should.be.true;
+
+        item.weaponTypes.should.deep.equal(swordWeaponTypes);
+
+        item.uses.should.deep.equal([
+            {label: 'Luck', charges: 1},
+            {label: 'Wish', charges: '1d4 - 1'},
+        ]);
+    });
+
+    it('extracts limited uses from Mace of Terror', async () => {
+        const item = await loadItemFromItems('mace-of-terror-item.txt');
+
+        item.name.should.equal('Mace of Terror');
+        item.kind.should.equal(ItemKind.MeleeWeapon);
+        item.rarity.should.equal(ItemRarity.Rare);
+        item.attunes.should.be.true;
+
+        item.uses.should.deep.equal([
+            {charges: 3, regains: '1d3'},
+        ]);
+    });
 });

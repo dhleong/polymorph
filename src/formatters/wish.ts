@@ -43,6 +43,25 @@ const abilityKeyword = {
     [Ability.Cha]: ':cha',
 };
 
+export function maxDiceValue(dice): number {
+    dice = dice.replace(/ /g, '');
+    const parts = dice.split(/[+-]/);
+    if (parts.length > 2) throw new Error(`Unexpected dice spec: ${dice}`);
+
+    const [count, sides] = parts[0].split(/[dD]/);
+    let max = parseInt(count, 10) * parseInt(sides, 10);
+
+    if (parts.length > 1) {
+        const mod = parseInt(parts[1], 10);
+        if (dice.indexOf('+') !== -1) {
+            max += mod;
+        } else {
+            max -= mod;
+        }
+    }
+    return max;
+}
+
 export function nameToId(name: string): string {
     return name.toLowerCase()
         .trim()
@@ -688,6 +707,38 @@ export class WishItemsFormatter implements IFormatter {
             }
 
             // TODO weapon type-specific bonuses, eg: bracers of archery
+        }
+
+        for (const u of item.uses || []) {
+            let label = name;
+            if (u.label) label += `: ${u.label}`;
+
+            const id = nameToId(label) + '#uses';
+            let uses = u.charges;
+            if (!isNumber(uses)) {
+                // convert from dice to max number
+                uses = maxDiceValue(uses);
+            }
+
+            let restoreAmount = u.regains;
+            if (!restoreAmount && restoreAmount !== 0) {
+                // restore all
+                restoreAmount = uses;
+            } else if (!isNumber(restoreAmount)) {
+                // it's a dice roll
+                const restoreDice = restoreAmount;
+                restoreAmount = '' + maxDiceValue(restoreDice);
+                restoreAmount += `\n        :restore-dice ${q(restoreDice)}`;
+            }
+
+            // NOTE: these all seem to be "at dawn" so :long-rest
+            // may not technically be correct....
+            directives.push(`[:!add-limited-use
+       {:id :${id}
+        :name ${q(label)}
+        :uses ${uses}
+        :restore-trigger :long-rest
+        :restore-amount ${restoreAmount}}]`);
         }
 
         if (directives.length) {

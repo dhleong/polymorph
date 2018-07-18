@@ -1,0 +1,33 @@
+{"str":"Magic Items A","dir":"ltr","width":112.0122,"height":324,"transform":[18,0,0,18,328.56,667.68],"fontName":"g_d0_f3","x":328.56,"y":667.68}
+{"str":"-","dir":"ltr","width":5.922000000000001,"height":324,"transform":[18,0,0,18,440.5766,667.68],"fontName":"g_d0_f3","x":440.5766,"y":667.68}
+{"str":"Z","dir":"ltr","width":11.934000000000001,"height":324,"transform":[18,0,0,18,446.5004,667.68],"fontName":"g_d0_f3","x":446.5004,"y":667.68}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,458.436,667.68],"fontName":"g_d0_f3","x":458.436,"y":667.68}
+{"str":"Mace of Terror","dir":"ltr","width":80.47080000000001,"height":144,"transform":[12,0,0,12,57.6,198.96],"fontName":"g_d0_f3","x":57.6,"y":198.96}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,138.0726,198.96],"fontName":"g_d0_f3","x":138.0726,"y":198.96}
+{"str":"Weapon    (mace),    rare    (requires    attunement)","dir":"ltr","width":183.5268240000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,186.24],"fontName":"g_d0_f7","x":57.6,"y":186.24}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,241.0473,186.24],"fontName":"g_d0_f7","x":241.0473,"y":186.24}
+{"str":"This    magic    weapon    has    3    charges.    While    holding    it,    ","dir":"ltr","width":218.70777600000002,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,168.72],"fontName":"g_d0_f4","x":57.6,"y":168.72}
+{"str":"you    can    use    an    action    and    expend    1    charge    to    ","dir":"ltr","width":194.63028,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,156.96],"fontName":"g_d0_f4","x":57.6,"y":156.96}
+{"str":"release    ","dir":"ltr","width":32.87937599999999,"height":96.8256,"transform":[9.84,0,0,9.84,252.1508,156.96],"fontName":"g_d0_f4","x":252.1508,"y":156.96}
+{"str":"a    wave    of    terror.    Each    creature    of    your    choice    in    a    ","dir":"ltr","width":213.72873599999994,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,145.2],"fontName":"g_d0_f4","x":57.6,"y":145.2}
+{"str":"30","dir":"ltr","width":11.073936000000002,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,133.44],"fontName":"g_d0_f4","x":57.6,"y":133.44}
+{"str":"-­‐‑","dir":"ltr","width":3.26688,"height":96.8256,"transform":[9.84,0,0,9.84,68.67422,133.44],"fontName":"g_d0_f4","x":68.67422,"y":133.44}
+{"str":"foot    radius    extending    from    you    must    succeed    on    ","dir":"ltr","width":207.28845599999988,"height":96.8256,"transform":[9.84,0,0,9.84,71.99453,133.44],"fontName":"g_d0_f4","x":71.99453,"y":133.44}
+{"str":"a    DC    15    Wisdom    saving    throw    or    become    frightened    ","dir":"ltr","width":224.51731199999998,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,121.68],"fontName":"g_d0_f4","x":57.6,"y":121.68}
+{"str":"of    you    for    1    minute.    While    it    is    frightened    in    this    way,    ","dir":"ltr","width":230.17531200000016,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,109.92],"fontName":"g_d0_f4","x":57.6,"y":109.92}
+{"str":"a    creature    must    spend    its    turns    trying    t","dir":"ltr","width":166.56167999999997,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,98.16002],"fontName":"g_d0_f4","x":57.6,"y":98.16002}
+{"str":"o    move    as    far    ","dir":"ltr","width":58.91798400000001,"height":96.8256,"transform":[9.84,0,0,9.84,224.1332,98.16002],"fontName":"g_d0_f4","x":224.1332,"y":98.16002}
+{"str":"away    from    you    as    it    can,    and    it    can’t    willingly    move    ","dir":"ltr","width":218.97542399999992,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,710.64],"fontName":"g_d0_f4","x":328.56,"y":710.64}
+{"str":"to    a    space    within    30    feet    of    you.    It    also    can’t    take    ","dir":"ltr","width":207.98512800000003,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,698.88],"fontName":"g_d0_f4","x":328.56,"y":698.88}
+{"str":"reactions.    For    its    action,    it    can    use    only    the    Dash    ","dir":"ltr","width":206.83286399999983,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,687.12],"fontName":"g_d0_f4","x":328.56,"y":687.12}
+{"str":"action    or    try    to    escape    from    an    effect    that    prevents    it    ","dir":"ltr","width":226.154688,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,675.36],"fontName":"g_d0_f4","x":328.56,"y":675.36}
+{"str":"from    moving.    If    it    has    nowhe","dir":"ltr","width":121.98254399999996,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,663.84],"fontName":"g_d0_f4","x":328.56,"y":663.84}
+{"str":"re    it    can    move,    the    ","dir":"ltr","width":80.43216,"height":96.8256,"transform":[9.84,0,0,9.84,450.5375,663.84],"fontName":"g_d0_f4","x":450.5375,"y":663.84}
+{"str":"creature    can    use    the    Dodge    action.    At    the    end    of    each    ","dir":"ltr","width":227.00289600000005,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,652.08],"fontName":"g_d0_f4","x":328.56,"y":652.08}
+{"str":"of    its    turns,    a    creature    can    repeat    the    saving    throw,    ","dir":"ltr","width":218.97542400000006,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,640.32],"fontName":"g_d0_f4","x":328.56,"y":640.32}
+{"str":"ending    the    effect    on    itself    on    a    success.","dir":"ltr","width":164.06920800000006,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,628.56],"fontName":"g_d0_f4","x":328.56,"y":628.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,492.5639,628.56],"fontName":"g_d0_f4","x":492.5639,"y":628.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,616.8],"fontName":"g_d0_f4","x":328.56,"y":616.8}
+{"str":"The    mace    regains    1d3    expended    charges    daily    at    ","dir":"ltr","width":208.5568319999999,"height":96.8256,"transform":[9.84,0,0,9.84,337.9101,616.8],"fontName":"g_d0_f4","x":337.9101,"y":616.8}
+{"str":"dawn.","dir":"ltr","width":25.854600000000005,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,605.04],"fontName":"g_d0_f4","x":328.56,"y":605.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,354.3657,605.04],"fontName":"g_d0_f4","x":354.3657,"y":605.04}

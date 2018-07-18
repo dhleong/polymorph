@@ -271,6 +271,25 @@ export const heavyArmorTypes = [
     ArmorType.Plate, // 1500 gp, 18, Str 15— Disadvantage; 65 lb.
 ];
 
+export interface IItemUse {
+    /**
+     * Optional; unnecessary for items with a single use
+     */
+    label?: string;
+
+    /**
+     * Number of charges/uses, or a string indicating a dice roll
+     * for an initial number of charges
+     */
+    charges: string | number;
+
+    /**
+     * A die roll, a constant number (including 0 to never regain
+     * any charges), or omit to regain all uses
+     */
+    regains?: string | number;
+}
+
 export interface IItemPart extends IPart {
     name: string;
 
@@ -284,6 +303,8 @@ export interface IItemPart extends IPart {
     attunes?: boolean;
 
     bonuses?: IBonus[];
+
+    uses?: IItemUse[];
 
     info?: Part[];
 }

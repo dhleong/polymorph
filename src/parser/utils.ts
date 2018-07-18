@@ -2,7 +2,8 @@
 export const TABLE_HEADER_FONT_NAME = 'g_d0_f6';
 
 export function isNumber(n) {
-    return !isNaN(parseInt(n, 10));
+    if (n === null || n === undefined) return false;
+    return typeof n === 'number' || (n as string).match(/^\d+$/);
 }
 
 export const stringIsOnlyWhitespace =

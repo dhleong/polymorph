@@ -8,6 +8,7 @@ import {
 
 import {
     generateDiceFn,
+    maxDiceValue,
     nameToId,
     weaponOpts,
 } from '../../src/formatters/wish';
@@ -35,6 +36,23 @@ function stubItem(parts: {name}): IItemPart {
         ...parts,
     };
 }
+
+describe('maxDiceValue', () => {
+    it('supports dimple dice', () => {
+        maxDiceValue('1d3').should.equal(3);
+        maxDiceValue('2d8').should.equal(16);
+    });
+
+    it('supports negative mods', () => {
+        maxDiceValue('1d4 - 1').should.equal(3);
+        maxDiceValue('1d8 - 2').should.equal(6);
+    });
+
+    it('supports positive mods', () => {
+        maxDiceValue('1d4 + 1').should.equal(5);
+        maxDiceValue('1d8 + 2').should.equal(10);
+    });
+});
 
 describe('nameToId', () => {
     it('handles symbols', () => {

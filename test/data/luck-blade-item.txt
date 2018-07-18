@@ -1,0 +1,39 @@
+{"str":"Magic Items A","dir":"ltr","width":112.0122,"height":324,"transform":[18,0,0,18,328.56,667.68],"fontName":"g_d0_f3","x":328.56,"y":667.68}
+{"str":"-","dir":"ltr","width":5.922000000000001,"height":324,"transform":[18,0,0,18,440.5766,667.68],"fontName":"g_d0_f3","x":440.5766,"y":667.68}
+{"str":"Z","dir":"ltr","width":11.934000000000001,"height":324,"transform":[18,0,0,18,446.5004,667.68],"fontName":"g_d0_f3","x":446.5004,"y":667.68}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,458.436,667.68],"fontName":"g_d0_f3","x":458.436,"y":667.68}
+{"str":"Luck Blade","dir":"ltr","width":57.272400000000005,"height":144,"transform":[12,0,0,12,57.6,708.72],"fontName":"g_d0_f3","x":57.6,"y":708.72}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,114.8754,708.72],"fontName":"g_d0_f3","x":114.8754,"y":708.72}
+{"str":"Weapon    (any    sword),    legendary    (requires    ","dir":"ltr","width":175.32912000000007,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,696.24],"fontName":"g_d0_f7","x":57.6,"y":696.24}
+{"str":"attunement)","dir":"ltr","width":52.53969599999999,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,684.72],"fontName":"g_d0_f7","x":57.6,"y":684.72}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,110.1146,684.72],"fontName":"g_d0_f7","x":110.1146,"y":684.72}
+{"str":"You    gain    a    +1    bonus    to    attack    and    damage    rolls    ","dir":"ltr","width":202.469808,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,666.96],"fontName":"g_d0_f4","x":57.6,"y":666.96}
+{"str":"made    with    this    magic    weapon.    While    the    sword    is    on    ","dir":"ltr","width":226.35542399999986,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,655.2],"fontName":"g_d0_f4","x":57.6,"y":655.2}
+{"str":"your    person,    you    also    gain    a    +1    bonus    to    saving    ","dir":"ltr","width":203.49907199999993,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,643.44],"fontName":"g_d0_f4","x":57.6,"y":643.44}
+{"str":"throws.","dir":"ltr","width":32.45527200000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,631.68],"fontName":"g_d0_f4","x":57.6,"y":631.68}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,90.03652,631.68],"fontName":"g_d0_f4","x":90.03652,"y":631.68}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,619.92],"fontName":"g_d0_f4","x":57.6,"y":619.92}
+{"str":"Luck.    ","dir":"ltr","width":25.568256,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,619.92],"fontName":"g_d0_f5","x":66.9501,"y":619.92}
+{"str":"If    the    sword    is    on    ","dir":"ltr","width":76.05828000000002,"height":96.8256,"transform":[9.84,0,0,9.84,92.46279,619.92],"fontName":"g_d0_f4","x":92.46279,"y":619.92}
+{"str":"your    person,    you    can    call    ","dir":"ltr","width":108.33446400000001,"height":96.8256,"transform":[9.84,0,0,9.84,168.5175,619.92],"fontName":"g_d0_f4","x":168.5175,"y":619.92}
+{"str":"on    its    luck    (no    action    required)    to    reroll    one    attack    ","dir":"ltr","width":218.07998399999997,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,608.16],"fontName":"g_d0_f4","x":57.6,"y":608.16}
+{"str":"roll,    ability    check,    or    saving    throw    you    dislike.    You    ","dir":"ltr","width":216.039168,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,596.64],"fontName":"g_d0_f4","x":57.6,"y":596.64}
+{"str":"must    use    the    second    roll.    This    property    can’t    be    used    ","dir":"ltr","width":226.63881599999985,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,584.88],"fontName":"g_d0_f4","x":57.6,"y":584.88}
+{"str":"again    until    the    next    dawn.","dir":"ltr","width":110.19028800000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,573.12],"fontName":"g_d0_f4","x":57.6,"y":573.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,167.7172,573.12],"fontName":"g_d0_f4","x":167.7172,"y":573.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,561.36],"fontName":"g_d0_f4","x":57.6,"y":561.36}
+{"str":"Wish.","dir":"ltr","width":24.895200000000003,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,561.36],"fontName":"g_d0_f5","x":66.9501,"y":561.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,91.74014,561.36],"fontName":"g_d0_f4","x":91.74014,"y":561.36}
+{"str":"The    sword    has    1d4    ","dir":"ltr","width":83.50420799999998,"height":96.8256,"transform":[9.84,0,0,9.84,93.94228,561.36],"fontName":"g_d0_f4","x":93.94228,"y":561.36}
+{"str":"–","dir":"ltr","width":4.92,"height":96.8256,"transform":[9.84,0,0,9.84,177.4237,561.36],"fontName":"g_d0_f4","x":177.4237,"y":561.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,182.4237,561.36],"fontName":"g_d0_f4","x":182.4237,"y":561.36}
+{"str":"1    charges.    Whi","dir":"ltr","width":62.60011200000001,"height":96.8256,"transform":[9.84,0,0,9.84,184.6259,561.36],"fontName":"g_d0_f4","x":184.6259,"y":561.36}
+{"str":"le    ","dir":"ltr","width":9.807528,"height":96.8256,"transform":[9.84,0,0,9.84,247.1893,561.36],"fontName":"g_d0_f4","x":247.1893,"y":561.36}
+{"str":"holding    it,    you    can    use    an    action    to    expend    1    charge    ","dir":"ltr","width":221.40098400000005,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,549.6],"fontName":"g_d0_f4","x":57.6,"y":549.6}
+{"str":"and    cast    the    ","dir":"ltr","width":53.42726400000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,537.84],"fontName":"g_d0_f4","x":57.6,"y":537.84}
+{"str":"wish","dir":"ltr","width":19.134864000000004,"height":96.8256,"transform":[9.84,0,0,9.84,110.9691,537.84],"fontName":"g_d0_f7","x":110.9691,"y":537.84}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,130.0756,537.84],"fontName":"g_d0_f4","x":130.0756,"y":537.84}
+{"str":"spell    from    it.    This    property    can’t    be    ","dir":"ltr","width":151.994544,"height":96.8256,"transform":[9.84,0,0,9.84,132.2777,537.84],"fontName":"g_d0_f4","x":132.2777,"y":537.84}
+{"str":"used    again    until    the    next    dawn.    The    sword    loses    this    ","dir":"ltr","width":224.4169439999999,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,526.08],"fontName":"g_d0_f4","x":57.6,"y":526.08}
+{"str":"property    if    it    has    no    charges.","dir":"ltr","width":121.72079999999997,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,514.56],"fontName":"g_d0_f4","x":57.6,"y":514.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,179.2797,514.56],"fontName":"g_d0_f4","x":179.2797,"y":514.56}

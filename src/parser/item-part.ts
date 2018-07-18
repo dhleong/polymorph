@@ -5,6 +5,7 @@ import {
     heavyArmorTypes,
     IBonus,
     IItemPart,
+    IItemUse,
     ISection,
     IStringPart,
     ItemKind,
@@ -176,6 +177,62 @@ function extractBonuses(info: Part[]): IBonus[] {
     }
 }
 
+function extractUses(info: Part[]): IItemUse[] {
+    const results: IItemUse[] = [];
+
+    for (const p of info) {
+        if (p.type !== PartType.STRING) continue;
+        const sp = p as IStringPart;
+        const str = sp.str;
+
+        let use: IItemUse = {charges: 0};
+        let extendingPrevious = false;
+
+        const chargesMatch = str.match(/has ([^c]+) charges/);
+        if (chargesMatch) {
+            use.charges = chargesMatch[1]
+                .replace('–', '-');
+            if (isNumber(use.charges)) {
+                use.charges = parseInt(use.charges, 10);
+            }
+        }
+
+        // v/be used again until the next/norm dd
+        if (str.match(/be used again until the next dawn/)) {
+            if (use.charges === 0) {
+                use.charges = 1;
+            }
+
+            if (sp.formatting.length && sp.formatting[0].start === 0) {
+                use.label = sp.get(sp.formatting[0])
+                    .replace(/\.[ ]*$/, '');
+            }
+        }
+
+        // v/expended charges.*dawn/norm dd
+        const regainedMatch = str.match(/([0-9dD]+) expended charges.*dawn/);
+        if (regainedMatch) {
+            if (use.charges === 0 && results.length) {
+                // this was in a separate paragraph after the
+                // initial description of max uses, eg:
+                // Mace of Terror
+                use = results[results.length - 1];
+                extendingPrevious = true;
+            }
+
+            use.regains = regainedMatch[1];
+        }
+
+        if (!extendingPrevious && use.charges !== 0) {
+            results.push(use);
+        }
+    }
+
+    if (results.length) {
+        return results;
+    }
+}
+
 export class ItemPart implements IItemPart {
     static from(
         nameSection: ISection,
@@ -229,6 +286,7 @@ export class ItemPart implements IItemPart {
             weaponTypes,
             attunes,
             extractBonuses(info),
+            extractUses(info),
         );
     }
 
@@ -244,6 +302,7 @@ export class ItemPart implements IItemPart {
         readonly weaponTypes?: WeaponType[],
         readonly attunes?: boolean,
         readonly bonuses?: IBonus[],
+        readonly uses?: IItemUse[],
     ) {}
 
     postProcess() { /* nop */ }
