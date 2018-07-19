@@ -701,7 +701,7 @@ export class WishItemsFormatter implements IFormatter {
         for (const b of item.bonuses || []) {
             const path = bonusPaths[b.type];
             if (path && !b.conditions) {
-                directives.push(`[:!provide-attrs [${path} ${options.id}] ${b.value}]`);
+                directives.push(`[:!provide-attr [${path} ${options.id}] ${b.value}]`);
             } else if (!path && !b.conditions) {
                 options['+'] = b.value;
             }
