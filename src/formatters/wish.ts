@@ -314,7 +314,7 @@ export class WishSpellsFormatter implements IFormatter {
                 }
 
                 if (s.dice.damageType) {
-                    this.writePart('dam-type', ':' + s.dice.damageType.toLowerCase());
+                    this.writePart('damage', ':' + s.dice.damageType.toLowerCase());
                 }
 
                 const dice = generateDiceFn(s.dice, s.level);
