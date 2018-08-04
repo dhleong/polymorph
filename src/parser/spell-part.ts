@@ -1,10 +1,16 @@
 
 import { StringPart } from '../parser';
 import {
-    Ability, ISection, ISpellDice,
-    ISpellPart, IStringPart,
+    Ability, ICylinderSpellArea,
+    IRadialSpellArea, IRectangularSpellArea,
+    ISection,
+    ISpellArea,
+    ISpellDice,
+    ISpellPart,
+    IStringPart,
     Part,
     PartType,
+    SpellAreaType,
     SpellAttackType,
     SpellSchool,
 } from './interface';
@@ -26,11 +32,84 @@ function abilityFromStr(str: string): Ability {
     }
 }
 
+function match(str: string, regex: RegExp) {
+    return str.match(regex) || [];
+}
+
 export function extractSave(str: string): Ability {
     // saves?
     const m = str.match(/(?:make[s]?|succeed on) a ([a-zA-Z]+) saving/);
     if (m) {
         return abilityFromStr(m[1]);
+    }
+}
+
+export function extractAreaOfEffect(str: string): ISpellArea {
+    const [, cylinderRadius, cylinderHeight] = match(str,
+        /(\d+)-foot-radius, (\d+)-foot high cylinder/,
+    );
+    if (cylinderRadius && cylinderHeight) {
+        return {
+            type: SpellAreaType.Cylinder,
+
+            height: parseInt(cylinderHeight, 10),
+            radius: parseInt(cylinderRadius, 10),
+        } as ICylinderSpellArea;
+    }
+
+    const [, lineLength, lineWidth] = match(str,
+        /line (?:[^0-9.]*)(\d+) feet long and (\d+) feet wide/,
+    );
+    if (lineWidth && lineLength) {
+        return {
+            type: SpellAreaType.Line,
+
+            length: parseInt(lineLength, 10),
+            width: parseInt(lineWidth, 10),
+        } as IRectangularSpellArea;
+    }
+
+    const [, dimen, kind] = match(str,
+        /(\d+)-foot(?:-radius)? (\w+)/,
+    );
+    if (dimen && kind) {
+        const dimenInt = parseInt(dimen, 10);
+
+        switch (kind) {
+        case 'circle':
+        case 'cone':
+        case 'sphere':
+            return {
+                type: (kind === 'circle'
+                    ? SpellAreaType.Circle
+                    : (kind === 'cone'
+                        ? SpellAreaType.Cone
+                        : SpellAreaType.Sphere)),
+
+                radius: dimenInt,
+            } as IRadialSpellArea;
+
+        case 'cube':
+        case 'square':
+            return {
+                type: (kind === 'cube'
+                    ? SpellAreaType.Cube
+                    : SpellAreaType.Square),
+
+                length: dimenInt,
+                width: dimenInt,
+            } as IRectangularSpellArea;
+        }
+    }
+}
+
+function extractAreaOfEffectFrom(info: Part[]): ISpellArea {
+    for (const p of info) {
+        if (p.type !== PartType.STRING) continue;
+
+        const str = (p as IStringPart).str;
+        const found = extractAreaOfEffect(str);
+        if (found) return found;
     }
 }
 
@@ -175,6 +254,7 @@ export class SpellPart implements ISpellPart {
 
             extractSaveFrom(info),
             extractDiceInfo(info),
+            extractAreaOfEffectFrom(info),
         );
     }
 
@@ -194,6 +274,7 @@ export class SpellPart implements ISpellPart {
 
         readonly save?: Ability,
         readonly dice?: ISpellDice,
+        readonly area?: ISpellArea,
     ) {}
 
     postProcess() {

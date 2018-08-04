@@ -6,13 +6,17 @@ import {
     AmmunitionType,
     ArmorType,
     BonusType,
+    ICylinderSpellArea,
     IItemPart,
+    IRadialSpellArea,
+    IRectangularSpellArea,
     ISection,
     ISpellDice,
     ISpellPart,
     ItemKind,
     Part,
     PartType,
+    SpellAreaType,
     SpellAttackType,
     SpellSchool,
     WeaponType,
@@ -22,6 +26,16 @@ import { isNumber } from '../parser/utils';
 interface IWishSpellPart extends ISpellPart {
     id: string;
 }
+
+const spellAreaKeyword = {
+    [SpellAreaType.Circle]: ':circle',
+    [SpellAreaType.Cone]: ':cone',
+    [SpellAreaType.Cube]: ':cube',
+    [SpellAreaType.Cylinder]: ':cylinder',
+    [SpellAreaType.Line]: ':line',
+    [SpellAreaType.Sphere]: ':sphere',
+    [SpellAreaType.Square]: ':square',
+};
 
 const spellSchoolKeyword = {
     [SpellSchool.Abjuration]: ':abj',
@@ -303,6 +317,38 @@ export class WishSpellsFormatter implements IFormatter {
 
             if (s.save) {
                 this.writePart('save', abilityKeyword[s.save]);
+            }
+
+            if (s.area) {
+                let part = '[' + spellAreaKeyword[s.area.type];
+
+                switch (s.area.type) {
+                    // cylinder
+                    case SpellAreaType.Cylinder:
+                        const cylinder = s.area as ICylinderSpellArea;
+                        part += ` ${cylinder.radius}, ${cylinder.height}`;
+                        break;
+
+                    // radial:
+                    case SpellAreaType.Circle:
+                    case SpellAreaType.Sphere:
+                    case SpellAreaType.Cone:
+                        const radial = s.area as IRadialSpellArea;
+                        part += ` ${radial.radius}`;
+                        break;
+
+                    // rectangular:
+                    case SpellAreaType.Cube:
+                    case SpellAreaType.Line:
+                    case SpellAreaType.Square:
+                        const rect = s.area as IRectangularSpellArea;
+                        part += ` ${rect.length}, ${rect.width}`;
+                        break;
+                }
+
+                part += ']';
+
+                this.writePart('aoe', part);
             }
 
             if (s.dice) {

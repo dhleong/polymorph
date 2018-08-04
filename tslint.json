@@ -6,6 +6,7 @@
         "curly": [true, "ignore-same-line"],
         "indent": [true, "spaces", 4],
         "no-console": [false],
+        "no-object-literal-type-assertion": [false],
         "no-implicit-dependencies": [true, "dev"],
         "max-classes-per-file": [false],
         "member-access": [false],

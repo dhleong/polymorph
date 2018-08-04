@@ -1,9 +1,11 @@
 import * as chai from 'chai';
 
-import { SpellPart } from '../../src/parser';
-import { Ability, ISpellPart, SpellAttackType, SpellSchool } from '../../src/parser/interface';
+const expect = chai.expect;
 
-import { extractSave } from '../../src/parser/spell-part';
+import { SpellPart } from '../../src/parser';
+import { Ability, ISpellPart, SpellAreaType, SpellAttackType, SpellSchool } from '../../src/parser/interface';
+
+import { extractAreaOfEffect, extractSave } from '../../src/parser/spell-part';
 import { loadTextItems, parsePage } from '../test-utils';
 
 chai.should();
@@ -34,6 +36,91 @@ describe('SpellPart save extraction', () => {
         // tslint:disable-next-line
         extractSave('You create a magical zone that guards against deception in a 15-foot-radius sphere centered on a point of your choice within range. Until the spell ends, a creature that enters the spell’s area for the first time on a turn or starts its turn there must make a Charisma saving throw. On a failed save, a creature can’t speak a deliberate lie while in the radius. You know whether each creature succeeds or fails on its saving throw.')
         .should.equal(Ability.Cha);
+    });
+});
+
+describe('SpellPart area extraction', () => {
+    it('handles circles', () => {
+        // tslint:disable-next-line
+        extractAreaOfEffect('For the duration, an intense tremor rips through the ground in a 100-foot-radius circle centered on that point and shakes creatures and structures in contact with the ground in that area')
+        .should.deep.equal({
+            type: SpellAreaType.Circle,
+
+            radius: 100,
+        });
+    });
+
+    it('handles cones', () => {
+        // tslint:disable-next-line
+        extractAreaOfEffect('Each creature in a 60-foot cone must make a Dexterity saving throw')
+        .should.deep.equal({
+            type: SpellAreaType.Cone,
+
+            radius: 60,
+        });
+    });
+
+    it('handles cube', () => {
+        // tslint:disable-next-line
+        extractAreaOfEffect('You create a twisting pattern of colors that weaves through the air inside a 30-foot cube within range')
+        .should.deep.equal({
+            type: SpellAreaType.Cube,
+
+            length: 30,
+            width: 30,
+        });
+    });
+
+    it('handles cylinders', () => {
+        // tslint:disable-next-line
+        extractAreaOfEffect('This spell reverses gravity in a 50-foot-radius, 100-foot high cylinder centered on a point within range')
+        .should.deep.equal({
+            type: SpellAreaType.Cylinder,
+
+            height: 100,
+            radius: 50,
+        });
+    });
+
+    it('handles lines', () => {
+        // tslint:disable-next-line
+        extractAreaOfEffect('A stroke of lightning forming a line 100 feet long and 5 feet wide blasts out from you in a direction you choose')
+        .should.deep.equal({
+            type: SpellAreaType.Line,
+
+            length: 100,
+            width: 5,
+        });
+
+        // tslint:disable-next-line
+        extractAreaOfEffect('A line of strong wind 60 feet long and 10 feet wide blasts from you in a direction you choose for the spell’s duration')
+        .should.deep.equal({
+            type: SpellAreaType.Line,
+
+            length: 60,
+            width: 10,
+        });
+    });
+
+    it('handles sphere', () => {
+        // tslint:disable-next-line
+        extractAreaOfEffect('A swirling cloud of smoke shot through with white-hot embers appears in a 20-foot-radius sphere centered on a point within range')
+        .should.deep.equal({
+            type: SpellAreaType.Sphere,
+
+            radius: 20,
+        });
+    });
+
+    it('handles square', () => {
+        // tslint:disable-next-line
+        extractAreaOfEffect('Slick grease covers the ground in a 10-foot square centered on a point within range and turns it into difficult terrain for the duration.')
+        .should.deep.equal({
+            type: SpellAreaType.Square,
+
+            length: 10,
+            width: 10,
+        });
     });
 });
 
@@ -122,6 +209,11 @@ describe('SpellPart parsing', () => {
         fireball.dice.slotLevelBuff.should.equal('1d6');
         fireball.dice.damageType.should.equal('fire');
         fireball.save.should.equal(Ability.Dex);
+        fireball.area.should.deep.equal({
+            type: SpellAreaType.Sphere,
+
+            radius: 20,
+        });
     });
 
     it('handles scaling cantrips and spell attacks', async () => {
@@ -144,6 +236,7 @@ describe('SpellPart parsing', () => {
         sp.dice.slotLevelBuff.should.equal('3d6');
         sp.dice.damageType.should.equal('force');
         sp.save.should.equal(Ability.Dex);
+        expect(sp.area).to.be.undefined;
     });
 
     it('handles healing spells with bonuses', async () => {

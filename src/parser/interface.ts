@@ -309,6 +309,38 @@ export interface IItemPart extends IPart {
     info?: Part[];
 }
 
+export enum SpellAreaType {
+    // cylinder:
+    Cylinder,
+
+    // radial:
+    Circle,
+    Sphere,
+    Cone,
+
+    // rectangular:
+    Cube,
+    Line,
+    Square,
+}
+
+export interface ISpellArea {
+    type: SpellAreaType;
+}
+
+export interface ICylinderSpellArea extends IRadialSpellArea {
+    height: number;
+}
+
+export interface IRadialSpellArea extends ISpellArea {
+    radius: number;
+}
+
+export interface IRectangularSpellArea extends ISpellArea {
+    width: number;
+    length: number;
+}
+
 export enum SpellAttackType {
     Melee,
     Ranged,
@@ -358,6 +390,7 @@ export interface ISpellPart extends IPart {
 
     save?: Ability;
     dice?: ISpellDice;
+    area?: ISpellArea;
 }
 
 export interface IStringPart extends IPart {
