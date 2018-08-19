@@ -188,7 +188,7 @@ function extractUses(info: Part[]): IItemUse[] {
         let use: IItemUse = {charges: 0};
         let extendingPrevious = false;
 
-        const chargesMatch = str.match(/has ([^c]+) charges/);
+        const chargesMatch = str.match(/has ([^c]+) (?:charges|cards)/);
         if (chargesMatch) {
             use.charges = chargesMatch[1]
                 .replace('–', '-');
