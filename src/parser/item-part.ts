@@ -188,12 +188,16 @@ function extractUses(info: Part[]): IItemUse[] {
         let use: IItemUse = {charges: 0};
         let extendingPrevious = false;
 
-        const chargesMatch = str.match(/has ([^c]+) (?:charges|cards)/);
+        const chargesMatch = str.match(/has ([^c]+) (charges|cards)/);
         if (chargesMatch) {
             use.charges = chargesMatch[1]
                 .replace('–', '-');
             if (isNumber(use.charges)) {
                 use.charges = parseInt(use.charges, 10);
+                if (chargesMatch[2] !== 'charges') {
+                    // may be hacks...
+                    use.regains = 0;
+                }
             }
         }
 

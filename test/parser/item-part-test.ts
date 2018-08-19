@@ -120,4 +120,17 @@ describe('ItemPart parsing', () => {
             {charges: 3, regains: '1d3'},
         ]);
     });
+
+    it('extracts non-restoring uses from Deck of Illusions', async () => {
+        const item = await loadItemFromItems('deck-illusions.txt');
+
+        item.name.should.equal('Deck of Illusions');
+        item.kind.should.equal(ItemKind.Wondrous);
+        item.rarity.should.equal(ItemRarity.Uncommon);
+        item.attunes.should.be.false;
+
+        item.uses.should.deep.equal([
+            {charges: 34, regains: 0},
+        ]);
+    });
 });
