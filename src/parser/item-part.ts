@@ -1,3 +1,5 @@
+import titleCase = require('title-case');
+
 import {
     ArmorType,
     axeWeaponTypes,
@@ -6,6 +8,7 @@ import {
     IBonus,
     IItemPart,
     IItemUse,
+    IItemVariant,
     ISection,
     IStringPart,
     ItemKind,
@@ -18,10 +21,11 @@ import {
     swordWeaponTypes,
     WeaponType,
 } from './interface';
-import { isNumber } from './utils';
+import { TablePart } from './table-part';
+import { isNumber, stringIsOnlyWhitespace } from './utils';
 
 function rarityFromString(str: string) {
-    const justRarity = str.replace(/ (.*)$/, '');
+    const justRarity = str.replace(/ (.*)$/, '').toLowerCase();
     switch (justRarity) {
     case 'common':
         return ItemRarity.Common;
@@ -29,6 +33,7 @@ function rarityFromString(str: string) {
         return ItemRarity.Uncommon;
     case 'rare':
         return ItemRarity.Rare;
+    case 'very':
     case 'very rare':
         return ItemRarity.VeryRare;
     case 'legendary':
@@ -237,6 +242,73 @@ function extractUses(info: Part[]): IItemUse[] {
     }
 }
 
+interface IVariantNameStrategy {
+    nameFrom(partialName: string): string;
+}
+
+class PlaceholderVariantNameStrategy implements IVariantNameStrategy {
+
+    constructor(
+        private readonly format: string,
+        private readonly placeholder: string = '...',
+    ) {}
+
+    nameFrom(partialName: string): string {
+        return this.format.replace(this.placeholder, partialName);
+    }
+}
+
+function pickNameStrategy(part: IStringPart): IVariantNameStrategy | undefined {
+    const s = part.toJson() as string;
+    if (s.includes('...')) {
+        return new PlaceholderVariantNameStrategy(s);
+    }
+
+    // TODO eg: potion of giant strength
+}
+
+export function extractVariants(table: TablePart) {
+    const variants: IItemVariant[] = [];
+    const headers = table.headers[table.headers.length - 1];
+    const nameStrategy = pickNameStrategy(headers[0]);
+    if (!nameStrategy) return;
+
+    const rarityColumn = headers.findIndex((part) => {
+        return part.toJson() === 'Rarity';
+    });
+
+    for (const row of table.rows) {
+        const partialName = titleCase(row[0].toJson());
+        const name = nameStrategy.nameFrom(partialName);
+        const variant: IItemVariant = { name };
+
+        if (rarityColumn !== -1) {
+            variant.rarity = rarityFromString(row[rarityColumn].toJson());
+        }
+
+        // compute suffix
+        for (let i = 1; i < headers.length; ++i) {
+            if (i === rarityColumn) continue;
+            if (!row[i]) break;
+
+            const header = headers[i].toJson() as string;
+            if (!header || stringIsOnlyWhitespace(header)) continue;
+
+            const value = row[i].toJson() as string;
+            if (!value || stringIsOnlyWhitespace(value)) continue;
+
+            if (!variant.extraInfo) variant.extraInfo = {};
+            variant.extraInfo[header] = value;
+        }
+
+        variants.push(variant);
+    }
+
+    if (variants.length) {
+        return variants;
+    }
+}
+
 export class ItemPart implements IItemPart {
     static from(
         nameSection: ISection,
@@ -278,6 +350,17 @@ export class ItemPart implements IItemPart {
             armorTypes = extractArmorTypes(kindRaw);
         }
 
+        let variants: IItemVariant[] | undefined;
+        if (info.length) {
+            const table = info.find(part => part instanceof TablePart);
+
+            if (table instanceof TablePart) {
+                info.pop(); // remove it from the info
+
+                variants = extractVariants(table);
+            }
+        }
+
         // TODO charges ?
 
         return new ItemPart(
@@ -291,6 +374,7 @@ export class ItemPart implements IItemPart {
             attunes,
             extractBonuses(info),
             extractUses(info),
+            variants,
         );
     }
 
@@ -307,6 +391,7 @@ export class ItemPart implements IItemPart {
         readonly attunes?: boolean,
         readonly bonuses?: IBonus[],
         readonly uses?: IItemUse[],
+        readonly variants?: IItemVariant[],
     ) {}
 
     postProcess() { /* nop */ }

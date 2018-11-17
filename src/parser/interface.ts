@@ -290,6 +290,12 @@ export interface IItemUse {
     regains?: string | number;
 }
 
+export interface IItemVariant {
+    name: string;
+    rarity?: ItemRarity;
+    extraInfo?: {[key: string]: string};
+}
+
 export interface IItemPart extends IPart {
     name: string;
 
@@ -307,6 +313,11 @@ export interface IItemPart extends IPart {
     uses?: IItemUse[];
 
     info?: Part[];
+
+    // variants are generically different verions,
+    // similar to ArmorType and WeaponType for items
+    // that are neither
+    variants?: IItemVariant[];
 }
 
 export enum SpellAreaType {

@@ -126,8 +126,17 @@ function formatComponents(raw: string): string {
     return result;
 }
 
-function stringifyInfo(info: Part[]): string {
-    return info.map(it => it.toString()).join('\n');
+function stringifyInfo(
+    info: Part[],
+    variantInfo?: {[key: string]: string},
+): string {
+    const base = info.map(it => it.toString()).join('\n');
+    if (variantInfo) {
+        return base + '\n' + Object.keys(variantInfo).map(key =>
+            `**${key}**: ${variantInfo[key]}`,
+        ).join('\n');
+    }
+    return base;
 }
 
 export function generateDiceFn(dice: ISpellDice, spellLevel: number): string {
@@ -722,6 +731,23 @@ export class WishItemsFormatter implements IFormatter {
     }
 
     private writeItem(item: IItemPart, options) {
+        if (item.variants) {
+            // write each variant
+            for (const v of item.variants) {
+                const varied = {
+                    ...item,
+                    ...v,
+                    variants: undefined,
+                };
+                this.writeItem(varied, {
+                    ...options,
+
+                    variantInfo: v.extraInfo,
+                });
+            }
+            return;
+        }
+
         ++this.written;
 
         let name = item.name;
@@ -736,8 +762,9 @@ export class WishItemsFormatter implements IFormatter {
         }
 
         if (!options.noDesc) {
-            options.desc = q(stringifyInfo(item.info));
+            options.desc = q(stringifyInfo(item.info, options.variantInfo));
         }
+        delete options.variantInfo;
 
         if (!options.noAttunes && item.attunes) {
             options['attunes?'] = 'true';

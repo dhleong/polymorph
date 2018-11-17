@@ -244,6 +244,20 @@ export class Parser {
         const bodySection = this.sections[atIndex];
         const nameSection = this.sections[nameI];
 
+        // if a table follows, include it:
+        if (atIndex + 1 < this.sections.length) {
+            const tableCandidate = this.sections[atIndex + 1];
+            if (tableCandidate.parts[0] instanceof TablePart) {
+                bodySection.parts.push(tableCandidate.parts[0]);
+            } else if (atIndex + 2 < this.sections.length) {
+                // tableCandidate could just be a header section
+                const tableCandidate2 = this.sections[atIndex + 2];
+                if (tableCandidate2.parts[0] instanceof TablePart) {
+                    bodySection.parts.push(tableCandidate2.parts[0]);
+                }
+            }
+        }
+
         const part = factory(nameSection, bodySection);
         if (!part) return;
 

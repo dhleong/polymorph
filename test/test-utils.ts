@@ -21,7 +21,7 @@ const formattingByStr = {
     i: Formatting.Italic,
 };
 
-export function parsePage(items: any[]): Section[] {
+export function pageParserOf(items: any[]) {
     const parser = new Parser();
 
     const pages = [];
@@ -40,6 +40,11 @@ export function parsePage(items: any[]): Section[] {
     }
     parser.postProcess();
 
+    return parser;
+}
+
+export function parsePage(items: any[]): Section[] {
+    const parser = pageParserOf(items);
     const sections = parser['sections'] as Section[]; // tslint:disable-line
     return sections;
 }
