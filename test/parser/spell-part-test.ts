@@ -260,4 +260,14 @@ describe('SpellPart parsing', () => {
         word.dice.should.not.have.property('damageType');
         word.dice.should.not.have.property('attackType');
     });
+
+    it('handles attributes split across columns', async () => {
+        const sp = await loadSpellFromItems('protection-from-poison-spell.txt');
+
+        sp.name.should.equal('Protection from Poison');
+        sp.range.should.equal('Touch');
+        sp.components.should.equal('V, S');
+        sp.duration.should.equal('1 hour');
+        sp.info[0].toJson().should.have.string('You touch a creature.');
+    });
 });

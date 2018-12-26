@@ -1,0 +1,37 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"Protection from Poison","dir":"ltr","width":122.90039999999999,"height":144,"transform":[12,0,0,12,57.6,125.04],"fontName":"g_d0_f3","x":57.6,"y":125.04}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,180.5062,125.04],"fontName":"g_d0_f3","x":180.5062,"y":125.04}
+{"str":"2nd","dir":"ltr","width":15.878808000000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,112.56],"fontName":"g_d0_f7","x":57.6,"y":112.56}
+{"str":"-­‐‑","dir":"ltr","width":3.13896,"height":96.8256,"transform":[9.84,0,0,9.84,73.47402,112.56],"fontName":"g_d0_f7","x":73.47402,"y":112.56}
+{"str":"level    abjuration","dir":"ltr","width":65.63673600000001,"height":96.8256,"transform":[9.84,0,0,9.84,76.6625,112.56],"fontName":"g_d0_f7","x":76.6625,"y":112.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,142.3315,112.56],"fontName":"g_d0_f7","x":142.3315,"y":112.56}
+{"str":"Casting    Time:","dir":"ltr","width":62.511552000000016,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,94.80002],"fontName":"g_d0_f8","x":57.6,"y":94.80002}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,120.0512,94.80002],"fontName":"g_d0_f4","x":120.0512,"y":94.80002}
+{"str":"1    action","dir":"ltr","width":34.07198400000001,"height":96.8256,"transform":[9.84,0,0,9.84,122.2533,94.80002],"fontName":"g_d0_f4","x":122.2533,"y":94.80002}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,156.3354,94.80002],"fontName":"g_d0_f4","x":156.3354,"y":94.80002}
+{"str":"Range:","dir":"ltr","width":31.364016000000007,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,710.64],"fontName":"g_d0_f8","x":328.56,"y":710.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,359.8686,710.64],"fontName":"g_d0_f4","x":359.8686,"y":710.64}
+{"str":"Touch","dir":"ltr","width":26.69592,"height":96.8256,"transform":[9.84,0,0,9.84,362.0707,710.64],"fontName":"g_d0_f4","x":362.0707,"y":710.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,388.7553,710.64],"fontName":"g_d0_f4","x":388.7553,"y":710.64}
+{"str":"Components:","dir":"ltr","width":60.47270400000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,698.88],"fontName":"g_d0_f8","x":328.56,"y":698.88}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,388.9702,698.88],"fontName":"g_d0_f4","x":388.9702,"y":698.88}
+{"str":"V,    S","dir":"ltr","width":15.253967999999999,"height":96.8256,"transform":[9.84,0,0,9.84,391.1723,698.88],"fontName":"g_d0_f4","x":391.1723,"y":698.88}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,406.4213,698.88],"fontName":"g_d0_f4","x":406.4213,"y":698.88}
+{"str":"Duration:","dir":"ltr","width":44.37840000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,687.12],"fontName":"g_d0_f8","x":328.56,"y":687.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,372.8666,687.12],"fontName":"g_d0_f4","x":372.8666,"y":687.12}
+{"str":"1    hour","dir":"ltr","width":28.252608,"height":96.8256,"transform":[9.84,0,0,9.84,375.0688,687.12],"fontName":"g_d0_f4","x":375.0688,"y":687.12}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,403.2914,687.12],"fontName":"g_d0_f4","x":403.2914,"y":687.12}
+{"str":"You    touch    a    creature.    If    it    is    poisoned,    you    neutraliz","dir":"ltr","width":218.80617599999997,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,669.36],"fontName":"g_d0_f4","x":328.56,"y":669.36}
+{"str":"e    ","dir":"ltr","width":7.118256000000001,"height":96.8256,"transform":[9.84,0,0,9.84,547.3198,669.36],"fontName":"g_d0_f4","x":547.3198,"y":669.36}
+{"str":"the    poison.    If    more    than    one    poison    afflicts    the    target,    ","dir":"ltr","width":230.11135199999998,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,657.84],"fontName":"g_d0_f4","x":328.56,"y":657.84}
+{"str":"you    neutralize    one    poison    that    you    know    is    present,    ","dir":"ltr","width":222.41548800000004,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,646.08],"fontName":"g_d0_f4","x":328.56,"y":646.08}
+{"str":"or    you    neutralize    one    at    random.","dir":"ltr","width":139.53907199999995,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,634.32],"fontName":"g_d0_f4","x":328.56,"y":634.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,468.0424,634.32],"fontName":"g_d0_f4","x":468.0424,"y":634.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,622.56],"fontName":"g_d0_f4","x":328.56,"y":622.56}
+{"str":"For    the    duration,    the    target    has    advantage    on    ","dir":"ltr","width":194.38723200000004,"height":96.8256,"transform":[9.84,0,0,9.84,337.9101,622.56],"fontName":"g_d0_f4","x":337.9101,"y":622.56}
+{"str":"saving    throws    against    being    poisoned,    and    it    has    ","dir":"ltr","width":208.21735199999995,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,610.8],"fontName":"g_d0_f4","x":328.56,"y":610.8}
+{"str":"resistance    to    po","dir":"ltr","width":67.451232,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,599.04],"fontName":"g_d0_f4","x":328.56,"y":599.04}
+{"str":"ison    damage.","dir":"ltr","width":55.660944,"height":96.8256,"transform":[9.84,0,0,9.84,396.0454,599.04],"fontName":"g_d0_f4","x":396.0454,"y":599.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,451.7143,599.04],"fontName":"g_d0_f4","x":451.7143,"y":599.04}
+

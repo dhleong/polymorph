@@ -218,6 +218,17 @@ export class Section implements ISection {
             return;
         }
 
+        // patterns of bold => not-bold => bold should result in a newline
+        // (see: spells, esp the spell-part-test item: `handles attributes
+        // split across columns`)
+        if (
+            beforeLast.isBoldList()
+            && !last.isBoldList()
+            && StringPart.from(item).isBoldList()
+        ) {
+            return;
+        }
+
         if (nearlyMatch(beforeLast.x, item.x)
             && !nearlyMatch(beforeLast.y, item.y)) {
 
@@ -268,6 +279,8 @@ export class Section implements ISection {
             beforeLast.appendString(' ');
         }
 
+        // console.log("APPEND", item, ": x=", nearlyMatch(beforeLast.x, item.x),
+        //     "y=", nearlyMatch(beforeLast.y, item.y));
         return beforeLast;
     }
 }

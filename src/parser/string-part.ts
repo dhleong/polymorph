@@ -138,6 +138,13 @@ export class StringPart implements IStringPart {
         return !!this.str.match(/, +$/);
     }
 
+    isBoldList(): boolean {
+        const fmts = this.formatting;
+        if (!fmts.length) return false;
+        if (fmts[0].start > 0) return false;
+        return fmts[0].isBold;
+    }
+
     /**
      * Extract a Map where the keys are the parts of
      * this StringPart that have a FormatSpan on them,

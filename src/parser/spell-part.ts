@@ -218,18 +218,28 @@ export class SpellPart implements ISpellPart {
         for (let i = 1; i < bodySection.parts.length; ++i) {
             const part = bodySection.parts[i];
             const map = (part as IStringPart).toMapBySpans();
+            let foundAny = false;
             if (map['Casting Time']) {
+                foundAny = true;
                 castTime = map['Casting Time'];
-            } else if (map.Components || map.Component) {
+            }
+            if (map.Components || map.Component) {
+                foundAny = true;
                 components = map.Components || map.Component;
-            } else if (map.Range) {
+            }
+            if (map.Range) {
+                foundAny = true;
                 range = map.Range;
-            } else if (map.Duration) {
+            }
+            if (map.Duration) {
+                foundAny = true;
                 duration = map.Duration;
                 if (duration.indexOf('Concentration') !== -1) {
                     concentration = true;
                 }
-            } else {
+            }
+
+            if (!foundAny) {
                 // must've started the info
                 info = bodySection.parts.slice(i)
                     .filter(it =>

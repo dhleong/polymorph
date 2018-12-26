@@ -9,7 +9,8 @@
   "scripts": {
     "lint": "tslint --project tsconfig.json",
     "build": "tsc",
-    "test": "mocha -r ts-node/register 'test/**/*.ts'"
+    "test": "mocha -r ts-node/register 'test/**/*.ts'",
+    "test:watch": "mocha --watch --watch-extensions=ts -r ts-node/register 'test/**/*.ts'"
   },
   "repository": {
     "type": "git",
