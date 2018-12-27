@@ -126,11 +126,32 @@ function formatComponents(raw: string): string {
     return result;
 }
 
+function stringifyPart(part: Part): string {
+    switch (part.type) {
+    case PartType.STRING:
+        return part.toString();
+
+    case PartType.TABLE:
+        // TODO format tables
+        console.log('TODO: format table:', part);
+        break;
+
+    case PartType.ITEM:
+        console.log('TODO: format item:', part);
+        break;
+    case PartType.CREATURE:
+        console.log('TODO: format creature:', part);
+        break;
+    }
+
+    return '';
+}
+
 function stringifyInfo(
     info: Part[],
     variantInfo?: {[key: string]: string},
 ): string {
-    const base = info.map(it => it.toString()).join('\n');
+    const base = info.map(it => stringifyPart(it)).join('\n');
     if (variantInfo) {
         return base + '\n' + Object.keys(variantInfo).map(key =>
             `**${key}**: ${variantInfo[key]}`,
