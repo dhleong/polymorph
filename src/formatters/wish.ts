@@ -317,7 +317,8 @@ export class WishSpellsFormatter implements IFormatter {
     }
 
     async end() {
-        this.output.write(`
+        this.output.write(`;; Auto-generated using the Polymorph project
+
 [:!add-to-list
  {:id :all-spells
   :type :5e/spell}
