@@ -240,31 +240,68 @@ export class Parser {
         atIndex: number,
         factory: (name: ISection, body: ISection) => Part,
     ) {
-        const nameI = atIndex - 1;
-        const bodySection = this.sections[atIndex];
-        const nameSection = this.sections[nameI];
+        return consolidate(
+            this.sections,
+            atIndex,
+            factory,
+        );
+    }
+}
 
-        // if a table follows, include it:
-        if (atIndex + 1 < this.sections.length) {
-            const tableCandidate = this.sections[atIndex + 1];
-            if (tableCandidate.parts[0] instanceof TablePart) {
-                bodySection.parts.push(tableCandidate.parts[0]);
-            } else if (atIndex + 2 < this.sections.length) {
-                // tableCandidate could just be a header section
-                const tableCandidate2 = this.sections[atIndex + 2];
-                if (tableCandidate2.parts[0] instanceof TablePart) {
-                    bodySection.parts.push(tableCandidate2.parts[0]);
-                }
+export function consolidate<T extends Part>(
+    sections: Section[],
+    atIndex: number,
+    factory: (name: ISection, body: ISection) => T,
+): T {
+    const nameI = atIndex - 1;
+    const bodySection = sections[atIndex];
+    const nameSection = sections[nameI];
+
+    // if a table follows, include it (and any following text):
+    if (atIndex + 1 < sections.length) {
+        const tableCandidate = sections[atIndex + 1];
+        if (tableCandidate.parts[0] instanceof TablePart) {
+            consolidateTable(
+                sections, atIndex + 1,
+                bodySection, tableCandidate,
+            );
+        } else if (atIndex + 2 < sections.length) {
+            // tableCandidate could just be a header section
+            const tableCandidate2 = sections[atIndex + 2];
+            if (tableCandidate2.parts[0] instanceof TablePart) {
+                consolidateTable(
+                    sections, atIndex + 2,
+                    bodySection, tableCandidate2,
+                );
             }
         }
+    }
 
-        const part = factory(nameSection, bodySection);
-        if (!part) return;
+    const part = factory(nameSection, bodySection);
+    if (!part) return;
 
-        const spellSection = Section.fromSectionPart(nameSection, part);
+    const spellSection = Section.fromSectionPart(nameSection, part);
 
-        this.sections.splice(nameI, 2, spellSection);
-        return part;
+    sections.splice(nameI, 2, spellSection);
+    return part;
+}
+
+function consolidateTable(
+    sections: Section[],
+    atIndex: number,
+    bodySection: Section,
+    tableCandidate: Section,
+) {
+    bodySection.parts.push(...tableCandidate.parts);
+    const afterTableIndex = atIndex + 1;
+    if (afterTableIndex >= sections.length) return;
+
+    const afterTable = sections[afterTableIndex];
+    if (bodySection.canContainHeaderLevelValue(afterTable.headerLevelValue)) {
+        bodySection.parts.push(...afterTable.parts);
+
+        // for correctness we should probably recurse here...
+        // but how many spells have more than one table?
     }
 }
 
