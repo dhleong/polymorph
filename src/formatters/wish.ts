@@ -13,6 +13,8 @@ import {
     ISection,
     ISpellDice,
     ISpellPart,
+    IStringPart,
+    ITablePart,
     ItemKind,
     Part,
     PartType,
@@ -126,15 +128,62 @@ function formatComponents(raw: string): string {
     return result;
 }
 
-function stringifyPart(part: Part): string {
+function formatRow(items: IStringPart[]) {
+    let first = true;
+    let str = '[';
+    for (const header of items) {
+        if (first) first = false;
+        else str += ' ';
+
+        str += formatInfo([header]);
+    }
+    str += ']';
+    return str;
+}
+
+function formatPart(part: Part): string {
     switch (part.type) {
     case PartType.STRING:
         return part.toString();
 
     case PartType.TABLE:
-        // TODO format tables
-        console.log('TODO: format table:', part);
-        break;
+        const table = part as ITablePart;
+        let str = '{';
+
+        let lastRowLength = -1;
+        for (const headerRow of table.headers) {
+            str += ':headers ' + formatRow(headerRow);
+            lastRowLength = headerRow.length;
+
+            // make room for :rows
+            if (table.rows.length) {
+                str += '\n ';
+            }
+            break;
+        }
+
+        if (table.rows.length) {
+            str += ':rows [';
+
+            let first = true;
+            for (const row of table.rows) {
+                if (first) first = false;
+                else str += '\n        ';
+
+                if (lastRowLength !== -1 && row.length !== lastRowLength) {
+                    console.error('Dropping unbalanced table:', table.toJson());
+                    return '';
+                }
+                lastRowLength = row.length;
+
+                str += formatRow(row);
+            }
+
+            str += ']';
+        }
+
+        str += '}';
+        return str;
 
     case PartType.ITEM:
         console.log('TODO: format item:', part);
@@ -147,17 +196,46 @@ function stringifyPart(part: Part): string {
     return '';
 }
 
-function stringifyInfo(
+/**
+ * Formats a sequence of Parts as either a string or a vector
+ */
+export function formatInfo(
     info: Part[],
     variantInfo?: {[key: string]: string},
-): string {
-    const base = info.map(it => stringifyPart(it)).join('\n');
-    if (variantInfo) {
-        return base + '\n' + Object.keys(variantInfo).map(key =>
-            `**${key}**: ${variantInfo[key]}`,
-        ).join('\n');
+) {
+    let allString = true;
+    const formatted: Array<[PartType, string]> = [];
+    for (const p of info) {
+        const partFormatted = formatPart(p);
+        if (partFormatted === '') continue;
+
+        if (p.type !== PartType.STRING) {
+            allString = false;
+        }
+
+        formatted.push([p.type, partFormatted]);
     }
-    return base;
+
+    if (variantInfo) {
+        formatted.push([
+            PartType.STRING,
+            Object.keys(variantInfo).map(key =>
+                `**${key}**: ${variantInfo[key]}`,
+            ).join('\n'),
+        ]);
+    }
+
+    if (allString) {
+        return q(formatted.map(pair => pair[1]).join('\n'));
+    }
+
+    return formatted.reduce((result, [type, value]) => {
+        const quotified = (type === PartType.STRING)
+            ? q(value)
+            : value;
+
+        return result + '\n' + quotified;
+    }, '[') + ']';
 }
 
 export function generateDiceFn(dice: ISpellDice, spellLevel: number): string {
@@ -328,7 +406,6 @@ export class WishSpellsFormatter implements IFormatter {
 
         for (const s of Object.values(this.spells)) {
 
-            const desc = stringifyInfo(s.info);
             const comp = formatComponents(s.components);
 
             this.output.write(`
@@ -339,7 +416,7 @@ export class WishSpellsFormatter implements IFormatter {
    :range ${q(s.range)}
    :duration ${q(s.duration)}
    :school ${spellSchoolKeyword[s.school]}
-   :desc ${q(desc)}`);
+   :desc ${formatInfo(s.info)}`);
 
             // components?
             if (comp) this.writePart('comp', comp);
@@ -672,7 +749,7 @@ export class WishItemsFormatter implements IFormatter {
 
     private writeAmmunitionGroup(item: IItemPart) {
         this.writeItemGroup(item, {
-            desc: q(stringifyInfo(item.info)),
+            desc: formatInfo(item.info),
             type: ':ammunition',
         }, Object.keys(AmmunitionType)
             .filter(type => !isNumber(type))
@@ -690,14 +767,14 @@ export class WishItemsFormatter implements IFormatter {
 
     private writeArmorGroup(item: IItemPart) {
         this.writeItemGroup(item, {
-            desc: q(stringifyInfo(item.info)),
+            desc: formatInfo(item.info),
             type: ':armor',
         }, item.armorTypes.map(this.armorOpts.bind(this)));
     }
 
     private writeWeaponGroup(item: IItemPart) {
         this.writeItemGroup(item, {
-            desc: q(stringifyInfo(item.info)),
+            desc: formatInfo(item.info),
             type: ':weapon',
         }, item.weaponTypes.map(weaponOpts.bind(weaponOpts, item)));
     }
@@ -784,7 +861,7 @@ export class WishItemsFormatter implements IFormatter {
         }
 
         if (!options.noDesc) {
-            options.desc = q(stringifyInfo(item.info, options.variantInfo));
+            options.desc = formatInfo(item.info, options.variantInfo);
         }
         delete options.variantInfo;
 

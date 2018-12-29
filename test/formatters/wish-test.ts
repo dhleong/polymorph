@@ -7,12 +7,14 @@ import {
 } from '../..';
 
 import {
+    formatInfo,
     generateDiceFn,
     maxDiceValue,
     nameToId,
     weaponOpts,
 } from '../../src/formatters/wish';
 
+import { Part, StringPart, TablePart } from '../../src/parser';
 import {
     ItemKind,
     ItemRarity,
@@ -181,5 +183,63 @@ describe('weaponOpts', () => {
             }), WeaponType.Dart,
 
         ).name.should.equal('Viscious Dart');
+    });
+});
+
+const formatPart = (part: Part) => formatInfo([part]);
+
+function createTable(
+    headers: string[],
+    rows: string[][],
+): TablePart {
+    const table = new TablePart();
+    table.headers = [
+        headers.map(h => new StringPart(h)),
+    ];
+    table.rows = rows.map(row => {
+        return row.map(item => new StringPart(item));
+    });
+
+    return table;
+}
+
+describe('Info formatting', () => {
+    it('simplifies single strings', () => {
+        formatPart(new StringPart('mreynolds')).should.equal(
+            `"mreynolds"`,
+        );
+
+        formatPart(new StringPart('mreynolds\nzoe')).should.equal(
+            `"mreynolds
+zoe"`,
+        );
+    });
+
+    it('includes variant info with single strings', () => {
+        formatInfo([
+            new StringPart('mreynolds\nzoe'),
+        ], {
+            firefly: 'serenity',
+        }).should.equal(
+            `"mreynolds
+zoe
+**firefly**: serenity"`,
+        );
+    });
+
+    it('handles tables', () => {
+        formatPart(
+            createTable([
+                'Role', 'Name',
+            ], [
+                ['Captain', 'Mal Reynolds'],
+                ['Pilot', 'Hoban Washburne'],
+            ]),
+        ).should.equal(
+            `[
+{:headers ["Role" "Name"]
+ :rows [["Captain" "Mal Reynolds"]
+        ["Pilot" "Hoban Washburne"]]}]`,
+        );
     });
 });
