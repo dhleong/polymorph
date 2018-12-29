@@ -62,7 +62,10 @@ export class StringPart implements IStringPart {
     append(item: ITextItem) {
         const start = this.str.length;
         this.str += normalizeString(item.str);
-        this.width += item.width;
+        this.width = Math.max(
+            this.width,
+            item.x + item.width - this.x,
+        );
 
         this.pushFormattingForFont(item.fontName, start);
     }

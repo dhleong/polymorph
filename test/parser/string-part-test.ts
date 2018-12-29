@@ -198,4 +198,57 @@ describe('StringPart', () => {
                 .that.equals('21 (+5) 9 (−1) 15 (+2) 18 (+4) 15 (+2) 18 (+4)');
         });
     });
+
+    describe('width handling', () => {
+        it('combines width properly when aligned', () => {
+            const part = new StringPart(
+                '',
+                0, 0,
+                40,
+            );
+            part.append(
+                new StringPart(
+                    '',
+                    0, 0,
+                    40,
+                ),
+            );
+
+            part.width.should.equal(40);
+        });
+
+        it('combines width properly when offset', () => {
+            const part = new StringPart(
+                '',
+                0, 0,
+                40,
+            );
+            part.append(
+                new StringPart(
+                    '',
+                    20, 0,
+                    40,
+                ),
+            );
+
+            part.width.should.equal(60);
+        });
+
+        it('combines width properly when separate', () => {
+            const part = new StringPart(
+                '',
+                0, 0,
+                40,
+            );
+            part.append(
+                new StringPart(
+                    '',
+                    40, 0,
+                    40,
+                ),
+            );
+
+            part.width.should.equal(80);
+        });
+    });
 });
