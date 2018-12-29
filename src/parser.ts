@@ -261,12 +261,18 @@ export function consolidate<T extends Part>(
     if (atIndex + 1 < sections.length) {
         const tableCandidate = sections[atIndex + 1];
         if (tableCandidate.parts[0] instanceof TablePart) {
-            bodySection.parts.push(...tableCandidate.parts);
+            consolidateTable(
+                sections, atIndex + 1,
+                bodySection, tableCandidate,
+            );
         } else if (atIndex + 2 < sections.length) {
             // tableCandidate could just be a header section
             const tableCandidate2 = sections[atIndex + 2];
             if (tableCandidate2.parts[0] instanceof TablePart) {
-                bodySection.parts.push(...tableCandidate.parts);
+                consolidateTable(
+                    sections, atIndex + 2,
+                    bodySection, tableCandidate2,
+                );
             }
         }
     }
@@ -278,6 +284,25 @@ export function consolidate<T extends Part>(
 
     sections.splice(nameI, 2, spellSection);
     return part;
+}
+
+function consolidateTable(
+    sections: Section[],
+    atIndex: number,
+    bodySection: Section,
+    tableCandidate: Section,
+) {
+    bodySection.parts.push(...tableCandidate.parts);
+    const afterTableIndex = atIndex + 1;
+    if (afterTableIndex >= sections.length) return;
+
+    const afterTable = sections[afterTableIndex];
+    if (bodySection.canContainHeaderLevelValue(afterTable.headerLevelValue)) {
+        bodySection.parts.push(...afterTable.parts);
+
+        // for correctness we should probably recurse here...
+        // but how many spells have more than one table?
+    }
 }
 
 export async function parseFile(
