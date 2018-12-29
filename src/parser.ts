@@ -240,32 +240,44 @@ export class Parser {
         atIndex: number,
         factory: (name: ISection, body: ISection) => Part,
     ) {
-        const nameI = atIndex - 1;
-        const bodySection = this.sections[atIndex];
-        const nameSection = this.sections[nameI];
+        return consolidate(
+            this.sections,
+            atIndex,
+            factory,
+        );
+    }
+}
 
-        // if a table follows, include it:
-        if (atIndex + 1 < this.sections.length) {
-            const tableCandidate = this.sections[atIndex + 1];
-            if (tableCandidate.parts[0] instanceof TablePart) {
-                bodySection.parts.push(tableCandidate.parts[0]);
-            } else if (atIndex + 2 < this.sections.length) {
-                // tableCandidate could just be a header section
-                const tableCandidate2 = this.sections[atIndex + 2];
-                if (tableCandidate2.parts[0] instanceof TablePart) {
-                    bodySection.parts.push(tableCandidate2.parts[0]);
-                }
+export function consolidate<T extends Part>(
+    sections: Section[],
+    atIndex: number,
+    factory: (name: ISection, body: ISection) => T,
+): T {
+    const nameI = atIndex - 1;
+    const bodySection = sections[atIndex];
+    const nameSection = sections[nameI];
+
+    // if a table follows, include it (and any following text):
+    if (atIndex + 1 < sections.length) {
+        const tableCandidate = sections[atIndex + 1];
+        if (tableCandidate.parts[0] instanceof TablePart) {
+            bodySection.parts.push(...tableCandidate.parts);
+        } else if (atIndex + 2 < sections.length) {
+            // tableCandidate could just be a header section
+            const tableCandidate2 = sections[atIndex + 2];
+            if (tableCandidate2.parts[0] instanceof TablePart) {
+                bodySection.parts.push(...tableCandidate.parts);
             }
         }
-
-        const part = factory(nameSection, bodySection);
-        if (!part) return;
-
-        const spellSection = Section.fromSectionPart(nameSection, part);
-
-        this.sections.splice(nameI, 2, spellSection);
-        return part;
     }
+
+    const part = factory(nameSection, bodySection);
+    if (!part) return;
+
+    const spellSection = Section.fromSectionPart(nameSection, part);
+
+    sections.splice(nameI, 2, spellSection);
+    return part;
 }
 
 export async function parseFile(

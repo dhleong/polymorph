@@ -1,0 +1,163 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"Animate Objects","dir":"ltr","width":88.8504,"height":144,"transform":[12,0,0,12,57.6,359.76],"fontName":"g_d0_f3","x":57.6,"y":359.76}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,146.4516,359.76],"fontName":"g_d0_f3","x":146.4516,"y":359.76}
+{"str":"5th","dir":"ltr","width":14.038728,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,347.28],"fontName":"g_d0_f7","x":57.6,"y":347.28}
+{"str":"-­‐‑","dir":"ltr","width":3.13896,"height":96.8256,"transform":[9.84,0,0,9.84,71.63808,347.28],"fontName":"g_d0_f7","x":71.63808,"y":347.28}
+{"str":"level    transmutation","dir":"ltr","width":81.82058400000001,"height":96.8256,"transform":[9.84,0,0,9.84,74.82656,347.28],"fontName":"g_d0_f7","x":74.82656,"y":347.28}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,156.6869,347.28],"fontName":"g_d0_f7","x":156.6869,"y":347.28}
+{"str":"Casting    Time:","dir":"ltr","width":62.511552000000016,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,329.52],"fontName":"g_d0_f8","x":57.6,"y":329.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,120.0512,329.52],"fontName":"g_d0_f4","x":120.0512,"y":329.52}
+{"str":"1    action","dir":"ltr","width":34.07198400000001,"height":96.8256,"transform":[9.84,0,0,9.84,122.2533,329.52],"fontName":"g_d0_f4","x":122.2533,"y":329.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,156.3354,329.52],"fontName":"g_d0_f4","x":156.3354,"y":329.52}
+{"str":"Range:","dir":"ltr","width":31.364016000000007,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,318],"fontName":"g_d0_f8","x":57.6,"y":318}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,88.90859,318],"fontName":"g_d0_f4","x":88.90859,"y":318}
+{"str":"120    feet","dir":"ltr","width":35.00678400000001,"height":96.8256,"transform":[9.84,0,0,9.84,91.11074,318],"fontName":"g_d0_f4","x":91.11074,"y":318}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,126.0912,318],"fontName":"g_d0_f4","x":126.0912,"y":318}
+{"str":"Components:","dir":"ltr","width":60.47270400000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,306.24],"fontName":"g_d0_f8","x":57.6,"y":306.24}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,118.0102,306.24],"fontName":"g_d0_f4","x":118.0102,"y":306.24}
+{"str":"V,    S","dir":"ltr","width":15.253967999999999,"height":96.8256,"transform":[9.84,0,0,9.84,120.2123,306.24],"fontName":"g_d0_f4","x":120.2123,"y":306.24}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,135.4613,306.24],"fontName":"g_d0_f4","x":135.4613,"y":306.24}
+{"str":"Duration:","dir":"ltr","width":44.37840000000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,294.48],"fontName":"g_d0_f8","x":57.6,"y":294.48}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,101.9066,294.48],"fontName":"g_d0_f4","x":101.9066,"y":294.48}
+{"str":"Concentration,    up    to    1    minute","dir":"ltr","width":127.50081600000003,"height":96.8256,"transform":[9.84,0,0,9.84,104.1088,294.48],"fontName":"g_d0_f4","x":104.1088,"y":294.48}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,231.5795,294.48],"fontName":"g_d0_f4","x":231.5795,"y":294.48}
+{"str":"Objects    come    to    life    at    your    command.    Choose    up    to    ","dir":"ltr","width":222.1074959999999,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,276.72],"fontName":"g_d0_f4","x":57.6,"y":276.72}
+{"str":"ten    nonmagical    objects    within    range    that    are    not    ","dir":"ltr","width":208.76642399999994,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,264.96],"fontName":"g_d0_f4","x":57.6,"y":264.96}
+{"str":"being    worn    or    carried.    Medium    targets    count    as    two    ","dir":"ltr","width":223.42999199999974,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,253.2],"fontName":"g_d0_f4","x":57.6,"y":253.2}
+{"str":"objects,    Large    targets    count    as    four    o","dir":"ltr","width":156.467808,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,241.44],"fontName":"g_d0_f4","x":57.6,"y":241.44}
+{"str":"bjects,    Huge    ","dir":"ltr","width":53.804136,"height":96.8256,"transform":[9.84,0,0,9.84,214.0648,241.44],"fontName":"g_d0_f4","x":214.0648,"y":241.44}
+{"str":"targets    count    as    eight    objects.    You    can’t    animate    any    ","dir":"ltr","width":224.23982399999994,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,229.92],"fontName":"g_d0_f4","x":57.6,"y":229.92}
+{"str":"object    larger    than    Huge.    Each    target    animates    and    ","dir":"ltr","width":214.27583999999996,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,218.16],"fontName":"g_d0_f4","x":57.6,"y":218.16}
+{"str":"becomes    a    creature    under    your    control    until    the    ","dir":"ltr","width":206.57505599999988,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,206.4],"fontName":"g_d0_f4","x":57.6,"y":206.4}
+{"str":"spell    ends    or    until    reduced    to    0    hit    points.","dir":"ltr","width":177.36403199999995,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,194.64],"fontName":"g_d0_f4","x":57.6,"y":194.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,234.8949,194.64],"fontName":"g_d0_f4","x":234.8949,"y":194.64}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,182.88],"fontName":"g_d0_f4","x":57.6,"y":182.88}
+{"str":"As    a    bonus    action,    you    can    mentally    command    a","dir":"ltr","width":203.13696000000004,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,182.88],"fontName":"g_d0_f4","x":66.9501,"y":182.88}
+{"str":"ny    ","dir":"ltr","width":12.876624000000001,"height":96.8256,"transform":[9.84,0,0,9.84,270.0604,182.88],"fontName":"g_d0_f4","x":270.0604,"y":182.88}
+{"str":"creature    you    made    with    this    spell    if    the    creature    is    ","dir":"ltr","width":216.30583200000007,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,171.12],"fontName":"g_d0_f4","x":57.6,"y":171.12}
+{"str":"within    500    feet    of    you    (if    you    control    multiple    ","dir":"ltr","width":196.88856,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,159.6],"fontName":"g_d0_f4","x":57.6,"y":159.6}
+{"str":"creatures,    you    can    command    any    or    all    of    them    at    the    ","dir":"ltr","width":227.73991199999998,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,147.84],"fontName":"g_d0_f4","x":57.6,"y":147.84}
+{"str":"same    time,    issuing    the    same    command    to    each    one).    ","dir":"ltr","width":222.42336000000003,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,136.08],"fontName":"g_d0_f4","x":57.6,"y":136.08}
+{"str":"You    decide    what    action    the    creature    will    take    and","dir":"ltr","width":210.40281599999997,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,124.32],"fontName":"g_d0_f4","x":57.6,"y":124.32}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,268.015,124.32],"fontName":"g_d0_f4","x":268.015,"y":124.32}
+{"str":"where    it    will    move    during    its    next    turn,    or    you    can    ","dir":"ltr","width":215.61408000000003,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,112.56],"fontName":"g_d0_f4","x":57.6,"y":112.56}
+{"str":"issue    a    general    command,    such    as    to    guard    a    ","dir":"ltr","width":190.37644800000007,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,100.8],"fontName":"g_d0_f4","x":57.6,"y":100.8}
+{"str":"particular    chamber    or    corridor.    If    you    issue    no    ","dir":"ltr","width":199.71854399999995,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,710.64],"fontName":"g_d0_f4","x":328.56,"y":710.64}
+{"str":"commands,    the    creature    only    defends    itself    against    ","dir":"ltr","width":218.46866400000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,698.88],"fontName":"g_d0_f4","x":328.56,"y":698.88}
+{"str":"hostile    creatures.    Once    given    an    order,    the    creature    ","dir":"ltr","width":220.26938400000003,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,687.12],"fontName":"g_d0_f4","x":328.56,"y":687.12}
+{"str":"continu","dir":"ltr","width":32.537927999999994,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,675.36],"fontName":"g_d0_f4","x":328.56,"y":675.36}
+{"str":"es    to    follow    it    until    its    task    is    complete.","dir":"ltr","width":165.3425040000001,"height":96.8256,"transform":[9.84,0,0,9.84,361.1235,675.36],"fontName":"g_d0_f4","x":361.1235,"y":675.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,526.4116,675.36],"fontName":"g_d0_f4","x":526.4116,"y":675.36}
+{"str":"Animated    Object    Statistics","dir":"ltr","width":131.82360000000003,"height":144,"transform":[12,0,0,12,328.56,655.92],"fontName":"g_d0_f6","x":328.56,"y":655.92}
+{"str":"    ","dir":"ltr","width":2.712,"height":144,"transform":[12,0,0,12,460.3784,655.92],"fontName":"g_d0_f6","x":460.3784,"y":655.92}
+{"str":"Size","dir":"ltr","width":14.5632,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,328.56,641.04],"fontName":"g_d0_f6","x":328.56,"y":641.04}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,343.1323,641.04],"fontName":"g_d0_f6","x":343.1323,"y":641.04}
+{"str":"HP","dir":"ltr","width":10.476624,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,370.0961,641.04],"fontName":"g_d0_f6","x":370.0961,"y":641.04}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,380.5639,641.04],"fontName":"g_d0_f6","x":380.5639,"y":641.04}
+{"str":"AC","dir":"ltr","width":10.222655999999999,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,391.4564,641.04],"fontName":"g_d0_f6","x":391.4564,"y":641.04}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,401.6736,641.04],"fontName":"g_d0_f6","x":401.6736,"y":641.04}
+{"str":"Attack","dir":"ltr","width":24.229968,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,412.56,641.04],"fontName":"g_d0_f6","x":412.56,"y":641.04}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,436.7827,641.04],"fontName":"g_d0_f6","x":436.7827,"y":641.04}
+{"str":"Str","dir":"ltr","width":10.57608,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,518.6534,641.04],"fontName":"g_d0_f6","x":518.6534,"y":641.04}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,529.2267,641.04],"fontName":"g_d0_f6","x":529.2267,"y":641.04}
+{"str":"Dex","dir":"ltr","width":14.356295999999999,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,540.0054,641.04],"fontName":"g_d0_f6","x":540.0054,"y":641.04}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,554.3447,641.04],"fontName":"g_d0_f6","x":554.3447,"y":641.04}
+{"str":"Tiny","dir":"ltr","width":15.270048,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,328.56,630],"fontName":"g_d0_f2","x":328.56,"y":630}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,343.8134,630],"fontName":"g_d0_f2","x":343.8134,"y":630}
+{"str":"20","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,370.7685,630],"fontName":"g_d0_f2","x":370.7685,"y":630}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,379.8915,630],"fontName":"g_d0_f2","x":379.8915,"y":630}
+{"str":"18","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,392.0035,630],"fontName":"g_d0_f2","x":392.0035,"y":630}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,401.1265,630],"fontName":"g_d0_f2","x":401.1265,"y":630}
+{"str":"+8    to    hit,    1d4    +    4    damage","dir":"ltr","width":93.23112,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,412.56,630],"fontName":"g_d0_f2","x":412.56,"y":630}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,505.7768,630],"fontName":"g_d0_f2","x":505.7768,"y":630}
+{"str":"4","dir":"ltr","width":4.50216,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,521.6593,630],"fontName":"g_d0_f2","x":521.6593,"y":630}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,526.2208,630],"fontName":"g_d0_f2","x":526.2208,"y":630}
+{"str":"18","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,542.6135,630],"fontName":"g_d0_f2","x":542.6135,"y":630}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,551.7366,630],"fontName":"g_d0_f2","x":551.7366,"y":630}
+{"str":"Small","dir":"ltr","width":19.79796,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,328.56,619.2],"fontName":"g_d0_f2","x":328.56,"y":619.2}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,348.3266,619.2],"fontName":"g_d0_f2","x":348.3266,"y":619.2}
+{"str":"25","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,370.7685,619.2],"fontName":"g_d0_f2","x":370.7685,"y":619.2}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,379.8915,619.2],"fontName":"g_d0_f2","x":379.8915,"y":619.2}
+{"str":"16","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,392.0035,619.2],"fontName":"g_d0_f2","x":392.0035,"y":619.2}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,401.1265,619.2],"fontName":"g_d0_f2","x":401.1265,"y":619.2}
+{"str":"+6    to    hit,    1d8    +    2    damage","dir":"ltr","width":93.23112,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,412.56,619.2],"fontName":"g_d0_f2","x":412.56,"y":619.2}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,505.7768,619.2],"fontName":"g_d0_f2","x":505.7768,"y":619.2}
+{"str":"6","dir":"ltr","width":4.50216,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,521.6593,619.2],"fontName":"g_d0_f2","x":521.6593,"y":619.2}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,526.2208,619.2],"fontName":"g_d0_f2","x":526.2208,"y":619.2}
+{"str":"14","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,542.6135,619.2],"fontName":"g_d0_f2","x":542.6135,"y":619.2}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,551.7366,619.2],"fontName":"g_d0_f2","x":551.7366,"y":619.2}
+{"str":"Medium","dir":"ltr","width":30.89352,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,328.56,608.16],"fontName":"g_d0_f2","x":328.56,"y":608.16}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,359.4448,608.16],"fontName":"g_d0_f2","x":359.4448,"y":608.16}
+{"str":"40","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,370.7685,608.16],"fontName":"g_d0_f2","x":370.7685,"y":608.16}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,379.8915,608.16],"fontName":"g_d0_f2","x":379.8915,"y":608.16}
+{"str":"13","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,392.0035,608.16],"fontName":"g_d0_f2","x":392.0035,"y":608.16}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,401.1265,608.16],"fontName":"g_d0_f2","x":401.1265,"y":608.16}
+{"str":"+5    to    hit,    2d6    +    1    damage","dir":"ltr","width":93.23112,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,412.56,608.16],"fontName":"g_d0_f2","x":412.56,"y":608.16}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,505.7768,608.16],"fontName":"g_d0_f2","x":505.7768,"y":608.16}
+{"str":"10","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,519.3785,608.16],"fontName":"g_d0_f2","x":519.3785,"y":608.16}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,528.5016,608.16],"fontName":"g_d0_f2","x":528.5016,"y":608.16}
+{"str":"12","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,542.6135,608.16],"fontName":"g_d0_f2","x":542.6135,"y":608.16}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,551.7366,608.16],"fontName":"g_d0_f2","x":551.7366,"y":608.16}
+{"str":"Large","dir":"ltr","width":19.940039999999996,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,328.56,597.12],"fontName":"g_d0_f2","x":328.56,"y":597.12}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,348.5068,597.12],"fontName":"g_d0_f2","x":348.5068,"y":597.12}
+{"str":"50","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,370.7685,597.12],"fontName":"g_d0_f2","x":370.7685,"y":597.12}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,379.8915,597.12],"fontName":"g_d0_f2","x":379.8915,"y":597.12}
+{"str":"10","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,392.0035,597.12],"fontName":"g_d0_f2","x":392.0035,"y":597.12}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,401.1265,597.12],"fontName":"g_d0_f2","x":401.1265,"y":597.12}
+{"str":"+6    to    hit,    ","dir":"ltr","width":35.003184000000005,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,412.56,597.12],"fontName":"g_d0_f2","x":412.56,"y":597.12}
+{"str":"2d10    +    2    ","dir":"ltr","width":33.58682399999999,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,447.5229,597.12],"fontName":"g_d0_f2","x":447.5229,"y":597.12}
+{"str":"damage","dir":"ltr","width":29.26848,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,412.56,586.08],"fontName":"g_d0_f2","x":412.56,"y":586.08}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,441.8144,586.08],"fontName":"g_d0_f2","x":441.8144,"y":586.08}
+{"str":"14","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,519.3785,597.12],"fontName":"g_d0_f2","x":519.3785,"y":597.12}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,528.5016,597.12],"fontName":"g_d0_f2","x":528.5016,"y":597.12}
+{"str":"10","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,542.6135,597.12],"fontName":"g_d0_f2","x":542.6135,"y":597.12}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,551.7366,597.12],"fontName":"g_d0_f2","x":551.7366,"y":597.12}
+{"str":"Huge","dir":"ltr","width":19.07424,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,328.56,575.04],"fontName":"g_d0_f2","x":328.56,"y":575.04}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,347.6103,575.04],"fontName":"g_d0_f2","x":347.6103,"y":575.04}
+{"str":"80","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,370.7685,575.04],"fontName":"g_d0_f2","x":370.7685,"y":575.04}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,379.8915,575.04],"fontName":"g_d0_f2","x":379.8915,"y":575.04}
+{"str":"10","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,392.0035,575.04],"fontName":"g_d0_f2","x":392.0035,"y":575.04}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,401.1265,575.04],"fontName":"g_d0_f2","x":401.1265,"y":575.04}
+{"str":"+8    to    hit,    2d12    +    4    ","dir":"ltr","width":68.56248000000002,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,412.56,575.04],"fontName":"g_d0_f2","x":412.56,"y":575.04}
+{"str":"damage","dir":"ltr","width":29.26848,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,412.56,564.24],"fontName":"g_d0_f2","x":412.56,"y":564.24}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,441.8144,564.24],"fontName":"g_d0_f2","x":441.8144,"y":564.24}
+{"str":"18","dir":"ltr","width":9.123312,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,519.3785,575.04],"fontName":"g_d0_f2","x":519.3785,"y":575.04}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,528.5016,575.04],"fontName":"g_d0_f2","x":528.5016,"y":575.04}
+{"str":"6","dir":"ltr","width":4.50216,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,544.8943,575.04],"fontName":"g_d0_f2","x":544.8943,"y":575.04}
+{"str":"    ","dir":"ltr","width":2.0068799999999998,"height":78.85439999999998,"transform":[8.879999999999999,0,0,8.879999999999999,549.4558,575.04],"fontName":"g_d0_f2","x":549.4558,"y":575.04}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,552.24],"fontName":"g_d0_f4","x":328.56,"y":552.24}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,540.48],"fontName":"g_d0_f4","x":328.56,"y":540.48}
+{"str":"An    animated    object    is    a    construct    with    AC,    hit    ","dir":"ltr","width":195.45585599999998,"height":96.8256,"transform":[9.84,0,0,9.84,337.9101,540.48],"fontName":"g_d0_f4","x":337.9101,"y":540.48}
+{"str":"points,    attacks,    Strength,    and    Dexterity    determined    ","dir":"ltr","width":219.42609599999994,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,528.72],"fontName":"g_d0_f4","x":328.56,"y":528.72}
+{"str":"by    its    size.    Its    Constitution    is    10    and    its    Intelligence    ","dir":"ltr","width":219.99386399999995,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,516.96],"fontName":"g_d0_f4","x":328.56,"y":516.96}
+{"str":"and    Wisdom    are    3,    and    its    Chari","dir":"ltr","width":135.63652799999994,"height":96.8256,"transform":[9.84,0,0,9.84,328.56,505.2],"fontName":"g_d0_f4","x":328.56,"y":505.2}
+{"str":"sma    is    1.    Its    speed    is    ","dir":"ltr","width":88.58066399999998,"height":96.8256,"transform":[9.84,0,0,9.84,464.1411,505.2],"fontName":"g_d0_f4","x":464.1411,"y":505.2}
+{"str":"30    feet;    if    the    object    lacks    legs    or    other    appendages    it    ","dir":"ltr","width":228.050856,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,493.68],"fontName":"g_d0_f4","x":328.5601,"y":493.68}
+{"str":"can    use    for    locomotion,    it    instead    has    a    flying    speed    ","dir":"ltr","width":220.9512960000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,481.92],"fontName":"g_d0_f4","x":328.5601,"y":481.92}
+{"str":"of    30    feet    and    can    hover.    If    the    object    is    securely    ","dir":"ltr","width":206.7265920000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,470.16],"fontName":"g_d0_f4","x":328.5601,"y":470.16}
+{"str":"attached    to    a    surface    or    a    larger    object,    such    as    a    ","dir":"ltr","width":207.88377600000004,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,458.4],"fontName":"g_d0_f4","x":328.5601,"y":458.4}
+{"str":"chain    bolted    to    a    ","dir":"ltr","width":72.902592,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,446.64],"fontName":"g_d0_f4","x":328.5601,"y":446.64}
+{"str":"wall,    its    speed    is    0.    It    has    blindsight    ","dir":"ltr","width":152.45112000000006,"height":96.8256,"transform":[9.84,0,0,9.84,401.4165,446.64],"fontName":"g_d0_f4","x":401.4165,"y":446.64}
+{"str":"with    a    radius    of    30    feet    and    is    blind    beyond    that    ","dir":"ltr","width":205.55760000000004,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,434.88],"fontName":"g_d0_f4","x":328.5601,"y":434.88}
+{"str":"distance.    When    the    animated    object    drops    to    0    hit    ","dir":"ltr","width":213.78384000000005,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,423.36],"fontName":"g_d0_f4","x":328.5601,"y":423.36}
+{"str":"points,    it    reverts    to    its    original    object    form,    and    any    ","dir":"ltr","width":220.67380799999995,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,411.6],"fontName":"g_d0_f4","x":328.5601,"y":411.6}
+{"str":"remaining    damage    carries    over    to    its    original    object    ","dir":"ltr","width":222.18621599999992,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,399.84],"fontName":"g_d0_f4","x":328.5601,"y":399.84}
+{"str":"form.","dir":"ltr","width":22.86324,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,388.08],"fontName":"g_d0_f4","x":328.5601,"y":388.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,351.4019,388.08],"fontName":"g_d0_f4","x":351.4019,"y":388.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5601,376.32],"fontName":"g_d0_f4","x":328.5601,"y":376.32}
+{"str":"If    you    command    an    object    to    attack,    it    can    make    a    ","dir":"ltr","width":211.49112000000008,"height":96.8256,"transform":[9.84,0,0,9.84,337.9102,376.32],"fontName":"g_d0_f4","x":337.9102,"y":376.32}
+{"str":"single    melee    attack    against    a    creature    within    5    feet    ","dir":"ltr","width":218.28170400000013,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,364.56],"fontName":"g_d0_f4","x":328.5602,"y":364.56}
+{"str":"of    it.    It    makes    a    slam    attack    with    an    attack    bonus    and    ","dir":"ltr","width":226.84152000000003,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,352.8],"fontName":"g_d0_f4","x":328.5602,"y":352.8}
+{"str":"bludgeoning    damage    determined    by    its    size.    The    GM    ","dir":"ltr","width":224.35199999999995,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,341.28],"fontName":"g_d0_f4","x":328.5602,"y":341.28}
+{"str":"might    rule    that    a    specific    object    inflicts    slash","dir":"ltr","width":188.62099199999992,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,329.52],"fontName":"g_d0_f4","x":328.5602,"y":329.52}
+{"str":"ing    or    ","dir":"ltr","width":27.149543999999995,"height":96.8256,"transform":[9.84,0,0,9.84,517.149,329.52],"fontName":"g_d0_f4","x":517.149,"y":329.52}
+{"str":"piercing    damage    based    on    its    form.","dir":"ltr","width":148.81819199999998,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,317.76],"fontName":"g_d0_f4","x":328.5602,"y":317.76}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,477.3541,317.76],"fontName":"g_d0_f4","x":477.3541,"y":317.76}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,306],"fontName":"g_d0_f4","x":328.5602,"y":306}
+{"str":"At    Higher    Levels.","dir":"ltr","width":75.08313599999998,"height":96.8256,"transform":[9.84,0,0,9.84,337.9103,306],"fontName":"g_d0_f5","x":337.9103,"y":306}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,412.9445,306],"fontName":"g_d0_f4","x":412.9445,"y":306}
+{"str":"If    you    cast    this    spell    using    a    spell    ","dir":"ltr","width":141.03179999999998,"height":96.8256,"transform":[9.84,0,0,9.84,415.1466,306],"fontName":"g_d0_f4","x":415.1466,"y":306}
+{"str":"slot    of    6th    level    or    higher,    you    can    animate    two    ","dir":"ltr","width":201.92959200000004,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,294.24],"fontName":"g_d0_f4","x":328.5602,"y":294.24}
+{"str":"additional    objects    for    each    slot    level    above    5th.","dir":"ltr","width":199.454832,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,282.48],"fontName":"g_d0_f4","x":328.5602,"y":282.48}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,527.9449,282.48],"fontName":"g_d0_f4","x":527.9449,"y":282.48}

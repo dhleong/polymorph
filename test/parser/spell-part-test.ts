@@ -2,7 +2,7 @@ import * as chai from 'chai';
 
 const expect = chai.expect;
 
-import { SpellPart } from '../../src/parser';
+import { consolidate, SpellPart } from '../../src/parser';
 import { Ability, ISpellPart, SpellAreaType, SpellAttackType, SpellSchool } from '../../src/parser/interface';
 
 import { extractAreaOfEffect, extractSave } from '../../src/parser/spell-part';
@@ -16,7 +16,11 @@ async function loadSpellFromItems(fileName: string): Promise<ISpellPart> {
 
     // NOTE: sections[0] is the "Spell Descriptions" section
 
-    return SpellPart.from(sections[1], sections[2]);
+    return consolidate(
+        sections,
+        2,
+        SpellPart.from,
+    );
 }
 
 describe('SpellPart save extraction', () => {
@@ -269,5 +273,13 @@ describe('SpellPart parsing', () => {
         sp.components.should.equal('V, S');
         sp.duration.should.equal('1 hour');
         sp.info[0].toJson().should.have.string('You touch a creature.');
+    });
+
+    it('handles tables in the middle of a spell description', async () => {
+        const sp = await loadSpellFromItems('animate-objects-spell.txt');
+
+        JSON.stringify(sp.info).should.contain(
+            'If you command an object to attack',
+        );
     });
 });
