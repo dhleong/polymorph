@@ -72,11 +72,6 @@ export class TablePart implements ITablePart {
             this.startSplitTableRowWith(item);
 
             const row = destination[destination.length - 1];
-            if (row.length && destination === this.headers) {
-                const last = row[row.length - 1];
-                last.effectiveWidth = item.x - last.x;
-            }
-
             row.push(StringPart.from(item));
         }
 
@@ -324,6 +319,11 @@ export class TablePart implements ITablePart {
     }
 
     private itemShouldShareColumnWith(item: ITextItem, last: StringPart): boolean {
+        if (last.isEmptyColumn()) {
+            // never
+            return false;
+        }
+
         if (last.endsWithComma() || item.str.startsWith(', ')) {
             return true;
         }

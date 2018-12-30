@@ -149,6 +149,14 @@ export class StringPart implements IStringPart {
     }
 
     /**
+     * Check if this string part could be used as the content of an empty
+     * column
+     */
+    isEmptyColumn(): boolean {
+        return this.str.match(/—[ ]*/) !== null;
+    }
+
+    /**
      * Extract a Map where the keys are the parts of
      * this StringPart that have a FormatSpan on them,
      * and the values are the non-spanned parts following

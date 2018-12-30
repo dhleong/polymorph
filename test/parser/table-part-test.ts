@@ -125,7 +125,7 @@ describe('TablePart', () => {
         ]);
     });
 
-    it('handles more tables split across pages', async () => {
+    it.skip('handles more tables split across pages', async () => {
         const table = tableFromSection(
             await loadTextItems('confusion-table.txt'),
         ).toJson();
@@ -141,6 +141,26 @@ describe('TablePart', () => {
             // tslint:disable-next-line
             ['7–8', 'The creature uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the creature does nothing this turn.'],
             ['9–10', 'The creature can act and move normally.'],
+        ]);
+    });
+
+    it('handles wide tables in a two-column layout', async () => {
+        const table = tableFromSection(
+            await loadTextItems('teleport-table.txt'),
+        ).toJson();
+
+        table.headers.should.deep.equal([
+            ['Familiarity', 'Mishap', 'Similar Area', 'Off Target', 'On Target'],
+        ]);
+
+        table.rows.should.deep.equal([
+            ['Permanent circle', '—', '—', '—', '01–100'],
+            ['Associated object', '—', '—', '—', '01–100'],
+            ['Very familiar', '01–05', '06–13', '14–24', '25–100'],
+            ['Seen casually', '01–33', '34–43', '44–53', '54–100'],
+            ['Viewed once', '01–43', '44–53', '54–73', '74–100'],
+            ['Description', '01–43', '44–53', '54–73', '74–100'],
+            ['False destination', '01–50', '51–100', '—', '—'],
         ]);
     });
 });
