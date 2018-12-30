@@ -63,6 +63,18 @@ export function tableSection(items: any[]): TablePart {
     return section.parts[0] as TablePart;
 }
 
+/**
+ * Less strict than {@link tableSection}
+ */
+export function tableFromSection(items: any[]): TablePart {
+    // FIXME can we just use this instead of tableSection?
+    const sections = parsePage(items);
+    const section = sections[0];
+    section.parts.should.have.lengthOf(1, JSON.stringify(section));
+
+    return section.parts[0] as TablePart;
+}
+
 export function textItem(obj: any): ITextItem {
     return {
         dir: 'rtl',

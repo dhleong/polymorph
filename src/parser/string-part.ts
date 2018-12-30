@@ -62,7 +62,10 @@ export class StringPart implements IStringPart {
     append(item: ITextItem) {
         const start = this.str.length;
         this.str += normalizeString(item.str);
-        this.width += item.width;
+        this.width = Math.max(
+            this.width,
+            item.x + item.width - this.x,
+        );
 
         this.pushFormattingForFont(item.fontName, start);
     }
@@ -143,6 +146,14 @@ export class StringPart implements IStringPart {
         if (!fmts.length) return false;
         if (fmts[0].start > 0) return false;
         return fmts[0].isBold;
+    }
+
+    /**
+     * Check if this string part could be used as the content of an empty
+     * column
+     */
+    isEmptyColumn(): boolean {
+        return this.str.match(/—[ ]*/) !== null;
     }
 
     /**

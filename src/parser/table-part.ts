@@ -72,11 +72,6 @@ export class TablePart implements ITablePart {
             this.startSplitTableRowWith(item);
 
             const row = destination[destination.length - 1];
-            if (row.length && destination === this.headers) {
-                const last = row[row.length - 1];
-                last.effectiveWidth = item.x - last.x;
-            }
-
             row.push(StringPart.from(item));
         }
 
@@ -115,6 +110,7 @@ export class TablePart implements ITablePart {
             console.warn('Unexpected number of header rows: ' + JSON.stringify(this.headers, null, ' '));
         }
 
+        const headerColumns = this.headers[0].length;
         for (let i = 0; i < this.rows.length; ++i) {
             const row = this.rows[i];
             if (row.length && row[row.length - 1].isOnlyWhitespace()) {
@@ -123,6 +119,22 @@ export class TablePart implements ITablePart {
 
             // clean out empty rows
             if (!row.length) {
+                this.rows.splice(i, 1);
+                --i;
+                continue;
+            }
+
+            // detect split rows and merge them into the previous row
+            if (row.length < headerColumns && i > 0) {
+                const parentRow = this.rows[i - 1];
+                for (let j = 0; j < row.length; ++j) {
+                    const cell = row[row.length - 1 - j];
+                    const dest = parentRow[parentRow.length - 1 - j];
+                    if (dest) {
+                        dest.append(cell);
+                    }
+                }
+
                 this.rows.splice(i, 1);
                 --i;
             }
@@ -307,6 +319,11 @@ export class TablePart implements ITablePart {
     }
 
     private itemShouldShareColumnWith(item: ITextItem, last: StringPart): boolean {
+        if (last.isEmptyColumn()) {
+            // never
+            return false;
+        }
+
         if (last.endsWithComma() || item.str.startsWith(', ')) {
             return true;
         }
@@ -354,7 +371,10 @@ export class TablePart implements ITablePart {
         const itemIsOnlyWhitespace = stringIsOnlyWhitespace(item.str);
 
         if (!lastIsOnlyWhitespace
-            && item.y < last.y
+            && (
+                item.y < last.y
+                || last.endsWithSpace()
+            )
             && !itemIsOnlyWhitespace
         ) {
             destination.pop();
