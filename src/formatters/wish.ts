@@ -460,7 +460,7 @@ export class WishSpellsFormatter implements IFormatter {
             }
 
             if (s.dice) {
-                if (s.dice.attackType) {
+                if (s.dice.attackType !== null && s.dice.attackType !== undefined) {
                     this.writePart('attack', s.dice.attackType === SpellAttackType.Ranged
                         ? ':ranged'
                         : ':melee',
