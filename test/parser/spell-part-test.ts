@@ -204,6 +204,24 @@ describe('SpellPart parsing', () => {
             .should.match(/^You point your finger/);
     });
 
+    it('works for Slow', async () => {
+        const slow = await loadSpellFromItems('slow-spell.txt');
+
+        slow.name.should.equal('Slow');
+        slow.level.should.equal(3);
+        slow.school.should.equal(SpellSchool.Transmutation);
+        slow.concentration.should.be.true;
+        slow.ritual.should.be.false;
+        slow.castTime.should.equal('1 action');
+        slow.range.should.equal('120 feet');
+        slow.components.should.equal('V, S, M (a drop of molasses)');
+        slow.duration.should.equal('Concentration, up to 1 minute');
+        slow.info.should.not.be.empty;
+
+        slow.info[0].toString()
+            .should.match(/^You alter time around up to six creatures/);
+    });
+
     it('guesses damage dice', async () => {
         const fireball = await loadSpellFromItems('fireball-spell.txt');
 

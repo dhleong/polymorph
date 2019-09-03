@@ -129,6 +129,10 @@ export class StringPart implements IStringPart {
         return this.str.substr(fmt.start, fmt.length);
     }
 
+    isBlank() {
+        return this.str === '' || stringIsOnlyWhitespace(this.str);
+    }
+
     isOnlyWhitespace() {
         return stringIsOnlyWhitespace(this.str);
     }

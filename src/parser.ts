@@ -257,25 +257,18 @@ export function consolidate<T extends Part>(
     const bodySection = sections[atIndex];
     const nameSection = sections[nameI];
 
-    // if a table follows, include it (and any following text):
-    if (atIndex + 1 < sections.length) {
-        const tableCandidate = sections[atIndex + 1];
-        if (tableCandidate.parts[0] instanceof TablePart) {
-            consolidateTable(
-                sections, atIndex + 1,
-                bodySection, tableCandidate,
-            );
-        } else if (atIndex + 2 < sections.length) {
-            // tableCandidate could just be a header section
-            const tableCandidate2 = sections[atIndex + 2];
-            if (tableCandidate2.parts[0] instanceof TablePart) {
-                consolidateTable(
-                    sections, atIndex + 2,
-                    bodySection, tableCandidate2,
-                );
-            }
+    // skip any blank sections
+    let nextIndex = atIndex + 1;
+    while (nextIndex < sections.length) {
+        const section = sections[nextIndex];
+        if (section.parts.some(p => !(p instanceof StringPart) || !p.isBlank())) {
+            break;
         }
+        ++nextIndex;
     }
+
+    // if a table follows, include it (and any following text):
+    consolidateSectionExtra(sections, nextIndex, bodySection, nameSection);
 
     const part = factory(nameSection, bodySection);
     if (!part) return;
@@ -284,6 +277,48 @@ export function consolidate<T extends Part>(
 
     sections.splice(nameI, 2, spellSection);
     return part;
+}
+
+function consolidateSectionExtra(
+    sections: Section[],
+    atIndex: number,
+    bodySection: Section,
+    nameSection: Section,
+) {
+    if (atIndex >= sections.length) {
+        return;
+    }
+    const tableCandidate = sections[atIndex];
+    if (tableCandidate.parts[0] instanceof TablePart) {
+        consolidateTable(
+            sections, atIndex,
+            bodySection, tableCandidate,
+        );
+        return;
+    }
+
+    if (atIndex + 1 < sections.length) {
+        // tableCandidate could just be a header section
+        const tableCandidate2 = sections[atIndex + 1];
+        if (tableCandidate2.parts[0] instanceof TablePart) {
+            consolidateTable(
+                sections, atIndex + 1,
+                bodySection, tableCandidate2,
+            );
+            return;
+        }
+    }
+
+    // add any sections that appear to belong to the same body
+    while (
+        atIndex < sections.length
+        && bodySection.canContainHeaderLevelValue(sections[atIndex].headerLevelValue)
+    ) {
+        // this is slightly hacky; you'd like to think that we could
+        // just do a while loop on the above *if* but... it breaks things
+        bodySection.parts.push(...sections[atIndex].parts);
+        ++atIndex;
+    }
 }
 
 function consolidateTable(

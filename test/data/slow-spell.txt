@@ -1,0 +1,69 @@
+{"str":"Spell Descriptions","dir":"ltr","width":141.74820000000003,"height":324,"transform":[18,0,0,18,57.6,697.2],"fontName":"g_d0_f3","x":57.6,"y":697.2}
+{"str":" ","dir":"ltr","width":5.0040000000000004,"height":324,"transform":[18,0,0,18,199.35,697.2],"fontName":"g_d0_f3","x":199.35,"y":697.2}
+{"str":"Slow","dir":"ltr","width":25.324799999999996,"height":144,"transform":[12,0,0,12,328.5602,177.84],"fontName":"g_d0_f3","x":328.5602,"y":177.84}
+{"str":" ","dir":"ltr","width":3.3360000000000003,"height":144,"transform":[12,0,0,12,353.8844,177.84],"fontName":"g_d0_f3","x":353.8844,"y":177.84}
+{"str":"3rd","dir":"ltr","width":14.599608000000002,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,165.36],"fontName":"g_d0_f7","x":328.5602,"y":165.36}
+{"str":"-­‐‑","dir":"ltr","width":3.13896,"height":96.8256,"transform":[9.84,0,0,9.84,343.155,165.36],"fontName":"g_d0_f7","x":343.155,"y":165.36}
+{"str":"level    transmutation","dir":"ltr","width":81.82058400000001,"height":96.8256,"transform":[9.84,0,0,9.84,346.3434,165.36],"fontName":"g_d0_f7","x":346.3434,"y":165.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,428.2038,165.36],"fontName":"g_d0_f7","x":428.2038,"y":165.36}
+{"str":"Casting    Time:","dir":"ltr","width":62.511552000000016,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,147.6],"fontName":"g_d0_f8","x":328.5602,"y":147.6}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,391.0114,147.6],"fontName":"g_d0_f4","x":391.0114,"y":147.6}
+{"str":"1    action","dir":"ltr","width":34.07198400000001,"height":96.8256,"transform":[9.84,0,0,9.84,393.2135,147.6],"fontName":"g_d0_f4","x":393.2135,"y":147.6}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,427.2956,147.6],"fontName":"g_d0_f4","x":427.2956,"y":147.6}
+{"str":"Range:","dir":"ltr","width":31.364016000000007,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,135.84],"fontName":"g_d0_f8","x":328.5602,"y":135.84}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,359.8688,135.84],"fontName":"g_d0_f4","x":359.8688,"y":135.84}
+{"str":"120    feet","dir":"ltr","width":35.00678400000001,"height":96.8256,"transform":[9.84,0,0,9.84,362.071,135.84],"fontName":"g_d0_f4","x":362.071,"y":135.84}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,397.0515,135.84],"fontName":"g_d0_f4","x":397.0515,"y":135.84}
+{"str":"Components:","dir":"ltr","width":60.47270400000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,124.08],"fontName":"g_d0_f8","x":328.5602,"y":124.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,388.9704,124.08],"fontName":"g_d0_f4","x":388.9704,"y":124.08}
+{"str":"V,    S,    M    (a    drop    of    molasses)","dir":"ltr","width":116.84409599999996,"height":96.8256,"transform":[9.84,0,0,9.84,391.1725,124.08],"fontName":"g_d0_f4","x":391.1725,"y":124.08}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,508.0378,124.08],"fontName":"g_d0_f4","x":508.0378,"y":124.08}
+{"str":"Duration:","dir":"ltr","width":44.37840000000001,"height":96.8256,"transform":[9.84,0,0,9.84,328.5602,112.56],"fontName":"g_d0_f8","x":328.5602,"y":112.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,372.8669,112.56],"fontName":"g_d0_f4","x":372.8669,"y":112.56}
+{"str":"Concentration,    up    to    1    minute","dir":"ltr","width":127.50081600000003,"height":96.8256,"transform":[9.84,0,0,9.84,375.069,112.56],"fontName":"g_d0_f4","x":375.069,"y":112.56}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,502.5397,112.56],"fontName":"g_d0_f4","x":502.5397,"y":112.56}
+{"str":"Not    for    resale.    Permission    granted    to    print    or    photocopy    this    document    for    personal    use    only","dir":"ltr","width":298.30679999999995,"height":62.7264,"transform":[7.92,0,0,7.92,57.6,31.92002],"fontName":"g_d0_f1","x":57.6,"y":31.92002}
+{"str":".","dir":"ltr","width":2.47968,"height":96.8256,"transform":[9.84,0,0,9.84,356.0804,31.92002],"fontName":"g_d0_f1","x":356.0804,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.22384,"height":96.8256,"transform":[9.84,0,0,9.84,358.6049,31.92002],"fontName":"g_d0_f2","x":358.6049,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,360.8656,31.92002],"fontName":"g_d0_f2","x":360.8656,"y":31.92002}
+{"str":"System    Reference    ","dir":"ltr","width":82.8036,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,381.6,31.92002],"fontName":"g_d0_f2","x":381.6,"y":31.92002}
+{"str":"Document    5.1","dir":"ltr","width":63.149760000000015,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,464.3417,31.92002],"fontName":"g_d0_f2","x":464.3417,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,527.4789,31.92002],"fontName":"g_d0_f2","x":527.4789,"y":31.92002}
+{"str":" ","dir":"ltr","width":3.0024,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,552.6,31.92002],"fontName":"g_d0_f3","x":552.6,"y":31.92002}
+{"str":"1","dir":"ltr","width":5.7024,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,561.6,31.92002],"fontName":"g_d0_f3","x":561.6,"y":31.92002}
+{"str":"81","dir":"ltr","width":11.612160000000001,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,567.4062,31.92002],"fontName":"g_d0_f3","x":567.4062,"y":31.92002}
+{"str":"    ","dir":"ltr","width":2.4408,"height":116.63999999999997,"transform":[10.799999999999999,0,0,10.799999999999999,579.0184,31.92002],"fontName":"g_d0_f2","x":579.0184,"y":31.92002}
+{"str":"You    alter    time    around    up    to    ","dir":"ltr","width":119.92795199999999,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,710.64],"fontName":"g_d0_f4","x":57.6,"y":710.64}
+{"str":"six    creatures    of    your    ","dir":"ltr","width":89.63649600000001,"height":96.8256,"transform":[9.84,0,0,9.84,177.4535,710.64],"fontName":"g_d0_f4","x":177.4535,"y":710.64}
+{"str":"choice    in    a    40","dir":"ltr","width":58.21737599999999,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,698.88],"fontName":"g_d0_f4","x":57.6,"y":698.88}
+{"str":"-­‐‑","dir":"ltr","width":3.26688,"height":96.8256,"transform":[9.84,0,0,9.84,115.8227,698.88],"fontName":"g_d0_f4","x":115.8227,"y":698.88}
+{"str":"foot    cube    within    range.    Each    target    ","dir":"ltr","width":150.99676799999997,"height":96.8256,"transform":[9.84,0,0,9.84,119.143,698.88],"fontName":"g_d0_f4","x":119.143,"y":698.88}
+{"str":"must    succeed    on    a    Wisdom    saving    throw    or    be    ","dir":"ltr","width":200.0216159999999,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,687.12],"fontName":"g_d0_f4","x":57.6,"y":687.12}
+{"str":"affected    by    this    spell    for    the    duration.","dir":"ltr","width":159.39816,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,675.36],"fontName":"g_d0_f4","x":57.6,"y":675.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,216.9408,675.36],"fontName":"g_d0_f4","x":216.9408,"y":675.36}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,663.84],"fontName":"g_d0_f4","x":57.6,"y":663.84}
+{"str":"An    affected    target’s    speed    is    halved,    it    takes    a    −2    ","dir":"ltr","width":207.677136,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,663.84],"fontName":"g_d0_f4","x":66.9501,"y":663.84}
+{"str":"penalty    to    AC    and    Dexterity    saving    throws,    an","dir":"ltr","width":194.35967999999994,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,652.08],"fontName":"g_d0_f4","x":57.6,"y":652.08}
+{"str":"d    it    ","dir":"ltr","width":16.162200000000002,"height":96.8256,"transform":[9.84,0,0,9.84,251.9603,652.08],"fontName":"g_d0_f4","x":251.9603,"y":652.08}
+{"str":"can’t    use    reactions.    On    its    turn,    it    can    use    either    an    ","dir":"ltr","width":216.18972000000002,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,640.32],"fontName":"g_d0_f4","x":57.6,"y":640.32}
+{"str":"action    or    a    bonus    action,    not    both.    Regardless    of    the    ","dir":"ltr","width":222.22459199999992,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,628.56],"fontName":"g_d0_f4","x":57.6,"y":628.56}
+{"str":"creature’s    abilities    or    magic    items,    it    can’t    make    ","dir":"ltr","width":204.84026400000002,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,616.8],"fontName":"g_d0_f4","x":57.6,"y":616.8}
+{"str":"more    than    one    melee    or    ranged    attack    during    its    ","dir":"ltr","width":207.93691199999986,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,605.04],"fontName":"g_d0_f4","x":57.6,"y":605.04}
+{"str":"turn.","dir":"ltr","width":20.6886,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,593.52],"fontName":"g_d0_f4","x":57.6,"y":593.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,78.27383,593.52],"fontName":"g_d0_f4","x":78.27383,"y":593.52}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,581.76],"fontName":"g_d0_f4","x":57.6,"y":581.76}
+{"str":"If    the    creature    attempts    to    cast    a    ","dir":"ltr","width":140.31347999999997,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,581.76],"fontName":"g_d0_f4","x":66.9501,"y":581.76}
+{"str":"spell    with    a    ","dir":"ltr","width":51.109944,"height":96.8256,"transform":[9.84,0,0,9.84,207.2772,581.76],"fontName":"g_d0_f4","x":207.2772,"y":581.76}
+{"str":"casting    time    of    1    action,    roll    a    d20.    On    an    11    or    ","dir":"ltr","width":199.92911999999995,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,570],"fontName":"g_d0_f4","x":57.6,"y":570}
+{"str":"higher,    the    spell    doesn’t    take    effect    until    the    ","dir":"ltr","width":188.38286399999996,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,558.24],"fontName":"g_d0_f4","x":57.6,"y":558.24}
+{"str":"creature’s    next    turn,    and    the    creature    must    use    its    ","dir":"ltr","width":214.70092800000006,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,546.48],"fontName":"g_d0_f4","x":57.6,"y":546.48}
+{"str":"action    on    that    turn    to    complete    the    spell.    If    it    can’t,    ","dir":"ltr","width":216.42292799999996,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,534.72],"fontName":"g_d0_f4","x":57.6,"y":534.72}
+{"str":"the    spell    is    wasted.","dir":"ltr","width":80.44200000000001,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,522.96],"fontName":"g_d0_f4","x":57.6,"y":522.96}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,138.0102,522.96],"fontName":"g_d0_f4","x":138.0102,"y":522.96}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,511.44],"fontName":"g_d0_f4","x":57.6,"y":511.44}
+{"str":"A    creature    affe","dir":"ltr","width":62.690639999999995,"height":96.8256,"transform":[9.84,0,0,9.84,66.9501,511.44],"fontName":"g_d0_f4","x":66.9501,"y":511.44}
+{"str":"cted    by    this    spell    makes    another    ","dir":"ltr","width":139.48495200000002,"height":96.8256,"transform":[9.84,0,0,9.84,129.6259,511.44],"fontName":"g_d0_f4","x":129.6259,"y":511.44}
+{"str":"Wisdom    saving    throw    at    the    end    of    its    turn.    On    a    ","dir":"ltr","width":207.8562239999999,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,499.68],"fontName":"g_d0_f4","x":57.6,"y":499.68}
+{"str":"successful    save,    the    effect    ends    for    it.","dir":"ltr","width":156.14111999999994,"height":96.8256,"transform":[9.84,0,0,9.84,57.6,487.92],"fontName":"g_d0_f4","x":57.6,"y":487.92}
+{"str":"    ","dir":"ltr","width":2.1648,"height":96.8256,"transform":[9.84,0,0,9.84,213.7035,487.92],"fontName":"g_d0_f4","x":213.7035,"y":487.92}
+
