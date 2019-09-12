@@ -397,11 +397,10 @@ export class WishSpellsFormatter implements IFormatter {
     async end() {
         this.output.write(`;; Auto-generated using the Polymorph project
 
-[:!add-to-list
+(declare-list
  {:id :all-spells
   :type :5e/spell}
 
- [
 `);
 
         for (const s of Object.values(this.spells)) {
@@ -480,22 +479,22 @@ export class WishSpellsFormatter implements IFormatter {
 `);
         }
 
-        this.output.write(` ]\n]`);
+        this.output.write(` \n)`);
 
         for (const listId of Object.keys(this.lists)) {
             this.output.write(`
-[:!add-to-list
+(declare-list
 
  {:id :${listId}/spells-list
   :type :5e/spell}
 
- [`);
+ `);
 
             for (const theSpellId of this.lists[listId]) {
                 this.output.write(`:${theSpellId}\n  `);
             }
 
-            this.output.write(` ]\n]`);
+            this.output.write(`\n)`);
         }
 
         console.log(`Exported ${Object.keys(this.spells).length} spells`);
@@ -641,7 +640,7 @@ export class WishItemsFormatter implements IFormatter {
         readonly output: NodeJS.WriteStream,
     ) {
         output.write(`
-[:!declare-items
+(declare-items
  {}
 `);
     }
@@ -656,7 +655,7 @@ export class WishItemsFormatter implements IFormatter {
 
     async end() {
         this.output.write(`
- ]`);
+ )`);
 
         // potions group
         this.writeGroup({
@@ -792,7 +791,7 @@ export class WishItemsFormatter implements IFormatter {
 
         this.output.write(`
 
-[:!declare-items
+(declare-items
 `);
         this.writeEdn(header);
 
@@ -807,7 +806,7 @@ export class WishItemsFormatter implements IFormatter {
             });
         }
 
-        this.output.write(`]
+        this.output.write(`)
 `);
     }
 
@@ -873,7 +872,7 @@ export class WishItemsFormatter implements IFormatter {
         for (const b of item.bonuses || []) {
             const path = bonusPaths[b.type];
             if (path && !b.conditions) {
-                directives.push(`[:!provide-attr [${path} ${options.id}] ${b.value}]`);
+                directives.push(`(provide-attr [${path} ${options.id}] ${b.value})`);
             } else if (!path && !b.conditions) {
                 options['+'] = b.value;
             }
@@ -905,16 +904,17 @@ export class WishItemsFormatter implements IFormatter {
 
             // NOTE: these all seem to be "at dawn" so :long-rest
             // may not technically be correct....
-            directives.push(`[:!add-limited-use
+            directives.push(`(add-limited-use
        {:id :${id}
         :name ${q(label)}
         :uses ${uses}
         :restore-trigger :long-rest
-        :restore-amount ${restoreAmount}}]`);
+        :restore-amount ${restoreAmount}})`);
         }
 
         if (directives.length) {
-            options['!'] = `[${directives.join('\n      ')}]`;
+            options['!'] = `(on-state
+      ${directives.join('\n      ')})`;
         }
 
         delete options.noType;
