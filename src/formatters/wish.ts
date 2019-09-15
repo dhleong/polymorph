@@ -325,7 +325,12 @@ export function generateDiceFn(dice: ISpellDice, spellLevel: number): string {
 
     parts = parts.replace('" "', '');
 
-    return `(fn [${params.trimRight()}]
+    let formattedParams = params.trimRight();
+    if (formattedParams.length) {
+        formattedParams = `#{${formattedParams}}`;
+    }
+
+    return `(fn [${formattedParams}]
     (str ${parts}))`;
 }
 
