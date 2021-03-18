@@ -49,7 +49,7 @@ describe('Creature formatting', () => {
    :name "Ape"
    :ac 12
    :challenge 0.5
-   :hit-points "3d8 + 6)"
+   :hit-points "3d8 + 6"
    :abilities {:str 16 :dex 14 :con 14 :int 6 :wis 12 :cha 7}
    :senses "passive Perception 13"
    :size :medium

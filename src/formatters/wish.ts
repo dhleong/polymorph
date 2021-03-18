@@ -987,7 +987,7 @@ export class WishCreaturesFormatter {
    :name ${q(p.name)}
    :ac ${p.ac}
    :challenge ${p.cr}
-   :hit-points ${q(p.hpRoll.replace(/[()]/, ''))}
+   :hit-points ${q(p.hpRoll.replace(/[()]/g, ''))}
    :abilities {${abilities.trim()}}
    :senses ${q(p.senses)}
    :size :${Size[p.size].toLowerCase()}
