@@ -932,6 +932,8 @@ export class WishItemsFormatter implements IFormatter {
 
 export class WishCreaturesFormatter {
 
+    private written = 0;
+
     constructor(
         readonly output: NodeJS.WriteStream,
     ) {
@@ -948,16 +950,21 @@ export class WishCreaturesFormatter {
         for (const p of section.parts) {
             if (p.type !== PartType.CREATURE) continue;
 
-            console.log('TYPE = ', p.type, ' VS ', PartType.CREATURE);
             this.onCreature(p as ICreaturePart);
         }
     }
 
     async end() {
         this.output.write(')');
+        console.log(`Exported ${this.written} items`);
     }
 
     private onCreature(p: ICreaturePart) {
+        if (!p.abilities) {
+            console.log('No abilities for ', p.name, '; skipping');
+            return;
+        }
+
         let abilities = '';
         for (const ability of ['str', 'dex', 'con', 'int', 'wis', 'cha']) {
             abilities += ` :${ability} ${p.abilities[ability]}`;
@@ -976,5 +983,6 @@ export class WishCreaturesFormatter {
         // TODO features
 
         this.output.write('}');
+        ++this.written;
     }
 }

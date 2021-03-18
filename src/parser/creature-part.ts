@@ -210,7 +210,6 @@ export class CreaturePart implements ICreaturePart {
             creature.conditionImmunities = nextMap['Condition Immunities'];
 
             creature.languages = nextMap.Languages;
-            console.log(nextMap.Challenge);
             const {cr, exp} = parseChallengeExp(nextMap.Challenge);
             creature.cr = cr;
             creature.exp = parseInt(exp.replace(/[, ()]/g, ''), 10);
@@ -276,8 +275,8 @@ export class CreaturePart implements ICreaturePart {
         this.kind = kind;
         this.align = alignmentFromString(alignmentStr);
 
-        if (!this.size) {
-            console.log(input);
+        if (this.size == null) {
+            console.log('Unable to parse size from: ', input, `(raw=${sizeRaw.toLowerCase()})`);
         }
     }
 

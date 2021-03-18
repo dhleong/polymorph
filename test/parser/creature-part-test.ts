@@ -117,6 +117,7 @@ describe('CreaturePart', () => {
 
             part.name.should.equal('Ape');
             part.size.should.equal(Size.Medium);
+            part.kind.should.equal('beast');
             part.cr.should.equal(0.5);
         });
     });
