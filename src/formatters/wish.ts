@@ -937,6 +937,10 @@ function formatCreatureFeature(info: IStringPart) {
         return;
     }
 
+    if (s.match(/\*\*([ .]*)Actions([ .]*)\*\*/)) {
+        return;
+    }
+
     return q(s);
 }
 
@@ -980,8 +984,6 @@ export class WishCreaturesFormatter {
             abilities += ` :${ability} ${p.abilities[ability]}`;
         }
 
-        const features = p.info.map(formatCreatureFeature).filter(it => it != null);
-
         this.output.write(`
   {:id :${nameToId(p.name)}
    :name ${q(p.name)}
@@ -992,10 +994,19 @@ export class WishCreaturesFormatter {
    :senses ${q(p.senses)}
    :size :${Size[p.size].toLowerCase()}
    :type :${nameToId(p.kind)}
-   :speed ${q(p.speed)}
-   :info [${features.join(' ')}]`);
+   :speed ${q(p.speed)}`);
 
-        // TODO features
+        const features = p.info.map(formatCreatureFeature).filter(it => it != null);
+        if (features.length) {
+            this.output.write('\n   :! (on-state');
+
+            for (const feature of features) {
+                this.output.write('\n        ');
+                this.output.write(feature);
+            }
+
+            this.output.write(')');
+        }
 
         this.output.write('}');
         ++this.written;

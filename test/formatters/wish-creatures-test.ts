@@ -55,7 +55,26 @@ describe('Creature formatting', () => {
    :size :medium
    :type :beast
    :speed "30 ft., climb 30 ft."
-   :info ["**Actions**" "**Multiattack. **The ape makes two fist attacks." "**Fist. **_Melee Weapon Attack: _+5 to hit, reach 5 ft., one target. _Hit: _6 (1d6 + 3) bludgeoning damage." "**Rock. **_Ranged Weapon Attack: _+5 to hit, range 25/50 ft., one target. _Hit: _6 (1d6 + 3) bludgeoning damage."]}
+   :! (on-state
+        (provide-attr
+          [:attacks :creatures-ape/multiattack]
+          {:id :creatures-ape/multiattack
+           :name "Multiattack"
+           :desc "The ape makes two fist attacks."})
+        (provide-attr
+          [:attacks :creatures-ape/fist]
+          {:name "Fist"
+           :desc "_Melee Weapon Attack_: +5 to hit, reach 5 ft., one target. _Hit: _1d6+3 bludgeoning damage."
+           :damage :bludgeoning
+           :dice "1d6+3"
+           :to-hit 5})
+        (provide-attr
+          [:attacks :creatures-ape/rock]
+          {:name "Rock"
+           :desc "_Ranged Weapon Attack_: +5 to hit, reach 25/50 ft., one target. _Hit: _1d6+3 bludgeoning damage."
+           :damage :bludgeoning
+           :dice "1d6+3"
+           :to-hit 5}))}
             `));
         });
     });
