@@ -117,7 +117,7 @@ function combineFirstMapParts(parts: any[]): [any, IStringPart[]] {
         // combine singular map parts:
         while (remainingParts.length) {
             const nextMap = (remainingParts[0] as IStringPart).toMapBySpans();
-            if (nextMap[0]) {
+            if (nextMap['0']) {
                 // we've hit the abilities table
                 break;
             }
@@ -179,14 +179,14 @@ export class CreaturePart implements ICreaturePart {
         [creature.hp, creature.hpRoll] = splitByNumber(firstMap['Hit Points']);
         creature.speed = firstMap.Speed;
 
-        creature.readSizeKindAlign(firstMap[0]);
+        creature.readSizeKindAlign(firstMap['0']);
 
         const nextMap = parts.length >= 2
             ? (parts[1] as IStringPart).toMapBySpans()
             : null;
 
         if (nextMap) {
-            const rawAbilities: string = nextMap[0];
+            const rawAbilities: string = nextMap['0'];
             const [str, dex, con, int, wis, cha] =
                 rawAbilities.split(/\([-−\+0-9]+\)/)
                 .map(raw => parseInt(raw.trim(), 10));
