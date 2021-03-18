@@ -19,6 +19,7 @@ import {
     ItemKind,
     Part,
     PartType,
+    Size,
     SpellAreaType,
     SpellAttackType,
     SpellSchool,
@@ -930,12 +931,21 @@ export class WishItemsFormatter implements IFormatter {
     }
 }
 
+function formatCreatureFeature(info: IStringPart) {
+    const s = formatPart(info);
+    if (!s.trim().length) {
+        return;
+    }
+
+    return q(s);
+}
+
 export class WishCreaturesFormatter {
 
     private written = 0;
 
     constructor(
-        readonly output: NodeJS.WriteStream,
+        readonly output: NodeJS.WritableStream,
     ) {
         output.write(`;; Auto-generated using the Polymorph project
 
@@ -970,15 +980,20 @@ export class WishCreaturesFormatter {
             abilities += ` :${ability} ${p.abilities[ability]}`;
         }
 
+        const features = p.info.map(formatCreatureFeature).filter(it => it != null);
+
         this.output.write(`
   {:id :${nameToId(p.name)}
    :name ${q(p.name)}
    :ac ${p.ac}
    :challenge ${p.cr}
-   :hit-points ${q(p.hpRoll)}
+   :hit-points ${q(p.hpRoll.replace(/[()]/, ''))}
    :abilities {${abilities.trim()}}
    :senses ${q(p.senses)}
-   :speed ${q(p.speed)}`);
+   :size :${Size[p.size].toLowerCase()}
+   :type :${nameToId(p.kind)}
+   :speed ${q(p.speed)}
+   :info [${features.join(' ')}]`);
 
         // TODO features
 
