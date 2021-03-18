@@ -109,5 +109,15 @@ describe('CreaturePart', () => {
 
             part.name.should.equal('Sea Hag');
         });
+
+        it('handles new creature style', async () => {
+            const part = await loadJsonSections(
+                'ape.raw.json', /* canHaveTables =*/false,
+            ).then(CreaturePart.from);
+
+            part.name.should.equal('Ape');
+            part.size.should.equal(Size.Medium);
+            part.cr.should.equal(0.5);
+        });
     });
 });

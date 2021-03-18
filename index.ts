@@ -14,7 +14,7 @@ import { CompositeFormatter } from './src/formatters/composite';
 import { DebugFormatter } from './src/formatters/debug';
 import { JsonFormatter } from './src/formatters/json';
 import { JsonSectionsFormatter } from './src/formatters/json-sections';
-import { WishItemsFormatter, WishSpellsFormatter } from './src/formatters/wish';
+import { WishCreaturesFormatter, WishItemsFormatter, WishSpellsFormatter } from './src/formatters/wish';
 
 const formatterFactories = {
     '--debug': (stream) => new DebugFormatter(stream),
@@ -23,6 +23,7 @@ const formatterFactories = {
         pretty: true,
     }),
     '--json-sections': (stream) => new JsonSectionsFormatter(stream),
+    '--wish-creatures': (stream) => new WishCreaturesFormatter(stream),
     '--wish-items': (stream) => new WishItemsFormatter(stream),
     '--wish-spells': (stream) => new WishSpellsFormatter(stream),
 };
@@ -72,6 +73,7 @@ Options:
                             formatters will run
     --wish-spells=<file>    Formatters for use with the WISH project
     --wish-items=<file>
+    --wish-creatures=<file>
 
 Notes:
     A hyphen (-) can be used in place of any <file> to write to

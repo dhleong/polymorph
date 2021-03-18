@@ -6,6 +6,7 @@ import {
     AmmunitionType,
     ArmorType,
     BonusType,
+    ICreaturePart,
     ICylinderSpellArea,
     IItemPart,
     IRadialSpellArea,
@@ -204,7 +205,7 @@ export function formatInfo(
     variantInfo?: {[key: string]: string},
 ) {
     let allString = true;
-    const formatted: Array<[PartType, string]> = [];
+    const formatted: [PartType, string][] = [];
     for (const p of info) {
         const partFormatted = formatPart(p);
         if (partFormatted === '') continue;
@@ -926,5 +927,54 @@ export class WishItemsFormatter implements IFormatter {
 
     private writePart(key: string, value: string, prefix = '\n  ') {
         this.output.write(`${prefix}:${key} ${value}`);
+    }
+}
+
+export class WishCreaturesFormatter {
+
+    constructor(
+        readonly output: NodeJS.WriteStream,
+    ) {
+        output.write(`;; Auto-generated using the Polymorph project
+
+(declare-list
+  {:id :all-creatures
+   :type :5e/creature}
+
+`);
+    }
+
+    public async format(section: ISection) {
+        for (const p of section.parts) {
+            if (p.type !== PartType.CREATURE) continue;
+
+            console.log('TYPE = ', p.type, ' VS ', PartType.CREATURE);
+            this.onCreature(p as ICreaturePart);
+        }
+    }
+
+    async end() {
+        this.output.write(')');
+    }
+
+    private onCreature(p: ICreaturePart) {
+        let abilities = '';
+        for (const ability of ['str', 'dex', 'con', 'int', 'wis', 'cha']) {
+            abilities += ` :${ability} ${p.abilities[ability]}`;
+        }
+
+        this.output.write(`
+  {:id :${nameToId(p.name)}
+   :name ${q(p.name)}
+   :ac ${p.ac}
+   :challenge ${p.cr}
+   :hit-points ${q(p.hpRoll)}
+   :abilities {${abilities.trim()}}
+   :senses ${q(p.senses)}
+   :speed ${q(p.speed)}`);
+
+        // TODO features
+
+        this.output.write('}');
     }
 }

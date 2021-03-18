@@ -59,7 +59,7 @@ class Abilities implements IAbilities {
     ) {}
 }
 
-function getArmorClass(map): string {
+function getArmorClass(map: any): string {
     if (map['Armor Class']) {
         return map['Armor Class'];
     }
@@ -87,6 +87,29 @@ function splitAt(
         value.substring(0, splitI),
         value.substring(splitI + separatorWidth),
     ];
+}
+
+function combineFirstMapParts(parts: any[]): [any, IStringPart[]] {
+    const [first, ...remainingParts] = parts;
+    let map = (first as IStringPart).toMapBySpans();
+    if (Object.keys(map).length === 1 && map['0']) {
+        // combine singular map parts:
+        while (remainingParts.length) {
+            const nextMap = (remainingParts[0] as IStringPart).toMapBySpans();
+            if (nextMap[0]) {
+                // we've hit the abilities table
+                break;
+            }
+
+            remainingParts.splice(0, 1);
+            map = {
+                ...map,
+                ...nextMap,
+            };
+        }
+    }
+
+    return [map, remainingParts];
 }
 
 export class CreaturePart implements ICreaturePart {
@@ -117,10 +140,9 @@ export class CreaturePart implements ICreaturePart {
         // sections like the half-dragon template
         if (sections[1].canHaveTables) return;
 
-        const parts = sections[1].parts;
-        if (!parts.length) return;
+        const [firstMap, parts] = combineFirstMapParts(sections[1].parts);
+        if (!Object.keys(firstMap).length) return;
 
-        const firstMap = (parts[0] as IStringPart).toMapBySpans();
         const rawAC = getArmorClass(firstMap);
         if (!rawAC) {
             // things like "Black Dragon" that are just a header for
@@ -138,8 +160,8 @@ export class CreaturePart implements ICreaturePart {
 
         creature.readSizeKindAlign(firstMap[0]);
 
-        const nextMap = parts.length >= 3
-            ? (parts[2] as IStringPart).toMapBySpans()
+        const nextMap = parts.length >= 2
+            ? (parts[1] as IStringPart).toMapBySpans()
             : null;
 
         if (nextMap) {
@@ -173,7 +195,7 @@ export class CreaturePart implements ICreaturePart {
         }
 
         // TODO: future work could split up these parts by formatting
-        for (let i = 3; i < parts.length; ++i) {
+        for (let i = 2; i < parts.length; ++i) {
             if (!creature.info) creature.info = [];
             creature.info.push(parts[i] as IStringPart);
         }
@@ -231,6 +253,10 @@ export class CreaturePart implements ICreaturePart {
         this.size = sizeByString[sizeRaw.toLowerCase()];
         this.kind = kind;
         this.align = alignmentFromString(alignmentStr);
+
+        if (!this.size) {
+            console.log(input);
+        }
     }
 
     toJson() {

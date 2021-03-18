@@ -52,7 +52,7 @@ export class Parser {
     }
 
     async parse(data: Buffer): Promise<ISection[]> {
-        await processPdf(data, (page, content) =>
+        await processPdf(data, (_page, content) =>
             this.processPage(this.skipFooters(content.items)),
         );
 
@@ -283,7 +283,7 @@ function consolidateSectionExtra(
     sections: Section[],
     atIndex: number,
     bodySection: Section,
-    nameSection: Section,
+    _nameSection: Section,
 ) {
     if (atIndex >= sections.length) {
         return;
