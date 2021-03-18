@@ -89,6 +89,27 @@ function splitAt(
     ];
 }
 
+const fractionalChallengeRatings = {
+    '1/2': 0.5,
+    '1/4': 0.25,
+    '1/8': 0.125,
+};
+
+function parseChallengeExp(value: string): {cr: number, exp: string} {
+    const m = value.match(/([0-9\/]+) \(([0-9,]+) xp\)/i);
+    if (!m) throw new Error(`Could not parse CR+EXP: ${value}`);
+
+    const rawChallenge = m[1];
+    const exp = m[2];
+
+    const cr = fractionalChallengeRatings[rawChallenge] || parseInt(rawChallenge, 10);
+
+    return {
+        cr,
+        exp,
+    };
+}
+
 function combineFirstMapParts(parts: any[]): [any, IStringPart[]] {
     const [first, ...remainingParts] = parts;
     let map = (first as IStringPart).toMapBySpans();
@@ -189,9 +210,10 @@ export class CreaturePart implements ICreaturePart {
             creature.conditionImmunities = nextMap['Condition Immunities'];
 
             creature.languages = nextMap.Languages;
-            const [cr, rawExp] = splitByNumber(nextMap.Challenge);
+            console.log(nextMap.Challenge);
+            const {cr, exp} = parseChallengeExp(nextMap.Challenge);
             creature.cr = cr;
-            creature.exp = parseInt(rawExp.replace(/[, ()]/g, ''), 10);
+            creature.exp = parseInt(exp.replace(/[, ()]/g, ''), 10);
         }
 
         // TODO: future work could split up these parts by formatting
