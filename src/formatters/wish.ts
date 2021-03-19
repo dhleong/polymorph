@@ -931,17 +931,67 @@ export class WishItemsFormatter implements IFormatter {
     }
 }
 
-function formatCreatureFeature(info: IStringPart) {
+function creatureAndNameToId(creatureName: string, featureName: string) {
+    return ':creatures-' + nameToId(creatureName) + '/' + nameToId(featureName);
+}
+
+function formatCreatureFeatureDefault(
+    creatureName: string,
+    name: string,
+    text: string,
+) {
+    const id = creatureAndNameToId(creatureName, name);
+    return `
+        (provide-feature
+          {:id ${id}
+           :name ${q(name)}
+           :desc ${q(text)}})`;
+}
+
+function formatCreatureAttack(
+    creatureName: string,
+    name: string,
+    text: string,
+) {
+    const id = creatureAndNameToId(creatureName, name);
+
+    let s = `
+        (provide-attr
+          [:attacks ${id}]
+          {:id ${id}
+           :name ${q(name)}
+           :desc ${q(text)}`
+
+    const toHitMatch = text.match(/(-?[0-9]+) to hit/i);
+    if (toHitMatch) {
+        s += `
+           :to-hit ${parseInt(toHitMatch[0], 10)}`;
+    }
+
+    return s + '})';
+}
+
+function formatCreatureFeature(creatureName: string, info: IStringPart) {
     const s = formatPart(info);
     if (!s.trim().length) {
         return;
     }
 
-    if (s.match(/\*\*([ .]*)Actions([ .]*)\*\*/)) {
+    const m = s.match(/^\*\*([^*]+)\*\*(.*)$/);
+    if (!m || m.length < 2) return;
+
+    const name = m[1].replace(/\.[ ]+$/, '');
+    const text = m[2];
+
+    if (name === 'Actions') {
         return;
     }
 
-    return q(s);
+    if (name === 'Multiattack' || text.includes('Attack')) {
+        return formatCreatureAttack(creatureName, name, text);
+    }
+
+    return formatCreatureFeatureDefault(creatureName, name, text);
 }
 
 export class WishCreaturesFormatter {
@@ -996,12 +1046,13 @@ export class WishCreaturesFormatter {
    :type :${nameToId(p.kind)}
    :speed ${q(p.speed)}`);
 
-        const features = p.info.map(formatCreatureFeature).filter(it => it != null);
+        const features = p.info
+            .map(line => formatCreatureFeature(p.name, line))
+            .filter(it => it != null);
         if (features.length) {
             this.output.write('\n   :! (on-state');
 
             for (const feature of features) {
-                this.output.write('\n        ');
                 this.output.write(feature);
             }
 
