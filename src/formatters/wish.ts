@@ -932,7 +932,16 @@ export class WishItemsFormatter implements IFormatter {
 }
 
 function creatureAndNameToId(creatureName: string, featureName: string) {
-    return ':creatures-' + nameToId(creatureName) + '/' + nameToId(featureName);
+    // clean up things like "Relentless (Recharges on short/long rest)
+    const idPart = featureName.replace(/\(.*$/, '');
+    const featureNameAsId = nameToId(idPart);
+
+    if (!featureNameAsId.length) {
+        console.warn('Unable to create feature ID; given:', creatureName, featureName);
+        return;
+    }
+
+    return ':creatures-' + nameToId(creatureName) + '/' + featureNameAsId;
 }
 
 function formatCreatureFeatureDefault(
@@ -941,6 +950,8 @@ function formatCreatureFeatureDefault(
     text: string,
 ) {
     const id = creatureAndNameToId(creatureName, name);
+    if (!id) return;
+
     return `
         (provide-feature
           {:id ${id}
@@ -954,6 +965,7 @@ function formatCreatureAttack(
     text: string,
 ) {
     const id = creatureAndNameToId(creatureName, name);
+    if (!id) return;
 
     let s = `
         (provide-attr
@@ -1041,6 +1053,10 @@ export class WishCreaturesFormatter {
             abilities += ` :${ability} ${p.abilities[ability]}`;
         }
 
+        // clean up types like Humanoid/Human/Whatever
+        const rawType = nameToId(p.kind);
+        const type = rawType.replace(/-.*$/, '');
+
         this.output.write(`
   {:id :creatures/${nameToId(p.name)}
    :name ${q(p.name)}
@@ -1050,7 +1066,7 @@ export class WishCreaturesFormatter {
    :abilities {${abilities.trim()}}
    :senses ${q(p.senses)}
    :size :${Size[p.size].toLowerCase()}
-   :type :${nameToId(p.kind)}
+   :type :${type}
    :speed ${q(p.speed)}`);
 
         const features = p.info

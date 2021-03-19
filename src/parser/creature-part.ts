@@ -133,18 +133,38 @@ function combineFirstMapParts(parts: any[]): [any, IStringPart[]] {
     return [map, remainingParts];
 }
 
+function unifyFeatureDescriptions(parts: IStringPart[]) {
+    for (let i = 1; i < parts.length; ++i) {
+        const prev = parts[i - 1];
+        const current = parts[i];
+
+        let spliced = false;
+        if (
+            prev.formatting.length === 1
+            && current.formatting.length
+            && prev.formatting[0].start === 0
+            && prev.formatting[0].length === prev.str.length
+            && prev.formatting[0].format === current.formatting[0].format
+        ) {
+            prev.str += ' ' + current.str;
+            prev.formatting[0].length += current.formatting[0].length + 1;
+            prev.formatting.push(...current.formatting.slice(1));
+            spliced = true;
+        }
+
+        if (spliced) {
+            parts.splice(i, 1);
+            i -= 1;
+        }
+    }
+}
+
 export class CreaturePart implements ICreaturePart {
     static from(sections: Section[]): CreaturePart {
         if (sections.length < 2) return;
 
         try {
-            const part = CreaturePart.parseUnsafe(sections);
-
-            // if (!part && !sections[0].canHaveTables) {
-            //     console.warn('Unable to parse:', JSON.stringify(sections));
-            // }
-
-            return part;
+            return CreaturePart.parseUnsafe(sections);
         } catch (e) {
             const message = `Error parsing creature '${sections[0].getHeader()}':\n  ${e.stack}`;
             throw new Error(message);
@@ -223,8 +243,12 @@ export class CreaturePart implements ICreaturePart {
 
         for (let i = 2; i < sections.length; ++i) {
             if (!creature.info) creature.info = [];
-            creature.info.push(...sections[i].parts as IStringPart[]);
+            const sectionParts = sections[i].parts as IStringPart[];
+            unifyFeatureDescriptions(sectionParts);
+            creature.info.push(...sectionParts);
         }
+
+        // unifyFeatureDescriptions(creature.info);
 
         return creature;
     }

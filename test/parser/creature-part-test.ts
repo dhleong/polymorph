@@ -92,6 +92,8 @@ describe('CreaturePart', () => {
             ).then(CreaturePart.from);
 
             part.name.should.equal('Water Elemental');
+            const lastInfo = part.info[part.info.length - 1];
+            lastInfo.str.should.include('Whelm');
         });
 
         it('handles multi-line creature names', async () => {

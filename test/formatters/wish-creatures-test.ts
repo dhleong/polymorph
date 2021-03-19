@@ -79,5 +79,18 @@ describe('Creature formatting', () => {
            :to-hit 5}))}
             `));
         });
+
+        it('Handles attacks with multiple paragraphs', async () => {
+            const part = await loadJsonSections(
+                'water-elemental.raw.json', /* canHaveTables =*/false,
+            ).then(CreaturePart.from);
+
+            (await format(part)).should.contain(`
+        (provide-feature
+          {:id :creatures-water-elemental/whelm
+           :name "Whelm (Recharge 4–6)"
+           :desc "Each creature in the elemental’s space must make a DC 15 Strength saving throw. On a failure, a target takes 13 (2d8 + 4) bludgeoning damage. If it is Large or smaller, it is also grappled (escape DC 14). Until this grapple ends, the target is restrained and unable to breathe unless it can breathe water. If the saving throw is successful, the target is pushed out of the elemental’s space
+            `.trim());
+        });
     });
 });
