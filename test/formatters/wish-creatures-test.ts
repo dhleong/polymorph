@@ -45,7 +45,7 @@ describe('Creature formatting', () => {
             ).then(CreaturePart.from);
 
             (await format(part)).should.equal(withHeader(`
-  {:id :ape
+  {:id :creatures/ape
    :name "Ape"
    :ac 12
    :challenge 0.5

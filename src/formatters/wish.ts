@@ -1042,7 +1042,7 @@ export class WishCreaturesFormatter {
         }
 
         this.output.write(`
-  {:id :${nameToId(p.name)}
+  {:id :creatures/${nameToId(p.name)}
    :name ${q(p.name)}
    :ac ${p.ac}
    :challenge ${p.cr}
