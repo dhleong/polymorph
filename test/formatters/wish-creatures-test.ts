@@ -63,15 +63,17 @@ describe('Creature formatting', () => {
            :desc "The ape makes two fist attacks."})
         (provide-attr
           [:attacks :creatures-ape/fist]
-          {:name "Fist"
-           :desc "_Melee Weapon Attack_: +5 to hit, reach 5 ft., one target. _Hit: _1d6+3 bludgeoning damage."
+          {:id :creatures-ape/fist
+           :name "Fist"
+           :desc "_Melee Weapon Attack: _+5 to hit, reach 5 ft., one target. _Hit: _6 (1d6 + 3) bludgeoning damage."
            :damage :bludgeoning
            :dice "1d6+3"
            :to-hit 5})
         (provide-attr
           [:attacks :creatures-ape/rock]
-          {:name "Rock"
-           :desc "_Ranged Weapon Attack_: +5 to hit, reach 25/50 ft., one target. _Hit: _1d6+3 bludgeoning damage."
+          {:id :creatures-ape/rock
+           :name "Rock"
+           :desc "_Ranged Weapon Attack: _+5 to hit, range 25/50 ft., one target. _Hit: _6 (1d6 + 3) bludgeoning damage."
            :damage :bludgeoning
            :dice "1d6+3"
            :to-hit 5}))}

@@ -962,6 +962,13 @@ function formatCreatureAttack(
            :name ${q(name)}
            :desc ${q(text)}`
 
+    const damageMatch = text.match(/([0-9]+d[0-9]+(?:[ ]*[+-][ ]*[0-9]+)?)[)]? ([^ ]+) damage/);
+    if (damageMatch) {
+        s += `
+           :damage :${nameToId(damageMatch[2])}
+           :dice ${q(damageMatch[1].replace(/ /g, ''))}`;
+    }
+
     const toHitMatch = text.match(/(-?[0-9]+) to hit/i);
     if (toHitMatch) {
         s += `
