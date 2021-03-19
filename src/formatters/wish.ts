@@ -1002,7 +1002,7 @@ function formatCreatureFeature(creatureName: string, info: IStringPart) {
     const name = m[1].replace(/\.[ ]+$/, '');
     const text = m[2];
 
-    if (name === 'Actions') {
+    if (name.trim() === 'Actions') {
         return;
     }
 
