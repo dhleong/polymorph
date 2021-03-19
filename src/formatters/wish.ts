@@ -6,6 +6,7 @@ import {
     AmmunitionType,
     ArmorType,
     BonusType,
+    ICreaturePart,
     ICylinderSpellArea,
     IItemPart,
     IRadialSpellArea,
@@ -18,6 +19,7 @@ import {
     ItemKind,
     Part,
     PartType,
+    Size,
     SpellAreaType,
     SpellAttackType,
     SpellSchool,
@@ -204,7 +206,7 @@ export function formatInfo(
     variantInfo?: {[key: string]: string},
 ) {
     let allString = true;
-    const formatted: Array<[PartType, string]> = [];
+    const formatted: [PartType, string][] = [];
     for (const p of info) {
         const partFormatted = formatPart(p);
         if (partFormatted === '') continue;
@@ -926,5 +928,161 @@ export class WishItemsFormatter implements IFormatter {
 
     private writePart(key: string, value: string, prefix = '\n  ') {
         this.output.write(`${prefix}:${key} ${value}`);
+    }
+}
+
+function creatureAndNameToId(creatureName: string, featureName: string) {
+    // clean up things like "Relentless (Recharges on short/long rest)
+    const idPart = featureName.replace(/\(.*$/, '');
+    const featureNameAsId = nameToId(idPart);
+
+    if (!featureNameAsId.length) {
+        console.warn('Unable to create feature ID; given:', creatureName, featureName);
+        return;
+    }
+
+    return ':creatures-' + nameToId(creatureName) + '/' + featureNameAsId;
+}
+
+function formatCreatureFeatureDefault(
+    creatureName: string,
+    name: string,
+    text: string,
+) {
+    const id = creatureAndNameToId(creatureName, name);
+    if (!id) return;
+
+    return `
+        (provide-feature
+          {:id ${id}
+           :name ${q(name)}
+           :desc ${q(text)}})`;
+}
+
+function formatCreatureAttack(
+    creatureName: string,
+    name: string,
+    text: string,
+) {
+    const id = creatureAndNameToId(creatureName, name);
+    if (!id) return;
+
+    let s = `
+        (provide-attr
+          [:attacks ${id}]
+          {:id ${id}
+           :name ${q(name)}
+           :desc ${q(text)}`
+
+    const damageMatch = text.match(/([0-9]+d[0-9]+(?:[ ]*[+-][ ]*[0-9]+)?)[)]? ([^ ]+) damage/);
+    if (damageMatch) {
+        s += `
+           :damage :${nameToId(damageMatch[2])}
+           :dice ${q(damageMatch[1].replace(/ /g, ''))}`;
+    }
+
+    const toHitMatch = text.match(/(-?[0-9]+) to hit/i);
+    if (toHitMatch) {
+        s += `
+           :to-hit ${parseInt(toHitMatch[0], 10)}`;
+    }
+
+    return s + '})';
+}
+
+function formatCreatureFeature(creatureName: string, info: IStringPart) {
+    const s = formatPart(info);
+    if (!s.trim().length) {
+        return;
+    }
+
+    const m = s.match(/^\*\*([^*]+)\*\*(.*)$/);
+    if (!m || m.length < 2) return;
+
+    const name = m[1].replace(/\.[ ]+$/, '');
+    const text = m[2];
+
+    if (name.trim() === 'Actions') {
+        return;
+    }
+
+    if (name === 'Multiattack' || text.includes('Attack')) {
+        return formatCreatureAttack(creatureName, name, text);
+    }
+
+    return formatCreatureFeatureDefault(creatureName, name, text);
+}
+
+export class WishCreaturesFormatter {
+
+    private written = 0;
+
+    constructor(
+        readonly output: NodeJS.WritableStream,
+    ) {
+        output.write(`;; Auto-generated using the Polymorph project
+
+(declare-list
+  {:id :all-creatures
+   :type :5e/creature}
+
+`);
+    }
+
+    public async format(section: ISection) {
+        for (const p of section.parts) {
+            if (p.type !== PartType.CREATURE) continue;
+
+            this.onCreature(p as ICreaturePart);
+        }
+    }
+
+    async end() {
+        this.output.write(')');
+        console.log(`Exported ${this.written} items`);
+    }
+
+    private onCreature(p: ICreaturePart) {
+        if (!p.abilities) {
+            console.log('No abilities for ', p.name, '; skipping');
+            return;
+        }
+
+        let abilities = '';
+        for (const ability of ['str', 'dex', 'con', 'int', 'wis', 'cha']) {
+            abilities += ` :${ability} ${p.abilities[ability]}`;
+        }
+
+        // clean up types like Humanoid/Human/Whatever
+        const rawType = nameToId(p.kind);
+        const type = rawType.replace(/-.*$/, '');
+
+        this.output.write(`
+  {:id :creatures/${nameToId(p.name)}
+   :name ${q(p.name)}
+   :ac ${p.ac}
+   :challenge ${p.cr}
+   :hit-points ${q(p.hpRoll.replace(/[()]/g, ''))}
+   :abilities {${abilities.trim()}}
+   :senses ${q(p.senses)}
+   :size :${Size[p.size].toLowerCase()}
+   :type :${type}
+   :speed ${q(p.speed)}`);
+
+        const features = p.info
+            .map(line => formatCreatureFeature(p.name, line))
+            .filter(it => it != null);
+        if (features.length) {
+            this.output.write('\n   :! (on-state');
+
+            for (const feature of features) {
+                this.output.write(feature);
+            }
+
+            this.output.write(')');
+        }
+
+        this.output.write('}');
+        ++this.written;
     }
 }

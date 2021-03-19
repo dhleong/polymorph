@@ -59,7 +59,7 @@ class Abilities implements IAbilities {
     ) {}
 }
 
-function getArmorClass(map): string {
+function getArmorClass(map: any): string {
     if (map['Armor Class']) {
         return map['Armor Class'];
     }
@@ -89,18 +89,82 @@ function splitAt(
     ];
 }
 
+const fractionalChallengeRatings = {
+    '1/2': 0.5,
+    '1/4': 0.25,
+    '1/8': 0.125,
+};
+
+function parseChallengeExp(value: string): {cr: number, exp: string} {
+    const m = value.match(/([0-9\/]+) \(([0-9,]+) xp\)/i);
+    if (!m) throw new Error(`Could not parse CR+EXP: ${value}`);
+
+    const rawChallenge = m[1];
+    const exp = m[2];
+
+    const cr = fractionalChallengeRatings[rawChallenge] || parseInt(rawChallenge, 10);
+
+    return {
+        cr,
+        exp,
+    };
+}
+
+function combineFirstMapParts(parts: any[]): [any, IStringPart[]] {
+    const [first, ...remainingParts] = parts;
+    let map = (first as IStringPart).toMapBySpans();
+    if (Object.keys(map).length === 1 && map['0']) {
+        // combine singular map parts:
+        while (remainingParts.length) {
+            const nextMap = (remainingParts[0] as IStringPart).toMapBySpans();
+            if (nextMap['0']) {
+                // we've hit the abilities table
+                break;
+            }
+
+            remainingParts.splice(0, 1);
+            map = {
+                ...map,
+                ...nextMap,
+            };
+        }
+    }
+
+    return [map, remainingParts];
+}
+
+function unifyFeatureDescriptions(parts: IStringPart[]) {
+    for (let i = 1; i < parts.length; ++i) {
+        const prev = parts[i - 1];
+        const current = parts[i];
+
+        let spliced = false;
+        if (
+            prev.formatting.length === 1
+            && current.formatting.length
+            && prev.formatting[0].start === 0
+            && prev.formatting[0].length === prev.str.length
+            && prev.formatting[0].format === current.formatting[0].format
+        ) {
+            prev.str += ' ' + current.str;
+            prev.formatting[0].length += current.formatting[0].length + 1;
+            prev.formatting.push(...current.formatting.slice(1));
+            spliced = true;
+        }
+
+        if (spliced) {
+            parts.splice(i, 1);
+            i -= 1;
+        }
+    }
+}
+
 export class CreaturePart implements ICreaturePart {
     static from(sections: Section[]): CreaturePart {
         if (sections.length < 2) return;
 
         try {
-            const part = CreaturePart.parseUnsafe(sections);
-
-            // if (!part && !sections[0].canHaveTables) {
-            //     console.warn('Unable to parse:', JSON.stringify(sections));
-            // }
-
-            return part;
+            return CreaturePart.parseUnsafe(sections);
         } catch (e) {
             const message = `Error parsing creature '${sections[0].getHeader()}':\n  ${e.stack}`;
             throw new Error(message);
@@ -117,10 +181,9 @@ export class CreaturePart implements ICreaturePart {
         // sections like the half-dragon template
         if (sections[1].canHaveTables) return;
 
-        const parts = sections[1].parts;
-        if (!parts.length) return;
+        const [firstMap, parts] = combineFirstMapParts(sections[1].parts);
+        if (!Object.keys(firstMap).length) return;
 
-        const firstMap = (parts[0] as IStringPart).toMapBySpans();
         const rawAC = getArmorClass(firstMap);
         if (!rawAC) {
             // things like "Black Dragon" that are just a header for
@@ -136,14 +199,14 @@ export class CreaturePart implements ICreaturePart {
         [creature.hp, creature.hpRoll] = splitByNumber(firstMap['Hit Points']);
         creature.speed = firstMap.Speed;
 
-        creature.readSizeKindAlign(firstMap[0]);
+        creature.readSizeKindAlign(firstMap['0']);
 
-        const nextMap = parts.length >= 3
-            ? (parts[2] as IStringPart).toMapBySpans()
+        const nextMap = parts.length >= 2
+            ? (parts[1] as IStringPart).toMapBySpans()
             : null;
 
         if (nextMap) {
-            const rawAbilities: string = nextMap[0];
+            const rawAbilities: string = nextMap['0'];
             const [str, dex, con, int, wis, cha] =
                 rawAbilities.split(/\([-−\+0-9]+\)/)
                 .map(raw => parseInt(raw.trim(), 10));
@@ -167,21 +230,25 @@ export class CreaturePart implements ICreaturePart {
             creature.conditionImmunities = nextMap['Condition Immunities'];
 
             creature.languages = nextMap.Languages;
-            const [cr, rawExp] = splitByNumber(nextMap.Challenge);
+            const {cr, exp} = parseChallengeExp(nextMap.Challenge);
             creature.cr = cr;
-            creature.exp = parseInt(rawExp.replace(/[, ()]/g, ''), 10);
+            creature.exp = parseInt(exp.replace(/[, ()]/g, ''), 10);
         }
 
         // TODO: future work could split up these parts by formatting
-        for (let i = 3; i < parts.length; ++i) {
+        for (let i = 2; i < parts.length; ++i) {
             if (!creature.info) creature.info = [];
             creature.info.push(parts[i] as IStringPart);
         }
 
         for (let i = 2; i < sections.length; ++i) {
             if (!creature.info) creature.info = [];
-            creature.info.push(...sections[i].parts as IStringPart[]);
+            const sectionParts = sections[i].parts as IStringPart[];
+            unifyFeatureDescriptions(sectionParts);
+            creature.info.push(...sectionParts);
         }
+
+        // unifyFeatureDescriptions(creature.info);
 
         return creature;
     }
@@ -231,6 +298,10 @@ export class CreaturePart implements ICreaturePart {
         this.size = sizeByString[sizeRaw.toLowerCase()];
         this.kind = kind;
         this.align = alignmentFromString(alignmentStr);
+
+        if (this.size == null) {
+            console.log('Unable to parse size from: ', input, `(raw=${sizeRaw.toLowerCase()})`);
+        }
     }
 
     toJson() {
